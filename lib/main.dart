@@ -1,3 +1,4 @@
+import 'package:corbado_demo/activities/login_activity.dart';
 import 'package:corbado_demo/theme/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Corbado Demo',
       theme: theme,
-      home: const MyHomePage(title: 'Corbado Demo'),
+      home: LoginActivity(),
     );
   }
 }
