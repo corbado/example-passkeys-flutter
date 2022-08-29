@@ -20,7 +20,8 @@ ThemeData theme = ThemeData(
     hintStyle: TextStyle(color: Colors.grey.shade400),
     fillColor: Colors.grey.shade100,
     filled: true,
-    contentPadding: EdgeInsets.symmetric(horizontal: 18),
+    isDense: true,
+    contentPadding: const EdgeInsets.symmetric(horizontal: 22, vertical: 16),
     enabledBorder: const OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(30)),
       borderSide: BorderSide(color: Colors.transparent, width: 1.0),

@@ -8,6 +8,8 @@ import 'package:local_auth/local_auth.dart';
 import 'package:webauthn/webauthn.dart';
 
 class CorbadoService {
+  final baseUrl = "https://api.corbado.com/v1";
+  final origin = "";
   final _auth = Authenticator(true, false);
   final LocalAuthentication auth = LocalAuthentication();
   var cre = {
@@ -103,7 +105,51 @@ class CorbadoService {
     //   debugPrint("publicKey: ${data2["publicKey"]["challenge"]}");
   }
 
-  _registerFinish() {}
+  _registerFinish(Attestation attestation) async {
+    String pkc = attestation.getCredentialIdBase64();
+
+    Codec<String, String> stringToBase64 = utf8.fuse(base64);
+    String attestationObject =
+        stringToBase64.encode(String.fromCharCodes(attestation.asCBOR()));
+
+    //  pkc = pkc.substring(0, pkc.length - 1);
+    //  attestationObject =
+    attestationObject.substring(0, attestationObject.length - 1);
+
+    var param = {
+      "type": "public-key",
+      "id": pkc,
+      "rawId": pkc,
+      "authenticatorAttachment": "platform",
+      "response": {
+        "clientDataJSON":
+            "eyJ0eXBlIjoid2ViYXV0aG4uY3JlYXRlIiwiY2hhbGxlbmdlIjoiYWZmclQybWFGbmotWnlWUVd3M3ZYcFU0dG5IVmhaMHZEc0cyaHAxWTlBZyIsIm9yaWdpbiI6Imh0dHBzOi8vZGVtby5jb3JiYWRvLmNvbSIsImNyb3NzT3JpZ2luIjpmYWxzZX0",
+        "attestationObject": attestationObject,
+        "transports": ["internal"]
+      },
+      "clientExtensionResults": {}
+    };
+
+    debugPrint("registerFinish param: $param");
+
+    var basicAuth =
+        "Basic ${base64.encode(utf8.encode('$projectID:$apiSecret'))}";
+    var value = await http.post(Uri.parse("$baseUrl/webauthn/register/finish"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'authorization': basicAuth
+        },
+        body: jsonEncode({
+          "publicKeyCredential": jsonEncode(param),
+          "origin": origin,
+          "clientInfo": {
+            "userAgent": "Corbado Demo App",
+            "remoteAddress": "127.0.0.1"
+          }
+        }));
+    debugPrint("_registerFinish response");
+    debugPrint("_registerFinish body: " + value.body);
+  }
 
   authenticateInit() {}
 
