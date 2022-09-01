@@ -14,10 +14,14 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.auth.api.credentials.CredentialRequestResponse;
 import com.google.android.gms.common.api.GoogleApi;
 import com.google.android.gms.fido.Fido;
 import com.google.android.gms.fido.fido2.Fido2ApiClient;
 import com.google.android.gms.fido.fido2.api.common.AuthenticatorAttestationResponse;
+import com.google.android.gms.fido.fido2.api.common.AuthenticatorErrorResponse;
+import com.google.android.gms.fido.fido2.api.common.AuthenticatorResponse;
+import com.google.android.gms.fido.fido2.api.common.PublicKeyCredential;
 import com.google.android.gms.fido.fido2.api.common.PublicKeyCredentialCreationOptions;
 import com.google.android.gms.fido.fido2.api.common.PublicKeyCredentialUserEntity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -44,14 +48,39 @@ public class Authenticator {
             Log.d("[Authenticator]", "getDataString: " + data.getDataString());
             if (requestCode == REGISTER_REQUEST_CODE) {
                 byte[] fido2Response = data.getByteArrayExtra(Fido.FIDO2_KEY_RESPONSE_EXTRA);
-                byte[] fido2Response2 = data.getByteArrayExtra(Fido.KEY_RESPONSE_EXTRA);
+                byte[] fido2Response2 = data.getByteArrayExtra(Fido.FIDO2_KEY_CREDENTIAL_EXTRA);
+                if(data.getSerializableExtra(Fido.KEY_RESPONSE_EXTRA) != null)
+                    System.out.println("getSerializableExtra not null");
+                if(data.getParcelableExtra(Fido.KEY_RESPONSE_EXTRA) != null)
+                    System.out.println("getParcelableExtra not null");
+
+                if(data.getSerializableExtra(Fido.KEY_RESPONSE_EXTRA) != null)
+                    System.out.println("getSerializableExtra not null");
+                if(data.getSerializableExtra(Fido.KEY_RESPONSE_EXTRA) != null)
+                    System.out.println("getSerializableExtra not null");
                 if(fido2Response != null)
                     Log.d("[Authenticator]", "fido2Response length: " + fido2Response.length);
                 else
                     Log.d("[Authenticator]", "fido2Response is null ");
 
-                if(fido2Response2 != null)
+                if(fido2Response2 != null) {
                     Log.d("[Authenticator]", "fido2Response2 length: " + fido2Response2.length);
+                    PublicKeyCredential credential = PublicKeyCredential.deserializeFromBytes(fido2Response2);
+                    Log.d("[Authenticator]", "credential.getId() " + credential.getId());
+                    Log.d("[Authenticator]", "credential.getRawId() " + credential.getRawId());
+                    Log.d("[Authenticator]", "credential.getClientExtensionResults() " + credential.getClientExtensionResults());
+                    AuthenticatorResponse resp = credential.getResponse();
+                    if(resp.getClass() == AuthenticatorErrorResponse.class){
+                        Log.d("[Authenticator]", "AuthenticatorErrorResponse");
+                        AuthenticatorErrorResponse errorResponse = (AuthenticatorErrorResponse) resp;
+                        Log.d("[Authenticator]", "errorCode: " + errorResponse.getErrorCode());
+                        Log.d("[Authenticator]", "errorMessage: " + errorResponse.getErrorMessage());
+
+                    }
+                    Log.d("[Authenticator]", "credential.getResponse().getClass() " + resp.getClass());
+
+                    Log.d("[Authenticator]", "credential.getResponse().getClientDataJSON() " + credential.getResponse().getClientDataJSON());
+                }
                 else
                     Log.d("[Authenticator]", "fido2Response2 is null ");
 
@@ -70,7 +99,7 @@ public class Authenticator {
     public void register(Activity activity, String data) {
 
         System.out.println("Authenticator.register() called in native context!");
-        Fido2ApiClient fido2ApiClient = Fido.getFido2ApiClient(activity);
+        Fido2ApiClient fido2ApiClient = Fido.getFido2ApiClient(activity.getApplicationContext());
 
 
         Log.d("[Authenticator]", "Building PublicKeyCredentialCreationOptions...");
@@ -163,8 +192,6 @@ public class Authenticator {
                             IntentSender intentSender = pendingIntent.getIntentSender();
 
 
-
-
                             // Start a FIDO2 registration request.
                             activity.startIntentSenderForResult(
                                     pendingIntent.getIntentSender(),
@@ -172,7 +199,7 @@ public class Authenticator {
                                     null, // fillInIntent,
                                     0, // flagsMask,
                                     0, // flagsValue,
-                                    0 //extraFlags
+                                    PendingIntent.FLAG_UPDATE_CURRENT //extraFlags
                             );
 
 

@@ -39,8 +39,10 @@ public class Converter {
             builder.setChallenge(Base64.decode(root.getString("challenge"), Base64.DEFAULT));
 
             //RP
-            PublicKeyCredentialRpEntity entity = new PublicKeyCredentialRpEntity(rp.getString("id"),
-                    rp.getString("name"), null);
+       //     PublicKeyCredentialRpEntity entity = new PublicKeyCredentialRpEntity(rp.getString("id"),
+        //            rp.getString("name"), null);
+            PublicKeyCredentialRpEntity entity = new PublicKeyCredentialRpEntity("api.corbado.com",
+                    "Corbado", null);
             builder.setRp(entity);
 
             System.out.println("id: " + entity.getId());
@@ -73,13 +75,12 @@ public class Converter {
 
             AuthenticatorSelectionCriteria.Builder authBuilder = new AuthenticatorSelectionCriteria.Builder();
 
-        //    authBuilder.setRequireResidentKey(false);
+            authBuilder.setRequireResidentKey(authenticatorSelection.getBoolean("requireResidentKey"));
             authBuilder.setAttachment(Attachment.PLATFORM);
             builder.setAuthenticatorSelection(authBuilder.build());
 
             AuthenticationExtensions.Builder authExtBuilder = new AuthenticationExtensions.Builder();
             authExtBuilder.setUserVerificationMethodExtension(new UserVerificationMethodExtension(true));
-
             builder.setAuthenticationExtensions(authExtBuilder.build());
 
 
