@@ -1,13 +1,19 @@
-package com.example.corbado_demo;
+package com.corbado.api;
 
 import android.util.Base64;
 import android.util.Log;
 
+import com.google.android.gms.fido.fido2.api.common.Attachment;
+import com.google.android.gms.fido.fido2.api.common.AuthenticationExtensions;
+import com.google.android.gms.fido.fido2.api.common.AuthenticatorSelectionCriteria;
 import com.google.android.gms.fido.fido2.api.common.EC2Algorithm;
+import com.google.android.gms.fido.fido2.api.common.FidoAppIdExtension;
 import com.google.android.gms.fido.fido2.api.common.PublicKeyCredentialCreationOptions;
 import com.google.android.gms.fido.fido2.api.common.PublicKeyCredentialParameters;
 import com.google.android.gms.fido.fido2.api.common.PublicKeyCredentialRpEntity;
 import com.google.android.gms.fido.fido2.api.common.PublicKeyCredentialUserEntity;
+import com.google.android.gms.fido.fido2.api.common.UserVerificationMethodExtension;
+import com.google.android.gms.fido.fido2.api.common.UserVerificationMethods;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,8 +40,11 @@ public class Converter {
 
             //RP
             PublicKeyCredentialRpEntity entity = new PublicKeyCredentialRpEntity(rp.getString("id"),
-                    rp.getString("name"), user.getString("icon"));
+                    rp.getString("name"), null);
             builder.setRp(entity);
+
+            System.out.println("id: " + entity.getId());
+            System.out.println("name: " + entity.getName());
 
             //User
             PublicKeyCredentialUserEntity userEntity =
@@ -61,6 +70,18 @@ public class Converter {
             //Timeout
             double timeout = Double.valueOf(root.getLong("timeout"));
             builder.setTimeoutSeconds(timeout);
+
+            AuthenticatorSelectionCriteria.Builder authBuilder = new AuthenticatorSelectionCriteria.Builder();
+
+        //    authBuilder.setRequireResidentKey(false);
+            authBuilder.setAttachment(Attachment.PLATFORM);
+            builder.setAuthenticatorSelection(authBuilder.build());
+
+            AuthenticationExtensions.Builder authExtBuilder = new AuthenticationExtensions.Builder();
+            authExtBuilder.setUserVerificationMethodExtension(new UserVerificationMethodExtension(true));
+
+            builder.setAuthenticationExtensions(authExtBuilder.build());
+
 
             Log.i("[Converter]", "Builder: " + builder.toString());
 

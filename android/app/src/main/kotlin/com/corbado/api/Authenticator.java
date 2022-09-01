@@ -1,5 +1,4 @@
-package com.example.corbado_demo;
-
+package com.corbado.api;
 
 import android.app.Activity;
 import android.app.Application;
@@ -7,6 +6,9 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.pm.PackageManager;
+import android.content.pm.verify.domain.DomainVerificationManager;
+import android.content.pm.verify.domain.DomainVerificationUserState;
 import android.util.Base64;
 import android.util.Log;
 
@@ -22,6 +24,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import kotlin.text.Charsets;
 
@@ -71,7 +77,66 @@ public class Authenticator {
         PublicKeyCredentialCreationOptions publicKeyCredentialCreationOptions =
                 Converter.parsePublicKeyCredentialCreationOptions(data);
 
+/*
+        DomainVerificationManager manager =
+                null;
+
+        System.out.println("Before sdk check sdk: " + android.os.Build.VERSION.SDK_INT);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            manager = activity.getSystemService(DomainVerificationManager.class);
+
+            DomainVerificationUserState userState =
+                    null;
+            try {
+                userState = manager.getDomainVerificationUserState(activity.getPackageName());
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            Map<String, Integer> hostToStateMap = userState.getHostToStateMap();
+            List<String> verifiedDomains = new ArrayList<>();
+            List<String> selectedDomains = new ArrayList<>();
+            List<String> unapprovedDomains = new ArrayList<>();
+
+            System.out.println("Checking verification of domains");
+            System.out.println("hostToStateMap size: " + hostToStateMap.keySet().size());
+            for (String key : hostToStateMap.keySet()) {
+                Integer stateValue = hostToStateMap.get(key);
+                if (stateValue == DomainVerificationUserState.DOMAIN_STATE_VERIFIED) {
+                    // Domain has passed Android App Links verification.
+                    verifiedDomains.add(key);
+                } else if (stateValue == DomainVerificationUserState.DOMAIN_STATE_SELECTED) {
+                    // Domain hasn't passed Android App Links verification, but the user has
+                    // associated it with an app.
+                    selectedDomains.add(key);
+                } else {
+                    // All other domains.
+                    unapprovedDomains.add(key);
+                }
+            }
+            System.out.println("VerifiedDomains");
+            verifiedDomains.forEach(s -> System.out.println("VER: " + s));
+            System.out.println("selectedDomains");
+            selectedDomains.forEach(s -> System.out.println("VER: " + s));
+            System.out.println("unapprovedDomains");
+            unapprovedDomains.forEach(s -> System.out.println("VER: " + s));
+        }
+
+*/
+
+
         if (publicKeyCredentialCreationOptions != null) {
+            Task<Boolean> isAvailable = fido2ApiClient.isUserVerifyingPlatformAuthenticatorAvailable();
+            isAvailable.addOnSuccessListener(new OnSuccessListener<Boolean>() {
+                @Override
+                public void onSuccess(Boolean aBoolean) {
+                    System.out.println("Task<Boolean> isAvailable result: " + aBoolean);
+                }
+            });
+
+            System.out.println("fido2ApiClient toString: " + fido2ApiClient.getApiKey().toString());
+            System.out.println("fido2ApiClient zaa: " + fido2ApiClient.getApiKey().zaa());
+
             Task<PendingIntent> fido2PendingIntentTask =
                     fido2ApiClient.getRegisterPendingIntent(publicKeyCredentialCreationOptions);
             fido2PendingIntentTask.addOnCompleteListener(new OnCompleteListener<PendingIntent>() {
@@ -95,6 +160,11 @@ public class Authenticator {
                         Log.d("[Authenticator]", "PendingIntent: " + pendingIntent.toString());
                         Log.d("[Authenticator]", "Sending PendingIntent...");
                         if (pendingIntent != null) {
+                            IntentSender intentSender = pendingIntent.getIntentSender();
+
+
+
+
                             // Start a FIDO2 registration request.
                             activity.startIntentSenderForResult(
                                     pendingIntent.getIntentSender(),
@@ -104,6 +174,8 @@ public class Authenticator {
                                     0, // flagsValue,
                                     0 //extraFlags
                             );
+
+
                         }
                     } catch (IntentSender.SendIntentException e) {
                         e.printStackTrace();

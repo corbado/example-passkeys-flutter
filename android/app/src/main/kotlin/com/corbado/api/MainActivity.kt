@@ -1,5 +1,4 @@
-package com.example.corbado_demo
-
+package com.corbado.api;
 import android.content.Intent as Intent
 import androidx.annotation.NonNull
 import io.flutter.embedding.android.FlutterActivity
