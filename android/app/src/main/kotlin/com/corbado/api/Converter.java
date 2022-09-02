@@ -42,7 +42,7 @@ public class Converter {
        //     PublicKeyCredentialRpEntity entity = new PublicKeyCredentialRpEntity(rp.getString("id"),
         //            rp.getString("name"), null);
             PublicKeyCredentialRpEntity entity = new PublicKeyCredentialRpEntity("api.corbado.com",
-                    "Corbado", null);
+                    rp.getString("name"), null);
             builder.setRp(entity);
 
             System.out.println("id: " + entity.getId());
@@ -73,18 +73,16 @@ public class Converter {
             double timeout = Double.valueOf(root.getLong("timeout"));
             builder.setTimeoutSeconds(timeout);
 
+            //AuthenticatorSelection
             AuthenticatorSelectionCriteria.Builder authBuilder = new AuthenticatorSelectionCriteria.Builder();
-
             authBuilder.setRequireResidentKey(authenticatorSelection.getBoolean("requireResidentKey"));
             authBuilder.setAttachment(Attachment.PLATFORM);
             builder.setAuthenticatorSelection(authBuilder.build());
 
+            //Other
             AuthenticationExtensions.Builder authExtBuilder = new AuthenticationExtensions.Builder();
             authExtBuilder.setUserVerificationMethodExtension(new UserVerificationMethodExtension(true));
             builder.setAuthenticationExtensions(authExtBuilder.build());
-
-
-            Log.i("[Converter]", "Builder: " + builder.toString());
 
             PublicKeyCredentialCreationOptions publicKeyCredential = builder.build();
             return publicKeyCredential;

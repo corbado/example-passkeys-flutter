@@ -29,6 +29,9 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -40,32 +43,17 @@ public class Authenticator {
     private static final int REGISTER_REQUEST_CODE = 28739428;
     private static final int SIGN_REQUEST_CODE = 446712374;
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
+    public void onActivityResult(MainActivity activity, int requestCode, int resultCode, Intent data){
         if(requestCode == REGISTER_REQUEST_CODE) {
             Log.d("[Authenticator]", "onActivityResult called requestCode: "
                     + requestCode + ", resultCode: " + resultCode);
             Log.d("[Authenticator]", "getAction: " + data.getAction());
             Log.d("[Authenticator]", "getDataString: " + data.getDataString());
             if (requestCode == REGISTER_REQUEST_CODE) {
-                byte[] fido2Response = data.getByteArrayExtra(Fido.FIDO2_KEY_RESPONSE_EXTRA);
-                byte[] fido2Response2 = data.getByteArrayExtra(Fido.FIDO2_KEY_CREDENTIAL_EXTRA);
-                if(data.getSerializableExtra(Fido.KEY_RESPONSE_EXTRA) != null)
-                    System.out.println("getSerializableExtra not null");
-                if(data.getParcelableExtra(Fido.KEY_RESPONSE_EXTRA) != null)
-                    System.out.println("getParcelableExtra not null");
+                byte[] fidoResponse = data.getByteArrayExtra(Fido.FIDO2_KEY_CREDENTIAL_EXTRA);
 
-                if(data.getSerializableExtra(Fido.KEY_RESPONSE_EXTRA) != null)
-                    System.out.println("getSerializableExtra not null");
-                if(data.getSerializableExtra(Fido.KEY_RESPONSE_EXTRA) != null)
-                    System.out.println("getSerializableExtra not null");
-                if(fido2Response != null)
-                    Log.d("[Authenticator]", "fido2Response length: " + fido2Response.length);
-                else
-                    Log.d("[Authenticator]", "fido2Response is null ");
-
-                if(fido2Response2 != null) {
-                    Log.d("[Authenticator]", "fido2Response2 length: " + fido2Response2.length);
-                    PublicKeyCredential credential = PublicKeyCredential.deserializeFromBytes(fido2Response2);
+                if(fidoResponse != null) {
+                    PublicKeyCredential credential = PublicKeyCredential.deserializeFromBytes(fidoResponse);
                     Log.d("[Authenticator]", "credential.getId() " + credential.getId());
                     Log.d("[Authenticator]", "credential.getRawId() " + credential.getRawId());
                     Log.d("[Authenticator]", "credential.getClientExtensionResults() " + credential.getClientExtensionResults());
@@ -75,7 +63,28 @@ public class Authenticator {
                         AuthenticatorErrorResponse errorResponse = (AuthenticatorErrorResponse) resp;
                         Log.d("[Authenticator]", "errorCode: " + errorResponse.getErrorCode());
                         Log.d("[Authenticator]", "errorMessage: " + errorResponse.getErrorMessage());
+                    }else{
+                        AuthenticatorAttestationResponse  authAttestResp = (AuthenticatorAttestationResponse) resp;
+                        String id = credential.getId();
+                        String rawId = new String(credential.getRawId());
+                        String clientDataJSON = new String(authAttestResp.getClientDataJSON());
+                        String attestationObject = new String(authAttestResp.getAttestationObject());
 
+                        JSONObject obj = new JSONObject();
+                        try {
+                            obj.put("id", id);
+                            obj.put("rawId", rawId);
+                            obj.put("clientDataJSON", clientDataJSON);
+                            obj.put("attestationObject", attestationObject);
+                            activity.onWebauthnRegisterFinish(obj.toString());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+
+                        Log.d("[Authenticator]", "getClientDataJSON: " + new String(resp.getClientDataJSON()));
+                        Log.d("[Authenticator]", "serializeToBytes: " + new String(resp.serializeToBytes()));
                     }
                     Log.d("[Authenticator]", "credential.getResponse().getClass() " + resp.getClass());
 
@@ -84,74 +93,16 @@ public class Authenticator {
                 else
                     Log.d("[Authenticator]", "fido2Response2 is null ");
 
-                //AuthenticatorAttestationResponse response = AuthenticatorAttestationResponse.deserializeFromBytes(fido2Response);
-
-                //String keyHandleBase64 = Base64.encodeToString(response.serializeToBytes(), Base64.DEFAULT);
-                //String clientDataJson = new String(response.getClientDataJSON(), Charsets.UTF_8);
-                //String attestationObjectBase64 = Base64.encodeToString(response.getAttestationObject(), Base64.DEFAULT);
-                //Log.d("[Authenticator]", "keyHandleBase64: " + keyHandleBase64);
-                //Log.d("[Authenticator]", "clientDataJson: " + clientDataJson);
-                //Log.d("[Authenticator]", "attestationObjectBase64: " + attestationObjectBase64);
             }
         }
     }
 
     public void register(Activity activity, String data) {
-
-        System.out.println("Authenticator.register() called in native context!");
         Fido2ApiClient fido2ApiClient = Fido.getFido2ApiClient(activity.getApplicationContext());
-
 
         Log.d("[Authenticator]", "Building PublicKeyCredentialCreationOptions...");
         PublicKeyCredentialCreationOptions publicKeyCredentialCreationOptions =
                 Converter.parsePublicKeyCredentialCreationOptions(data);
-
-/*
-        DomainVerificationManager manager =
-                null;
-
-        System.out.println("Before sdk check sdk: " + android.os.Build.VERSION.SDK_INT);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
-            manager = activity.getSystemService(DomainVerificationManager.class);
-
-            DomainVerificationUserState userState =
-                    null;
-            try {
-                userState = manager.getDomainVerificationUserState(activity.getPackageName());
-            } catch (PackageManager.NameNotFoundException e) {
-                e.printStackTrace();
-            }
-
-            Map<String, Integer> hostToStateMap = userState.getHostToStateMap();
-            List<String> verifiedDomains = new ArrayList<>();
-            List<String> selectedDomains = new ArrayList<>();
-            List<String> unapprovedDomains = new ArrayList<>();
-
-            System.out.println("Checking verification of domains");
-            System.out.println("hostToStateMap size: " + hostToStateMap.keySet().size());
-            for (String key : hostToStateMap.keySet()) {
-                Integer stateValue = hostToStateMap.get(key);
-                if (stateValue == DomainVerificationUserState.DOMAIN_STATE_VERIFIED) {
-                    // Domain has passed Android App Links verification.
-                    verifiedDomains.add(key);
-                } else if (stateValue == DomainVerificationUserState.DOMAIN_STATE_SELECTED) {
-                    // Domain hasn't passed Android App Links verification, but the user has
-                    // associated it with an app.
-                    selectedDomains.add(key);
-                } else {
-                    // All other domains.
-                    unapprovedDomains.add(key);
-                }
-            }
-            System.out.println("VerifiedDomains");
-            verifiedDomains.forEach(s -> System.out.println("VER: " + s));
-            System.out.println("selectedDomains");
-            selectedDomains.forEach(s -> System.out.println("VER: " + s));
-            System.out.println("unapprovedDomains");
-            unapprovedDomains.forEach(s -> System.out.println("VER: " + s));
-        }
-
-*/
 
 
         if (publicKeyCredentialCreationOptions != null) {
@@ -207,9 +158,6 @@ public class Authenticator {
                     } catch (IntentSender.SendIntentException e) {
                         e.printStackTrace();
                     }
-                    //                  pendingIntent.launchPendingIntent(this, REQUEST_CODE_REGISTER);
-                    // For a FIDO2 sign request.
-                    // fido2PendingIntent.launchPendingIntent(this, REQUEST_CODE_SIGN);
                 }
             });
         } else {
