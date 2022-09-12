@@ -12,6 +12,7 @@ import com.google.android.gms.fido.fido2.api.common.PublicKeyCredentialCreationO
 import com.google.android.gms.fido.fido2.api.common.PublicKeyCredentialParameters;
 import com.google.android.gms.fido.fido2.api.common.PublicKeyCredentialRpEntity;
 import com.google.android.gms.fido.fido2.api.common.PublicKeyCredentialUserEntity;
+import com.google.android.gms.fido.fido2.api.common.RSAAlgorithm;
 import com.google.android.gms.fido.fido2.api.common.UserVerificationMethodExtension;
 import com.google.android.gms.fido.fido2.api.common.UserVerificationMethods;
 
@@ -42,7 +43,7 @@ public class Converter {
        //     PublicKeyCredentialRpEntity entity = new PublicKeyCredentialRpEntity(rp.getString("id"),
         //            rp.getString("name"), null);
             PublicKeyCredentialRpEntity entity = new PublicKeyCredentialRpEntity("api.corbado.com",
-                    rp.getString("name"), null);
+                    "api.corbado", null);
             builder.setRp(entity);
 
             System.out.println("id: " + entity.getId());
@@ -63,11 +64,14 @@ public class Converter {
                 JSONObject object = pubKeyCredParams.getJSONObject(i);
                 String type = object.getString("type");
                 int alg= object.getInt("alg");
+                Log.i("[Converter]", "Pubkeycred param " + type + " - [" + alg + "]");
                 PublicKeyCredentialParameters parameter =
-                        new PublicKeyCredentialParameters(type, EC2Algorithm.ES256.getAlgoValue());
+                        new PublicKeyCredentialParameters(type, RSAAlgorithm.RS256.getAlgoValue());
                 parameters.add(parameter);
             }
             builder.setParameters(parameters);
+
+
 
             //Timeout
             double timeout = Double.valueOf(root.getLong("timeout"));

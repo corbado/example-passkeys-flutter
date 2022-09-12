@@ -15,10 +15,10 @@ class _LoginActivityState extends State<LoginActivity> {
   static const channel = MethodChannel("com.corbado.flutterapp/webauthn");
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     channel.setMethodCallHandler((call) async {
-      switch(call.method){
+      switch (call.method) {
         case "onWebauthnRegisterFinish":
           onWebauthnRegisterFinish(call.arguments);
       }
@@ -37,27 +37,59 @@ class _LoginActivityState extends State<LoginActivity> {
     }
   }
 
-  void onWebauthnRegisterFinish(String arguments){
+  void onWebauthnRegisterFinish(String arguments) {
     debugPrint("onWebauthnRegisterFinish called " + arguments);
+    Codec<String, String> stringToBase64Url = utf8.fuse(base64);
     var options = jsonDecode(arguments);
     debugPrint("After json decode");
+    debugPrint("$options");
 
     String id = options["id"];
     debugPrint("id: $id");
 
     String rawId = options["rawId"];
-    String rawId64 = base64Encode(utf8.encode(rawId));
-    debugPrint("rawId: $rawId64");
+    debugPrint("rawID $rawId");
+    //  String rawId64 = base64UrlEncode(utf8.encode(rawId));
+    //String rawId64 = stringToBase64Url.encode(rawId);
+    //String rawId64 = base64Encode(utf8.encode(rawId));
+    //debugPrint("rawId64: $rawId64");
 
     String clientDataJSON = options["clientDataJSON"];
-    String clientDataJSON64 = base64Encode(utf8.encode(clientDataJSON));
+    var clientDecoded = jsonDecode(clientDataJSON);
+    var newData = {
+      "challenge": clientDecoded["challenge"],
+      "origin": "https://api.corbado.com",
+      "type": "webauthn.create"
+    };
+    var parsed = jsonEncode(newData);
+    debugPrint("parsed: " + parsed);
+
+    //  String clientDataJSON64 = base64UrlEncode(utf8.encode(parsed));
+    //String clientDataJSON64 = stringToBase64Url.encode(parsed);
+    String clientDataJSON64 = base64UrlEncode(utf8.encode(parsed));
+
+    //  clientDataJSON64 =
+    //      clientDataJSON64.substring(0, clientDataJSON64.length - 1);
     debugPrint("clientDataJSON: $clientDataJSON64");
 
     String attestationObject = options["attestationObject"];
-    String attestationObject64 = base64Encode(utf8.encode(attestationObject));
-    debugPrint("attestationObject: $attestationObject64");
+    //  String attestationObject64 =
+    //      base64UrlEncode(utf8.encode(attestationObject));
+    //String attestationObject64 = stringToBase64Url.encode(attestationObject);
+    //String attestationObject64 = base64Encode(utf8.encode(attestationObject));
 
-    CorbadoService().registerFinish(id, rawId64, clientDataJSON64, attestationObject64);
+    //  String attestationObjectWeb =
+    //      "o2NmbXRkbm9uZWdhdHRTdG10oGhhdXRoRGF0YVkBZypeqvzC0koCqzmr6JfEBUQ5vCqVRbSyv3BeBeqAqczkRQAAAAAAAAAAAAAAAAAAAAAAAAAAACDpTGljts1FUs92OZi2xGHEhWktXK7itnB-IkHPA06D8KQBAwM5AQAgWQEAyaR0c8XcjmSRwXNRv3YjJrlrxh9_zcb05-QX0_28_sEy0NfoszHuwonxsCaE2Ck6zyebBfhmqDrSHTqbKcyrERJFESLaqBIWs9FDOj2I9-PswBoST4zkZ_TKrA4Z01VBajuFtjQDnb7pTMu0r52kHIIIzhEetTK61fwWsZIcMrETvyuF-GeV2Kxbe7TQPRrh736Ome7hht4B5X-RQ20PWblXWMXRYww5dBX6c-c56lPduC4fm1NHIOowt3JILJFSNADquO3opdPCtQXC7KK5Hc-y8R3y8567sxTW-BNPCQhVmeCpdo4revsvZLFfLm5pG79Df5No8E7NL9hIKVKHqSFDAQAB";
+    debugPrint("attestationObject64: $attestationObject");
+    //   debugPrint("attestationObjectWeb: $attestationObjectWeb");
+
+    clientDataJSON64 =
+        clientDataJSON64.substring(0, clientDataJSON64.length - 1);
+    //attestationObject =
+    //    attestationObject.substring(0, attestationObject.length - 1);
+
+    CorbadoService()
+        .registerFinish(id, rawId, clientDataJSON64, attestationObject);
   }
 
   @override

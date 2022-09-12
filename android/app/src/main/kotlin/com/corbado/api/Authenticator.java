@@ -9,10 +9,11 @@ import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.content.pm.verify.domain.DomainVerificationManager;
 import android.content.pm.verify.domain.DomainVerificationUserState;
-import android.util.Base64;
+import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import com.google.android.gms.auth.api.credentials.CredentialRequestResponse;
 import com.google.android.gms.common.api.GoogleApi;
@@ -33,6 +34,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 
@@ -43,6 +45,7 @@ public class Authenticator {
     private static final int REGISTER_REQUEST_CODE = 28739428;
     private static final int SIGN_REQUEST_CODE = 446712374;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void onActivityResult(MainActivity activity, int requestCode, int resultCode, Intent data){
         if(requestCode == REGISTER_REQUEST_CODE) {
             Log.d("[Authenticator]", "onActivityResult called requestCode: "
@@ -66,9 +69,26 @@ public class Authenticator {
                     }else{
                         AuthenticatorAttestationResponse  authAttestResp = (AuthenticatorAttestationResponse) resp;
                         String id = credential.getId();
+                        byte[] rawId = credential.getRawId();
+                        byte[] clientDataJSON = authAttestResp.getClientDataJSON();
+                        byte[] attestationObject = authAttestResp.getAttestationObject();
+
+                        JSONObject obj = new JSONObject();
+                        try {
+                            obj.put("id", id);
+                            obj.put("rawId", Base64.getUrlEncoder().withoutPadding().encodeToString(rawId));
+                            obj.put("clientDataJSON", new String(clientDataJSON));
+                            obj.put("attestationObject", Base64.getUrlEncoder().withoutPadding().encodeToString(attestationObject));
+                            activity.onWebauthnRegisterFinish(obj.toString());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+/*
+                        String id = credential.getId();
                         String rawId = new String(credential.getRawId());
                         String clientDataJSON = new String(authAttestResp.getClientDataJSON());
                         String attestationObject = new String(authAttestResp.getAttestationObject());
+                        Log.d("[Authenticator]", "attestationObj: " + attestationObject);
 
                         JSONObject obj = new JSONObject();
                         try {
@@ -80,8 +100,7 @@ public class Authenticator {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
-
+ */
 
                         Log.d("[Authenticator]", "getClientDataJSON: " + new String(resp.getClientDataJSON()));
                         Log.d("[Authenticator]", "serializeToBytes: " + new String(resp.serializeToBytes()));

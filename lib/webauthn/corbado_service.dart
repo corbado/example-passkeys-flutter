@@ -1,21 +1,16 @@
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:corbado_demo/env.dart';
+import 'package:dart_ipify/dart_ipify.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:local_auth/local_auth.dart';
-import 'package:webauthn/webauthn.dart';
 
 class CorbadoService {
-  final clientInfo = {
-    "userAgent": "Corbado Demo App",
-    "remoteAddress": "127.0.0.1"
-  };
   final basicAuth =
       "Basic ${base64.encode(utf8.encode('$projectID:$apiSecret'))}";
   final baseUrl = "https://api.corbado.com/v1";
-  final origin = "https://corbado.com";
+  final origin = "https://api.corbado.com";
   final LocalAuthentication auth = LocalAuthentication();
 
   void register(BuildContext context, String email) async {
@@ -28,6 +23,9 @@ class CorbadoService {
   }
 
   Future<String> registerInit(String email) async {
+    final ipv4 = await Ipify.ipv4();
+    debugPrint("IPv4: $ipv4");
+    var clientInfo = {"userAgent": "Corbado Demo App", "remoteAddress": ipv4};
     var value = await http.post(Uri.parse("$baseUrl/webauthn/register/start"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
@@ -46,10 +44,12 @@ class CorbadoService {
     return data["publicKeyCredentialCreationOptions"];
   }
 
-
   void registerFinish(String id, String rawId, String clientDataJSON,
       String attestationObject) async {
+    final ipv4 = await Ipify.ipv4();
+    debugPrint("IPv4: $ipv4");
 
+    var clientInfo = {"userAgent": "Corbado Demo App", "remoteAddress": ipv4};
     debugPrint("registerFinish called");
     var pubCred = {
       "type": "public-key",
@@ -59,7 +59,8 @@ class CorbadoService {
       "response": {
         "clientDataJSON": clientDataJSON,
         "attestationObject": attestationObject,
-        "transports": ["internal"]
+        //       "transports": ["internal"]
+        "transports": []
       },
       "clientExtensionResults": {}
     };
