@@ -13,6 +13,7 @@ class LoginActivity extends StatefulWidget {
 class _LoginActivityState extends State<LoginActivity> {
   TextEditingController usernameController = TextEditingController();
   static const channel = MethodChannel("com.corbado.flutterapp/webauthn");
+  var corbadoSvc = CorbadoService();
 
   @override
   void initState() {
@@ -21,75 +22,60 @@ class _LoginActivityState extends State<LoginActivity> {
       switch (call.method) {
         case "onWebauthnRegisterFinish":
           onWebauthnRegisterFinish(call.arguments);
+          break;
+        case "onWebauthnSignInFinish":
+          onWebauthnSignInFinish(call.arguments);
+          break;
       }
     });
   }
 
-  void auth() async {
-    var registerRes =
-        await CorbadoService().registerInit(usernameController.text);
+  void register() async {
+    var registerRes = await corbadoSvc.registerInit(usernameController.text);
     try {
       final int result =
           await channel.invokeMethod("webauthnRegister", registerRes);
-      debugPrint("login auth result: $result");
     } on PlatformException catch (e) {
       debugPrint(e.stacktrace);
     }
   }
 
+  void signIn() async {
+    var signInRes = await corbadoSvc.signInInit(usernameController.text);
+    try {
+      final int result =
+          await channel.invokeMethod("webauthnSignIn", signInRes);
+    } on PlatformException catch (e) {
+      debugPrint(e.stacktrace);
+    }
+  }
+
+  void onWebauthnSignInFinish(String arguments) {
+    debugPrint("onWebauthnSignInFinish called!");
+  }
+
   void onWebauthnRegisterFinish(String arguments) {
-    debugPrint("onWebauthnRegisterFinish called " + arguments);
-    Codec<String, String> stringToBase64Url = utf8.fuse(base64);
     var options = jsonDecode(arguments);
-    debugPrint("After json decode");
-    debugPrint("$options");
 
     String id = options["id"];
-    debugPrint("id: $id");
-
     String rawId = options["rawId"];
-    debugPrint("rawID $rawId");
-    //  String rawId64 = base64UrlEncode(utf8.encode(rawId));
-    //String rawId64 = stringToBase64Url.encode(rawId);
-    //String rawId64 = base64Encode(utf8.encode(rawId));
-    //debugPrint("rawId64: $rawId64");
-
     String clientDataJSON = options["clientDataJSON"];
+    String attestationObject = options["attestationObject"];
+
     var clientDecoded = jsonDecode(clientDataJSON);
     var newData = {
       "challenge": clientDecoded["challenge"],
       "origin": "https://api.corbado.com",
       "type": "webauthn.create"
     };
-    var parsed = jsonEncode(newData);
-    debugPrint("parsed: " + parsed);
 
-    //  String clientDataJSON64 = base64UrlEncode(utf8.encode(parsed));
-    //String clientDataJSON64 = stringToBase64Url.encode(parsed);
+    var parsed = jsonEncode(newData);
     String clientDataJSON64 = base64UrlEncode(utf8.encode(parsed));
 
-    //  clientDataJSON64 =
-    //      clientDataJSON64.substring(0, clientDataJSON64.length - 1);
-    debugPrint("clientDataJSON: $clientDataJSON64");
+    //Remove padding
+    clientDataJSON64 = clientDataJSON64.replaceAll("=", "");
 
-    String attestationObject = options["attestationObject"];
-    //  String attestationObject64 =
-    //      base64UrlEncode(utf8.encode(attestationObject));
-    //String attestationObject64 = stringToBase64Url.encode(attestationObject);
-    //String attestationObject64 = base64Encode(utf8.encode(attestationObject));
-
-    //  String attestationObjectWeb =
-    //      "o2NmbXRkbm9uZWdhdHRTdG10oGhhdXRoRGF0YVkBZypeqvzC0koCqzmr6JfEBUQ5vCqVRbSyv3BeBeqAqczkRQAAAAAAAAAAAAAAAAAAAAAAAAAAACDpTGljts1FUs92OZi2xGHEhWktXK7itnB-IkHPA06D8KQBAwM5AQAgWQEAyaR0c8XcjmSRwXNRv3YjJrlrxh9_zcb05-QX0_28_sEy0NfoszHuwonxsCaE2Ck6zyebBfhmqDrSHTqbKcyrERJFESLaqBIWs9FDOj2I9-PswBoST4zkZ_TKrA4Z01VBajuFtjQDnb7pTMu0r52kHIIIzhEetTK61fwWsZIcMrETvyuF-GeV2Kxbe7TQPRrh736Ome7hht4B5X-RQ20PWblXWMXRYww5dBX6c-c56lPduC4fm1NHIOowt3JILJFSNADquO3opdPCtQXC7KK5Hc-y8R3y8567sxTW-BNPCQhVmeCpdo4revsvZLFfLm5pG79Df5No8E7NL9hIKVKHqSFDAQAB";
-    debugPrint("attestationObject64: $attestationObject");
-    //   debugPrint("attestationObjectWeb: $attestationObjectWeb");
-
-    clientDataJSON64 =
-        clientDataJSON64.substring(0, clientDataJSON64.length - 1);
-    //attestationObject =
-    //    attestationObject.substring(0, attestationObject.length - 1);
-
-    CorbadoService()
-        .registerFinish(id, rawId, clientDataJSON64, attestationObject);
+    corbadoSvc.registerFinish(id, rawId, clientDataJSON64, attestationObject);
   }
 
   @override
@@ -115,19 +101,24 @@ class _LoginActivityState extends State<LoginActivity> {
                     )),
                 Padding(
                     padding: const EdgeInsets.only(top: 20),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        debugPrint("elevated button clicked");
-                        //     CorbadoService()
-                        //         .register(context, usernameController.text);
-                        auth();
-                      },
-                      child: const Text(
-                        "Registrieren",
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ))
+                    child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          _getButton("Registrieren", register),
+                          _getButton("Einloggen", signIn)
+                        ]))
               ],
             )));
+  }
+
+  Widget _getButton(String text, void Function() onPress) {
+    return ElevatedButton(
+      onPressed: onPress,
+      child: Text(
+        text,
+        style: const TextStyle(fontSize: 18),
+      ),
+    );
   }
 }

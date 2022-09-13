@@ -1,29 +1,39 @@
 package com.corbado.api;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
+import android.os.Build;
+import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
+import androidx.core.content.SharedPreferencesKt;
 
 import com.google.android.gms.fido.fido2.api.common.Attachment;
 import com.google.android.gms.fido.fido2.api.common.AuthenticationExtensions;
 import com.google.android.gms.fido.fido2.api.common.AuthenticatorSelectionCriteria;
-import com.google.android.gms.fido.fido2.api.common.EC2Algorithm;
-import com.google.android.gms.fido.fido2.api.common.FidoAppIdExtension;
 import com.google.android.gms.fido.fido2.api.common.PublicKeyCredentialCreationOptions;
+import com.google.android.gms.fido.fido2.api.common.PublicKeyCredentialDescriptor;
 import com.google.android.gms.fido.fido2.api.common.PublicKeyCredentialParameters;
+import com.google.android.gms.fido.fido2.api.common.PublicKeyCredentialRequestOptions;
 import com.google.android.gms.fido.fido2.api.common.PublicKeyCredentialRpEntity;
+import com.google.android.gms.fido.fido2.api.common.PublicKeyCredentialType;
 import com.google.android.gms.fido.fido2.api.common.PublicKeyCredentialUserEntity;
 import com.google.android.gms.fido.fido2.api.common.RSAAlgorithm;
+import com.google.android.gms.fido.fido2.api.common.TokenBinding;
 import com.google.android.gms.fido.fido2.api.common.UserVerificationMethodExtension;
-import com.google.android.gms.fido.fido2.api.common.UserVerificationMethods;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Converter {
+    private static final String tag = "[Converter]";
     public static PublicKeyCredentialCreationOptions parsePublicKeyCredentialCreationOptions(String data) {
         try {
             JSONObject obj = new JSONObject(data);
@@ -40,14 +50,9 @@ public class Converter {
             builder.setChallenge(Base64.decode(root.getString("challenge"), Base64.DEFAULT));
 
             //RP
-       //     PublicKeyCredentialRpEntity entity = new PublicKeyCredentialRpEntity(rp.getString("id"),
-        //            rp.getString("name"), null);
             PublicKeyCredentialRpEntity entity = new PublicKeyCredentialRpEntity("api.corbado.com",
                     "api.corbado", null);
             builder.setRp(entity);
-
-            System.out.println("id: " + entity.getId());
-            System.out.println("name: " + entity.getName());
 
             //User
             PublicKeyCredentialUserEntity userEntity =
@@ -60,18 +65,16 @@ public class Converter {
 
             //Parameters
             List<PublicKeyCredentialParameters> parameters = new ArrayList<>();
-            for (int i = 0 ; i < pubKeyCredParams.length(); i++) {
+            for (int i = 0; i < pubKeyCredParams.length(); i++) {
                 JSONObject object = pubKeyCredParams.getJSONObject(i);
                 String type = object.getString("type");
-                int alg= object.getInt("alg");
-                Log.i("[Converter]", "Pubkeycred param " + type + " - [" + alg + "]");
+                int alg = object.getInt("alg");
+                Log.d(tag, "Pubkeycred param " + type + " - [" + alg + "]");
                 PublicKeyCredentialParameters parameter =
                         new PublicKeyCredentialParameters(type, RSAAlgorithm.RS256.getAlgoValue());
                 parameters.add(parameter);
             }
             builder.setParameters(parameters);
-
-
 
             //Timeout
             double timeout = Double.valueOf(root.getLong("timeout"));
@@ -83,13 +86,59 @@ public class Converter {
             authBuilder.setAttachment(Attachment.PLATFORM);
             builder.setAuthenticatorSelection(authBuilder.build());
 
-            //Other
+            //Extensions
             AuthenticationExtensions.Builder authExtBuilder = new AuthenticationExtensions.Builder();
             authExtBuilder.setUserVerificationMethodExtension(new UserVerificationMethodExtension(true));
             builder.setAuthenticationExtensions(authExtBuilder.build());
 
             PublicKeyCredentialCreationOptions publicKeyCredential = builder.build();
             return publicKeyCredential;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static PublicKeyCredentialRequestOptions parsePublicKeyCredentialRequestOptions(String data, Activity activity) {
+        try {
+            JSONObject obj = new JSONObject(data);
+            JSONObject root = obj.getJSONObject("publicKey");
+            JSONArray allowCredentials = root.getJSONArray("allowCredentials");
+
+            PublicKeyCredentialRequestOptions.Builder builder =
+                    new PublicKeyCredentialRequestOptions.Builder();
+
+            //Challenge
+            builder.setChallenge(Base64.decode(root.getString("challenge"), Base64.DEFAULT));
+
+            //Rp
+            builder.setRpId("api.corbado.com");
+
+            //AllowCredentials
+
+            List<PublicKeyCredentialDescriptor> allowList = new ArrayList<>();
+            for (int x = 0; x < allowCredentials.length(); x++) {
+                JSONObject currentAllowCredential = allowCredentials.getJSONObject(x);
+                String id = currentAllowCredential.getString("id");
+                byte[] idDecoded = Base64.decode(id, Base64.DEFAULT);
+                allowList.add(new PublicKeyCredentialDescriptor(PublicKeyCredentialType.PUBLIC_KEY.toString(),
+                        idDecoded , null));
+            }
+            builder.setAllowList(allowList);
+
+            //Extensions
+            AuthenticationExtensions.Builder authExtBuilder = new AuthenticationExtensions.Builder();
+            authExtBuilder.setUserVerificationMethodExtension(new UserVerificationMethodExtension(true));
+            builder.setAuthenticationExtensions(authExtBuilder.build());
+
+            //Timeout
+            double timeout = Double.valueOf(root.getLong("timeout"));
+            builder.setTimeoutSeconds(timeout);
+
+            return builder.build();
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

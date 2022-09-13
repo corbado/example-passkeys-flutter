@@ -16,11 +16,11 @@ class MainActivity: FlutterActivity() {
         super.configureFlutterEngine(flutterEngine)
         this.channel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL);
         channel!!.setMethodCallHandler { call, result ->
+            val data = call.arguments
             if (call.method == "webauthnRegister") {
-                Log.d("Flutter Android Native", "configureFlutterEngine called");
-                val data = call.arguments
-                Log.d("Flutter Android Native","configureFlutterEngine data in android native: $data")
                 authenticator.register(this, data as String);
+            }else if(call.method == "webauthnSignIn"){
+                authenticator.signIn(this, data as String);
             }
             result.success(1)
         }
@@ -28,6 +28,10 @@ class MainActivity: FlutterActivity() {
 
     fun onWebauthnRegisterFinish(param:String){
         this.channel!!.invokeMethod("onWebauthnRegisterFinish", param);
+    }
+
+    fun onWebauthnSignInFinish(param: String){
+        this.channel!!.invokeMethod("onWebauthnSignInFinish", param);
     }
 
     override fun onActivityResult(requestCode:Int, resultCode:Int, data:Intent){
