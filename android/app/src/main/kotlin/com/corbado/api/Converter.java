@@ -1,14 +1,10 @@
 package com.corbado.api;
 
-import android.app.Activity;
-import android.content.SharedPreferences;
 import android.os.Build;
-import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
-import androidx.core.content.SharedPreferencesKt;
 
 import com.google.android.gms.fido.fido2.api.common.Attachment;
 import com.google.android.gms.fido.fido2.api.common.AuthenticationExtensions;
@@ -21,14 +17,12 @@ import com.google.android.gms.fido.fido2.api.common.PublicKeyCredentialRpEntity;
 import com.google.android.gms.fido.fido2.api.common.PublicKeyCredentialType;
 import com.google.android.gms.fido.fido2.api.common.PublicKeyCredentialUserEntity;
 import com.google.android.gms.fido.fido2.api.common.RSAAlgorithm;
-import com.google.android.gms.fido.fido2.api.common.TokenBinding;
 import com.google.android.gms.fido.fido2.api.common.UserVerificationMethodExtension;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,7 +95,7 @@ public class Converter {
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public static PublicKeyCredentialRequestOptions parsePublicKeyCredentialRequestOptions(String data, Activity activity) {
+    public static PublicKeyCredentialRequestOptions parsePublicKeyCredentialRequestOptions(String data) {
         try {
             JSONObject obj = new JSONObject(data);
             JSONObject root = obj.getJSONObject("publicKey");
@@ -111,13 +105,13 @@ public class Converter {
                     new PublicKeyCredentialRequestOptions.Builder();
 
             //Challenge
+
             builder.setChallenge(Base64.decode(root.getString("challenge"), Base64.DEFAULT));
 
             //Rp
             builder.setRpId("api.corbado.com");
 
             //AllowCredentials
-
             List<PublicKeyCredentialDescriptor> allowList = new ArrayList<>();
             for (int x = 0; x < allowCredentials.length(); x++) {
                 JSONObject currentAllowCredential = allowCredentials.getJSONObject(x);

@@ -41,7 +41,40 @@ class CorbadoService {
     return data["publicKeyCredentialRequestOptions"];
   }
 
-  void signInFinish() async {}
+  Future<bool> signInFinish(String id, String rawId, String clientDataJSON,
+      String authenticatorData, String signature, String userHandle) async {
+    await _init();
+    debugPrint("flutter signInFinish called");
+    var pubCred = {
+      "type": "public-key",
+      "id": id,
+      "rawId": rawId,
+      "response": {
+        "clientDataJSON": clientDataJSON,
+        "authenticatorData": authenticatorData,
+        "signature":
+            "mX5tqkfCf7UvKCIEA7XhXNHFOERUVtcaXp-rsn5eGSvmnFCmalzAg9lv-GxfNUbu3jD5RDsdWvWgmw5P0AR7QolnYtsD_nbYXcfOPeAUDh_XaZ5rCZi3HCoVhiZ6Jny00V71XSc5S1D5D9Q1PWBMz2cZPpjkGt0JKlGD0Y987yQvC-heddiweLNsa2NKg69AJ838CfLlhCq6Om523OBEexVh4kF4qY3f8Jsfx6xekVhw1R7KJ6D-aFGrxo60CsALpngk0aiMBxVHb_gmVJXkviIpBn-9FqFyDZhCCAGHUWZco66YcE43xbmAwV05uDokqgAHzI5VmJmgaScAiN_2kw"
+      },
+      "clientExtensionResults": {}
+    };
+
+    var json = jsonEncode(pubCred);
+
+    debugPrint("pubCred: ${json.substring(0, 200)}");
+    debugPrint("pubCred2: ${json.substring(200)}");
+
+    var value = await http.post(
+        Uri.parse("$baseUrl/webauthn/authenticate/finish"),
+        headers: header,
+        body: jsonEncode({
+          "publicKeyCredential": json,
+          "origin": origin,
+          "clientInfo": clientInfo
+        }));
+
+    debugPrint("authenticateFinish result ${value.body}");
+    return value.statusCode == 200;
+  }
 
   Future<String> registerInit(String email) async {
     await _init();
@@ -57,8 +90,9 @@ class CorbadoService {
     return data["publicKeyCredentialCreationOptions"];
   }
 
-  void registerFinish(String id, String rawId, String clientDataJSON,
+  Future<bool> registerFinish(String id, String rawId, String clientDataJSON,
       String attestationObject) async {
+    await _init();
     var pubCred = {
       "type": "public-key",
       "id": id,
@@ -87,5 +121,6 @@ class CorbadoService {
         }));
 
     debugPrint("registerFinish result ${value.body}");
+    return value.statusCode == 200;
   }
 }
