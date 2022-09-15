@@ -6,6 +6,7 @@ import 'package:corbado_demo/theme/theme.dart';
 import 'package:corbado_demo/webauthn/corbado_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:oktoast/oktoast.dart';
 
 class LoginActivity extends StatefulWidget {
   @override
@@ -17,6 +18,7 @@ class _LoginActivityState extends State<LoginActivity> {
   static const channel = MethodChannel("com.corbado.flutterapp/webauthn");
   var corbadoSvc = CorbadoService();
 
+  bool canAuthenticateChecked = false;
   bool canAuthenticate = false;
 
   @override
@@ -32,14 +34,21 @@ class _LoginActivityState extends State<LoginActivity> {
           break;
         case "onCanAuthenticateFinish":
           setState(() {
+            canAuthenticateChecked = true;
             canAuthenticate = call.arguments;
           });
           break;
       }
     });
+
+    channel.invokeMethod("canAuthenticate");
   }
 
   void signIn() async {
+    if (usernameController.text.isEmpty) {
+      _onError("Textfield must not be empty");
+      return;
+    }
     var signInRes = await corbadoSvc.signInInit(usernameController.text);
     try {
       final int result =
@@ -78,22 +87,34 @@ class _LoginActivityState extends State<LoginActivity> {
     };
 
     var parsed = jsonEncode(newData);
-    String clientDataJSON64 = base64UrlEncode(utf8.encode(parsed));
+    String clientDataJSON64 = base64UrlEncode(utf8.encode(clientDataJSON));
     //Remove padding
     clientDataJSON64 = clientDataJSON64.replaceAll("=", "");
     bool success = await corbadoSvc.signInFinish(
         id, rawId, clientDataJSON64, authenticatorData, signature, userHandle);
-    if (success) _launchContentActivity(false);
+    if (success) {
+      _launchContentActivity(false);
+    } else {
+      _onError("SignIn Error");
+    }
   }
 
-  void _launchContentActivity(bool newUser) =>
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ContentActivity(
-                name: usernameController.text,
-                newUser: newUser,
-              )));
+  void _launchContentActivity(bool newUser) => {
+        FocusManager.instance.primaryFocus?.unfocus(),
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => ContentActivity(
+                  name: usernameController.text,
+                  newUser: newUser,
+                )))
+      };
+
+  void _onError(String err) => showToast(err);
 
   void register() async {
+    if (usernameController.text.isEmpty) {
+      _onError("Textfield must not be empty");
+      return;
+    }
     var registerRes = await corbadoSvc.registerInit(usernameController.text);
     try {
       final int result =
@@ -114,20 +135,32 @@ class _LoginActivityState extends State<LoginActivity> {
     var newData = {
       "challenge": clientDecoded["challenge"],
       "origin": "https://api.corbado.com",
-      "type": "webauthn.create"
+      "type": "webauthn.create",
+      "androidPackageName": "com.corbado.api"
     };
 
     var parsed = jsonEncode(newData);
-    String clientDataJSON64 = base64UrlEncode(utf8.encode(parsed));
+    String clientDataJSON64 = base64UrlEncode(utf8.encode(clientDataJSON));
     //Remove padding
     clientDataJSON64 = clientDataJSON64.replaceAll("=", "");
     bool success = await corbadoSvc.registerFinish(
         id, rawId, clientDataJSON64, attestationObject);
-    if (success) _launchContentActivity(true);
+    if (success) {
+      _launchContentActivity(true);
+    } else {
+      _onError("Sign up Error");
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    var authText = "";
+    if (canAuthenticateChecked) {
+      authText = canAuthenticate
+          ? "Your device supports passkey authentication"
+          : "Your device does not support passkey authentication";
+    }
+
     return Scaffold(
         backgroundColor: corbadoDark,
         body: Container(
@@ -142,10 +175,13 @@ class _LoginActivityState extends State<LoginActivity> {
                   color: Colors.white70,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 80),
+                  padding: const EdgeInsets.only(top: 80),
                   child: Text(
-                    "Passkey authentication is possible",
-                    style: TextStyle(color: Colors.lightGreen),
+                    authText,
+                    style: TextStyle(
+                        color: canAuthenticate
+                            ? Colors.lightGreen
+                            : Colors.redAccent),
                   ),
                 ),
                 Padding(

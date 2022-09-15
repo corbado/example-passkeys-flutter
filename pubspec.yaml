@@ -37,6 +37,7 @@ dependencies:
   webauthn: ^0.0.2
   http: ^0.13.5
   dart_ipify: ^1.1.1
+  oktoast: ^3.3.0
 
 dev_dependencies:
   flutter_test:

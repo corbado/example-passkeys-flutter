@@ -27,9 +27,6 @@ import com.google.android.gms.tasks.Task;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.function.Consumer;
-import java.util.function.Function;
-
 
 public class Authenticator {
     private static final String tag = "[Authenticator]";
@@ -93,7 +90,7 @@ public class Authenticator {
 
                 Log.d(tag, "id: " + id);
                 Log.d(tag, "rawId: " + new String(rawId));
-                Log.d(tag, "clientDataJSON: " + new String(clientDataJSON));
+                Log.d(tag, "clientDataJSON android: " + new String(clientDataJSON));
                 Log.d(tag, "authenticatorData: " + new String(authenticatorData));
                 Log.d(tag, "signature: " + new String(signature));
 
