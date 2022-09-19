@@ -3,12 +3,11 @@ import 'dart:convert';
 import 'package:dart_ipify/dart_ipify.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:local_auth/local_auth.dart';
 
+///Issues api calls to the corbado backend
 class CorbadoService {
   //--------------- PROD
   //final baseUrl = "https://api.corbado.com/v1";
-  //final origin = "https://api.corbado.com";
   /*final header = <String, String>{
     'Content-Type': 'application/json; charset=UTF-8',
     'authorization':
@@ -18,16 +17,15 @@ class CorbadoService {
 
   //--------------- DEV
   final baseUrl = "http://10.0.2.2:15902/v1";
-  final origin =
-      "android:apk-key-hash:6DW5tHjq2JiL5BabpbyC7DCh348dcEdIBzoJQjCNYxw";
-
   final header = <String, String>{
     'Content-Type': 'application/json; charset=UTF-8',
     'authorization': "Basic ${base64.encode(utf8.encode('pro-1:secret'))}"
   };
 
-  final LocalAuthentication auth = LocalAuthentication();
+  //---------------
 
+  final origin =
+      "android:apk-key-hash:6DW5tHjq2JiL5BabpbyC7DCh348dcEdIBzoJQjCNYxw";
   var clientInfo = {};
   bool canAuthenticateWithBiometrics = false;
   bool isDeviceSupported = false;
@@ -36,8 +34,6 @@ class CorbadoService {
     String ipv4 = await Ipify.ipv4();
     clientInfo = {"userAgent": "Test34 fffs", "remoteAddress": ipv4};
     debugPrint("_init clientInfo: $clientInfo");
-    final bool canAuthenticateWithBiometrics = await auth.canCheckBiometrics;
-    final bool isDeviceSupported = await auth.isDeviceSupported();
   }
 
   Future<String> signInInit(String email) async {
@@ -48,7 +44,6 @@ class CorbadoService {
         body: jsonEncode(
             {"username": email, "origin": origin, "clientInfo": clientInfo}));
 
-    debugPrint("loginInit body: ${value.body}");
     Map<String, dynamic> data = jsonDecode(value.body);
     return data["publicKeyCredentialRequestOptions"];
   }
@@ -69,21 +64,16 @@ class CorbadoService {
       "clientExtensionResults": {}
     };
 
-    var json = jsonEncode(pubCred);
+    var value =
+        await http.post(Uri.parse("$baseUrl/webauthn/authenticate/finish"),
+            headers: header,
+            body: jsonEncode({
+              "publicKeyCredential": jsonEncode(pubCred),
+              "origin": origin,
+              "clientInfo": clientInfo
+            }));
 
-    debugPrint("pubCred: ${json.substring(0, 200)}");
-    debugPrint("pubCred2: ${json.substring(200)}");
-
-    var value = await http.post(
-        Uri.parse("$baseUrl/webauthn/authenticate/finish"),
-        headers: header,
-        body: jsonEncode({
-          "publicKeyCredential": json,
-          "origin": origin,
-          "clientInfo": clientInfo
-        }));
-
-    debugPrint("authenticateFinish result ${value.body}");
+    debugPrint("signInFinish body: ${value.body}");
     return value.statusCode == 200;
   }
 
@@ -97,7 +87,7 @@ class CorbadoService {
           "origin": origin,
           "clientInfo": clientInfo
         }));
-    debugPrint("registerInit body: ${value.body}");
+
     Map<String, dynamic> data = jsonDecode(value.body);
     return data["publicKeyCredentialCreationOptions"];
   }
@@ -118,21 +108,15 @@ class CorbadoService {
       "clientExtensionResults": {}
     };
 
-    var json = jsonEncode(pubCred);
-
-    debugPrint("pubCred: ${json.substring(0, 200)}");
-    debugPrint("pubCred2: ${json.substring(200)}");
-    debugPrint("clientInfo $clientInfo");
-
     var value = await http.post(Uri.parse("$baseUrl/webauthn/register/finish"),
         headers: header,
         body: jsonEncode({
-          "publicKeyCredential": json,
+          "publicKeyCredential": jsonEncode(pubCred),
           "origin": origin,
           "clientInfo": clientInfo
         }));
 
-    debugPrint("registerFinish result ${value.body}");
+    debugPrint("registerFinish body: ${value.body}");
     return value.statusCode == 200;
   }
 }

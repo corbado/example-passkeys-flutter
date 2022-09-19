@@ -35,7 +35,7 @@ public class Authenticator {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void onActivityResult(MainActivity activity, int requestCode, int resultCode, Intent data) {
-        if (requestCode == REGISTER_REQUEST_CODE) {
+        if (requestCode == REGISTER_REQUEST_CODE || requestCode == SIGN_REQUEST_CODE) {
             byte[] fidoResponse = data.getByteArrayExtra(Fido.FIDO2_KEY_CREDENTIAL_EXTRA);
             if (fidoResponse == null) {
                 Log.w(tag, "Authentication Error occured: Fido response is null");
@@ -47,68 +47,51 @@ public class Authenticator {
                 Log.w(tag, "Authentication Error occured: " + errorResponse.getErrorMessage());
                 //Extract and Return values
             } else {
-                AuthenticatorAttestationResponse authAttestResp = (AuthenticatorAttestationResponse) resp;
 
-                String id = credential.getId();
-                byte[] rawId = credential.getRawId();
-                byte[] clientDataJSON = authAttestResp.getClientDataJSON();
-                byte[] attestationObject = authAttestResp.getAttestationObject();
+                if (requestCode == REGISTER_REQUEST_CODE) {
+                    AuthenticatorAttestationResponse authAttestResp = (AuthenticatorAttestationResponse) resp;
+                    String id = credential.getId();
+                    byte[] rawId = credential.getRawId();
+                    byte[] clientDataJSON = authAttestResp.getClientDataJSON();
+                    byte[] attestationObject = authAttestResp.getAttestationObject();
 
-                JSONObject obj = new JSONObject();
-                try {
-                    obj.put("id", id);
-                    obj.put("rawId", java.util.Base64.getUrlEncoder().withoutPadding().encodeToString(rawId));
-                    obj.put("clientDataJSON", new String(clientDataJSON));
-                    obj.put("attestationObject", java.util.Base64.getUrlEncoder().withoutPadding().encodeToString(attestationObject));
-                    activity.onWebauthnRegisterFinish(obj.toString());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        } else if (requestCode == SIGN_REQUEST_CODE) {
-            byte[] fidoResponse = data.getByteArrayExtra(Fido.FIDO2_KEY_CREDENTIAL_EXTRA);
-
-            if (fidoResponse == null) {
-                Log.w(tag, "Authentication Error occured: Fido response is null");
-            }
-            PublicKeyCredential credential = PublicKeyCredential.deserializeFromBytes(fidoResponse);
-            AuthenticatorResponse resp = credential.getResponse();
-            if (resp.getClass() == AuthenticatorErrorResponse.class) {
-                AuthenticatorErrorResponse errorResponse = (AuthenticatorErrorResponse) resp;
-                Log.w(tag, "Authentication Error occured: " + errorResponse.getErrorMessage());
-            } else {
-                AuthenticatorAssertionResponse authResp = (AuthenticatorAssertionResponse) resp;
-
-                String id = credential.getId();
-                byte[] rawId = credential.getRawId();
-                byte[] clientDataJSON = authResp.getClientDataJSON();
-                byte[] authenticatorData = authResp.getAuthenticatorData();
-                byte[] signature = authResp.getSignature();
-                byte[] userHandle = authResp.getUserHandle();
+                    JSONObject obj = new JSONObject();
+                    try {
+                        obj.put("id", id);
+                        obj.put("rawId", encodeBase64(rawId));
+                        obj.put("clientDataJSON", encodeBase64(clientDataJSON));
+                        obj.put("attestationObject", encodeBase64(attestationObject));
+                        activity.onWebauthnRegisterFinish(obj.toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
 
-                Log.d(tag, "id: " + id);
-                Log.d(tag, "rawId: " + new String(rawId));
-                Log.d(tag, "clientDataJSON android: " + new String(clientDataJSON));
-                Log.d(tag, "authenticatorData: " + new String(authenticatorData));
-                Log.d(tag, "signature: " + new String(signature));
+                } else if (requestCode == SIGN_REQUEST_CODE) {
+                    AuthenticatorAssertionResponse authResp = (AuthenticatorAssertionResponse) resp;
+                    String id = credential.getId();
+                    byte[] rawId = credential.getRawId();
+                    byte[] clientDataJSON = authResp.getClientDataJSON();
+                    byte[] authenticatorData = authResp.getAuthenticatorData();
+                    byte[] signature = authResp.getSignature();
+                    byte[] userHandle = authResp.getUserHandle();
 
-                String userH = "";
-                if (userHandle != null)
-                    userH = encodeBase64(userHandle);
+                    String userH = "";
+                    if (userHandle != null)
+                        userH = encodeBase64(userHandle);
 
-                JSONObject obj = new JSONObject();
-                try {
-                    obj.put("id", id);
-                    obj.put("rawId", encodeBase64(rawId));
-                    obj.put("clientDataJSON", new String(clientDataJSON));
-                    obj.put("authenticatorData", encodeBase64(authenticatorData));
-                    obj.put("signature", encodeBase64(signature));
-                    obj.put("userHandle", userH);
-                    activity.onWebauthnSignInFinish(obj.toString());
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    JSONObject obj = new JSONObject();
+                    try {
+                        obj.put("id", id);
+                        obj.put("rawId", encodeBase64(rawId));
+                        obj.put("clientDataJSON", encodeBase64(clientDataJSON));
+                        obj.put("authenticatorData", encodeBase64(authenticatorData));
+                        obj.put("signature", encodeBase64(signature));
+                        obj.put("userHandle", userH);
+                        activity.onWebauthnSignInFinish(obj.toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
@@ -130,12 +113,6 @@ public class Authenticator {
             public void onSuccess(Boolean aBoolean) {
                 activity.onCanAuthenticateFinish(aBoolean);
                 //Authentication possible depending on aBoolean
-            }
-        });
-        isAvailable.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                //Failure
             }
         });
 

@@ -129,7 +129,6 @@ public class Converter {
                     new PublicKeyCredentialRequestOptions.Builder();
 
             //Challenge
-
             builder.setChallenge(Base64.decode(root.getString("challenge"), Base64.DEFAULT));
 
             //Rp

@@ -3,13 +3,17 @@ import 'package:corbado_demo/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 class ContentActivity extends StatefulWidget {
-  ///Name of the user
   final String name;
+  final String credentialId;
 
   ///Indicates whether the user has just registered
   final bool newUser;
 
-  const ContentActivity({super.key, required this.name, this.newUser = false});
+  const ContentActivity(
+      {super.key,
+      required this.name,
+      required this.credentialId,
+      this.newUser = false});
 
   @override
   _ContentActivityState createState() => _ContentActivityState();
@@ -18,11 +22,10 @@ class ContentActivity extends StatefulWidget {
 class _ContentActivityState extends State<ContentActivity> {
   @override
   Widget build(BuildContext context) {
-    var text =
-        widget.newUser ? "Registrierung erfolgreich" : "Login erfolgreich";
+    var text = widget.newUser ? "Sign up successful" : "Login successful";
     var text2 = widget.newUser
-        ? "Willkommen, ${widget.name}!"
-        : "Willkommen zurück, ${widget.name}!";
+        ? "Welcome, ${widget.name}!"
+        : "Welcome back, ${widget.name}!";
     return Scaffold(
         backgroundColor: corbadoDark,
         body: Container(
@@ -49,7 +52,13 @@ class _ContentActivityState extends State<ContentActivity> {
                       style: const TextStyle(color: Colors.white, fontSize: 22),
                     )),
                 Padding(
-                    padding: const EdgeInsets.only(top: 150),
+                    padding: const EdgeInsets.only(top: 130),
+                    child: Text(
+                      "Credential id: ${widget.credentialId}",
+                      style: const TextStyle(color: Colors.white, fontSize: 16),
+                    )),
+                Padding(
+                    padding: const EdgeInsets.only(top: 40),
                     child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
