@@ -16,16 +16,28 @@ class CorbadoService {
    */
 
   //--------------- DEV
-  final baseUrl = "http://10.0.2.2:15902/v1";
+  //final baseUrl = "http://10.0.2.2:15902/v1";
+
+  final baseUrl = "https://api.corbado.com/v1";
+
+  //final baseUrl = "http://192.168.133.69:15902/v1";
+
+  // final header = <String, String>{
+  //   'Content-Type': 'application/json; charset=UTF-8',
+  //   'authorization': "Basic ${base64.encode(utf8.encode('pro-1:secret'))}"
+  // };
+
   final header = <String, String>{
     'Content-Type': 'application/json; charset=UTF-8',
-    'authorization': "Basic ${base64.encode(utf8.encode('pro-1:secret'))}"
+    'authorization': "Basic ${base64.encode(utf8.encode('pro-3479790382420754346:NkZm6PRehsctju9UYo7ALBzxx5j2BQ'))}"
   };
 
   //---------------
 
-  final origin =
-      "android:apk-key-hash:6DW5tHjq2JiL5BabpbyC7DCh348dcEdIBzoJQjCNYxw";
+  // final origin =
+  //     "android:apk-key-hash:6DW5tHjq2JiL5BabpbyC7DCh348dcEdIBzoJQjCNYxw";
+  final origin = "https://api.corbado.com";
+
   var clientInfo = {};
   bool canAuthenticateWithBiometrics = false;
   bool isDeviceSupported = false;
