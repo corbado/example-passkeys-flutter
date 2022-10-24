@@ -2,6 +2,8 @@ import 'package:corbado_demo/activities/login_activity.dart';
 import 'package:corbado_demo/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:corbado_demo/activities/starting_page_activity.dart';
+import 'package:localstorage/localstorage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,14 +15,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final LocalStorage storage = new LocalStorage('localstorage_app');
+
+    var apiKey = storage.getItem("privateKey");
+    var projectID = storage.getItem("projectID");
+
     return OKToast(
-        backgroundColor: Colors.redAccent.withAlpha(100),
-        position: ToastPosition.bottom,
         child: MaterialApp(
-          title: 'Corbado Demo',
-          theme: theme,
-          home: LoginActivity(),
-        ));
+            title: 'Corbado Demo',
+            theme: theme,
+            home: apiKey != null && projectID != null
+                ? LoginActivity(apiKey, projectID)
+                : StartingPageActivity()));
   }
 }
 

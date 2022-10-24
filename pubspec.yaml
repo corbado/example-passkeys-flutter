@@ -37,6 +37,7 @@ dependencies:
   http: ^0.13.5
   dart_ipify: ^1.1.1
   oktoast: ^3.3.0
+  localstorage: ^4.0.0+1
 
 dev_dependencies:
   flutter_test:

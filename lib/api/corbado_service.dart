@@ -18,6 +18,18 @@ class CorbadoService {
   //--------------- DEV
   //final baseUrl = "http://10.0.2.2:15902/v1";
 
+  String apiSecret;
+  String projectID;
+  dynamic header;
+
+  CorbadoService(this.apiSecret, this.projectID) {
+    header = <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+      'authorization':
+          "Basic ${base64.encode(utf8.encode('$projectID:$apiSecret'))}"
+    };
+  }
+
   final baseUrl = "https://api.corbado.com/v1";
 
   //final baseUrl = "http://192.168.133.69:15902/v1";
@@ -27,10 +39,10 @@ class CorbadoService {
   //   'authorization': "Basic ${base64.encode(utf8.encode('pro-1:secret'))}"
   // };
 
-  final header = <String, String>{
-    'Content-Type': 'application/json; charset=UTF-8',
-    'authorization': "Basic ${base64.encode(utf8.encode('pro-3479790382420754346:NkZm6PRehsctju9UYo7ALBzxx5j2BQ'))}"
-  };
+  // final header = <String, String>{
+  //   'Content-Type': 'application/json; charset=UTF-8',
+  //   'authorization': "Basic ${base64.encode(utf8.encode('pro-3479790382420754346:NkZm6PRehsctju9UYo7ALBzxx5j2BQ'))}"
+  // };
 
   //---------------
 

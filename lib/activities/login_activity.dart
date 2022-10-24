@@ -3,12 +3,22 @@ import 'dart:convert';
 import 'package:corbado_demo/activities/content_activity.dart';
 import 'package:corbado_demo/api/corbado_service.dart';
 import 'package:corbado_demo/components/custom_button.dart';
+import 'package:corbado_demo/env.dart';
 import 'package:corbado_demo/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:localstorage/localstorage.dart';
 
 class LoginActivity extends StatefulWidget {
+  final String apiSecret;
+  final String projectID;
+  var corbadoSvc;
+
+  LoginActivity(this.apiSecret, this.projectID, {super.key}) {
+    corbadoSvc = CorbadoService(apiSecret, projectID);
+  }
+
   @override
   _LoginActivityState createState() => _LoginActivityState();
 }
@@ -18,7 +28,6 @@ class _LoginActivityState extends State<LoginActivity> {
 
   ///Channel used to communicate with native android
   static const channel = MethodChannel("com.corbado.flutterapp/webauthn");
-  var corbadoSvc = CorbadoService();
 
   Color deviceSupportedTextColor = Colors.white;
   String deviceSupportedText = "Checking if your device supports passkeys...";
@@ -71,7 +80,9 @@ class _LoginActivityState extends State<LoginActivity> {
       _showError("Textfield must not be empty");
       return;
     }
-    var registerRes = await corbadoSvc.registerInit(usernameController.text);
+
+    var registerRes =
+        await widget.corbadoSvc.registerInit(usernameController.text);
     try {
       await channel.invokeMethod("webauthnRegister", registerRes);
     } on PlatformException catch (e) {
@@ -87,8 +98,8 @@ class _LoginActivityState extends State<LoginActivity> {
     String clientDataJSON = options["clientDataJSON"];
     String attestationObject = options["attestationObject"];
 
-    bool success = await corbadoSvc.registerFinish(
-        id, rawId, clientDataJSON, attestationObject);
+    bool success = await widget.corbadoSvc
+        .registerFinish(id, rawId, clientDataJSON, attestationObject);
     if (success) {
       _launchContentActivity(true, id);
     } else {
@@ -103,7 +114,7 @@ class _LoginActivityState extends State<LoginActivity> {
       _showError("Textfield must not be empty");
       return;
     }
-    var signInRes = await corbadoSvc.signInInit(usernameController.text);
+    var signInRes = await widget.corbadoSvc.signInInit(usernameController.text);
     try {
       await channel.invokeMethod("webauthnSignIn", signInRes);
     } on PlatformException catch (e) {
@@ -127,7 +138,7 @@ class _LoginActivityState extends State<LoginActivity> {
       userHandle = options["userHandle"];
     }
 
-    bool success = await corbadoSvc.signInFinish(
+    bool success = await widget.corbadoSvc.signInFinish(
         id, rawId, clientDataJSON, authenticatorData, signature, userHandle);
     if (success) {
       _launchContentActivity(false, id);
@@ -138,6 +149,8 @@ class _LoginActivityState extends State<LoginActivity> {
 
   @override
   Widget build(BuildContext context) {
+    var projectIDText = "Project ID: ${widget.projectID}";
+
     return Scaffold(
         backgroundColor: corbadoDark,
         body: Container(
@@ -155,6 +168,14 @@ class _LoginActivityState extends State<LoginActivity> {
                   padding: const EdgeInsets.only(top: 80),
                   child: Text(
                     deviceSupportedText,
+                    style: TextStyle(
+                        color: deviceSupportedTextColor, fontSize: 16),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Text(
+                    projectIDText,
                     style: TextStyle(
                         color: deviceSupportedTextColor, fontSize: 16),
                   ),
