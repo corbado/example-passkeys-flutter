@@ -17,7 +17,7 @@ Use the values you obtained in step 2.1 to configure the following variables ins
 1. **projectID**: The project ID (pro-xxxx).
 2. **apiSecret**: The API secret (something cryptic).
 
-2.3 Configuring iOS Associated Domains
+### 2.3 Configuring iOS Associated Domains
 If you are running the iOS app, you need an associated domain file stored on your website, so that the iOS device can download and verify the domains in your entitelement. For Corbado service you can use the following JSON template: 
 ```json
 {
