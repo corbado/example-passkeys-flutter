@@ -1,8 +1,11 @@
 # Complete integration example for Corbado API with Flutter
 This is a sample implementation of a Flutter app with integration to Corbado API.
 
-## 1. File structure
-(soon)
+## 1. File Structure
+
+* `android/`: this directory contains the Android-specific files for the app. It includes the `app/` directory, which contains the source code and other files needed to build the Android app.
+* `ios/`: this directory contains the iOS-specific files for the app. It includes the `Runner/` directory, which contains the source code and other files needed to build the iOS app.
+* `lib/`: this directory contains the Dart source code for the app. It includes the `main.dart` file, which is the entry point for the app, as well as other Dart source files that make up the app.
 
 ## 2. Setup
 
