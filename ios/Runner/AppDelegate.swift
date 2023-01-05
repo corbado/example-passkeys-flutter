@@ -139,22 +139,33 @@ import AuthenticationServices
                     let challenge = Data.fromBase64((response?.publicKey.challenge)!)
                     let name = (response?.publicKey.user.displayName)!
                     let userID = (response?.publicKey.user.id.data(using: .utf8))!
+                                        
+                    if let rpId = ProcessInfo.processInfo.environment["RELYING_PARTY_ID"] {
+                        
+                        let platformProvider = ASAuthorizationPlatformPublicKeyCredentialProvider(relyingPartyIdentifier: rpId)
+                        
+                        let platformKeyRequest = platformProvider.createCredentialRegistrationRequest(
+                            challenge: challenge!,
+                            name: name,
+                            userID: userID
+                        )
 
-                    let platformProvider = ASAuthorizationPlatformPublicKeyCredentialProvider(relyingPartyIdentifier: "api.corbado.com")
+                        let authController = ASAuthorizationController(authorizationRequests: [platformKeyRequest])
 
-                    let platformKeyRequest = platformProvider.createCredentialRegistrationRequest(
-                        challenge: challenge!,
-                        name: name,
-                        userID: userID
-                    )
-
-                    let authController = ASAuthorizationController(authorizationRequests: [platformKeyRequest])
-
-                    authController.delegate = self
-                    authController.presentationContextProvider = self
-                    authController.performRequests()
-                } catch {
-                    debugPrint("FAILED TO DECODE RESPONSE FROM SERVER")
+                        authController.delegate = self
+                        authController.presentationContextProvider = self
+                        authController.performRequests()
+                        
+                    } else {
+                        throw CustomError.MISSING_ENVIRONMENT_VARIABLES("RELYING_PARTY_ID environment variable is missing")
+                    }
+                } catch let error {
+                    switch error {
+                        case CustomError.MISSING_ENVIRONMENT_VARIABLES(let message):
+                            debugPrint(message)
+                        default:
+                            debugPrint("Failed to decode response from server")
+                        }
                 }
             }
             else {
@@ -173,19 +184,29 @@ import AuthenticationServices
                 
                 let challenge = Data.fromBase64((response?.publicKey.challenge)!)
   
-                let platformProvider = ASAuthorizationPlatformPublicKeyCredentialProvider(relyingPartyIdentifier: "api.corbado.com")
-                                    
-                let platformKeyRequest = platformProvider.createCredentialAssertionRequest(
-                    challenge: challenge!
-                )
-                
-                let authController = ASAuthorizationController(authorizationRequests: [platformKeyRequest])
-                
-                authController.delegate = self
-                authController.presentationContextProvider = self
-                authController.performRequests()
-            } catch {
-                debugPrint("FAILED TO DECODE RESPONSE FROM SERVER")
+                if let rpId = ProcessInfo.processInfo.environment["RELYING_PARTY_ID"] {
+                    
+                    let platformProvider = ASAuthorizationPlatformPublicKeyCredentialProvider(relyingPartyIdentifier: rpId)
+                    
+                    let platformKeyRequest = platformProvider.createCredentialAssertionRequest(
+                        challenge: challenge!
+                    )
+                    
+                    let authController = ASAuthorizationController(authorizationRequests: [platformKeyRequest])
+                    
+                    authController.delegate = self
+                    authController.presentationContextProvider = self
+                    authController.performRequests()
+                } else {
+                    throw CustomError.MISSING_ENVIRONMENT_VARIABLES("RELYING_PARTY_ID environment variable is missing")
+                }
+            } catch let error {
+                switch error {
+                    case CustomError.MISSING_ENVIRONMENT_VARIABLES(let message):
+                        debugPrint(message)
+                    default:
+                        debugPrint("Failed to decode response from server")
+                    }
             }
         }
         else {
@@ -271,4 +292,8 @@ extension Data {
         result = result.replacingOccurrences(of: "=", with: "")
         return result
     }
+}
+
+enum CustomError: Error {
+    case MISSING_ENVIRONMENT_VARIABLES(String)
 }
