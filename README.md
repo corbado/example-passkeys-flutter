@@ -15,7 +15,7 @@ Use the values you obtained in step 2.1 to configure the following variables ins
 2. **apiSecret**: The API secret (something cryptic).
 
 2.3 Configuring IOS Associated Domains
-If you are running the IOS App, you need an associated domain file stored on your website, so that the IOS Device can download and verify the domains in your entitelement. For Corbado Service you can use the following JSON template: 
+If you are running the iOS app, you need an associated domain file stored on your website, so that the iOS device can download and verify the domains in your entitelement. For Corbado service you can use the following JSON template: 
 ```json
 {
   "applinks": {
@@ -31,6 +31,10 @@ If you are running the IOS App, you need an associated domain file stored on you
 }
 ```
 The JSON file needs to be stored under ```https://<your fully qualified domain>/.well-known/apple-app-site-association```.
+For example: ```https://api.corbado.com/.well-known/apple-app-site-association```. The port number, if needed, can be added in the URL, after the fully qualified domain. 
+
+The fully qualified domain should then be provided as an environment variable ```RELYING_PARTY_ID``` in the corresponding Xcode Project of your application. For example, in case of ```https://api.corbado.com/.well-known/apple-app-site-association```, the environment variables should include ```RELYING_PARTY_ID = "api.corbado.com"```. 
+
 To learn more about associated domains visit: [Apple Developer Supporting Associated Domains](https://developer.apple.com/documentation/xcode/supporting-associated-domains).
 
 
