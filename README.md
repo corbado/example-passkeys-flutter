@@ -42,4 +42,16 @@ To learn more about associated domains visit: [Apple Developer Supporting Associ
 
 
 ## 3. Usage
-(soon)
+
+To run the app, follow these steps:
+
+1. Make sure you have Flutter installed on your development machine. If you don't, follow the instructions in the [Flutter documentation](https://flutter.dev/docs/get-started/install) to install it.
+
+2. Clone the repository
+
+3. Connect your device or launch an emulator.
+
+4. Run the app:
+```flutter run```
+
+5. The app should now be running on your device or emulator.
