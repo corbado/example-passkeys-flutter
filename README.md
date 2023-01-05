@@ -1,8 +1,11 @@
 # Complete integration example for Corbado API with Flutter
 This is a sample implementation of a Flutter app with integration to Corbado API.
 
-## 1. File structure
-(soon)
+## 1. File Structure
+
+* `android/`: this directory contains the Android-specific files for the app. It includes the `app/` directory, which contains the source code and other files needed to build the Android app.
+* `ios/`: this directory contains the iOS-specific files for the app. It includes the `Runner/` directory, which contains the source code and other files needed to build the iOS app.
+* `lib/`: this directory contains the Dart source code for the app. It includes the `main.dart` file, which is the entry point for the app, as well as other Dart source files that make up the app.
 
 ## 2. Setup
 
@@ -14,7 +17,7 @@ Use the values you obtained in step 2.1 to configure the following variables ins
 1. **projectID**: The project ID (pro-xxxx).
 2. **apiSecret**: The API secret (something cryptic).
 
-2.3 Configuring iOS Associated Domains
+### 2.3 Configuring iOS Associated Domains
 If you are running the iOS app, you need an associated domain file stored on your website, so that the iOS device can download and verify the domains in your entitelement. For Corbado service you can use the following JSON template: 
 ```json
 {
@@ -39,4 +42,16 @@ To learn more about associated domains visit: [Apple Developer Supporting Associ
 
 
 ## 3. Usage
-(soon)
+
+To run the app, follow these steps:
+
+1. Make sure you have Flutter installed on your development machine. If you don't, follow the instructions in the [Flutter documentation](https://flutter.dev/docs/get-started/install) to install it.
+
+2. Clone the repository
+
+3. Connect your device or launch an emulator.
+
+4. Run the app:
+```flutter run```
+
+5. The app should now be running on your device or emulator.
