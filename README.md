@@ -58,9 +58,9 @@ To run the app, follow these steps:
 
 5. The app should now be running on your device or emulator.
 
-### 3.2 Running the iOS app from XCode
+### 3.2 Running the iOS app from Xcode
 
-To run the iOS app using XCode, follow these steps:
+To run the iOS app using Xcode, follow these steps:
 
 1. Open the project in Xcode by running the following command in the project's root directory:
 ```open ios/Runner.xcworkspace```
@@ -70,8 +70,8 @@ To run the iOS app using XCode, follow these steps:
 3. To set environment variables from the "Edit Scheme" section
    3.1 In Xcode, go to the "Product" menu and select "Scheme" > "Edit Scheme".
    3.2 Select the "Run" option on the left side and select "Arguments" tab.
-   3.3 In the "Environment Variables" section, click the "+" button to add a new variable.
-   3.4 Enter the name and value of the environment variable you want to set.
+   3.3 In the "Environment Variables" section, click the "+" button to add a new variable. Set ```RELYING_PARTY_ID``` environment variable to your fully qualified domain name (see section 2.3 above).
+   3.4 Enter the name and value of other environment variables you want to set.
    
 4. Connect your iOS device or select a simulator, then press the "Run" button to build and run the app on your device or simulator.   
    
