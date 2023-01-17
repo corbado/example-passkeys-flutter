@@ -68,9 +68,9 @@ To run the iOS app using Xcode, follow these steps:
 2. In Xcode, set the bundle identifier of the app by going to the "Runner" target, then the "General" tab, and editing the "Bundle Identifier" field.
 
 3. To set environment variables from the "Edit Scheme" section
-   3.1. In Xcode, go to the "Product" menu and select "Scheme" > "Edit Scheme".
-   3.2. Select the "Run" option on the left side and select "Arguments" tab.
-   3.3. In the "Environment Variables" section, click the "+" button to add a new variable. Set ```RELYING_PARTY_ID``` environment variable to your fully qualified domain name (see section 2.3 above).
+   1. In Xcode, go to the "Product" menu and select "Scheme" > "Edit Scheme".
+   2. Select the "Run" option on the left side and select "Arguments" tab.
+   3. In the "Environment Variables" section, click the "+" button to add a new variable. Set ```RELYING_PARTY_ID``` environment variable to your fully qualified domain name (see section 2.3 above).
 
    
 4. Connect your iOS device or select a simulator, then press the "Run" button to build and run the app on your device or simulator.   
