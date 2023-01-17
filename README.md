@@ -43,6 +43,8 @@ To learn more about associated domains visit: [Apple Developer Supporting Associ
 
 ## 3. Usage
 
+### 3.1 Running the Android app
+
 To run the app, follow these steps:
 
 1. Make sure you have Flutter installed on your development machine. If you don't, follow the instructions in the [Flutter documentation](https://flutter.dev/docs/get-started/install) to install it.
@@ -55,3 +57,21 @@ To run the app, follow these steps:
 ```flutter run```
 
 5. The app should now be running on your device or emulator.
+
+### 3.2 Running the iOS app from Xcode
+
+To run the iOS app using Xcode, follow these steps:
+
+1. Open the project in Xcode by running the following command in the project's root directory:
+```open ios/Runner.xcworkspace```
+
+2. In Xcode, set the bundle identifier of the app by going to the "Runner" target, then the "General" tab, and editing the "Bundle Identifier" field.
+
+3. To set environment variables from the "Edit Scheme" section
+   1. In Xcode, go to the "Product" menu and select "Scheme" > "Edit Scheme".
+   2. Select the "Run" option on the left side and select "Arguments" tab.
+   3. In the "Environment Variables" section, click the "+" button to add a new variable. Set ```RELYING_PARTY_ID``` environment variable to your fully qualified domain name (see section 2.3 above).
+
+   
+4. Connect your iOS device or select a simulator, then press the "Run" button to build and run the app on your device or simulator.   
+   
