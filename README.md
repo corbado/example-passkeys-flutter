@@ -53,7 +53,7 @@ If you are running the Android app, you need an assetlinks.json file stored on y
 | PACKAGE-NAME                    | The Android package name                                                                                           | com.corbado.api                                                                                 |
 | FINGERPRINT-OF-YOUR-SIGNING-KEY | The fingerprint of the key with which the app is signed (Android studio signs apps automatically before execution) | E8:35:B9:B4:78 ... |
 
-The JSON file needs to be stored under ```https://<your fully qualified domain>/.well-known/assetlinks.json```.
+The JSON file needs to be stored under ```<your-url>/.well-known/assetlinks.json```.
 
 Follow the steps described in the [FIDO2 API Documentation](https://developers.google.com/identity/fido/android/native-apps) page, to adjust the android manifest accordingly.
 
@@ -73,10 +73,10 @@ If you are running the iOS app, you need an associated domain file stored on you
   }
 }
 ```
-The JSON file needs to be stored under ```https://<your fully qualified domain>/.well-known/apple-app-site-association```.
-For example: ```https://api.corbado.com/.well-known/apple-app-site-association```. The port number, if needed, can be added in the URL, after the fully qualified domain. 
+The JSON file needs to be stored under ```<your-url>/.well-known/apple-app-site-association```.
+For example: ```https://api.corbado.com/.well-known/apple-app-site-association```. The port number, if needed, can be added in the URL. 
 
-The fully qualified domain should then be provided as an environment variable ```RELYING_PARTY_ID``` in the corresponding Xcode Project of your application. For example, in case of ```https://api.corbado.com/.well-known/apple-app-site-association```, the environment variables should include ```RELYING_PARTY_ID = "api.corbado.com"```. 
+The fully qualified domain of your url should then be provided as an environment variable ```RELYING_PARTY_ID``` in the corresponding Xcode Project of your application. For example, in case of ```https://api.corbado.com/.well-known/apple-app-site-association```, the environment variables should include ```RELYING_PARTY_ID = "api.corbado.com"```. 
 
 To learn more about associated domains visit: [Apple Developer Supporting Associated Domains](https://developer.apple.com/documentation/xcode/supporting-associated-domains).
 
