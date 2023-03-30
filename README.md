@@ -28,7 +28,7 @@ If you are running the Android app, you need an assetlinks.json file stored on y
       ],
       "target" : {
          "namespace" : "web",
-         "site" : "{{YOUR-URL}}"
+         "site" : "{URL}"
       }
    },
    {
@@ -38,14 +38,21 @@ If you are running the Android app, you need an assetlinks.json file stored on y
       ],
       "target" : {
          "namespace" : "android_app",
-         "package_name" : "{{YOUR-PACKAGE-NAME}}",
+         "package_name" : "{PACKAGE-NAME}",
          "sha256_cert_fingerprints" : [
-            "{{FINGERPRINT-OF-YOUR-SIGNING-KEY}}"
+            "{FINGERPRINT-OF-YOUR-SIGNING-KEY}"
          ]
       }
    }
 ]
 ```
+
+| Variable                        | Description                                                                                                        | Example                                                                                         |
+|---------------------------------|--------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| URL                             | The url of your website                                                                                            | https://api.corbado.com                                                                         |
+| PACKAGE-NAME                    | The android package name                                                                                           | com.corbado.api                                                                                 |
+| FINGERPRINT-OF-YOUR-SIGNING-KEY | The fingerprint of the key with which the app is signed (android studio signs apps automatically before execution) | E8:35:B9:B4:78:EA:D8:98:8B:E4:16:9B:A5:BC:82:EC:30:A1:DF:8F:1D:70:47:48:07:3A:09:42:30:8D:63:1C |
+
 The JSON file needs to be stored under ```https://<your fully qualified domain>/.well-known/assetlinks.json```.
 
 Follow the steps described in the [FIDO2 API Documentation](https://developers.google.com/identity/fido/android/native-apps) page, to adjust the android manifest accordingly.
