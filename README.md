@@ -49,9 +49,9 @@ If you are running the Android app, you need an assetlinks.json file stored on y
 
 | Variable                        | Description                                                                                                        | Example                                                                                         |
 |---------------------------------|--------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
-| URL                             | The url of your website                                                                                            | https://api.corbado.com                                                                         |
-| PACKAGE-NAME                    | The android package name                                                                                           | com.corbado.api                                                                                 |
-| FINGERPRINT-OF-YOUR-SIGNING-KEY | The fingerprint of the key with which the app is signed (android studio signs apps automatically before execution) | E8:35:B9:B4:78 ... |
+| URL                             | The URL of your website                                                                                            | https://api.corbado.com                                                                         |
+| PACKAGE-NAME                    | The Android package name                                                                                           | com.corbado.api                                                                                 |
+| FINGERPRINT-OF-YOUR-SIGNING-KEY | The fingerprint of the key with which the app is signed (Android studio signs apps automatically before execution) | E8:35:B9:B4:78 ... |
 
 The JSON file needs to be stored under ```https://<your fully qualified domain>/.well-known/assetlinks.json```.
 
