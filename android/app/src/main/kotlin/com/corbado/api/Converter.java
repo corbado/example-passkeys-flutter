@@ -32,6 +32,9 @@ import java.util.List;
 
 public class Converter {
     private static final String tag = "[Converter]";
+    private static final String rpID = "api.corbado.com";
+    private static final String rpName = "api.corbado";
+    private static final String origin = "https://api.corbado.com";
 
     public static PublicKeyCredentialCreationOptions parsePublicKeyCredentialCreationOptions(String data) {
         try {
@@ -49,8 +52,8 @@ public class Converter {
             builder.setChallenge(Base64.decode(root.getString("challenge"), Base64.URL_SAFE));
 
             //RP
-            PublicKeyCredentialRpEntity entity = new PublicKeyCredentialRpEntity("api.corbado.com",
-                    "api.corbado", null);
+            PublicKeyCredentialRpEntity entity = new PublicKeyCredentialRpEntity(rpID,
+                    rpName, null);
             builder.setRp(entity);
 
             //User
@@ -132,7 +135,7 @@ public class Converter {
             builder.setChallenge(Base64.decode(root.getString("challenge"), Base64.URL_SAFE));
 
             //Rp
-            builder.setRpId("api.corbado.com");
+            builder.setRpId(rpID);
 
             //AllowCredentials
             List<PublicKeyCredentialDescriptor> allowList = new ArrayList<>();
@@ -178,7 +181,7 @@ public class Converter {
             builder.setChallenge(Base64.decode(root.getString("challenge"), Base64.URL_SAFE));
 
             //Rp
-            builder.setRpId("api.corbado.com");
+            builder.setRpId(rpID);
 
             //AllowCredentials
             List<PublicKeyCredentialDescriptor> allowList = new ArrayList<>();
@@ -206,7 +209,8 @@ public class Converter {
                     new BrowserPublicKeyCredentialRequestOptions.Builder();
 
             browserBuilder.setPublicKeyCredentialRequestOptions(builder.build());
-            browserBuilder.setOrigin(Uri.parse("https://api.corbado.com"));
+
+            browserBuilder.setOrigin(Uri.parse(origin));
 
 
             return browserBuilder.build();
