@@ -18,7 +18,7 @@ Use the values you obtained in step 2.1 to configure the following variables ins
 2. **apiSecret**: The API secret (something cryptic).
 
 ### 2.3 (Android) Leverage digital asset links
-If you are running the Android app, you need an assetlinks.json file stored on your website, so that the android device can download and verify the domains in your entitelement. For Corbado service you can use the following JSON template:
+If you are running the Android app, you need an assetlinks.json file stored on your website, so that the android device can download and verify the domains in your entitelement. You can use the following JSON template:
 ```json
 [
    {
