@@ -57,6 +57,8 @@ The JSON file needs to be stored under ```<your-url>/.well-known/assetlinks.json
 
 Follow the steps described in the [FIDO2 API Documentation](https://developers.google.com/identity/fido/android/native-apps) page, to adjust the android manifest accordingly.
 
+You can use [Google's tool](https://developers.google.com/digital-asset-links/tools/generator) to verify that your assetlinks.json file is setup correctly.
+
 ### 2.4 (iOS) Configuring iOS Associated Domains
 If you are running the iOS app, you need an associated domain file stored on your website, so that the iOS device can download and verify the domains in your entitelement. For Corbado service you can use the following JSON template: 
 ```json
