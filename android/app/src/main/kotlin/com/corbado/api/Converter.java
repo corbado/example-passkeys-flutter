@@ -46,7 +46,7 @@ public class Converter {
                     new PublicKeyCredentialCreationOptions.Builder();
 
             //Challenge
-            builder.setChallenge(Base64.decode(root.getString("challenge"), Base64.DEFAULT));
+            builder.setChallenge(Base64.decode(root.getString("challenge"), Base64.URL_SAFE));
 
             //RP
             PublicKeyCredentialRpEntity entity = new PublicKeyCredentialRpEntity("api.corbado.com",
@@ -129,7 +129,7 @@ public class Converter {
                     new PublicKeyCredentialRequestOptions.Builder();
 
             //Challenge
-            builder.setChallenge(Base64.decode(root.getString("challenge"), Base64.DEFAULT));
+            builder.setChallenge(Base64.decode(root.getString("challenge"), Base64.URL_SAFE));
 
             //Rp
             builder.setRpId("api.corbado.com");
@@ -139,7 +139,7 @@ public class Converter {
             for (int x = 0; x < allowCredentials.length(); x++) {
                 JSONObject currentAllowCredential = allowCredentials.getJSONObject(x);
                 String id = currentAllowCredential.getString("id");
-                byte[] idDecoded = Base64.decode(id, Base64.DEFAULT);
+                byte[] idDecoded = Base64.decode(id, Base64.URL_SAFE);
                 allowList.add(new PublicKeyCredentialDescriptor(PublicKeyCredentialType.PUBLIC_KEY.toString(),
                         idDecoded, null));
             }
@@ -175,7 +175,7 @@ public class Converter {
 
             //Challenge
 
-            builder.setChallenge(Base64.decode(root.getString("challenge"), Base64.DEFAULT));
+            builder.setChallenge(Base64.decode(root.getString("challenge"), Base64.URL_SAFE));
 
             //Rp
             builder.setRpId("api.corbado.com");
@@ -185,7 +185,7 @@ public class Converter {
             for (int x = 0; x < allowCredentials.length(); x++) {
                 JSONObject currentAllowCredential = allowCredentials.getJSONObject(x);
                 String id = currentAllowCredential.getString("id");
-                byte[] idDecoded = Base64.decode(id, Base64.DEFAULT);
+                byte[] idDecoded = Base64.decode(id, Base64.URL_SAFE);
                 allowList.add(new PublicKeyCredentialDescriptor(PublicKeyCredentialType.PUBLIC_KEY.toString(),
                         idDecoded, null));
             }
