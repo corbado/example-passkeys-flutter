@@ -17,7 +17,40 @@ Use the values you obtained in step 2.1 to configure the following variables ins
 1. **projectID**: The project ID (pro-xxxx).
 2. **apiSecret**: The API secret (something cryptic).
 
-### 2.3 Configuring iOS Associated Domains
+### 2.3 (Android) Leverage digital asset links
+If you are running the Android app, you need an assetlinks.json file stored on your website, so that the android device can download and verify the domains in your entitelement. For Corbado service you can use the following JSON template:
+```json
+[
+   {
+      "relation" : [
+         "delegate_permission/common.handle_all_urls",
+         "delegate_permission/common.get_login_creds"
+      ],
+      "target" : {
+         "namespace" : "web",
+         "site" : "{{YOUR-URL}}"
+      }
+   },
+   {
+      "relation" : [
+         "delegate_permission/common.handle_all_urls",
+         "delegate_permission/common.get_login_creds"
+      ],
+      "target" : {
+         "namespace" : "android_app",
+         "package_name" : "{{YOUR-PACKAGE-NAME}}",
+         "sha256_cert_fingerprints" : [
+            "{{FINGERPRINT-OF-YOUR-SIGNING-KEY}}"
+         ]
+      }
+   }
+]
+```
+The JSON file needs to be stored under ```https://<your fully qualified domain>/.well-known/assetlinks.json```.
+
+Follow the steps described in the [FIDO2 API Documentation](https://developers.google.com/identity/fido/android/native-apps) page, to adjust the android manifest accordingly.
+
+### 2.4 (iOS) Configuring iOS Associated Domains
 If you are running the iOS app, you need an associated domain file stored on your website, so that the iOS device can download and verify the domains in your entitelement. For Corbado service you can use the following JSON template: 
 ```json
 {
