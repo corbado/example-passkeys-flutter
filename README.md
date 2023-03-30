@@ -51,7 +51,7 @@ If you are running the Android app, you need an assetlinks.json file stored on y
 |---------------------------------|--------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
 | URL                             | The url of your website                                                                                            | https://api.corbado.com                                                                         |
 | PACKAGE-NAME                    | The android package name                                                                                           | com.corbado.api                                                                                 |
-| FINGERPRINT-OF-YOUR-SIGNING-KEY | The fingerprint of the key with which the app is signed (android studio signs apps automatically before execution) | E8:35:B9:B4:78:EA:D8:98:8B:E4:16:9B:A5:BC:82:EC:30:A1:DF:8F:1D:70:47:48:07:3A:09:42:30:8D:63:1C |
+| FINGERPRINT-OF-YOUR-SIGNING-KEY | The fingerprint of the key with which the app is signed (android studio signs apps automatically before execution) | E8:35:B9:B4:78 ... |
 
 The JSON file needs to be stored under ```https://<your fully qualified domain>/.well-known/assetlinks.json```.
 
