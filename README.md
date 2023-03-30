@@ -1,5 +1,5 @@
-# Complete integration example for Corbado API with Flutter
-This is a sample implementation of a Flutter app with integration to Corbado API.
+# Complete passkeys integration example for Corbado API with Flutter
+This is a sample implementation of a Flutter app with integration to Corbado API to use passkeys (based on FIDO2 / WebAuthn).
 
 ## 1. File Structure
 
