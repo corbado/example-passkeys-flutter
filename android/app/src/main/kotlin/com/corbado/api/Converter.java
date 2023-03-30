@@ -32,9 +32,16 @@ import java.util.List;
 
 public class Converter {
     private static final String tag = "[Converter]";
+
+
+   // ---- TODO: CHANGE TO YOUR VALUES --------------
+
+    // TODO: !!!rpID hast to be the same as target.site in the assetlinks.json file!!!
     private static final String rpID = "api.corbado.com";
     private static final String rpName = "api.corbado";
-    private static final String origin = "https://api.corbado.com";
+
+    // ---- TODO: CHANGE TO YOUR VALUES --------------
+
 
     public static PublicKeyCredentialCreationOptions parsePublicKeyCredentialCreationOptions(String data) {
         try {
@@ -209,8 +216,6 @@ public class Converter {
                     new BrowserPublicKeyCredentialRequestOptions.Builder();
 
             browserBuilder.setPublicKeyCredentialRequestOptions(builder.build());
-
-            browserBuilder.setOrigin(Uri.parse(origin));
 
 
             return browserBuilder.build();
