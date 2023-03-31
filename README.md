@@ -18,7 +18,7 @@ Use the values you obtained in step 2.1 to configure the following variables ins
 2. **apiSecret**: The API secret (something cryptic).
 
 ### 2.3 (Android) Leverage digital asset links
-If you are running the Android app, you need an assetlinks.json file stored on your website, so that the android device can download and verify the domains in your entitelement. You can use the following JSON template:
+If you are running the Android app, you need an assetlinks.json file stored on your website, so that the Android device can download and verify the domains in your entitelement. You can use the following JSON template:
 ```json
 [
    {
@@ -50,12 +50,12 @@ If you are running the Android app, you need an assetlinks.json file stored on y
 | Variable                        | Description                                                                                                        | Example                                                                                         |
 |---------------------------------|--------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
 | URL                             | The URL of your website                                                                                            | https://api.corbado.com                                                                         |
-| PACKAGE-NAME                    | The Android package name                                                                                           | com.corbado.api                                                                                 |
+| PACKAGE-NAME                    | Your Android package name                                                                                           | com.corbado.api                                                                                 |
 | FINGERPRINT-OF-YOUR-SIGNING-KEY | The fingerprint of the key with which the app is signed (Android studio signs apps automatically before execution) | E8:35:B9:B4:78 ... |
 
-The JSON file needs to be stored under ```<your-url>/.well-known/assetlinks.json```.
+The JSON file needs to be stored under ```<URL>/.well-known/assetlinks.json```.
 
-Follow the steps described in the [FIDO2 API Documentation](https://developers.google.com/identity/fido/android/native-apps) page, to adjust the android manifest accordingly.
+Follow the steps described in the [FIDO2 API Documentation](https://developers.google.com/identity/fido/android/native-apps) page, to adjust the Android manifest accordingly.
 
 You can use [Google's tool](https://developers.google.com/digital-asset-links/tools/generator) to verify that your assetlinks.json file is setup correctly.
 
