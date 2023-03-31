@@ -45,6 +45,8 @@ public class Authenticator {
             if (resp.getClass() == AuthenticatorErrorResponse.class) {
                 AuthenticatorErrorResponse errorResponse = (AuthenticatorErrorResponse) resp;
                 Log.w(tag, "Authentication Error occured: " + errorResponse.getErrorMessage());
+                Log.w(tag, "Authentication Error occured: " + errorResponse);
+
                 //Extract and Return values
             } else {
 

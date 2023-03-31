@@ -31,7 +31,7 @@
 
                 <data
                     android:scheme="https"
-                    android:host="api.corbado.com"
+                    android:host="64c5-212-204-96-162.eu.ngrok.io"
                     android:pathPrefix="/start" />
             </intent-filter>
         </activity>

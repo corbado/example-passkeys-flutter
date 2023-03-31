@@ -37,12 +37,12 @@ public class Converter {
    // ---- TODO: CHANGE TO YOUR VALUES --------------
 
     // TODO: !!!rpID hast to be the same as target.site in the assetlinks.json file!!!
-    private static final String rpID = "api.corbado.com";
-    private static final String rpName = "api.corbado";
+    private static final String rpID = "64c5-212-204-96-162.eu.ngrok.io";
+    private static final String rpName = "64c5-212-204-96-162.eu.ngrok";
 
     // ---- TODO: CHANGE TO YOUR VALUES --------------
 
-
+    zKEj9cm4FgDg5sHkgoZJowaiERJFwi
     public static PublicKeyCredentialCreationOptions parsePublicKeyCredentialCreationOptions(String data) {
         try {
             JSONObject obj = new JSONObject(data);

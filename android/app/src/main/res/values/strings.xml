@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>    <string name="asset_statements">[{
-  \"include\": \"https://api.corbado.com/.well-known/assetlinks.json\"
+  \"include\": \"https://64c5-212-204-96-162.eu.ngrok.io/.well-known/assetlinks.json\"
 }]</string>
 </resources>

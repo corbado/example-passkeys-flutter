@@ -22,7 +22,8 @@ class CorbadoService {
 
   final baseUrl = "https://api.corbado.com/v1";
 
-  final origin = "https://api.corbado.com";
+  // android:xxxx
+  final origin = "android:apk-key-hash:ku8xCSnQSoNkkHVG4B40K9577Y0Oaa1Uj1jblDTSlZs";
 
   var clientInfo = {};
   bool canAuthenticateWithBiometrics = false;
