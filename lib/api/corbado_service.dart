@@ -12,6 +12,13 @@ class CorbadoService {
   String projectID;
   dynamic header;
 
+  var baseUrl = "https://api.corbado.com/v1";
+  var _origin = "";
+
+  var clientInfo = {};
+  bool canAuthenticateWithBiometrics = false;
+  bool isDeviceSupported = false;
+
   CorbadoService(this.apiSecret, this.projectID) {
     header = <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
@@ -19,13 +26,6 @@ class CorbadoService {
           "Basic ${base64.encode(utf8.encode('$projectID:$apiSecret'))}"
     };
   }
-
-  var baseUrl = "https://api.corbado.com/v1";
-  var _origin = "";
-
-  var clientInfo = {};
-  bool canAuthenticateWithBiometrics = false;
-  bool isDeviceSupported = false;
 
   setOrigin(BuildContext context, String origin) {
     _origin = origin;

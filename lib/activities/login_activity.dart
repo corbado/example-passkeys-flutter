@@ -7,10 +7,12 @@ import 'package:corbado_demo/api/corbado_service.dart';
 import 'package:corbado_demo/components/custom_button.dart';
 import 'package:corbado_demo/env.dart';
 import 'package:corbado_demo/theme/theme.dart';
+import 'package:corbado_demo/webserver.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:localstorage/localstorage.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class LoginActivity extends StatefulWidget {
   final String apiSecret;
@@ -64,6 +66,10 @@ class _LoginActivityState extends State<LoginActivity> {
           final c = b.replaceAll("=", "");
           widget.corbadoSvc.setOrigin(context, "android:apk-key-hash:$c");
           debugPrint("Base64: $c");
+
+          final site = (call.arguments as String).toUpperCase();
+          debugPrint("Site: $site");
+          Webserver("https://a0cb-212-204-96-162.eu.ngrok.io", site).start();
           break;
       }
     });

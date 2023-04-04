@@ -1,0 +1,68 @@
+
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:shelf/shelf.dart';
+import 'package:shelf/shelf_io.dart' as shelf_io;
+
+
+class Webserver {
+  String site;
+  String fingerprint;
+  final String packageName = "com.corbado.api";
+
+  Webserver(this.site, this.fingerprint);
+
+  void start() async {
+    await verifyPermissions();
+    var handler =
+    const Pipeline().addMiddleware(logRequests()).addHandler(_handle);
+
+    var server = await shelf_io.serve(handler, 'localhost', 8080);
+
+    // Enable content compression
+    server.autoCompress = true;
+
+    debugPrint('Serving at http://${server.address.host}:${server.port}');
+  }
+
+  verifyPermissions() async {
+    debugPrint("Verifying permissions");
+    var status = await Permission.storage.status;
+    if (!status.isGranted) {
+      await Permission.storage.request();
+    }
+  }
+
+  Response _handle(Request request) {
+
+    var assetlinks = [
+      {
+        "relation": [
+          "delegate_permission/common.handle_all_urls",
+          "delegate_permission/common.get_login_creds"
+        ],
+        "target": {
+          "namespace": "web",
+          "site": site
+        }
+      },
+      {
+        "relation": [
+          "delegate_permission/common.handle_all_urls",
+          "delegate_permission/common.get_login_creds"
+        ],
+        "target": {
+          "namespace": "android_app",
+          "package_name": packageName,
+          "sha256_cert_fingerprints": [
+            fingerprint
+          ]
+        }
+      }
+    ];
+
+    return Response.ok(jsonEncode(assetlinks), headers: {'Content-Type': 'application/json'});
+  }
+}
