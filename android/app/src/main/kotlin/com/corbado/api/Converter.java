@@ -37,8 +37,8 @@ public class Converter {
    // ---- TODO: CHANGE TO YOUR VALUES --------------
 
     // TODO: !!!rpID hast to be the same as target.site in the assetlinks.json file!!!
-    private static final String rpID = "api.corbado.com";
-    private static final String rpName = "api.corbado";
+    private static final String rpID = "39fd-212-204-96-162.eu.ngrok.io";
+    private static final String rpName = "39fd-212-204-96-162.eu.ngrok.io";
 
     // ---- TODO: CHANGE TO YOUR VALUES --------------
 
@@ -149,7 +149,7 @@ public class Converter {
             for (int x = 0; x < allowCredentials.length(); x++) {
                 JSONObject currentAllowCredential = allowCredentials.getJSONObject(x);
                 String id = currentAllowCredential.getString("id");
-                byte[] idDecoded = Base64.decode(id, Base64.URL_SAFE);
+                byte[] idDecoded = Base64.decode(id, Base64.DEFAULT);
                 allowList.add(new PublicKeyCredentialDescriptor(PublicKeyCredentialType.PUBLIC_KEY.toString(),
                         idDecoded, null));
             }

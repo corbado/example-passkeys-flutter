@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:convert/convert.dart';
 import 'package:corbado_demo/activities/content_activity.dart';
 import 'package:corbado_demo/activities/starting_page_activity.dart';
 import 'package:corbado_demo/api/corbado_service.dart';
@@ -54,10 +55,22 @@ class _LoginActivityState extends State<LoginActivity> {
                 : "Your device does not support passkey authentication";
           });
           break;
+        case "onCertFingerprint":
+          debugPrint("onCertFingerprint finished");
+          debugPrint("Args: ${call.arguments}");
+          final h = (call.arguments as String).replaceAll(":", "");
+          debugPrint("Hex: $h");
+          final b = base64Url.encode(hex.decode(h));
+          final c = b.replaceAll("=", "");
+          widget.corbadoSvc.setOrigin(context, "android:apk-key-hash:$c");
+          debugPrint("Base64: $c");
+          break;
       }
     });
 
     //To be able to display whether the device supports passkey authentication
+    debugPrint("Calling getCertFingerprint");
+    channel.invokeMethod("getCertFingerprint");
     channel.invokeMethod("canAuthenticate");
   }
 

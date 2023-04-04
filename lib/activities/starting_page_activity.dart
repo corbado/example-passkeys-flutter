@@ -68,15 +68,15 @@ class _StartingPageActivity extends State<StartingPageActivity> {
                 Padding(
                     padding: const EdgeInsets.only(top: 20),
                     child: TextField(
-                      controller: apiKeyController,
-                      decoration:
-                          const InputDecoration(hintText: "API Secret Key"),
+                      controller: projectIDController,
+                      decoration: const InputDecoration(hintText: "Project ID"),
                     )),
                 Padding(
                     padding: const EdgeInsets.only(top: 20),
                     child: TextField(
-                      controller: projectIDController,
-                      decoration: const InputDecoration(hintText: "Project ID"),
+                      controller: apiKeyController,
+                      decoration:
+                          const InputDecoration(hintText: "API Secret Key"),
                     )),
                 Padding(
                     padding: const EdgeInsets.only(top: 20),

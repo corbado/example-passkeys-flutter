@@ -20,17 +20,21 @@ class CorbadoService {
     };
   }
 
-  final baseUrl = "https://api.corbado.com/v1";
-
-  final origin = "https://api.corbado.com";
+  var baseUrl = "https://api.corbado.com/v1";
+  var _origin = "";
 
   var clientInfo = {};
   bool canAuthenticateWithBiometrics = false;
   bool isDeviceSupported = false;
 
+  setOrigin(BuildContext context, String origin) {
+    _origin = origin;
+    addOrigin(context, "Android", origin);
+  }
+
   Future<void> _init() async {
     String ipv4 = await Ipify.ipv4();
-    clientInfo = {"userAgent": "Test34 fffs", "remoteAddress": ipv4};
+    clientInfo = {"userAgent": "Corbado Demo Flutter App", "remoteAddress": ipv4};
     debugPrint("_init clientInfo: $clientInfo");
   }
 
@@ -40,7 +44,7 @@ class CorbadoService {
         Uri.parse("$baseUrl/webauthn/authenticate/start"),
         headers: header,
         body: jsonEncode(
-            {"username": email, "origin": origin, "clientInfo": clientInfo}));
+            {"username": email, "origin": _origin, "clientInfo": clientInfo}));
 
     Map<String, dynamic> data = jsonDecode(value.body);
     if (value.statusCode != 200){
@@ -53,6 +57,7 @@ class CorbadoService {
       String authenticatorData, String signature, String userHandle) async {
     await _init();
     debugPrint("flutter signInFinish called");
+    debugPrint("clientDataJSON: " + clientDataJSON);
     var pubCred = {
       "type": "public-key",
       "id": id,
@@ -70,7 +75,7 @@ class CorbadoService {
             headers: header,
             body: jsonEncode({
               "publicKeyCredential": jsonEncode(pubCred),
-              "origin": origin,
+              "origin": _origin,
               "clientInfo": clientInfo
             }));
 
@@ -88,7 +93,7 @@ class CorbadoService {
         body: jsonEncode({
           "username": email,
           "credentialStatus": "active",
-          "origin": origin,
+          "origin": _origin,
           "clientInfo": clientInfo
         }));
 
@@ -103,6 +108,7 @@ class CorbadoService {
   Future<bool> registerFinish(BuildContext context, String id, String rawId, String clientDataJSON,
       String attestationObject) async {
     await _init();
+    debugPrint("clientDataJSON: " + clientDataJSON);
     var pubCred = {
       "type": "public-key",
       "id": id,
@@ -120,7 +126,7 @@ class CorbadoService {
         headers: header,
         body: jsonEncode({
           "publicKeyCredential": jsonEncode(pubCred),
-          "origin": origin,
+          "origin": _origin,
           "clientInfo": clientInfo
         }));
 
@@ -130,4 +136,24 @@ class CorbadoService {
     }
     return value.statusCode == 200;
   }
+
+Future<bool> addOrigin(BuildContext context, String name, String origin) async {
+  await _init();
+
+  var value = await http.post(Uri.parse("$baseUrl/webauthn/settings"),
+      headers: header,
+      body: jsonEncode({
+        "name": name,
+        "origin": origin,
+        "clientInfo": clientInfo
+      }));
+
+  debugPrint("addOrigin body: ${value.body}");
+  if (value.statusCode != 200){
+    if(!value.body.contains("already exists")) {
+      showCustomDialog(context, "Could not add origin", value.body);
+    }
+  }
+  return value.statusCode == 200;
+}
 }
