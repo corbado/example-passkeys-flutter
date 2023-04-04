@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as shelf_io;
@@ -10,12 +11,17 @@ import 'package:shelf/shelf_io.dart' as shelf_io;
 class Webserver {
   String site;
   String fingerprint;
-  final String packageName = "com.corbado.api";
+  late String _packageName;
 
   Webserver(this.site, this.fingerprint);
 
   void start() async {
     await verifyPermissions();
+
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+   _packageName = packageInfo.packageName;
+   debugPrint("Package name: $_packageName");
+
     var handler =
     const Pipeline().addMiddleware(logRequests()).addHandler(_handle);
 
@@ -55,7 +61,7 @@ class Webserver {
         ],
         "target": {
           "namespace": "android_app",
-          "package_name": packageName,
+          "package_name": _packageName,
           "sha256_cert_fingerprints": [
             fingerprint
           ]
