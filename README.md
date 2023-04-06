@@ -34,9 +34,13 @@ as shown [here](https://dashboard.ngrok.com/get-started/your-authtoken).
 Flutter automatically hosts the correct assetlinks.json on its own local webserver inside the
 emulator.
 To make this webserver accessible from the outside,
-execute ```adb forward tcp:8080 tcp:8080``` to build a tunnel between the emulator and your machine.
-Then run ```ngrok http 8080``` to build a tunnel from your machine to the internet. This command will
-provide you with an individual ngrok URL. You can use this URL to access the webserver from the
+execute 
+```adb forward tcp:8080 tcp:8080``` 
+to build a tunnel between the emulator and your machine (you need to have Android SDK installed to execute `adb` commands).
+Then, run 
+```ngrok http 8080```
+to build a tunnel from your machine to the internet. This command will
+provide you with an individual ngrok URL (e.g. `https://312d-212-204-96-162.eu.ngrok.io`. You can use this URL to access the webserver from the
 outside.
 
 ### 3.2 Option 2: Remote hosting of the assetlinks.json
