@@ -48,7 +48,7 @@ provide you with an individual ngrok URL (e.g. `https://312d-212-204-96-162.eu.n
 
 ### 3.2 Option 2: Remote hosting of the assetlinks.json
 
-If you want to host `assetlinks.json yourself, use the following JSON template and store it under
+If you want to host `assetlinks.json` yourself, use the following JSON template and store it under
 ```https://your-domain.com/.well-known/assetlinks.json```:
 
 ```json
