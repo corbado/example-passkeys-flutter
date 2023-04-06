@@ -7,18 +7,33 @@ This is a sample implementation of a Flutter app with integration to Corbado API
 * `ios/`: this directory contains the iOS-specific files for the app. It includes the `Runner/` directory, which contains the source code and other files needed to build the iOS app.
 * `lib/`: this directory contains the Dart source code for the app. It includes the `main.dart` file, which is the entry point for the app, as well as other Dart source files that make up the app.
 
-## 2. Setup
-
-### 2.1 Prerequisites
+## 2. Prerequisites
 Please follow the steps in [Getting started](https://docs.corbado.com/overview/getting-started) to create and configure a project in our [developer panel](https://app.corbado.com).
 
-### 2.2 Configure environment variables
-Use the values you obtained in step 2.1 to configure the following variables inside `lib/env.dart`:
-1. **projectID**: The project ID (pro-xxxx).
-2. **apiSecret**: The API secret (something cryptic).
+### 3. Android
 
-### 2.3 (Android) Leverage digital asset links
-If you are running the Android app, you need an assetlinks.json file stored on your website, so that the Android device can download and verify the domains in your entitelement. You can use the following JSON template:
+To verify the app against your website which is required for the Webauthn protocol,
+you need to host an assetlinks.json file on that website. The flutter app
+can host the file locally and expose it to the internet using ngrok (option 1).
+Alternatively, you can host the file yourself (option 2).
+
+### 3.1. Hosting the assetlinks.json locally + Ngrok
+Install ngrok, create an account at [ngrok.com](https://ngrok.com) and add your ngrok authtoken to your installation
+as shown [here](https://dashboard.ngrok.com/get-started/your-authtoken).
+
+Apart from the app, flutter also runs a webserver on the emulator.
+To make this webserver accessible from the outside,
+execute ```adb forward tcp:8080 tcp:8080``` to build a tunnel between the emulator and your pc.
+Then run ```ngrok http 8080``` to build a tunnel from your pc to the internet. This command will
+provide you with an individual ngrok url You can use this url to access the webserver from the outside.
+
+Run the app by executing ```flutter run --dart-define=URL=<your-ngrok-url>``` (e.g. https://a0cb-212-204-96-162.eu.ngrok.io)
+In case you run the app inside Android studio, edit the run configuration and add ```--dart-define=URL=<your-ngrok-url>``` to the
+Additional run args.
+
+### 3.2 Option 2: Hosting the assetlinks.json yourself
+If you want to host the assetlinks file yourself, use the following JSON template and store it under
+```https://your-domain.com/.well-known/assetlinks.json```:
 ```json
 [
    {
@@ -46,20 +61,23 @@ If you are running the Android app, you need an assetlinks.json file stored on y
    }
 ]
 ```
-
-| Variable                        | Description                                                                                                        | Example                                                                                         |
-|---------------------------------|--------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
-| URL                             | The URL of your website                                                                                            | https://api.corbado.com                                                                         |
-| PACKAGE-NAME                    | Your Android package name                                                                                           | com.corbado.api                                                                                 |
-| FINGERPRINT-OF-YOUR-SIGNING-KEY | The fingerprint of the key with which the app is signed (Android studio signs apps automatically before execution) | E8:35:B9:B4:78 ... |
-
-The JSON file needs to be stored under ```<URL>/.well-known/assetlinks.json```.
+Variables:
+- URL: The base URL of the website which holds the assetlinks file (e.g. https://api.corbado.com)
+- PACKAGE-NAME: The Android package name (com.corbado.api) for this app if you don't rename it
+- FINGERPRINT-OF-YOUR-SIGNING-KEY: The fingerprint of the key with which the app is signed (Android studio signs apps automatically before execution).
+It can be obtained by executing ```keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android```.
+From there take the sha256 fingerprint and encode it using base64URL without padding. 
+Alternatively follow step 3.1. to let flutter host the assetlinks file and
+copy the fingerprint from there: ```localhost:8080/.well-known/assetlinks.json```.
 
 Follow the steps described in the [FIDO2 API Documentation](https://developers.google.com/identity/fido/android/native-apps) page, to adjust the Android manifest accordingly.
 
 You can use [Google's tool](https://developers.google.com/digital-asset-links/tools/generator) to verify that your assetlinks.json file is setup correctly.
 
-### 2.4 (iOS) Configuring iOS Associated Domains
+
+## 4. iOS
+
+### 4.1. Configuring iOS Associated Domains
 If you are running the iOS app, you need an associated domain file stored on your website, so that the iOS device can download and verify the domains in your entitelement. For Corbado service you can use the following JSON template: 
 ```json
 {
@@ -82,25 +100,7 @@ The fully qualified domain of your url should then be provided as an environment
 
 To learn more about associated domains visit: [Apple Developer Supporting Associated Domains](https://developer.apple.com/documentation/xcode/supporting-associated-domains).
 
-
-## 3. Usage
-
-### 3.1 Running the Android app
-
-To run the app, follow these steps:
-
-1. Make sure you have Flutter installed on your development machine. If you don't, follow the instructions in the [Flutter documentation](https://flutter.dev/docs/get-started/install) to install it.
-
-2. Clone the repository
-
-3. Connect your device or launch an emulator.
-
-4. Run the app:
-```flutter run```
-
-5. The app should now be running on your device or emulator.
-
-### 3.2 Running the iOS app from Xcode
+### 4.2 Running the iOS app from Xcode
 
 To run the iOS app using Xcode, follow these steps:
 
