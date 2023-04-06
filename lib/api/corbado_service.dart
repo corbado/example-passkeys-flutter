@@ -53,11 +53,16 @@ class CorbadoService {
         body: jsonEncode({"username": email}));
 
     debugPrint("signInInit body: ${value.body}");
-    var data = jsonDecode(value.body);
+    var decoded = jsonDecode(value.body);
     if (value.statusCode != 200) {
       throw Exception(value.body);
     }
-    return data["data"]["challenge"];
+    debugPrint("decoded: ");
+    debugPrint(decoded.toString());
+    var decodedData = decoded["data"];
+    debugPrint("decodedData: ");
+    debugPrint(decodedData.toString());
+    return decoded["data"]["challenge"];
   }
 
   Future<bool> signInFinish(

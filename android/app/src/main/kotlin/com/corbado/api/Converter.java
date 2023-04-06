@@ -126,9 +126,7 @@ public class Converter {
     public static PublicKeyCredentialRequestOptions parsePublicKeyCredentialRequestOptions(String data) {
         try {
             JSONObject param = new JSONObject(data);
-            JSONObject obj = param.getJSONObject("data");
-
-            JSONObject root = obj.getJSONObject("publicKey");
+            JSONObject root = param.getJSONObject("publicKey");
             JSONArray allowCredentials = root.getJSONArray("allowCredentials");
 
             PublicKeyCredentialRequestOptions.Builder builder =
@@ -138,7 +136,7 @@ public class Converter {
             builder.setChallenge(Base64.decode(root.getString("challenge"), Base64.URL_SAFE));
 
             //Rp
-            String rpID = root.getString("rpID");
+            String rpID = root.getString("rpId");
             builder.setRpId(rpID);
 
             //AllowCredentials
