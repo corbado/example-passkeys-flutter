@@ -32,11 +32,6 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:scheme="https"
-                    android:host="77e7-212-204-96-162.eu.ngrok.io"
-                    android:pathPrefix="/start" />
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.
