@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>    <string name="asset_statements">[{
-  \"include\": \"https://39fd-212-204-96-162.eu.ngrok.io/.well-known/assetlinks.json\"
+  \"include\": \"https://77e7-212-204-96-162.eu.ngrok.io/.well-known/assetlinks.json\"
 }]</string>
 </resources>

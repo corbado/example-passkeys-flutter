@@ -8,21 +8,33 @@ import 'package:http/http.dart' as http;
 class CorbadoService {
   final String apiSecret;
   final String projectID;
+  static String fingerprint = "";
 
   static const baseUrlAPI = "https://api.corbado.com/v1";
-  static const baseUrlAuth = "https://auth.corbado.com/v1";
+  static const baseUrlAuth = "http://10.0.2.2:15926/v1";
 
-  const CorbadoService(this.apiSecret, this.projectID);
+  CorbadoService(this.apiSecret, this.projectID) {
+    debugPrint("CorbadoService constructor: $projectID, $apiSecret");
+  }
 
-  Map<String, String> getHeader() {
+  Map<String, String> _getHeader() {
+    debugPrint("GetFingerprint in getHeader: $fingerprint");
     return <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
-      'authorization':
-          "Basic ${base64.encode(utf8.encode('$projectID:$apiSecret'))}"
+      //     'authorization':
+      //         "Basic ${base64.encode(utf8.encode('$projectID:$apiSecret'))}",
+      'X-Corbado-ProjectID': projectID,
+      'Origin': fingerprint
     };
   }
 
-  Object getClientInfo() async {
+  setFingerprint(String base64Hash) {
+    debugPrint("setFingerprint: $base64Hash");
+    fingerprint = "android:apk-key-hash:$base64Hash";
+    debugPrint("after setFingerprint: $fingerprint");
+  }
+
+  Object _getClientInfo() async {
     String ipv4 = await Ipify.ipv4();
     var clientInfo = {
       "userAgent": "Corbado Demo Flutter App",
@@ -33,9 +45,11 @@ class CorbadoService {
   }
 
   Future<String> signInInit(BuildContext context, String email) async {
+    debugPrint("Header: ");
+    debugPrint(_getHeader().toString());
     var value = await http.post(
         Uri.parse("$baseUrlAuth/users/passkey/login/start"),
-        headers: await getHeader(),
+        headers: _getHeader(),
         body: jsonEncode({"username": email}));
 
     debugPrint("signInInit body: ${value.body}");
@@ -70,7 +84,7 @@ class CorbadoService {
 
     var value = await http.post(
         Uri.parse("$baseUrlAuth/users/passkey/login/finish"),
-        headers: getHeader(),
+        headers: _getHeader(),
         body: jsonEncode({"signedChallenge": jsonEncode(pubCred)}));
 
     debugPrint("signInFinish body: ${value.body}");
@@ -85,9 +99,10 @@ class CorbadoService {
   }
 
   Future<String> registerInit(BuildContext context, String email) async {
+    debugPrint("registerInit url: $baseUrlAuth/users/passkey/register/start");
     var value =
         await http.post(Uri.parse("$baseUrlAuth/users/passkey/register/start"),
-            headers: getHeader(),
+            headers: _getHeader(),
             body: jsonEncode({
               "username": email,
               "fullName": email,
@@ -120,7 +135,7 @@ class CorbadoService {
 
     var value = await http.post(
         Uri.parse("$baseUrlAuth/users/passkey/register/finish"),
-        headers: getHeader(),
+        headers: _getHeader(),
         body: jsonEncode({"signedChallenge": jsonEncode(pubCred)}));
 
     debugPrint("registerFinish body: ${value.body}");

@@ -3,7 +3,8 @@ import 'package:corbado_demo/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 class ContentActivity extends StatefulWidget {
-  final String name;
+  final String fullName;
+  final String username;
   final String credentialId;
 
   ///Indicates whether the user has just registered
@@ -11,7 +12,8 @@ class ContentActivity extends StatefulWidget {
 
   const ContentActivity(
       {super.key,
-      required this.name,
+      required this.fullName,
+      required this.username,
       required this.credentialId,
       this.newUser = false});
 
@@ -24,8 +26,8 @@ class _ContentActivityState extends State<ContentActivity> {
   Widget build(BuildContext context) {
     var text = widget.newUser ? "Sign up successful" : "Login successful";
     var text2 = widget.newUser
-        ? "Welcome, ${widget.name}!"
-        : "Welcome back, ${widget.name}!";
+        ? "Welcome, ${widget.fullName}!"
+        : "Welcome back, ${widget.fullName}!";
     return Scaffold(
         backgroundColor: corbadoDark,
         body: Container(

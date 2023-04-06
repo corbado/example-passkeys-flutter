@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:convert/convert.dart';
 import 'package:corbado_demo/activities/content_activity.dart';
-import 'package:corbado_demo/activities/starting_page_activity.dart';
 import 'package:corbado_demo/api/corbado_service.dart';
 import 'package:corbado_demo/components/custom_button.dart';
 import 'package:corbado_demo/components/dialog.dart';
@@ -12,21 +11,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:oktoast/oktoast.dart';
 
-// Hauptsächlich Flutter app
-// Automatisches auslesen vom apk-key-hash und einstellen als origin
-// Integrierter webserver von flutter wird genutzt für das hosten von assetlinks.json
-// Endpoint, um die rp id zu konfigurieren
-
 class LoginActivity extends StatefulWidget {
   final String apiSecret;
   final String projectID;
   final String url;
-  late CorbadoService corbadoSvc;
+  late final CorbadoService corbadoSvc;
 
-  LoginActivity(this.apiSecret, this.projectID, {super.key})
-      : url = const String.fromEnvironment('URL', defaultValue: 'not_found') {
+  LoginActivity({super.key})
+      : url = const String.fromEnvironment('URL',
+            defaultValue: 'url_not_configured'),
+        projectID = const String.fromEnvironment("PROJECT_ID",
+            defaultValue: "project_id_not_configured"),
+        apiSecret = const String.fromEnvironment("API_SECRET",
+            defaultValue: "api_secret_not_configured") {
     corbadoSvc = CorbadoService(apiSecret, projectID);
-    debugPrint("ngrokUrl: $url");
+    debugPrint("url: $url");
+    debugPrint("projectID: $projectID");
+    debugPrint("apiSecret: $apiSecret");
   }
 
   @override
@@ -34,7 +35,8 @@ class LoginActivity extends StatefulWidget {
 }
 
 class _LoginActivityState extends State<LoginActivity> {
-  TextEditingController usernameController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController fullNameController = TextEditingController();
 
   ///Channel used to communicate with native android
   static const channel = MethodChannel("com.corbado.flutterapp/webauthn");
@@ -70,9 +72,10 @@ class _LoginActivityState extends State<LoginActivity> {
           debugPrint("Hex: $h");
           final b = base64Url.encode(hex.decode(h));
           final c = b.replaceAll("=", "");
-          widget.corbadoSvc.addOrigin(context, "Android",
-              "android:apk-key-hash:$c", Uri.parse(widget.url).host);
+          //     widget.corbadoSvc.addOrigin(context, "Android",
+          //         "android:apk-key-hash:$c", Uri.parse(widget.url).host);
           debugPrint("Base64: $c");
+          widget.corbadoSvc.setFingerprint(c);
 
           final site = (call.arguments as String).toUpperCase();
           debugPrint("Site: $site");
@@ -91,7 +94,8 @@ class _LoginActivityState extends State<LoginActivity> {
         FocusManager.instance.primaryFocus?.unfocus(),
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => ContentActivity(
-                  name: usernameController.text,
+                  fullName: fullNameController.text,
+                  username: usernameController.text,
                   credentialId: credentialId,
                   newUser: newUser,
                 )))
@@ -215,16 +219,6 @@ class _LoginActivityState extends State<LoginActivity> {
                       ),
                     ),
                     Padding(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: CustomButton(
-                            text: "Change projectID/apiSecret",
-                            onPress: () => {
-                                  Navigator.of(context).pop(),
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) =>
-                                          StartingPageActivity()))
-                                })),
-                    Padding(
                       padding: const EdgeInsets.only(top: 80),
                       child: Text(
                         deviceSupportedText,
@@ -232,6 +226,12 @@ class _LoginActivityState extends State<LoginActivity> {
                             color: deviceSupportedTextColor, fontSize: 16),
                       ),
                     ),
+                    Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: TextField(
+                          controller: fullNameController,
+                          decoration: const InputDecoration(hintText: "Name"),
+                        )),
                     Padding(
                         padding: const EdgeInsets.only(top: 20),
                         child: TextField(
