@@ -34,18 +34,8 @@ class CorbadoService {
     debugPrint("after setFingerprint: $fingerprint");
   }
 
-<<<<<<< HEAD
-  // android:xxxx
-  final origin = "android:apk-key-hash:ku8xCSnQSoNkkHVG4B40K9577Y0Oaa1Uj1jblDTSlZs";
 
-  var clientInfo = {};
-  bool canAuthenticateWithBiometrics = false;
-  bool isDeviceSupported = false;
-
-  Future<void> _init() async {
-=======
   Object _getClientInfo() async {
->>>>>>> automatic-setup
     String ipv4 = await Ipify.ipv4();
     var clientInfo = {
       "userAgent": "Corbado Demo Flutter App",
