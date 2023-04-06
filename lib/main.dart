@@ -1,10 +1,9 @@
 import 'package:corbado_demo/activities/login_activity.dart';
-import 'package:corbado_demo/theme/theme.dart';
-import 'package:corbado_demo/webserver.dart';
-import 'package:flutter/material.dart';
-import 'package:oktoast/oktoast.dart';
 import 'package:corbado_demo/activities/starting_page_activity.dart';
+import 'package:corbado_demo/theme/theme.dart';
+import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
+import 'package:oktoast/oktoast.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,8 +20,6 @@ class MyApp extends StatelessWidget {
 
     var apiKey = storage.getItem("privateKey");
     var projectID = storage.getItem("projectID");
-
-
 
     return OKToast(
         child: MaterialApp(
