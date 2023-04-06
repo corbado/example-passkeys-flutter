@@ -1,23 +1,29 @@
 import 'dart:convert';
 
+import 'package:convert/convert.dart';
 import 'package:corbado_demo/activities/content_activity.dart';
-import 'package:corbado_demo/activities/starting_page_activity.dart';
 import 'package:corbado_demo/api/corbado_service.dart';
 import 'package:corbado_demo/components/custom_button.dart';
-import 'package:corbado_demo/env.dart';
+import 'package:corbado_demo/components/dialog.dart';
 import 'package:corbado_demo/theme/theme.dart';
+import 'package:corbado_demo/webserver.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:oktoast/oktoast.dart';
-import 'package:localstorage/localstorage.dart';
 
 class LoginActivity extends StatefulWidget {
   final String apiSecret;
   final String projectID;
-  late CorbadoService corbadoSvc;
+  late final CorbadoService corbadoSvc;
 
-  LoginActivity(this.apiSecret, this.projectID, {super.key}) {
+  LoginActivity({super.key})
+      : projectID = const String.fromEnvironment("PROJECT_ID",
+            defaultValue: "project_id_not_configured"),
+        apiSecret = const String.fromEnvironment("API_SECRET",
+            defaultValue: "api_secret_not_configured") {
     corbadoSvc = CorbadoService(apiSecret, projectID);
+    debugPrint("projectID: $projectID");
+    debugPrint("apiSecret: $apiSecret");
   }
 
   @override
@@ -25,7 +31,8 @@ class LoginActivity extends StatefulWidget {
 }
 
 class _LoginActivityState extends State<LoginActivity> {
-  TextEditingController usernameController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController fullNameController = TextEditingController();
 
   ///Channel used to communicate with native android
   static const channel = MethodChannel("com.corbado.flutterapp/webauthn");
@@ -54,10 +61,27 @@ class _LoginActivityState extends State<LoginActivity> {
                 : "Your device does not support passkey authentication";
           });
           break;
+        case "onCertFingerprint":
+          debugPrint("onCertFingerprint finished");
+          debugPrint("Args: ${call.arguments}");
+          final h = (call.arguments as String).replaceAll(":", "");
+          debugPrint("Hex: $h");
+          final b = base64Url.encode(hex.decode(h));
+          final c = b.replaceAll("=", "");
+          //     widget.corbadoSvc.addOrigin(context, "Android",
+          //         "android:apk-key-hash:$c", Uri.parse(widget.url).host);
+          debugPrint("Base64: $c");
+          widget.corbadoSvc.setFingerprint(c);
+
+          final site = (call.arguments as String).toUpperCase();
+          debugPrint("Site: $site");
+          Webserver(site).start();
+          break;
       }
     });
 
     //To be able to display whether the device supports passkey authentication
+    channel.invokeMethod("getCertFingerprint");
     channel.invokeMethod("canAuthenticate");
   }
 
@@ -66,7 +90,8 @@ class _LoginActivityState extends State<LoginActivity> {
         FocusManager.instance.primaryFocus?.unfocus(),
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => ContentActivity(
-                  name: usernameController.text,
+                  fullName: fullNameController.text,
+                  username: usernameController.text,
                   credentialId: credentialId,
                   newUser: newUser,
                 )))
@@ -82,12 +107,14 @@ class _LoginActivityState extends State<LoginActivity> {
       return;
     }
 
-    var registerRes =
-        await widget.corbadoSvc.registerInit(context, usernameController.text);
     try {
+      var registerRes = await widget.corbadoSvc
+          .registerInit(context, usernameController.text);
       await channel.invokeMethod("webauthnRegister", registerRes);
     } on PlatformException catch (e) {
       debugPrint(e.stacktrace);
+    } on Exception catch (e) {
+      showCustomDialog(context, "API Error", e.toString());
     }
   }
 
@@ -99,12 +126,16 @@ class _LoginActivityState extends State<LoginActivity> {
     String clientDataJSON = options["clientDataJSON"];
     String attestationObject = options["attestationObject"];
 
-    bool success = await widget.corbadoSvc
-        .registerFinish(context, id, rawId, clientDataJSON, attestationObject);
-    if (success) {
-      _launchContentActivity(true, id);
-    } else {
-      _showError("Sign up Error");
+    try {
+      bool success = await widget.corbadoSvc.registerFinish(
+          context, id, rawId, clientDataJSON, attestationObject);
+      if (success) {
+        _launchContentActivity(true, id);
+      } else {
+        _showError("Sign up Error");
+      }
+    } on Exception catch (e) {
+      showCustomDialog(context, "API Error", e.toString());
     }
   }
 
@@ -115,11 +146,14 @@ class _LoginActivityState extends State<LoginActivity> {
       _showError("Textfield must not be empty");
       return;
     }
-    var signInRes = await widget.corbadoSvc.signInInit(context, usernameController.text);
     try {
+      var signInRes =
+          await widget.corbadoSvc.signInInit(context, usernameController.text);
       await channel.invokeMethod("webauthnSignIn", signInRes);
     } on PlatformException catch (e) {
       debugPrint(e.stacktrace);
+    } on Exception catch (e) {
+      showCustomDialog(context, "API Error", e.toString());
     }
   }
 
@@ -139,12 +173,16 @@ class _LoginActivityState extends State<LoginActivity> {
       userHandle = options["userHandle"];
     }
 
-    bool success = await widget.corbadoSvc.signInFinish(context,
-        id, rawId, clientDataJSON, authenticatorData, signature, userHandle);
-    if (success) {
-      _launchContentActivity(false, id);
-    } else {
-      _showError("SignIn Error");
+    try {
+      bool success = await widget.corbadoSvc.signInFinish(context, id, rawId,
+          clientDataJSON, authenticatorData, signature, userHandle);
+      if (success) {
+        _launchContentActivity(false, id);
+      } else {
+        _showError("SignIn Error");
+      }
+    } on Exception catch (e) {
+      showCustomDialog(context, "API Error", e.toString());
     }
   }
 
@@ -157,57 +195,55 @@ class _LoginActivityState extends State<LoginActivity> {
         body: SingleChildScrollView(
             padding: const EdgeInsets.only(top: 80),
             child: Container(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Image.asset(
-                  "assets/corbado_logo.png",
-                  scale: 2,
-                  color: Colors.white70,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 40),
-                  child: Text(
-                    projectIDText,
-                    style: const TextStyle(color: Colors.white70, fontSize: 16),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: CustomButton(
-                        text: "Change projectID/apiSecret",
-                        onPress: () => {
-                          Navigator.of(context).pop(),
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => StartingPageActivity()))
-                        })),
-                Padding(
-                  padding: const EdgeInsets.only(top: 80),
-                  child: Text(
-                    deviceSupportedText,
-                    style: TextStyle(
-                        color: deviceSupportedTextColor, fontSize: 16),
-                  ),
-                ),
-                Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: TextField(
-                      controller: usernameController,
-                      decoration: const InputDecoration(hintText: "Email"),
-                    )),
-       Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          CustomButton(text: "Sign up", onPress: register),
-                          CustomButton(text: "Login", onPress: signIn)
-                        ])),
-              ],
-            ))));
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Image.asset(
+                      "assets/corbado_logo.png",
+                      scale: 2,
+                      color: Colors.white70,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 40),
+                      child: Text(
+                        projectIDText,
+                        style: const TextStyle(
+                            color: Colors.white70, fontSize: 16),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 80),
+                      child: Text(
+                        deviceSupportedText,
+                        style: TextStyle(
+                            color: deviceSupportedTextColor, fontSize: 16),
+                      ),
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: TextField(
+                          controller: fullNameController,
+                          decoration: const InputDecoration(hintText: "Name"),
+                        )),
+                    Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: TextField(
+                          controller: usernameController,
+                          decoration: const InputDecoration(hintText: "Email"),
+                        )),
+                    Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              CustomButton(text: "Sign up", onPress: register),
+                              CustomButton(text: "Login", onPress: signIn)
+                            ])),
+                  ],
+                ))));
   }
 }

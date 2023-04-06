@@ -101,7 +101,7 @@ public class Authenticator {
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private String encodeBase64(byte[] arr) {
+    public String encodeBase64(byte[] arr) {
         return Base64.encodeToString(arr, Base64.URL_SAFE | Base64.NO_PADDING | Base64.NO_WRAP);
     }
 
