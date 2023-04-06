@@ -7,11 +7,10 @@ import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as shelf_io;
 
 class Webserver {
-  String site;
   String fingerprint;
   late String _packageName;
 
-  Webserver(this.site, this.fingerprint);
+  Webserver(this.fingerprint);
 
   void start() async {
     await verifyPermissions();
@@ -41,13 +40,6 @@ class Webserver {
 
   Response _handle(Request request) {
     var assetlinks = [
-      {
-        "relation": [
-          "delegate_permission/common.handle_all_urls",
-          "delegate_permission/common.get_login_creds"
-        ],
-        "target": {"namespace": "web", "site": site}
-      },
       {
         "relation": [
           "delegate_permission/common.handle_all_urls",

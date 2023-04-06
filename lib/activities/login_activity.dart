@@ -14,18 +14,14 @@ import 'package:oktoast/oktoast.dart';
 class LoginActivity extends StatefulWidget {
   final String apiSecret;
   final String projectID;
-  final String url;
   late final CorbadoService corbadoSvc;
 
   LoginActivity({super.key})
-      : url = const String.fromEnvironment('URL',
-            defaultValue: 'url_not_configured'),
-        projectID = const String.fromEnvironment("PROJECT_ID",
+      : projectID = const String.fromEnvironment("PROJECT_ID",
             defaultValue: "project_id_not_configured"),
         apiSecret = const String.fromEnvironment("API_SECRET",
             defaultValue: "api_secret_not_configured") {
     corbadoSvc = CorbadoService(apiSecret, projectID);
-    debugPrint("url: $url");
     debugPrint("projectID: $projectID");
     debugPrint("apiSecret: $apiSecret");
   }
@@ -79,7 +75,7 @@ class _LoginActivityState extends State<LoginActivity> {
 
           final site = (call.arguments as String).toUpperCase();
           debugPrint("Site: $site");
-          Webserver(widget.url, site).start();
+          Webserver(site).start();
           break;
       }
     });
