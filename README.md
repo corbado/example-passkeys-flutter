@@ -1,7 +1,6 @@
 # Complete passkeys integration example for Corbado API with Flutter
 
-This is a sample implementation of a Flutter app with integration to Corbado API to use passkeys (
-based on FIDO2 / WebAuthn).
+This is a sample implementation of a Flutter app with integration to Corbado API to use passkeys (based on FIDO2 / WebAuthn).
 
 ## 1. File Structure
 
@@ -15,19 +14,18 @@ based on FIDO2 / WebAuthn).
 ## 2. Prerequisites
 
 Please follow the steps in [Getting started](https://docs.corbado.com/overview/getting-started) to
-create and configure a project in our [developer panel](https://app.corbado.com). Create an
-apiSecret
-[here](https://app.corbado.com/app/settings/credentials/api-keys) and add put your projectID as well
-as the apiSecret in the env.json which is located in the root folder.
+create and configure a project in our [developer panel](https://app.corbado.com). Create an API secret
+[here](https://app.corbado.com/app/settings/credentials/api-keys) and add put your project ID as well
+as the API secret in the env.json which is located in the root folder.
 
 ### 3. Android
 
-To verify the app against your website which is required for the Webauthn protocol,
-you need to host an assetlinks.json file on that website. The flutter app
-can host the file locally and you have to expose it to the internet using ngrok (option 1).
-Alternatively, you can host the file yourself (option 2).
+To verify the app against your website which is required for the WebAuthn protocol,
+you need to host an assetlinks.json file on that website. The Flutter app
+can host the file locally and you have to expose it to the Internet using ngrok (option 1).
+Alternatively, you can host the file remotely (option 2).
 
-### 3.1. Hosting the assetlinks.json locally + Ngrok
+### 3.1. Option 1: Locally hosting of the assetlinks.json (ngrok exposure to the Internet)
 
 Install ngrok, create an account at [ngrok.com](https://ngrok.com) and add your ngrok authtoken to
 your installation
@@ -36,14 +34,14 @@ as shown [here](https://dashboard.ngrok.com/get-started/your-authtoken).
 Flutter automatically hosts the correct assetlinks.json on its own local webserver inside the
 emulator.
 To make this webserver accessible from the outside,
-execute ```adb forward tcp:8080 tcp:8080``` to build a tunnel between the emulator and your pc.
-Then run ```ngrok http 8080``` to build a tunnel from your pc to the internet. This command will
-provide you with an individual ngrok url. You can use this url to access the webserver from the
+execute ```adb forward tcp:8080 tcp:8080``` to build a tunnel between the emulator and your machine.
+Then run ```ngrok http 8080``` to build a tunnel from your machine to the internet. This command will
+provide you with an individual ngrok URL. You can use this URL to access the webserver from the
 outside.
 
-### 3.2 Option 2: Hosting the assetlinks.json yourself
+### 3.2 Option 2: Remote hosting of the assetlinks.json
 
-If you want to host the assetlinks file yourself, use the following JSON template and store it under
+If you want to host `assetlinks.json yourself, use the following JSON template and store it under
 ```https://your-domain.com/.well-known/assetlinks.json```:
 
 ```json
@@ -66,26 +64,24 @@ If you want to host the assetlinks file yourself, use the following JSON templat
 
 Variables:
 
-- PACKAGE-NAME: The Android package name (com.corbado.api) for this app if you don't rename it
+- PACKAGE-NAME: The Android package name (e.g. com.corbado.api) for this app if you don't rename it
 - FINGERPRINT-OF-YOUR-SIGNING-KEY: The fingerprint of the key with which the app is signed (Android
   studio signs apps automatically before execution).
   It can be obtained by
   executing ```keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android```
   .
-  From there take the sha256 fingerprint and enter it
+  From there, take the SHA256 fingerprint and enter it
   here: https://www.rapidtables.com/convert/number/hex-to-ascii.html.
   Next, copy the resulting string and enter it here: https://www.base64url.com/encode. Here, take
-  the
-  resulting Base 64 URL encoded string and use it as FINGERPRINT-OF-YOUR-SIGNING-KEY.
-  Alternatively follow step 3.1. to let flutter host the assetlinks file and
-  copy the fingerprint from there: ```localhost:8080/.well-known/assetlinks.json```.
+  the resulting Base 64 URL encoded string and use it as `FINGERPRINT-OF-YOUR-SIGNING-KEY`.
+  Alternatively, follow step 3.1. to let flutter host `assetlinks.json` and copy the fingerprint from there: ```localhost:8080/.well-known/assetlinks.json```.
 
 Follow the steps described in
 the [FIDO2 API Documentation](https://developers.google.com/identity/fido/android/native-apps) page,
 to adjust the Android manifest accordingly.
 
 You can use [Google's tool](https://developers.google.com/digital-asset-links/tools/generator) to
-verify that your assetlinks.json file is setup correctly.
+verify that your assetlinks.json file is set up correctly.
 
 ### 3.3. Running the Android app
 
