@@ -17,7 +17,7 @@ Use the values you obtained in step 2.1 to configure the following variables ins
 1. **projectID**: The project ID (pro-xxxx).
 2. **apiSecret**: The API secret (something cryptic).
 
-> :warning: The current version of thie repository is not ready for production-usage as it should just demonstrate the basic flow. A more stable and more secure version will be pushed soon.
+> :warning: The current version of the repository is not ready for production-usage as it should just demonstrate the basic flow. A more stable and more secure version will be pushed soon.
 
 ### 2.3 (Android) Leverage digital asset links
 If you are running the Android app, you need an assetlinks.json file stored on your website, so that the Android device can download and verify the domains in your entitelement. You can use the following JSON template:
