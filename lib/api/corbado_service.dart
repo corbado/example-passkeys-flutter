@@ -11,7 +11,9 @@ class CorbadoService {
   static String fingerprint = "";
 
   static const baseUrlAPI = "https://api.corbado.com/v1";
-  static const baseUrlAuth = "http://10.0.2.2:15926/v1";
+  // static const baseUrlAuth = "http://10.0.2.2:15926/v1"; // Code von Nico
+  static const baseUrlAuth = "https://auth.corbado.com/v1";
+
 
   CorbadoService(this.apiSecret, this.projectID) {
     debugPrint("CorbadoService constructor: $projectID, $apiSecret");
@@ -21,10 +23,8 @@ class CorbadoService {
     debugPrint("GetFingerprint in getHeader: $fingerprint");
     return <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
-      //     'authorization':
-      //         "Basic ${base64.encode(utf8.encode('$projectID:$apiSecret'))}",
       'X-Corbado-ProjectID': projectID,
-      'Origin': fingerprint
+      'Origin': "android:apk-key-hash:ku8xCSnQSoNkkHVG4B40K9577Y0Oaa1Uj1jblDTSlZs"
     };
   }
 

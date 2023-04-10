@@ -41,7 +41,9 @@ public class Authenticator {
                 Log.w(tag, "Authentication Error occured: Fido response is null");
             }
             PublicKeyCredential credential = PublicKeyCredential.deserializeFromBytes(fidoResponse);
+            Log.w(tag, "credential: " + credential);
             AuthenticatorResponse resp = credential.getResponse();
+            Log.w(tag, "Response: " + resp);
             if (resp.getClass() == AuthenticatorErrorResponse.class) {
                 AuthenticatorErrorResponse errorResponse = (AuthenticatorErrorResponse) resp;
                 Log.w(tag, "Authentication Error occured: " + errorResponse.getErrorMessage());

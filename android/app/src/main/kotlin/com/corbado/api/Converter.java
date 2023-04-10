@@ -40,6 +40,7 @@ public class Converter {
             JSONObject root = param.getJSONObject("publicKey");
             JSONObject authenticatorSelection = root.getJSONObject("authenticatorSelection");
             JSONObject rp = root.getJSONObject("rp");
+            Log.d(tag, "rp: " + rp);
             JSONObject user = root.getJSONObject("user");
             JSONArray pubKeyCredParams = root.getJSONArray("pubKeyCredParams");
 

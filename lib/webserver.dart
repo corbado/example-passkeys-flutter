@@ -41,6 +41,16 @@ class Webserver {
   Response _handle(Request request) {
     var assetlinks = [
       {
+        "relation" : [
+          "delegate_permission/common.handle_all_urls",
+          "delegate_permission/common.get_login_creds"
+        ],
+        "target" : {
+          "namespace" : "web",
+          "site" : "https://corbado.com"
+        }
+      },
+      {
         "relation": [
           "delegate_permission/common.handle_all_urls",
           "delegate_permission/common.get_login_creds"

@@ -46,6 +46,7 @@ class _LoginActivityState extends State<LoginActivity> {
     channel.setMethodCallHandler((call) async {
       switch (call.method) {
         case "onWebauthnRegisterFinish":
+          debugPrint("called onWebAuthnREgisterFinish: $call");
           onWebauthnRegisterFinish(call.arguments);
           break;
         case "onWebauthnSignInFinish":
