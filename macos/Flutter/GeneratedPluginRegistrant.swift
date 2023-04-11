@@ -6,7 +6,7 @@ import FlutterMacOS
 import Foundation
 
 import package_info_plus
-import path_provider_foundation
+import path_provider_macos
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
   FLTPackageInfoPlusPlugin.register(with: registry.registrar(forPlugin: "FLTPackageInfoPlusPlugin"))
