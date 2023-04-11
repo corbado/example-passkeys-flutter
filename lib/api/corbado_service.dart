@@ -6,17 +6,12 @@ import 'package:http/http.dart' as http;
 
 ///Issues api calls to the corbado backend
 class CorbadoService {
-  final String apiSecret;
+  final String baseUrlAuth;
   final String projectID;
   static String fingerprint = "";
 
-  static const baseUrlAPI = "https://api.corbado.com/v1";
-  // static const baseUrlAuth = "http://10.0.2.2:15926/v1"; // Code von Nico
-  static const baseUrlAuth = "https://auth.corbado.com/v1";
-
-
-  CorbadoService(this.apiSecret, this.projectID) {
-    debugPrint("CorbadoService constructor: $projectID, $apiSecret");
+  CorbadoService(this.baseUrlAuth, this.projectID) {
+    debugPrint("Using auth endpoint $baseUrlAuth for projectID $projectID");
   }
 
   Map<String, String> _getHeader() {
@@ -24,7 +19,7 @@ class CorbadoService {
     return <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'X-Corbado-ProjectID': projectID,
-      'Origin': "android:apk-key-hash:ku8xCSnQSoNkkHVG4B40K9577Y0Oaa1Uj1jblDTSlZs"
+      'Origin': fingerprint,
     };
   }
 
@@ -32,17 +27,6 @@ class CorbadoService {
     debugPrint("setFingerprint: $base64Hash");
     fingerprint = "android:apk-key-hash:$base64Hash";
     debugPrint("after setFingerprint: $fingerprint");
-  }
-
-
-  Object _getClientInfo() async {
-    String ipv4 = await Ipify.ipv4();
-    var clientInfo = {
-      "userAgent": "Corbado Demo Flutter App",
-      "remoteAddress": ipv4
-    };
-    debugPrint("_init clientInfo: $clientInfo");
-    return clientInfo;
   }
 
   Future<String> signInInit(BuildContext context, String email) async {

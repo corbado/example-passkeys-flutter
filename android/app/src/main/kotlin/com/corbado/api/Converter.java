@@ -146,9 +146,8 @@ public class Converter {
             for (int x = 0; x < allowCredentials.length(); x++) {
                 JSONObject currentAllowCredential = allowCredentials.getJSONObject(x);
                 String id = currentAllowCredential.getString("id");
-                byte[] idDecoded = Base64.decode(id, Base64.DEFAULT);
                 allowList.add(new PublicKeyCredentialDescriptor(PublicKeyCredentialType.PUBLIC_KEY.toString(),
-                        idDecoded, null));
+                        id.getBytes(), null));
             }
             builder.setAllowList(allowList);
 
