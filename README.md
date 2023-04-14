@@ -1,6 +1,7 @@
 # Complete passkeys integration example for Corbado API with Flutter
 
-This is a sample implementation of a Flutter app with integration to Corbado API to use passkeys (based on FIDO2 / WebAuthn).
+This is a sample implementation of a Flutter app with integration to Corbado API to use passkeys (
+based on FIDO2 / WebAuthn).
 
 ## 1. File Structure
 
@@ -14,39 +15,32 @@ This is a sample implementation of a Flutter app with integration to Corbado API
 ## 2. Prerequisites
 
 Please follow the steps in [Getting started](https://docs.corbado.com/overview/getting-started) to
-create and configure a project in our [developer panel](https://app.corbado.com). Create an API secret
-[here](https://app.corbado.com/app/settings/credentials/api-keys) and add put your project ID as well
-as the API secret in the env.json which is located in the root folder.
+create and configure a project in our [developer panel](https://app.corbado.com). Create an API
+secret
+[here](https://app.corbado.com/app/settings/credentials/api-keys) and add use your project ID to
+adjust the env.json file accordingly.
 
 ### 3. Android
 
-To verify the app against your website which is required for the WebAuthn protocol,
-you need to host an assetlinks.json file on that website. The Flutter app
-can host the file locally and you have to expose it to the Internet using ngrok (option 1).
-Alternatively, you can host the file remotely (option 2).
+To verify the app against your website which acts as "relying party" in the WebAuthn protocol,
+you need to host an assetlinks.json file on that website. Corbado automatically
+hosts this file at pro-xxx.auth.corbado.com for you (option 1).
+Alternatively, you can use your own website as relying party if you host the file yourself (option
+2).
 
-### 3.1. Option 1: Locally hosting of the assetlinks.json (ngrok exposure to the Internet)
+### 3.1. Assetlinks.json
 
-Install ngrok, create an account at [ngrok.com](https://ngrok.com) and add your ngrok authtoken to
-your installation
-as shown [here](https://dashboard.ngrok.com/get-started/your-authtoken).
+#### 3.1.1. Option 1: Let Corbado host the assetlinks.json file automatically
 
-Flutter automatically hosts the correct assetlinks.json on its own local webserver inside the
-emulator.
-To make this webserver accessible from the outside,
-execute 
+Your project has got its individual Corbado endpoint, located at pro-xxx.auth.corbado.com.
+Corbado automatically hosts the correct assetlinks.json on
 
-```adb forward tcp:8080 tcp:8080```
+#### 3.1.2. Option 2: Remote hosting of the assetlinks.json
 
-to build a tunnel between the emulator and your machine (you need to have Android SDK installed to execute `adb` commands).
-Then, run 
+### 3.4. Add authorized origin/android app in dev panel.
 
-```ngrok http 8080```
-
-to build a tunnel from your machine to the internet. This command will
-provide you with an individual ngrok URL (e.g. `https://312d-212-204-96-162.eu.ngrok.io`). When you enter the ngrok URL the first time in your browser, you need to confirm it. The ngork URL can be used to access the webserver from the outside.
-
-### 3.2 Option 2: Remote hosting of the assetlinks.json
+If self hosted, add your page as rpID, if it is Corbado hosted, add pro-xxx.auth.corbado.com as
+rpID.
 
 If you want to host `assetlinks.json` yourself, use the following JSON template and store it under
 ```https://your-domain.com/.well-known/assetlinks.json```:
@@ -81,7 +75,8 @@ Variables:
   here: https://www.rapidtables.com/convert/number/hex-to-ascii.html.
   Next, copy the resulting string and enter it here: https://www.base64url.com/encode. Here, take
   the resulting Base 64 URL encoded string and use it as `FINGERPRINT-OF-YOUR-SIGNING-KEY`.
-  Alternatively, follow step 3.1. to let flutter host `assetlinks.json` and copy the fingerprint from there: ```localhost:8080/.well-known/assetlinks.json```.
+  Alternatively, follow step 3.1. to let flutter host `assetlinks.json` and copy the fingerprint
+  from there: ```localhost:8080/.well-known/assetlinks.json```.
 
 Follow the steps described in
 the [FIDO2 API Documentation](https://developers.google.com/identity/fido/android/native-apps) page,
