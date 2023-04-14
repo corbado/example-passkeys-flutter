@@ -15,7 +15,7 @@ based on FIDO2 / WebAuthn).
 ## 2. Prerequisites
 
 Please follow the steps in [Getting started](https://docs.corbado.com/overview/getting-started) to
-create a project in our [developer panel](https://app.corbado.com). In the root folder create an env.json file and copy the contents from
+create a project in our [developer panel](https://app.corbado.com). In the root folder of this repo create an env.json file and copy the contents from
 env.json.spec. Then fill in your projectID in the newly created env.json file.
 
 ## 3. Android
