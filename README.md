@@ -30,8 +30,8 @@ Next, copy the resulting string and enter it here: https://www.base64url.com/enc
 
 ### 3.1. Assetlinks.json
 For the webauthn protocol a relying party is needed. This is the domain which the passkey belongs to.
-To verify the app against a domain, you need to host the file at `domain/.well-known/assetlinks.json`. 
-Corbado automatically provides you with an individual domain which hosts this file (pro-xxx.auth.corbado.com for you) (option 1).
+To verify the app against a domain, the domain's webserver needs to host `domain/.well-known/assetlinks.json`. 
+Corbado automatically provides you with an individual domain which hosts this file for you (pro-xxx.auth.corbado.com) (option 1).
 Alternatively, you can use your own website as relying party if you host the file yourself (option
 2).
 
