@@ -49,3 +49,4 @@ app.*.map.json
 # Custom
 /lib/env.dart
 .env
+env.json

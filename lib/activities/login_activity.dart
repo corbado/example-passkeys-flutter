@@ -11,27 +11,19 @@ import 'package:flutter/services.dart';
 import 'package:oktoast/oktoast.dart';
 
 class LoginActivity extends StatefulWidget {
-  final String apiEndpoint;
   final String projectID;
   late final CorbadoService corbadoSvc;
 
   LoginActivity({super.key})
       : projectID =
-            const String.fromEnvironment("PROJECT_ID", defaultValue: ""),
-        apiEndpoint =
-            const String.fromEnvironment("API_ENDPOINT", defaultValue: "") {
+            const String.fromEnvironment("PROJECT_ID", defaultValue: "") {
     if (!projectID.startsWith("pro-")) {
       throw Exception("ProjectID not configured");
     }
 
-    if (!apiEndpoint.startsWith("http://") &&
-        !apiEndpoint.startsWith("https://")) {
-      throw Exception("API Endpoint not configured");
-    }
-
-    corbadoSvc = CorbadoService(apiEndpoint, projectID);
+    corbadoSvc =
+        CorbadoService("https://$projectID.auth.corbado.com/api/v1", projectID);
     debugPrint("projectID: $projectID");
-    debugPrint("apiEndpoint: $apiEndpoint");
   }
 
   @override
