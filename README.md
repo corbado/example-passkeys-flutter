@@ -70,7 +70,7 @@ additional run args.
 ### 3.4. Troubleshooting
 
 If the application says your device does not support biometrics yet, you have to properly setup biometrics on the phone.
-Open the settings and add a PIN and a fingerprint as shown below.
+Open the settings and add a PIN and a fingerprint as shown below. (PIN is required for fingerprint)
 ![image](https://user-images.githubusercontent.com/23581140/232045115-86943a1a-c00a-48c3-bdc8-3f98daa962bc.png)
 
 
