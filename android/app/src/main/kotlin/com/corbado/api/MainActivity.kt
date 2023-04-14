@@ -1,4 +1,5 @@
 package com.corbado.api;
+
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
@@ -13,7 +14,7 @@ import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 
 
-class MainActivity: FlutterActivity() {
+class MainActivity : FlutterActivity() {
     private val CHANNEL = "com.corbado.flutterapp/webauthn"
     private val authenticator = Authenticator();
     var channel: MethodChannel? = null;
@@ -32,29 +33,29 @@ class MainActivity: FlutterActivity() {
 
             } else if (call.method == "canAuthenticate") {
                 authenticator.canAuthenticate(this);
-            }else if (call.method == "getCertFingerprint"){
+            } else if (call.method == "getCertFingerprint") {
                 getSig(this, "SHA256")
-            }else{
+            } else {
                 println("Unknown method: " + call.method)
             }
             result.success(1)
         }
     }
 
-    fun onCanAuthenticateFinish(param:Boolean){
+    fun onCanAuthenticateFinish(param: Boolean) {
         this.channel!!.invokeMethod("onCanAuthenticateFinish", param);
     }
 
-    fun onWebauthnRegisterFinish(param:String){
+    fun onWebauthnRegisterFinish(param: String) {
         this.channel!!.invokeMethod("onWebauthnRegisterFinish", param);
     }
 
-    fun onWebauthnSignInFinish(param: String){
+    fun onWebauthnSignInFinish(param: String) {
         this.channel!!.invokeMethod("onWebauthnSignInFinish", param);
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    override fun onActivityResult(requestCode:Int, resultCode:Int, data:Intent){
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
         super.onActivityResult(requestCode, resultCode, data)
         authenticator.onActivityResult(this, requestCode, resultCode, data)
     }
@@ -78,7 +79,6 @@ class MainActivity: FlutterActivity() {
                     toRet.append(hex)
                 }
                 val s = toRet.toString()
-                Log.e("sig", s)
 
                 this.channel!!.invokeMethod("onCertFingerprint", s)
 

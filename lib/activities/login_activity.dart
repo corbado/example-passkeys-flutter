@@ -20,10 +20,8 @@ class LoginActivity extends StatefulWidget {
     if (!projectID.startsWith("pro-")) {
       throw Exception("ProjectID not configured");
     }
-
     corbadoSvc =
         CorbadoService("https://$projectID.auth.corbado.com/v1", projectID);
-    debugPrint("projectID: $projectID");
   }
 
   @override
@@ -46,7 +44,6 @@ class _LoginActivityState extends State<LoginActivity> {
     channel.setMethodCallHandler((call) async {
       switch (call.method) {
         case "onWebauthnRegisterFinish":
-          debugPrint("called onWebAuthnREgisterFinish: $call");
           onWebauthnRegisterFinish(call.arguments);
           break;
         case "onWebauthnSignInFinish":
@@ -65,13 +62,15 @@ class _LoginActivityState extends State<LoginActivity> {
           });
           break;
         case "onCertFingerprint":
-          debugPrint("onCertFingerprint finished");
-          debugPrint("Args: ${call.arguments}");
           final h = (call.arguments as String).replaceAll(":", "");
-          debugPrint("Hex: $h");
           final b = base64Url.encode(hex.decode(h));
           final c = b.replaceAll("=", "");
-          debugPrint("Base64: $c");
+          debugPrint(
+              "########################### Fingerprint ###########################");
+          debugPrint("SHA256: ${(call.arguments as String).toUpperCase()}");
+          debugPrint("Base64URL encoded: $c");
+          debugPrint(
+              "###################################################################");
           widget.corbadoSvc.setOrigin("android:apk-key-hash:$c");
           break;
       }
