@@ -67,6 +67,13 @@ In case you run the app inside Android studio, edit the run configuration and
 add ```--dart-define-from-file=env.json``` to the
 additional run args.
 
+### 3.4. Troubleshooting
+
+If the application says your device does not support biometrics yet, you have to properly setup biometrics on the phone.
+Open the settings and add a PIN and a fingerprint as shown below.
+![image](https://user-images.githubusercontent.com/23581140/232045115-86943a1a-c00a-48c3-bdc8-3f98daa962bc.png)
+
+
 ## 4. iOS
 
 ### 4.1. Configuring iOS Associated Domains
