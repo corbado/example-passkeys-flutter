@@ -15,9 +15,7 @@ based on FIDO2 / WebAuthn).
 ## 2. Prerequisites
 
 Please follow the steps in [Getting started](https://docs.corbado.com/overview/getting-started) to
-create and configure a project in our [developer panel](https://app.corbado.com). Create an API
-secret
-[here](https://app.corbado.com/app/settings/credentials/api-keys) and add use your project ID to
+create and configure a project in our [developer panel](https://app.corbado.com). Use your project ID to
 adjust the env.json file accordingly. (Switch the project ids there to your one)
 
 ### 3. Android
@@ -27,7 +25,7 @@ adjust the env.json file accordingly. (Switch the project ids there to your one)
 The raw SHA-256 fingerprint of your debug signing key can be obtained by 
 executing ```keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android```.
 
-We also need it base64URL encoded, so please take the SHA256 fingerprint from and enter it here: https://www.rapidtables.com/convert/number/hex-to-ascii.html. 
+We also need it base64URL encoded, so please take the raw SHA256 fingerprint and enter it here: https://www.rapidtables.com/convert/number/hex-to-ascii.html. 
 Next, copy the resulting string and enter it here: https://www.base64url.com/encode. Take the resulting base 64 URL encoded string and save it for later.
 
 ### 3.1. Assetlinks.json
@@ -39,7 +37,7 @@ Alternatively, you can use your own website as relying party if you host the fil
 
 #### 3.1.1. Option 1: Let Corbado host the assetlinks.json file automatically
 
-If you choose to let Corbado host the fi
+If you choose to let Corbado host the file you don't have to do anything here :)
 
 #### 3.1.2. Option 2: Remote hosting of the assetlinks.json
 
@@ -75,9 +73,6 @@ verify that your assetlinks.json file is set up correctly.
 ### 3.2. Add authorized origin/android app in dev panel.
 
 Additionally you have to add the app as authorized origin inside the developer panel. Choose a name you want, and as origin take `android:apk-key-hash:<hash>` where the hash is the base64URL encoded signing certificate key from before.
-
-
-- commands 
 If the assetlinks.json file is self hosted, add your domain as rpID, if it is Corbado hosted, add pro-xxx.auth.corbado.com as
 rpID.
 
