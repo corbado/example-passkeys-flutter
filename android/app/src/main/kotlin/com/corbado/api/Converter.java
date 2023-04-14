@@ -51,10 +51,8 @@ public class Converter {
             builder.setChallenge(Base64.decode(root.getString("challenge"), Base64.URL_SAFE));
 
             //RP
-            String rpID = rp.getString("id");
-            String rpName = rp.getString("name");
-            //     rpID = "77e7-212-204-96-162.eu.ngrok.io";
-            //     rpName = "77e7-212-204-96-162.eu.ngrok.io";
+            String rpID = "auth.corbado.com";
+            String rpName = "auth.corbado.com";
             PublicKeyCredentialRpEntity entity = new PublicKeyCredentialRpEntity(rpID,
                     rpName, null);
             builder.setRp(entity);
@@ -139,6 +137,7 @@ public class Converter {
 
             //Rp
             String rpID = root.getString("rpId");
+            rpID = "pro-7330627738002388974.auth.corbado.com";
             builder.setRpId(rpID);
 
             //AllowCredentials
