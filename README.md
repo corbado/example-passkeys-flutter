@@ -18,29 +18,30 @@ Please follow the steps in [Getting started](https://docs.corbado.com/overview/g
 create and configure a project in our [developer panel](https://app.corbado.com). Create an API
 secret
 [here](https://app.corbado.com/app/settings/credentials/api-keys) and add use your project ID to
-adjust the env.json file accordingly.
+adjust the env.json file accordingly. (Switch the project ids there to your one)
 
 ### 3. Android
 
-To verify the app against your website which acts as "relying party" in the WebAuthn protocol,
-you need to host an assetlinks.json file on that website. Corbado automatically
-hosts this file at pro-xxx.auth.corbado.com for you (option 1).
+### 3.1. Obtain the SHA-256 fingerprint of your signing certificate
+
+The raw SHA-256 fingerprint of your debug signing key can be obtained by 
+executing ```keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android```.
+
+We also need it base64URL encoded, so please take the SHA256 fingerprint from and enter it here: https://www.rapidtables.com/convert/number/hex-to-ascii.html. 
+Next, copy the resulting string and enter it here: https://www.base64url.com/encode. Take the resulting base 64 URL encoded string and save it for later.
+
+### 3.1. Assetlinks.json
+For the webauthn protocol a relying party is needed. This is the domain which the passkey belongs to.
+To verify the app against a domain, you need to host the file at `domain/.well-known/assetlinks.json`. 
+Corbado automatically provides you with an individual domain which hosts this file (pro-xxx.auth.corbado.com for you) (option 1).
 Alternatively, you can use your own website as relying party if you host the file yourself (option
 2).
 
-### 3.1. Assetlinks.json
-
 #### 3.1.1. Option 1: Let Corbado host the assetlinks.json file automatically
 
-Your project has got its individual Corbado endpoint, located at pro-xxx.auth.corbado.com.
-Corbado automatically hosts the correct assetlinks.json on
+If you choose to let Corbado host the fi
 
 #### 3.1.2. Option 2: Remote hosting of the assetlinks.json
-
-### 3.4. Add authorized origin/android app in dev panel.
-
-If self hosted, add your page as rpID, if it is Corbado hosted, add pro-xxx.auth.corbado.com as
-rpID.
 
 If you want to host `assetlinks.json` yourself, use the following JSON template and store it under
 ```https://your-domain.com/.well-known/assetlinks.json```:
@@ -66,24 +67,20 @@ If you want to host `assetlinks.json` yourself, use the following JSON template 
 Variables:
 
 - PACKAGE-NAME: The Android package name (e.g. com.corbado.api) for this app if you don't rename it
-- FINGERPRINT-OF-YOUR-SIGNING-KEY: The fingerprint of the key with which the app is signed (Android
-  studio signs apps automatically before execution).
-  It can be obtained by
-  executing ```keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android```
-  .
-  From there, take the SHA256 fingerprint and enter it
-  here: https://www.rapidtables.com/convert/number/hex-to-ascii.html.
-  Next, copy the resulting string and enter it here: https://www.base64url.com/encode. Here, take
-  the resulting Base 64 URL encoded string and use it as `FINGERPRINT-OF-YOUR-SIGNING-KEY`.
-  Alternatively, follow step 3.1. to let flutter host `assetlinks.json` and copy the fingerprint
-  from there: ```localhost:8080/.well-known/assetlinks.json```.
-
-Follow the steps described in
-the [FIDO2 API Documentation](https://developers.google.com/identity/fido/android/native-apps) page,
-to adjust the Android manifest accordingly.
+- FINGERPRINT-OF-YOUR-SIGNING-KEY: The raw fingerprint of the key with which the app is signed (eg. 7H:AC:4C:...).
 
 You can use [Google's tool](https://developers.google.com/digital-asset-links/tools/generator) to
 verify that your assetlinks.json file is set up correctly.
+
+### 3.2. Add authorized origin/android app in dev panel.
+
+Additionally you have to add the app as authorized origin inside the developer panel. Choose a name you want, and as origin take `android:apk-key-hash:<hash>` where the hash is the base64URL encoded signing certificate key from before.
+
+
+- commands 
+If the assetlinks.json file is self hosted, add your domain as rpID, if it is Corbado hosted, add pro-xxx.auth.corbado.com as
+rpID.
+
 
 ### 3.3. Running the Android app
 
