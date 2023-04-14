@@ -23,7 +23,8 @@ env.json.scel. Then fill in your projectID in the newly created env.json file.
 ### 3.1. Add Android app to developer panel 
 
 Inside the developer panel, you need to enter the SHA-256 fingerprint (e.g. 6H:A7:BC:9A:...) of your debug signing key which can be obtained by 
-executing ```keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android```.
+executing ```keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android```. Alternatively, you can look into the console when executing the app:
+<img width="960" alt="image" src="https://user-images.githubusercontent.com/23581140/232052174-821b4a06-0cd5-4b0f-9933-58251dc889c7.png">
 
 ### 3.2. (Optional) Bind the passkeys to your own domain
 For the webauthn protocol a so called relying party is needed. This is the domain which the passkey belongs to.
