@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:dart_ipify/dart_ipify.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -8,25 +7,23 @@ import 'package:http/http.dart' as http;
 class CorbadoService {
   final String baseUrlAuth;
   final String projectID;
-  static String fingerprint = "";
+  static String origin = "";
 
   CorbadoService(this.baseUrlAuth, this.projectID) {
     debugPrint("Using auth endpoint $baseUrlAuth for projectID $projectID");
   }
 
   Map<String, String> _getHeader() {
-    debugPrint("GetFingerprint in getHeader: $fingerprint");
+    debugPrint("GetFingerprint in getHeader: $origin");
     return <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'X-Corbado-ProjectID': projectID,
-      'Origin': fingerprint,
+      'Origin': origin,
     };
   }
 
-  setFingerprint(String base64Hash) {
-    debugPrint("setFingerprint: $base64Hash");
-    fingerprint = "android:apk-key-hash:$base64Hash";
-    debugPrint("after setFingerprint: $fingerprint");
+  setOrigin(String origin) {
+    CorbadoService.origin = origin;
   }
 
   Future<String> signInInit(BuildContext context, String email) async {

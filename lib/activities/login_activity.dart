@@ -6,7 +6,6 @@ import 'package:corbado_demo/api/corbado_service.dart';
 import 'package:corbado_demo/components/custom_button.dart';
 import 'package:corbado_demo/components/dialog.dart';
 import 'package:corbado_demo/theme/theme.dart';
-import 'package:corbado_demo/webserver.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:oktoast/oktoast.dart';
@@ -17,16 +16,16 @@ class LoginActivity extends StatefulWidget {
   late final CorbadoService corbadoSvc;
 
   LoginActivity({super.key})
-      : projectID = const String.fromEnvironment("PROJECT_ID",
-            defaultValue: ""),
-        apiEndpoint = const String.fromEnvironment("API_ENDPOINT",
-            defaultValue: "") {
-
+      : projectID =
+            const String.fromEnvironment("PROJECT_ID", defaultValue: ""),
+        apiEndpoint =
+            const String.fromEnvironment("API_ENDPOINT", defaultValue: "") {
     if (!projectID.startsWith("pro-")) {
       throw Exception("ProjectID not configured");
     }
 
-    if (!apiEndpoint.startsWith("http://") && !apiEndpoint.startsWith("https://")) {
+    if (!apiEndpoint.startsWith("http://") &&
+        !apiEndpoint.startsWith("https://")) {
       throw Exception("API Endpoint not configured");
     }
 
@@ -78,14 +77,8 @@ class _LoginActivityState extends State<LoginActivity> {
           debugPrint("Hex: $h");
           final b = base64Url.encode(hex.decode(h));
           final c = b.replaceAll("=", "");
-          //     widget.corbadoSvc.addOrigin(context, "Android",
-          //         "android:apk-key-hash:$c", Uri.parse(widget.url).host);
           debugPrint("Base64: $c");
-          widget.corbadoSvc.setFingerprint(c);
-
-          final site = (call.arguments as String).toUpperCase();
-          debugPrint("Site: $site");
-          Webserver(site).start();
+          widget.corbadoSvc.setOrigin("android:apk-key-hash:$c");
           break;
       }
     });
