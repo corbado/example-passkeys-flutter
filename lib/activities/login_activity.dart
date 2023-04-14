@@ -22,7 +22,7 @@ class LoginActivity extends StatefulWidget {
     }
 
     corbadoSvc =
-        CorbadoService("https://$projectID.auth.corbado.com/api/v1", projectID);
+        CorbadoService("https://$projectID.auth.corbado.com/v1", projectID);
     debugPrint("projectID: $projectID");
   }
 
