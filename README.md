@@ -15,33 +15,21 @@ based on FIDO2 / WebAuthn).
 ## 2. Prerequisites
 
 Please follow the steps in [Getting started](https://docs.corbado.com/overview/getting-started) to
-create and configure a project in our [developer panel](https://app.corbado.com). Use your project ID to
-adjust the env.json file accordingly. (Switch the project ids there to your one)
+create a project in our [developer panel](https://app.corbado.com). In the root folder create an env.json file and copy the contents from
+env.json.spec. Then fill in your projectID in the newly created env.json file.
 
-### 3. Android
+## 3. Android
 
-### 3.1. Obtain the SHA-256 fingerprint of your signing certificate
+### 3.1. Add Android app to developer panel 
 
-The raw SHA-256 fingerprint of your debug signing key can be obtained by 
+Inside the developer panel, you need to enter the SHA-256 fingerprint (e.g. 6H:A7:BC:9A:...) of your debug signing key which can be obtained by 
 executing ```keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android```.
 
-We also need it base64URL encoded, so please take the raw SHA256 fingerprint and enter it here: https://www.rapidtables.com/convert/number/hex-to-ascii.html. 
-Next, copy the resulting string and enter it here: https://www.base64url.com/encode. Take the resulting base 64 URL encoded string and save it for later.
+### 3.2. (Optional) Bind the passkeys to your own domain
+For the webauthn protocol a so called relying party is needed. This is the domain which the passkey belongs to.
+To associate your domain with the app, your domain's webserver needs to host an assetlinks.json file:
 
-### 3.1. Assetlinks.json
-For the webauthn protocol a relying party is needed. This is the domain which the passkey belongs to.
-To verify the app against a domain, the domain's webserver needs to host `domain/.well-known/assetlinks.json`. 
-Corbado automatically provides you with an individual domain which hosts this file for you (pro-xxx.auth.corbado.com) (option 1).
-Alternatively, you can use your own website as relying party if you host the file yourself (option
-2).
-
-#### 3.1.1. Option 1: Let Corbado host the assetlinks.json file automatically
-
-If you choose to let Corbado host the file you don't have to do anything here :)
-
-#### 3.1.2. Option 2: Remote hosting of the assetlinks.json
-
-If you want to host `assetlinks.json` yourself, use the following JSON template and store it under
+Use the following JSON template and store it under
 ```https://your-domain.com/.well-known/assetlinks.json```:
 
 ```json
@@ -64,18 +52,13 @@ If you want to host `assetlinks.json` yourself, use the following JSON template 
 
 Variables:
 
-- PACKAGE-NAME: The Android package name (e.g. com.corbado.api) for this app if you don't rename it
-- FINGERPRINT-OF-YOUR-SIGNING-KEY: The raw fingerprint of the key with which the app is signed (eg. 7H:AC:4C:...).
+- PACKAGE-NAME: The Android package name (com.corbado.api for this app if you don't rename it)
+- FINGERPRINT-OF-YOUR-SIGNING-KEY: The SHA-256 fingerprint obtained in step 3.1 (eg. 7H:AC:4C:...).
 
 You can use [Google's tool](https://developers.google.com/digital-asset-links/tools/generator) to
 verify that your assetlinks.json file is set up correctly.
 
-### 3.2. Add authorized origin/android app in dev panel.
-
-Additionally you have to add the app as authorized origin inside the developer panel. Choose a name you want, and as origin take `android:apk-key-hash:<hash>` where the hash is the base64URL encoded signing certificate key from before.
-If the assetlinks.json file is self hosted, add your domain as rpID, if it is Corbado hosted, add pro-xxx.auth.corbado.com as
-rpID.
-
+Now you can set your domain without protocol or path (e.g. auth.corbado.com) as rpID in the developer panel under Settings->Android.
 
 ### 3.3. Running the Android app
 
