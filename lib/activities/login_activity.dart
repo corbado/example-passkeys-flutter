@@ -59,7 +59,9 @@ class _LoginActivityState extends State<LoginActivity> {
                 canAuthenticate ? Colors.lightGreen : Colors.redAccent;
             deviceSupportedText = canAuthenticate
                 ? "Your device supports passkey authentication"
-                : "Your device does not support passkey authentication";
+                : "Your device does not support passkey authentication yet. Solution:"
+                    "\n1. In 'Settings->Security->Screen lock' add a PIN."
+                    "\n2. In 'Settings->Security->Pixel imprint' add a fingerprint";
           });
           break;
         case "onCertFingerprint":
@@ -213,6 +215,7 @@ class _LoginActivityState extends State<LoginActivity> {
                       padding: const EdgeInsets.only(top: 80),
                       child: Text(
                         deviceSupportedText,
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                             color: deviceSupportedTextColor, fontSize: 16),
                       ),
@@ -227,6 +230,7 @@ class _LoginActivityState extends State<LoginActivity> {
                         padding: const EdgeInsets.only(top: 20),
                         child: TextField(
                           controller: usernameController,
+                          keyboardType: TextInputType.emailAddress,
                           decoration: const InputDecoration(hintText: "Email"),
                         )),
                     Padding(
