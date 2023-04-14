@@ -58,7 +58,7 @@ Variables:
 You can use [Google's tool](https://developers.google.com/digital-asset-links/tools/generator) to
 verify that your assetlinks.json file is set up correctly.
 
-Now you can set your domain without protocol or path (e.g. auth.corbado.com) as rpID in the developer panel under Settings->Android.
+Now you can set your domain (without protocol or path, e.g. auth.corbado.com) as rpID in the developer panel under Settings->Android.
 
 ### 3.3. Running the Android app
 
