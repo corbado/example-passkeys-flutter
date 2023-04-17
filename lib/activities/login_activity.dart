@@ -92,7 +92,8 @@ class _LoginActivityState extends State<LoginActivity> {
                 )))
       };
 
-  void _showError(String err) => showToast(err);
+  void _showError(String err) =>
+      showToast(err, duration: const Duration(seconds: 6));
 
   ///Gets the PublicKeyCredentialCreationOptions from the corbado service and
   ///issues a call to native android for signup
@@ -127,7 +128,7 @@ class _LoginActivityState extends State<LoginActivity> {
       if (success) {
         _launchContentActivity(true, id);
       } else {
-        _showError("Sign up Error");
+        throw Exception("Sign up failed");
       }
     } on Exception catch (e) {
       showCustomDialog(context, "API Error", e.toString());
@@ -144,6 +145,10 @@ class _LoginActivityState extends State<LoginActivity> {
     try {
       var signInRes =
           await widget.corbadoSvc.signInInit(context, usernameController.text);
+      if (signInRes.isEmpty) {
+        throw Exception(
+            "You don't have a confirmed passkey yet. Make sure you click the link in the email you received after signing up.");
+      }
       await channel.invokeMethod("webauthnSignIn", signInRes);
     } on PlatformException catch (e) {
       debugPrint(e.stacktrace);
@@ -174,7 +179,7 @@ class _LoginActivityState extends State<LoginActivity> {
       if (success) {
         _launchContentActivity(false, id);
       } else {
-        _showError("SignIn Error");
+        throw Exception("Sign in unsuccessful");
       }
     } on Exception catch (e) {
       showCustomDialog(context, "API Error", e.toString());
