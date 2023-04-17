@@ -30,7 +30,6 @@ class LoginActivity extends StatefulWidget {
 
 class _LoginActivityState extends State<LoginActivity> {
   final TextEditingController usernameController = TextEditingController();
-  final TextEditingController fullNameController = TextEditingController();
 
   ///Channel used to communicate with native android
   static const channel = MethodChannel("com.corbado.flutterapp/webauthn");
@@ -86,7 +85,6 @@ class _LoginActivityState extends State<LoginActivity> {
         FocusManager.instance.primaryFocus?.unfocus(),
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => ContentActivity(
-                  fullName: fullNameController.text,
                   username: usernameController.text,
                   credentialId: credentialId,
                   newUser: newUser,
@@ -224,12 +222,6 @@ class _LoginActivityState extends State<LoginActivity> {
                             color: deviceSupportedTextColor, fontSize: 16),
                       ),
                     ),
-                    Padding(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: TextField(
-                          controller: fullNameController,
-                          decoration: const InputDecoration(hintText: "Name"),
-                        )),
                     Padding(
                         padding: const EdgeInsets.only(top: 20),
                         child: TextField(

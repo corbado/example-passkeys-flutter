@@ -47,6 +47,8 @@ class CorbadoService {
   }
 
   Future<String> registerInit(BuildContext context, String email) async {
+    // For simplicity, we use the email as username and full name, but
+    // feel free to add a separate full name field to the app
     var resp = await handler("/users/passkey/register/start", {
       "username": email,
       "fullName": email,
@@ -76,13 +78,13 @@ class CorbadoService {
     return resp != null;
   }
 
-
   Future<String> signInInit(BuildContext context, String email) async {
     var resp = await handler("/users/passkey/login/start", {"username": email});
     return resp["data"]["challenge"];
   }
 
-  Future<bool> signInFinish(BuildContext context,
+  Future<bool> signInFinish(
+      BuildContext context,
       String id,
       String rawId,
       String clientDataJSON,
