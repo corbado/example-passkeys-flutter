@@ -1,4 +1,4 @@
-package com.corbado.api;
+package com.corbado.passkeys;
 
 import android.app.Activity;
 import android.app.PendingIntent;

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.corbado.api">
+    package="com.corbado.passkeys">
 
     <application
         android:label="corbado_demo"
