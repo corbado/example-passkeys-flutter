@@ -22,7 +22,7 @@ env.json.scel. Then fill in your projectID in the newly created env.json file.
 
 ### 3.1. Add Android app to developer panel 
 
-Inside the developer panel, you need to enter the SHA-256 fingerprint (e.g. 6H:A7:BC:9A:...) of your signing key. It can be obtained by executing `gradlew signingReport` in the android directory. If you just want your local debug-key which is used when developing the app in Android Studio, you can use ```keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android``` to fnid it out. Alternatively, you can look into the console when executing the app:
+Inside the developer panel, you need to enter the SHA-256 fingerprint (e.g. 6H:A7:BC:9A:...) of your signing key. It can be obtained by executing `gradlew signingReport` in the android directory. If you just want your local debug-key which is used when developing the app in Android Studio, use ```keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android```. Alternatively, you can look into the console when executing the app:
 <img width="960" alt="image" src="https://user-images.githubusercontent.com/23581140/232052174-821b4a06-0cd5-4b0f-9933-58251dc889c7.png">
 
 ### 3.2. (Optional) Bind the passkeys to your own domain
