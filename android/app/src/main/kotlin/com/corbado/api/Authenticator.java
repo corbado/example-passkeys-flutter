@@ -41,10 +41,14 @@ public class Authenticator {
                 Log.w(tag, "Authentication Error occured: Fido response is null");
             }
             PublicKeyCredential credential = PublicKeyCredential.deserializeFromBytes(fidoResponse);
+            Log.w(tag, "credential: " + credential);
             AuthenticatorResponse resp = credential.getResponse();
+            Log.w(tag, "Response: " + resp);
             if (resp.getClass() == AuthenticatorErrorResponse.class) {
                 AuthenticatorErrorResponse errorResponse = (AuthenticatorErrorResponse) resp;
                 Log.w(tag, "Authentication Error occured: " + errorResponse.getErrorMessage());
+                Log.w(tag, "Authentication Error occured: " + errorResponse);
+
                 //Extract and Return values
             } else {
 
@@ -99,7 +103,7 @@ public class Authenticator {
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private String encodeBase64(byte[] arr) {
+    public String encodeBase64(byte[] arr) {
         return Base64.encodeToString(arr, Base64.URL_SAFE | Base64.NO_PADDING | Base64.NO_WRAP);
     }
 

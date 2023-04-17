@@ -1,58 +1,96 @@
 import 'dart:convert';
 
-import 'package:corbado_demo/components/dialog.dart';
-import 'package:dart_ipify/dart_ipify.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 ///Issues api calls to the corbado backend
 class CorbadoService {
+  final String baseUrlAuth;
+  final String projectID;
+  static String origin = "";
 
-  String apiSecret;
-  String projectID;
-  dynamic header;
-
-  CorbadoService(this.apiSecret, this.projectID) {
-    header = <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-      'authorization':
-          "Basic ${base64.encode(utf8.encode('$projectID:$apiSecret'))}"
-    };
+  CorbadoService(this.baseUrlAuth, this.projectID) {
+    debugPrint("Using auth endpoint $baseUrlAuth for projectID $projectID");
   }
 
-  final baseUrl = "https://api.corbado.com/v1";
+  setOrigin(String origin) {
+    CorbadoService.origin = origin;
+  }
 
-  final origin = "https://api.corbado.com";
+  Future<dynamic> handler(String url, Object body) async {
+    debugPrint("Calling $url...");
+    debugPrint("Requestbody: ${jsonEncode(body)}");
+    var errorStr = " Error calling $url\n\n";
+    var resp = await http.post(Uri.parse("$baseUrlAuth$url"),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'X-Corbado-ProjectID': projectID,
+          'Origin': origin,
+        },
+        body: jsonEncode(body));
+    debugPrint("Response: ${resp.body}");
 
-  var clientInfo = {};
-  bool canAuthenticateWithBiometrics = false;
-  bool isDeviceSupported = false;
+    if (resp.statusCode == 200) {
+      return jsonDecode(resp.body);
+    } else if (resp.statusCode == 400) {
+      var body = jsonDecode(resp.body);
+      if (resp.body.contains("validation")) {
+        var error = "Validation error\n";
+        var list = body["error"]["validation"];
+        for (var item in list) {
+          error += "${item["field"]}: ${item["message"]}\n";
+        }
+        throw Exception(errorStr + error);
+      }
+    }
+    throw Exception("$errorStr${resp.statusCode} ${resp.reasonPhrase}");
+  }
 
-  Future<void> _init() async {
-    String ipv4 = await Ipify.ipv4();
-    clientInfo = {"userAgent": "Test34 fffs", "remoteAddress": ipv4};
-    debugPrint("_init clientInfo: $clientInfo");
+  Future<String> registerInit(BuildContext context, String email) async {
+    // For simplicity, we use the email as username and full name, but
+    // feel free to add a separate full name field to the app
+    var resp = await handler("/users/passkey/register/start", {
+      "username": email,
+      "fullName": email,
+    });
+    return resp["data"]["challenge"];
+  }
+
+  Future<bool> registerFinish(BuildContext context, String id, String rawId,
+      String clientDataJSON, String attestationObject) async {
+    var pubCred = {
+      "type": "public-key",
+      "id": id,
+      "rawId": rawId,
+      "authenticatorAttachment": "platform",
+      "response": {
+        "clientDataJSON": clientDataJSON,
+        "attestationObject": attestationObject,
+        "transports": ["internal"]
+      },
+      "clientExtensionResults": {}
+    };
+    var pub = jsonEncode(pubCred);
+    pub = pub.replaceAll('"', '\"');
+    debugPrint("pub: $pub");
+    var body = {"signedChallenge": pub};
+    var resp = await handler("/users/passkey/register/finish", body);
+    return resp != null;
   }
 
   Future<String> signInInit(BuildContext context, String email) async {
-    await _init();
-    var value = await http.post(
-        Uri.parse("$baseUrl/webauthn/authenticate/start"),
-        headers: header,
-        body: jsonEncode(
-            {"username": email, "origin": origin, "clientInfo": clientInfo}));
-
-    Map<String, dynamic> data = jsonDecode(value.body);
-    if (value.statusCode != 200){
-      showCustomDialog(context, "Error", value.body);
-    }
-    return data["publicKeyCredentialRequestOptions"];
+    var resp = await handler("/users/passkey/login/start", {"username": email});
+    return resp["data"]["challenge"];
   }
 
-  Future<bool> signInFinish(BuildContext context, String id, String rawId, String clientDataJSON,
-      String authenticatorData, String signature, String userHandle) async {
-    await _init();
-    debugPrint("flutter signInFinish called");
+  Future<bool> signInFinish(
+      BuildContext context,
+      String id,
+      String rawId,
+      String clientDataJSON,
+      String authenticatorData,
+      String signature,
+      String userHandle) async {
     var pubCred = {
       "type": "public-key",
       "id": id,
@@ -64,70 +102,11 @@ class CorbadoService {
       },
       "clientExtensionResults": {}
     };
-
-    var value =
-        await http.post(Uri.parse("$baseUrl/webauthn/authenticate/finish"),
-            headers: header,
-            body: jsonEncode({
-              "publicKeyCredential": jsonEncode(pubCred),
-              "origin": origin,
-              "clientInfo": clientInfo
-            }));
-
-    if (value.statusCode != 200){
-      showCustomDialog(context, "Error", value.body);
-    }
-    debugPrint("signInFinish body: ${value.body}");
-    return value.statusCode == 200;
-  }
-
-  Future<String> registerInit(BuildContext context, String email) async {
-    await _init();
-    var value = await http.post(Uri.parse("$baseUrl/webauthn/register/start"),
-        headers: header,
-        body: jsonEncode({
-          "username": email,
-          "credentialStatus": "active",
-          "origin": origin,
-          "clientInfo": clientInfo
-        }));
-
-    Map<String, dynamic> data = jsonDecode(value.body);
-
-    if (value.statusCode != 200){
-      showCustomDialog(context, "Error", value.body);
-    }
-    return data["publicKeyCredentialCreationOptions"];
-  }
-
-  Future<bool> registerFinish(BuildContext context, String id, String rawId, String clientDataJSON,
-      String attestationObject) async {
-    await _init();
-    var pubCred = {
-      "type": "public-key",
-      "id": id,
-      "rawId": rawId,
-      "authenticatorAttachment": "platform",
-      "response": {
-        "clientDataJSON": clientDataJSON,
-        "attestationObject": attestationObject,
-        "transports": []
-      },
-      "clientExtensionResults": {}
-    };
-
-    var value = await http.post(Uri.parse("$baseUrl/webauthn/register/finish"),
-        headers: header,
-        body: jsonEncode({
-          "publicKeyCredential": jsonEncode(pubCred),
-          "origin": origin,
-          "clientInfo": clientInfo
-        }));
-
-    debugPrint("registerFinish body: ${value.body}");
-    if (value.statusCode != 200){
-      showCustomDialog(context, "Error", value.body);
-    }
-    return value.statusCode == 200;
+    var pub = jsonEncode(pubCred);
+    pub = pub.replaceAll('"', '\"');
+    debugPrint("pub: $pub");
+    var body = {"signedChallenge": pub};
+    var resp = await handler("/users/passkey/login/finish", body);
+    return resp != null;
   }
 }

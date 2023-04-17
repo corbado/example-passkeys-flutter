@@ -3,7 +3,7 @@ import 'package:corbado_demo/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 class ContentActivity extends StatefulWidget {
-  final String name;
+  final String username;
   final String credentialId;
 
   ///Indicates whether the user has just registered
@@ -11,7 +11,7 @@ class ContentActivity extends StatefulWidget {
 
   const ContentActivity(
       {super.key,
-      required this.name,
+      required this.username,
       required this.credentialId,
       this.newUser = false});
 
@@ -24,8 +24,8 @@ class _ContentActivityState extends State<ContentActivity> {
   Widget build(BuildContext context) {
     var text = widget.newUser ? "Sign up successful" : "Login successful";
     var text2 = widget.newUser
-        ? "Welcome, ${widget.name}!"
-        : "Welcome back, ${widget.name}!";
+        ? "Welcome!\nPlease confirm your identity by clicking the link sent to ${widget.username}"
+        : "Welcome back!";
     return Scaffold(
         backgroundColor: corbadoDark,
         body: Container(
@@ -40,21 +40,24 @@ class _ContentActivityState extends State<ContentActivity> {
                   color: Colors.white70,
                 ),
                 Padding(
-                    padding: const EdgeInsets.only(top: 150),
+                    padding: const EdgeInsets.only(top: 130),
                     child: Text(
                       text,
-                      style: const TextStyle(color: Colors.white, fontSize: 22),
+                      style: const TextStyle(
+                          color: Colors.lightGreen, fontSize: 22),
                     )),
                 Padding(
-                    padding: const EdgeInsets.only(top: 20),
+                    padding: const EdgeInsets.only(top: 40),
                     child: Text(
                       text2,
+                      textAlign: TextAlign.center,
                       style: const TextStyle(color: Colors.white, fontSize: 22),
                     )),
                 Padding(
                     padding: const EdgeInsets.only(top: 130),
                     child: Text(
                       "Credential id: ${widget.credentialId}",
+                      textAlign: TextAlign.center,
                       style: const TextStyle(color: Colors.white, fontSize: 16),
                     )),
                 Padding(
