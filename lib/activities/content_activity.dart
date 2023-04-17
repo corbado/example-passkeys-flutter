@@ -43,7 +43,8 @@ class _ContentActivityState extends State<ContentActivity> {
                     padding: const EdgeInsets.only(top: 130),
                     child: Text(
                       text,
-                      style: const TextStyle(color: Colors.white, fontSize: 22),
+                      style: const TextStyle(
+                          color: Colors.lightGreen, fontSize: 22),
                     )),
                 Padding(
                     padding: const EdgeInsets.only(top: 40),
