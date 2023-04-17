@@ -26,7 +26,7 @@ class _ContentActivityState extends State<ContentActivity> {
   Widget build(BuildContext context) {
     var text = widget.newUser ? "Sign up successful" : "Login successful";
     var text2 = widget.newUser
-        ? "Welcome, ${widget.fullName}!"
+        ? "Welcome, ${widget.fullName}!\nPlease confirm your identity by clicking the link sent to ${widget.username}"
         : "Welcome back, ${widget.fullName}!";
     return Scaffold(
         backgroundColor: corbadoDark,
@@ -42,21 +42,23 @@ class _ContentActivityState extends State<ContentActivity> {
                   color: Colors.white70,
                 ),
                 Padding(
-                    padding: const EdgeInsets.only(top: 150),
+                    padding: const EdgeInsets.only(top: 130),
                     child: Text(
                       text,
                       style: const TextStyle(color: Colors.white, fontSize: 22),
                     )),
                 Padding(
-                    padding: const EdgeInsets.only(top: 20),
+                    padding: const EdgeInsets.only(top: 40),
                     child: Text(
                       text2,
+                      textAlign: TextAlign.center,
                       style: const TextStyle(color: Colors.white, fontSize: 22),
                     )),
                 Padding(
                     padding: const EdgeInsets.only(top: 130),
                     child: Text(
                       "Credential id: ${widget.credentialId}",
+                      textAlign: TextAlign.center,
                       style: const TextStyle(color: Colors.white, fontSize: 16),
                     )),
                 Padding(

@@ -20,7 +20,8 @@ class LoginActivity extends StatefulWidget {
     if (!projectID.startsWith("pro-")) {
       throw Exception("ProjectID not configured");
     }
-    corbadoSvc = CorbadoService("http://10.0.2.2:15926/v1", projectID);
+    corbadoSvc =
+        CorbadoService("https://$projectID.auth.corbado.com/v1", projectID);
   }
 
   @override
