@@ -21,17 +21,16 @@ env.json.scel. Here, fill in your project ID.
 
 ### 3.1. Add Android app to developer panel 
 
-Inside the developer panel, go to [Settings -> Credentials -> Native Apps](https://app.corbado.com/app/settings/credentials/native-apps) and click on 'Add new'. There you need to enter the package name (this sample application uses `com.corbado.passkeys` as default package name) as well as the SHA-256 fingerprint (e.g. 6H:A7:BC:9A:...) of your signing key. It can be obtained by executing `gradlew signingReport` in the android directory. If you just want your local debug-key which is used when developing the app in Android Studio, use ```keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android```. Alternatively, you can look into the console when executing the app:
+Inside the developer panel, go to [Settings -> Credentials -> Native Apps](https://app.corbado.com/app/settings/credentials/native-apps) and click on 'Add new'. There you need to enter the package name (this sample application uses `com.corbado.passkeys` as default package name) as well as the SHA-256 fingerprint of your signing key (e.g. 6H:A7:BC:9A:...). It can be obtained by executing `gradlew signingReport` in the android directory. If you just want your local debug-key which is used when developing the app in Android Studio, use ```keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android```. Alternatively, you can look into the console when executing the app:
 <img width="960" alt="image" src="https://user-images.githubusercontent.com/23581140/232052174-821b4a06-0cd5-4b0f-9933-58251dc889c7.png">
 
-If you've successfully entered the package name and fingerprint in the developer panel, Corbado deploys the required /.well-known/assetlinks.json to <project ID>.auth.corbado.com to make it reachable to the public (see the next step to use your own domain).
+If you've successfully entered the package name and fingerprint in the developer panel, Corbado deploys a required /.well-known/assetlinks.json file to `{project ID}.auth.corbado.com`. This makes the `assetlinks.json` file reachable to the public and also binds your passkeys to `{project ID}.auth.corbado.com` (the [WebAuthn relying party](https://www.w3.org/TR/webauthn-2/#webauthn-relying-party)). To use your own domain and bind the passkeys to it, please see the next step 3.2.
 
 ### 3.2. (Optional) Bind the passkeys to your own domain
-For the WebAuthn protocol, a so called relying party is needed. This is the domain of the service which the passkey is bound to.
-To associate your domain with the native app, your domain's webserver needs to host an assetlinks.json file:
+If you want to bind the passkeys to your own domain (e.g. your-domain.com), you need to manually change the WebAuthn relying party and host the assetlinks.json file on this domain (so on `{your-domain.com}/.well-known/assetlinks.json`). To make it work with Corbado, you need to change the CNAME in the [developer panel](https://app.corbado.com/app/settings/general/go-live) to your-domain.com. Corbado will then automatically bind your passkeys to the root / top-level domain of the provided CNAME unless it is on the [public suffix list](https://publicsuffix.org/learn/). Moreover, you need to associate your native app in the `assetlinks.json` file:
 
 Use the following JSON template and store it under
-```<your-domain.com>/.well-known/assetlinks.json```:
+```{your-domain.com}/.well-known/assetlinks.json```:
 
 ```json
 [
@@ -53,14 +52,14 @@ Use the following JSON template and store it under
 
 Variables:
 
-- PACKAGE-NAME: The Android package name (com.corbado.passkeys for this sample app)
+- PACKAGE-NAME: The Android package name (this sample app uses com.corbado.passkeys)
 - FINGERPRINT-OF-YOUR-SIGNING-KEY: The SHA-256 fingerprint obtained in step 3.1 (e.g. 7H:AC:4C:...).
 
 You can use [Google's tool](https://developers.google.com/digital-asset-links/tools/generator) to
-verify that your assetlinks.json file is set up and hosted correctly.
+verify that your `assetlinks.json file is set up and hosted correctly.
 
-//@Nico: is the following still correct?
-Now you can set your domain (without protocol or path, e.g. auth.corbado.com) as rpID in the developer panel under Settings->Android.
+### 3.3. Add authorized origin of your Android app in the developer panel
+To let your Android app securely communicate with Corbado, you need to add the Android app's origin to the authorized origins in the [developer panel](https://app.corbado.com/app/settings/credentials). The Android app's origin is in the form of `android:apk-key-hash:xxx`. You can obtain it by having a look at the "Base64URL encoded" output from step 3.1. That's your Android app origin.
 
 ### 3.3. Running the Android app
 
@@ -102,12 +101,12 @@ use the following JSON template:
 ```
 
 The JSON file needs to be stored under ```<your-domain>/.well-known/apple-app-site-association```.
-For example: ```https://<project ID>.auth.corbado.com/.well-known/apple-app-site-association```. The port number,
+For example: ```https://{project ID}.auth.corbado.com/.well-known/apple-app-site-association```. The port number,
 if needed, can be added in the URL.
 
 The fully qualified domain of your URL should then be provided as an environment
 variable ```RELYING_PARTY_ID``` in the corresponding Xcode project of your application. For example,
-in case of ```https://<project ID>.auth.corbado.com/.well-known/apple-app-site-association```, the environment
+in case of ```https://{project ID}.auth.corbado.com/.well-known/apple-app-site-association```, the environment
 variables should include ```RELYING_PARTY_ID = "<project ID>.auth.corbado.com"```.
 
 To learn more about associated domains
@@ -134,3 +133,9 @@ To run the iOS app using Xcode, follow these steps:
 4. Connect your iOS device or select a simulator, then press the "Run" button to build and run the
    app on your device or simulator.   
    
+## 5. Outlook
+This is a basic sample application that shows how passkeys can be integrated in a Flutter app using Corbado. This repository will be continuously updated and improved. We already have the following features on our roadmap that will be pushed within the next weeks:
+- [ ]
+
+
+If you have questions, feedback or wishes regarding features, please reacht out to us via [email](mailto:contact@corbado.com) or join our passkeys community on [Slack](https://join.slack.com/t/corbado/shared_invite/zt-1b7867yz8-V~Xr~ngmSGbt7IA~g16ZsQ). We're also happy to receive pull requests if you have suggestions for improvement.
