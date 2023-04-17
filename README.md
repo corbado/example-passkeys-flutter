@@ -135,7 +135,10 @@ To run the iOS app using Xcode, follow these steps:
    
 ## 5. Outlook
 This is a basic sample application that shows how passkeys can be integrated in a Flutter app using Corbado. This repository will be continuously updated and improved. We already have the following features on our roadmap that will be pushed within the next weeks:
-- [ ]
+- [ ] Automatic whitelisting of Android app's origin based on given package name and fingerprint
+- [ ] Opt-out for email confirmation via email magic link
+- [ ] Email magic links open the native Flutter app if openend on mobile device
+- [ ] Better cross-device & cross-platform showcase with a web app
 
 
 If you have questions, feedback or wishes regarding features, please reacht out to us via [email](mailto:contact@corbado.com) or join our passkeys community on [Slack](https://join.slack.com/t/corbado/shared_invite/zt-1b7867yz8-V~Xr~ngmSGbt7IA~g16ZsQ). We're also happy to receive pull requests if you have suggestions for improvement.
