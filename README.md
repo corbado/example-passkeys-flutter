@@ -1,7 +1,6 @@
 # Complete passkeys integration example for Corbado API with Flutter
 
-This is a sample implementation of a Flutter app with integration to Corbado API to use passkeys (
-based on FIDO2 / WebAuthn).
+This is a sample implementation of a Flutter app with integration to Corbado API to use passkeys (based on FIDO2 / WebAuthn).
 
 ## 1. File Structure
 
@@ -15,22 +14,24 @@ based on FIDO2 / WebAuthn).
 ## 2. Prerequisites
 
 Please follow the steps in [Getting started](https://docs.corbado.com/overview/getting-started) to
-create a project in our [developer panel](https://app.corbado.com). In the root folder of this repo create an env.json file and copy the contents from
-env.json.scel. Then fill in your projectID in the newly created env.json file.
+create a project in our [developer panel](https://app.corbado.com/signin#register). In the root folder of this repo, create an env.json file and copy the contents from
+env.json.scel. Here, fill in your project ID.
 
 ## 3. Android
 
 ### 3.1. Add Android app to developer panel 
 
-Inside the developer panel, go to [Settings->Credentials->Native Apps](https://app.corbado.com/app/settings/credentials/native-apps) and click on 'Add new'. There you need to enter the package name (com.corbado.api if you did not change it) as well as the SHA-256 fingerprint (e.g. 6H:A7:BC:9A:...) of your signing key. It can be obtained by executing `gradlew signingReport` in the android directory. If you just want your local debug-key which is used when developing the app in Android Studio, use ```keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android```. Alternatively, you can look into the console when executing the app:
+Inside the developer panel, go to [Settings -> Credentials -> Native Apps](https://app.corbado.com/app/settings/credentials/native-apps) and click on 'Add new'. There you need to enter the package name (this sample application uses `com.corbado.passkeys` as default package name) as well as the SHA-256 fingerprint (e.g. 6H:A7:BC:9A:...) of your signing key. It can be obtained by executing `gradlew signingReport` in the android directory. If you just want your local debug-key which is used when developing the app in Android Studio, use ```keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android```. Alternatively, you can look into the console when executing the app:
 <img width="960" alt="image" src="https://user-images.githubusercontent.com/23581140/232052174-821b4a06-0cd5-4b0f-9933-58251dc889c7.png">
 
+If you've successfully entered the package name and fingerprint in the developer panel, Corbado deploys the required /.well-known/assetlinks.json to <project ID>.auth.corbado.com to make it reachable to the public (see the next step to use your own domain).
+
 ### 3.2. (Optional) Bind the passkeys to your own domain
-For the webauthn protocol a so called relying party is needed. This is the domain which the passkey belongs to.
-To associate your domain with the app, your domain's webserver needs to host an assetlinks.json file:
+For the WebAuthn protocol, a so called relying party is needed. This is the domain of the service which the passkey is bound to.
+To associate your domain with the native app, your domain's webserver needs to host an assetlinks.json file:
 
 Use the following JSON template and store it under
-```https://your-domain.com/.well-known/assetlinks.json```:
+```<your-domain.com>/.well-known/assetlinks.json```:
 
 ```json
 [
@@ -52,12 +53,13 @@ Use the following JSON template and store it under
 
 Variables:
 
-- PACKAGE-NAME: The Android package name (com.corbado.api for this app if you don't rename it)
-- FINGERPRINT-OF-YOUR-SIGNING-KEY: The SHA-256 fingerprint obtained in step 3.1 (eg. 7H:AC:4C:...).
+- PACKAGE-NAME: The Android package name (com.corbado.passkeys for this sample app)
+- FINGERPRINT-OF-YOUR-SIGNING-KEY: The SHA-256 fingerprint obtained in step 3.1 (e.g. 7H:AC:4C:...).
 
 You can use [Google's tool](https://developers.google.com/digital-asset-links/tools/generator) to
-verify that your assetlinks.json file is set up correctly.
+verify that your assetlinks.json file is set up and hosted correctly.
 
+//@Nico: is the following still correct?
 Now you can set your domain (without protocol or path, e.g. auth.corbado.com) as rpID in the developer panel under Settings->Android.
 
 ### 3.3. Running the Android app
@@ -70,7 +72,7 @@ additional run args.
 ### 3.4. Troubleshooting
 
 If the application says your device does not support biometrics yet, you have to properly setup biometrics on the phone.
-Open the settings and add a PIN and a fingerprint as shown below. (PIN is required for fingerprint)
+Open the settings and add a PIN as well as a fingerprint as shown below (PIN is required for fingerprint).
 ![image](https://user-images.githubusercontent.com/23581140/232045115-86943a1a-c00a-48c3-bdc8-3f98daa962bc.png)
 
 
@@ -99,14 +101,14 @@ use the following JSON template:
 }
 ```
 
-The JSON file needs to be stored under ```<your-url>/.well-known/apple-app-site-association```.
-For example: ```https://api.corbado.com/.well-known/apple-app-site-association```. The port number,
+The JSON file needs to be stored under ```<your-domain>/.well-known/apple-app-site-association```.
+For example: ```https://<project ID>.auth.corbado.com/.well-known/apple-app-site-association```. The port number,
 if needed, can be added in the URL.
 
-The fully qualified domain of your url should then be provided as an environment
-variable ```RELYING_PARTY_ID``` in the corresponding Xcode Project of your application. For example,
-in case of ```https://api.corbado.com/.well-known/apple-app-site-association```, the environment
-variables should include ```RELYING_PARTY_ID = "api.corbado.com"```.
+The fully qualified domain of your URL should then be provided as an environment
+variable ```RELYING_PARTY_ID``` in the corresponding Xcode project of your application. For example,
+in case of ```https://<project ID>.auth.corbado.com/.well-known/apple-app-site-association```, the environment
+variables should include ```RELYING_PARTY_ID = "<project ID>.auth.corbado.com"```.
 
 To learn more about associated domains
 visit: [Apple Developer Supporting Associated Domains](https://developer.apple.com/documentation/xcode/supporting-associated-domains)
@@ -119,11 +121,10 @@ To run the iOS app using Xcode, follow these steps:
 1. Open the project in Xcode by running the following command in the project's root directory:
    ```open ios/Runner.xcworkspace```
 
-2. In Xcode, set the bundle identifier of the app by going to the "Runner" target, then the "
-   General" tab, and editing the "Bundle Identifier" field.
+2. In Xcode, set the bundle identifier of the app by going to the "Runner" target, then the "General" tab, and editing the "Bundle Identifier" field.
 
 3. To set environment variables from the "Edit Scheme" section
-    1. In Xcode, go to the "Product" menu and select "Scheme" > "Edit Scheme".
+    1. In Xcode, go to the "Product" menu and select "Scheme" -> "Edit Scheme".
     2. Select the "Run" option on the left side and select "Arguments" tab.
     3. In the "Environment Variables" section, click the "+" button to add a new variable.
        Set ```RELYING_PARTY_ID``` environment variable to your fully qualified domain name (see
