@@ -79,18 +79,18 @@ Open the settings and add a PIN as well as a fingerprint as shown below (PIN is 
 
 ### 4.1. Add iOS app to developer panel
 
-Inside the developer panel, go to [Settings -> Credentials -> Native Apps](https://app.corbado.com/app/settings/credentials/native-apps) and click on 'Add new'. There you need to enter the bundle identifier (this sample application uses `com.corbado.passkeys` as default bundle identifier) as well as the app identifier prefix of your iOS Application. This can be obtained by going to your [Apple Developer Certificates, Identifier & Profiles](https://developer.apple.com/account/resources/identifiers/bundleId) associated with your Apple Developer account, and finding the corresponding identifier.
+Inside the developer panel, go to [Settings -> Credentials -> Native Apps](https://app.corbado.com/app/settings/credentials/native-apps) and click on 'Add new'. There you need to enter the app identifier prefix of your iOS application as well as the bundle identifier (this sample application uses `com.corbado.passkeys` as default bundle identifier). The app identifier prefix can be obtained by going to your [Apple Developer Certificates, Identifier & Profiles](https://developer.apple.com/account/resources/identifiers/bundleId) associated with your Apple Developer account, and finding the corresponding app identifier prefix.
 
 If you've successfully entered the app identifier prefix and the bundle identifier in the developer panel, Corbado deploys a required /.well-known/apple-app-site-association file to `{project ID}.auth.corbado.com`. This makes the `apple-app-site-association.json` file publicly reachable and also binds your passkeys to `{project ID}.auth.corbado.com` (the [WebAuthn relying party](https://www.w3.org/TR/webauthn-2/#webauthn-relying-party)). To use your own domain and bind the passkeys to it, please see the next step 4.2.
 
 ### 4.2. (Optional) Bind the passkeys to your own domain
 
-If you want to bind the passkeys to your own domain (e.g. `your-domain.com`), you need to manually change the [WebAuthn relying party](https://www.w3.org/TR/webauthn-2/#webauthn-relying-party) and host the `apple-app-site-association.json` file on this domain (so on `{your-domain.com}/.well-known/apple-app-site-association`). To make it work with Corbado, you need to change the CNAME in the [developer panel](https://app.corbado.com/app/settings/general/go-live) to a subdomain of your domain, e.g. `auth.your-domain.com`. Corbado will then automatically bind your passkeys to the root / top-level domain of the provided CNAME unless it is on the [public suffix list](https://publicsuffix.org/learn/).
+If you want to bind the passkeys to your own domain (e.g. `your-domain.com`), you need to manually change the [WebAuthn relying party](https://www.w3.org/TR/webauthn-2/#webauthn-relying-party) and host the `apple-app-site-association.json` file on this domain (so on `your-domain.com/.well-known/apple-app-site-association`). To make it work with Corbado, you need to change the CNAME in the [developer panel](https://app.corbado.com/app/settings/general/go-live) to a subdomain of your domain, e.g. `auth.your-domain.com`. Corbado will then automatically bind your passkeys to the root / top-level domain of the provided CNAME unless it is on the [public suffix list](https://publicsuffix.org/learn/), here to `your-domain.com`.
 
 > :warning: **Passkeys binding and sub-subdomain as CNAME**: If the CNAME you enter in Corbado developer panel is a sub-subdomain, e.g. `staging.auth.your-domain.com`, you still need to host the `apple-app-site-association.json` file on the root / top-level domain: host `apple-app-site-association.json` at `your-domain.com/.well-known/apple-app-site-association`, as your relying party ID is the root / top-level domain `your-domain.com`.
 
 Moreover, you need to associate your native app in the `apple-app-site-association.json` file. Use the following JSON template and store it under
-`{your-domain.com}/.well-known/apple-app-site-association.json`:
+`your-domain.com/.well-known/apple-app-site-association.json`:
 
 ```json
 {
@@ -113,7 +113,7 @@ Variables:
 
 ### 4.3. Add authorized origin of your Android app in the developer panel
 
-To let your iOS app securely communicate with Corbado, you need to add the iOS app's origin to the authorized origins in the [developer panel](https://app.corbado.com/app/settings/credentials). The iOS app's origin is in the form of `{PROJECT_ID}.auth.corbado.com`. You can obtain the corresponding project id from developer pannel.
+To let your iOS app securely communicate with Corbado, you need to add the iOS app's origin to the authorized origins in the [developer panel](https://app.corbado.com/app/settings/credentials). The iOS app's origin is in the form of `{PROJECT_ID}.auth.corbado.com`. You can obtain the corresponding project ID from developer pannel.
 
 ### 4.4. Run the iOS app
 
