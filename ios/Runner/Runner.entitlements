@@ -4,8 +4,8 @@
 <dict>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>webcredentials:api.corbado.com</string>
-		<string>webcredentials:api.corbado.com?mode=developer</string>
+		<string>webcredentials:pro-1111111111111111111.auth.corbado.com</string>
+		<string>webcredentials:pro-1111111111111111111.auth.corbado.com?mode=developer</string>
 	</array>
 </dict>
 </plist>
