@@ -9,6 +9,7 @@ import 'package:corbado_demo/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:oktoast/oktoast.dart';
+import 'dart:io' show Platform;
 
 class LoginActivity extends StatefulWidget {
   final String projectID;
@@ -76,7 +77,13 @@ class _LoginActivityState extends State<LoginActivity> {
     });
 
     //To be able to display whether the device supports passkey authentication
-    channel.invokeMethod("getCertFingerprint");
+    if (Platform.isAndroid) {
+      channel.invokeMethod("getCertFingerprint");
+    } else if (Platform.isIOS) {
+      widget.corbadoSvc
+          .setOrigin("https://${widget.corbadoSvc.projectID}.auth.corbado.com");
+    }
+
     channel.invokeMethod("canAuthenticate");
   }
 
