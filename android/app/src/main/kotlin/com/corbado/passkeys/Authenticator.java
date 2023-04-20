@@ -41,17 +41,16 @@ public class Authenticator {
                 Log.w(tag, "Authentication Error occured: Fido response is null");
             }
             PublicKeyCredential credential = PublicKeyCredential.deserializeFromBytes(fidoResponse);
-            Log.w(tag, "credential: " + credential);
             AuthenticatorResponse resp = credential.getResponse();
-            Log.w(tag, "Response: " + resp);
             if (resp.getClass() == AuthenticatorErrorResponse.class) {
                 AuthenticatorErrorResponse errorResponse = (AuthenticatorErrorResponse) resp;
-                Log.w(tag, "Authentication Error occured: " + errorResponse.getErrorMessage());
+                Log.w(tag, "############################### WEBAUTHN ERROR ###############################");
                 Log.w(tag, "Authentication Error occured: " + errorResponse);
+                Log.w(tag, "Please make sure you entered the correct package name and SHA-256 certificate fingerprint in the Corbado developer panel.");
+                Log.w(tag, "##############################################ä###############################");
 
                 //Extract and Return values
             } else {
-
                 if (requestCode == REGISTER_REQUEST_CODE) {
                     AuthenticatorAttestationResponse authAttestResp = (AuthenticatorAttestationResponse) resp;
                     String id = credential.getId();
