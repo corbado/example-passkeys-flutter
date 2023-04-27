@@ -9,13 +9,15 @@ import 'package:corbado_demo/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:oktoast/oktoast.dart';
+import 'dart:async';
 import 'dart:io' show Platform;
 
 class LoginActivity extends StatefulWidget {
   final String projectID;
+  final bool emailLinkRedirect;
   late final CorbadoService corbadoSvc;
 
-  LoginActivity({super.key})
+  LoginActivity({super.key, this.emailLinkRedirect = false})
       : projectID =
             const String.fromEnvironment("PROJECT_ID", defaultValue: "") {
     if (!projectID.startsWith("pro-")) {
@@ -26,10 +28,11 @@ class LoginActivity extends StatefulWidget {
   }
 
   @override
-  _LoginActivityState createState() => _LoginActivityState();
+  _LoginActivityState createState() => _LoginActivityState(emailLinkRedirect);
 }
 
 class _LoginActivityState extends State<LoginActivity> {
+  bool _showRedirectMessage;
   final TextEditingController usernameController = TextEditingController();
 
   ///Channel used to communicate with native android
@@ -37,6 +40,21 @@ class _LoginActivityState extends State<LoginActivity> {
 
   Color deviceSupportedTextColor = Colors.white;
   String deviceSupportedText = "Checking if your device supports passkeys...";
+  final bool emailLinkRedirect;
+  String redirectedFromEmailLinkText =
+      "Thanks for confirming your email! You can now login with your new passkey!";
+
+  _LoginActivityState(bool emailLinkRedirect)
+      : _showRedirectMessage = emailLinkRedirect,
+        emailLinkRedirect = emailLinkRedirect {
+    if (emailLinkRedirect) {
+      Timer(Duration(seconds: 5), () {
+        setState(() {
+          _showRedirectMessage = false;
+        });
+      });
+    }
+  }
 
   @override
   void initState() {
@@ -220,6 +238,18 @@ class _LoginActivityState extends State<LoginActivity> {
                         textAlign: TextAlign.center,
                       ),
                     ),
+                    if (_showRedirectMessage)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 40),
+                        child: Text(
+                          redirectedFromEmailLinkText,
+                          style: const TextStyle(
+                            color: Colors.green,
+                            fontSize: 16,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
                     Padding(
                       padding: const EdgeInsets.only(top: 80),
                       child: Text(
@@ -231,11 +261,15 @@ class _LoginActivityState extends State<LoginActivity> {
                     ),
                     Padding(
                         padding: const EdgeInsets.only(top: 20),
-                        child: TextField(
+                        child: AutofillGroup(
+                            child: TextField(
                           controller: usernameController,
                           keyboardType: TextInputType.emailAddress,
                           decoration: const InputDecoration(hintText: "Email"),
-                        )),
+                          autofillHints: <String>[
+                            AutofillHints.email
+                          ], // Add this line
+                        ))),
                     Padding(
                         padding: const EdgeInsets.only(top: 20),
                         child: Row(

@@ -6,6 +6,8 @@
 	<array>
 		<string>webcredentials:pro-1111111111111111111.auth.corbado.com</string>
 		<string>webcredentials:pro-1111111111111111111.auth.corbado.com?mode=developer</string>
+		<string>applinks:pro-1111111111111111111.auth.corbado.com?mode=developer</string>
+		<string>applinks:pro-1111111111111111111.auth.corbado.com</string>
 	</array>
 </dict>
 </plist>

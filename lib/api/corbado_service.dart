@@ -111,7 +111,7 @@ class CorbadoService {
   }
 
   Future<bool> confirmEmail(String emailLinkID, String token) async {
-    var resp = await handler("/v1/users/emaillinks/confirm",
+    var resp = await handler("/users/emaillinks/confirm",
         {"emailLinkID": emailLinkID, "token": token});
     return resp != null;
   }
