@@ -122,7 +122,7 @@ Variables:
 - APP_IDENTIFIER_PREFIX: The iOS app identifier prefix associated with your development team in your Apple Developer account.
 - BUNDLE_IDENTIFIER: The bundle identifier associated with your iOS application. Can be found in Xcode development environment.
 
-### 4.4. Add authorized origin of your Android app in the developer panel
+### 4.4. Add authorized origin of your iOS app in the developer panel
 
 To let your iOS app securely communicate with Corbado, you need to add the iOS app's origin to the authorized origins in the [developer panel](https://app.corbado.com/app/settings/credentials). The iOS app's origin is in the form of `{PROJECT_ID}.auth.corbado.com`. You can obtain the corresponding project ID from developer pannel.
 
