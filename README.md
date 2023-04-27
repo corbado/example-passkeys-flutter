@@ -81,9 +81,15 @@ Open the settings and add a PIN as well as a fingerprint as shown below (PIN is 
 
 Inside the developer panel, go to [Settings -> Credentials -> Native Apps](https://app.corbado.com/app/settings/credentials/native-apps) and click on 'Add new'. There you need to enter the app identifier prefix of your iOS application as well as the bundle identifier (this sample application uses `com.corbado.passkeys` as default bundle identifier). The app identifier prefix can be obtained by going to your [Apple Developer Certificates, Identifier & Profiles](https://developer.apple.com/account/resources/identifiers/bundleId) associated with your Apple Developer account, and finding the corresponding app identifier prefix.
 
-If you've successfully entered the app identifier prefix and the bundle identifier in the developer panel, Corbado deploys a required /.well-known/apple-app-site-association file to `{project ID}.auth.corbado.com`. This makes the `apple-app-site-association.json` file publicly reachable and also binds your passkeys to `{project ID}.auth.corbado.com` (the [WebAuthn relying party](https://www.w3.org/TR/webauthn-2/#webauthn-relying-party)). To use your own domain and bind the passkeys to it, please see the next step 4.2.
+If you've successfully entered the app identifier prefix and the bundle identifier in the developer panel, Corbado deploys a required /.well-known/apple-app-site-association file to `{project ID}.auth.corbado.com`. This makes the `apple-app-site-association.json` file publicly reachable and also binds your passkeys to `{project ID}.auth.corbado.com` (the [WebAuthn relying party](https://www.w3.org/TR/webauthn-2/#webauthn-relying-party)). To use your own domain and bind the passkeys to it, please see the step 4.3.
 
-### 4.2. (Optional) Bind the passkeys to your own domain
+### 4.2. Configure Redirect and Application URLs for deep linking
+
+To make sure deep linking inside the app works correctly, and the user gets redirected to the app to confirm email links, you need to configure the Redirect URL and Application URL in the developer panel. Set the Redirect URL to `https://{YOUR_PROJECT_ID}.auth.corbado.com/login` and the Application URL to `https://{YOUR_PROJECT_ID}.auth.corbado.com/emailLinkConfirm`. The applinks part in the apple-app-site-association.json file is used to enable deep linking between your app and the associated domain.
+
+By following these steps, your app will be properly configured to handle email link confirmations and deep linking, providing a seamless user experience.
+
+### 4.3. (Optional) Bind the passkeys to your own domain
 
 If you want to bind the passkeys to your own domain (e.g. `your-domain.com`), you need to manually change the [WebAuthn relying party](https://www.w3.org/TR/webauthn-2/#webauthn-relying-party) and host the `apple-app-site-association.json` file on this domain (so on `your-domain.com/.well-known/apple-app-site-association`). To make it work with Corbado, you need to change the CNAME in the [developer panel](https://app.corbado.com/app/settings/general/go-live) to a subdomain of your domain, e.g. `auth.your-domain.com`. Corbado will then automatically bind your passkeys to the root / top-level domain of the provided CNAME unless it is on the [public suffix list](https://publicsuffix.org/learn/), here to `your-domain.com`.
 
@@ -98,7 +104,12 @@ Moreover, you need to associate your native app in the `apple-app-site-associati
     "apps": []
   },
   "applinks": {
-    "apps": []
+    "details": [
+      {
+        "appIDs": ["{ APP_IDENTIFIER_PREFIX }.{ BUNDLE_IDENTIFIER }"],
+        "paths": ["*"]
+      }
+    ]
   },
   "webcredentials": {
     "apps": ["{ APP_IDENTIFIER_PREFIX }.{ BUNDLE_IDENTIFIER }"]
@@ -111,11 +122,24 @@ Variables:
 - APP_IDENTIFIER_PREFIX: The iOS app identifier prefix associated with your development team in your Apple Developer account.
 - BUNDLE_IDENTIFIER: The bundle identifier associated with your iOS application. Can be found in Xcode development environment.
 
-### 4.3. Add authorized origin of your Android app in the developer panel
+### 4.4. Add authorized origin of your Android app in the developer panel
 
 To let your iOS app securely communicate with Corbado, you need to add the iOS app's origin to the authorized origins in the [developer panel](https://app.corbado.com/app/settings/credentials). The iOS app's origin is in the form of `{PROJECT_ID}.auth.corbado.com`. You can obtain the corresponding project ID from developer pannel.
 
-### 4.4. Run the iOS app
+### 4.5. Configure Xcode project
+
+In your Xcode workspace, you need to configure the following settings:
+
+- In `Signing & Capabilities` tab, add the `Associated Domains` capability and add the following domains:
+
+  - `applinks:{PROJECT_ID}.auth.corbado.com`
+  - `webcredentials:{PROJECT_ID}.auth.corbado.com`
+
+  Plleas note that you need Apple Developer account to add the `Associated Domains` capability.
+
+- In `Info` tab, set `FlutterDeepLinkingEnabled` to `true`.
+
+### 4.6. Run the iOS app
 
 Run the app by executing `flutter run --dart-define-from-file=env.json`
 In case you run the app inside Xcode, edit the run configuration and
