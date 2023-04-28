@@ -64,7 +64,12 @@ To let your Android app securely communicate with Corbado, you need to add the A
 
 ### 3.4. Run the Android app
 
-Run the app by executing `flutter run --dart-define-from-file=env.json`
+Run the app by executing
+
+```
+flutter run --dart-define-from-file=env.json
+```
+
 In case you run the app inside Android studio, edit the run configuration and
 add `--dart-define-from-file=env.json` to the
 additional run args.
@@ -141,7 +146,10 @@ In your Xcode workspace, you need to configure the following settings:
 
 ### 4.6. Run the iOS app
 
-Run the app by executing `flutter run --dart-define-from-file=env.json`
+Run the app by executing 
+```
+flutter run --dart-define-from-file=env.json
+```
 In case you run the app inside Xcode, edit the run configuration and
 add `--dart-define-from-file=env.json` to the
 additional run args.
