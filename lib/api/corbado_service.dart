@@ -109,4 +109,10 @@ class CorbadoService {
     var resp = await handler("/users/passkey/login/finish", body);
     return resp != null;
   }
+
+  Future<bool> confirmEmail(String emailLinkID, String token) async {
+    var resp = await handler("/users/emaillinks/confirm",
+        {"emailLinkID": emailLinkID, "token": token});
+    return resp != null;
+  }
 }
