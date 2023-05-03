@@ -84,9 +84,9 @@ Open the settings and add a PIN as well as a fingerprint as shown below (PIN is 
 
 ### 4.1. Add iOS app to developer panel
 
-Inside the developer panel, go to [Settings -> Credentials -> Native Apps](https://app.corbado.com/app/settings/credentials/native-apps) and click on 'Add new'. There you need to enter the app identifier prefix of your iOS application as well as the bundle identifier (this sample application uses `com.corbado.passkeys` as default bundle identifier). The app identifier prefix can be obtained by going to your [Apple Developer Certificates, Identifier & Profiles](https://developer.apple.com/account/resources/identifiers/bundleId) associated with your Apple Developer account, and finding the corresponding app identifier prefix.
+Inside the developer panel, go to [Settings -> Credentials -> Native Apps](https://app.corbado.com/app/settings/credentials/native-apps) and click on 'Add new'. There you need to enter the application identifier prefix of your iOS application as well as the bundle identifier (this sample application uses `com.corbado.passkeys` as default bundle identifier). The application identifier prefix can be obtained by going to your [Apple Developer Certificates, Identifier & Profiles](https://developer.apple.com/account/resources/identifiers/bundleId) associated with your Apple Developer account, and finding the corresponding application identifier prefix.
 
-If you've successfully entered the app identifier prefix and the bundle identifier in the developer panel, Corbado deploys a required /.well-known/apple-app-site-association file to `{project ID}.auth.corbado.com`. This makes the `apple-app-site-association.json` file publicly reachable and also binds your passkeys to `{project ID}.auth.corbado.com` (the [WebAuthn relying party](https://www.w3.org/TR/webauthn-2/#webauthn-relying-party)). To use your own domain and bind the passkeys to it, please see the step 4.3.
+If you've successfully entered the application identifier prefix and the bundle identifier in the developer panel, Corbado deploys a required /.well-known/apple-app-site-association file to `{project ID}.auth.corbado.com`. This makes the `apple-app-site-association.json` file publicly reachable and also binds your passkeys to `{project ID}.auth.corbado.com` (the [WebAuthn relying party](https://www.w3.org/TR/webauthn-2/#webauthn-relying-party)). To use your own domain and bind the passkeys to it, please see the step 4.3.
 
 ### 4.2. Configure Redirect and Application URLs for deep linking
 
@@ -111,20 +111,20 @@ Moreover, you need to associate your native app in the `apple-app-site-associati
   "applinks": {
     "details": [
       {
-        "appIDs": ["{ APP_IDENTIFIER_PREFIX }.{ BUNDLE_IDENTIFIER }"],
+        "appIDs": ["{ APPLICATION_IDENTIFIER_PREFIX }.{ BUNDLE_IDENTIFIER }"],
         "paths": ["*"]
       }
     ]
   },
   "webcredentials": {
-    "apps": ["{ APP_IDENTIFIER_PREFIX }.{ BUNDLE_IDENTIFIER }"]
+    "apps": ["{ APPLICATION_IDENTIFIER_PREFIX }.{ BUNDLE_IDENTIFIER }"]
   }
 }
 ```
 
 Variables:
 
-- APP_IDENTIFIER_PREFIX: The iOS app identifier prefix associated with your development team in your Apple Developer account.
+- APPLICATION_IDENTIFIER_PREFIX: The iOS application identifier prefix associated with your development team in your Apple Developer account.
 - BUNDLE_IDENTIFIER: The bundle identifier associated with your iOS application. Can be found in Xcode development environment.
 
 ### 4.4. Add authorized origin of your iOS app in the developer panel
