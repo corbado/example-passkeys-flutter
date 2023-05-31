@@ -90,7 +90,7 @@ If you've successfully entered the application identifier prefix and the bundle 
 
 ### 4.2. Configure Redirect and Application URLs for deep linking
 
-To make sure deep linking inside the app works correctly, and the user gets redirected to the app to confirm email links, you need to configure the Redirect URL and Application URL in the developer panel. Set the Redirect URL to `https://{YOUR_PROJECT_ID}.auth.corbado.com/login` and the Application URL to `https://{YOUR_PROJECT_ID}.auth.corbado.com/emailLinkConfirm`. The applinks part in the apple-app-site-association.json file is used to enable deep linking between your app and the associated domain.
+To make sure deep linking inside the app works correctly, and the user gets redirected to the app to confirm email links, you need to configure the Redirect URL and Application URL in the developer panel. Set the Redirect URL to `https://{YOUR_PROJECT_ID}.auth.corbado.com/login` and the Application URL to `https://{YOUR_PROJECT_ID}.auth.corbado.com/emailLinkConfirm`. If the Application URL field is missing from the credentials, please make sure to set the integration mode to Webcomponent in [Settings -> Integration mode](https://app.corbado.com/app/settings/integration-mode). The applinks part in the apple-app-site-association.json file is used to enable deep linking between your app and the associated domain.
 
 By following these steps, your app will be properly configured to handle email link confirmations and deep linking, providing a seamless user experience.
 
