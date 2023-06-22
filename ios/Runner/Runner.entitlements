@@ -4,10 +4,12 @@
 <dict>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>webcredentials:pro-1111111111111111111.auth.corbado.com</string>
-		<string>webcredentials:pro-1111111111111111111.auth.corbado.com?mode=developer</string>
-		<string>applinks:pro-1111111111111111111.auth.corbado.com?mode=developer</string>
-		<string>applinks:pro-1111111111111111111.auth.corbado.com</string>
+		<string>webcredentials:pro-1111111111111111111.frontend.api.corbado.io</string>
+		<string>webcredentials:pro-1111111111111111111.frontend.api.corbado.io?mode=developer</string>
+		<string>applinks:pro-1111111111111111111.frontend.api.corbado.io?mode=developer</string>
+		<string>applinks:pro-1111111111111111111.frontend.api.corbado.io</string>
+		<string>webcredentials:pro-699292053673666802.frontend.api.corbado.io</string>
+		<string>applinks:pro-699292053673666802.frontend.api.corbado.io</string>
 	</array>
 </dict>
 </plist>

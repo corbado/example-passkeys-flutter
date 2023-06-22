@@ -24,7 +24,7 @@ class LoginActivity extends StatefulWidget {
       throw Exception("ProjectID not configured");
     }
     corbadoSvc =
-        CorbadoService("https://$projectID.auth.corbado.com/v1", projectID);
+        CorbadoService("https://$projectID.frontendapi.corbado.io/v1", projectID);
   }
 
   @override
@@ -99,7 +99,7 @@ class _LoginActivityState extends State<LoginActivity> {
       channel.invokeMethod("getCertFingerprint");
     } else if (Platform.isIOS) {
       widget.corbadoSvc
-          .setOrigin("https://${widget.corbadoSvc.projectID}.auth.corbado.com");
+          .setOrigin("https://${widget.corbadoSvc.projectID}.frontend.api.corbado.io");
     }
 
     channel.invokeMethod("canAuthenticate");
