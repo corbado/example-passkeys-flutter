@@ -21,7 +21,7 @@ class EmailLinkConfirmActivity extends StatefulWidget {
       throw Exception("ProjectID not configured");
     }
     corbadoSvc =
-        CorbadoService("https://$projectID.auth.corbado.com/v1", projectID);
+        CorbadoService("https://$projectID.frontendapi.corbado.io/v1", projectID);
   }
 
   @override

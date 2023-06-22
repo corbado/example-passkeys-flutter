@@ -41,7 +41,7 @@
 
                 <data
                     android:scheme="http"
-                    android:host="pro-7063162600483924378.auth.corbado.com" />
+                    android:host="pro-7063162600483924378.frontend.api.corbado.io" />
                 <data android:scheme="https" />
             </intent-filter>
         </activity>
