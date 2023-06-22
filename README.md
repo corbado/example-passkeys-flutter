@@ -86,11 +86,12 @@ Open the settings and add a PIN as well as a fingerprint as shown below (PIN is 
 
 Inside the developer panel, go to [Settings -> Credentials -> Native Apps](https://app.corbado.com/app/settings/credentials/native-apps) and click on 'Add new'. There you need to enter the application identifier prefix of your iOS application as well as the bundle identifier (this sample application uses `com.corbado.passkeys` as default bundle identifier). The application identifier prefix can be obtained by going to your [Apple Developer Certificates, Identifier & Profiles](https://developer.apple.com/account/resources/identifiers/bundleId) associated with your Apple Developer account, and finding the corresponding application identifier prefix.
 
-If you've successfully entered the application identifier prefix and the bundle identifier in the developer panel, Corbado deploys a required /.well-known/apple-app-site-association file to `{project ID}.frontend.api.corbado.io`. This makes the `apple-app-site-association.json` file publicly reachable and also binds your passkeys to `{project ID}.frontend.api.corbado.io` (the [WebAuthn relying party](https://www.w3.org/TR/webauthn-2/#webauthn-relying-party)). To use your own domain and bind the passkeys to it, please see the step 4.3.
+
+If you've successfully entered the application identifier prefix and the bundle identifier in the developer panel, Corbado deploys a required `/.well-known/apple-app-site-association` file to `https://{project ID}.auth.corbado.com`. This makes the `apple-app-site-association` file publicly reachable and also binds your passkeys to `{project ID}.auth.corbado.com` (the [WebAuthn relying party](https://www.w3.org/TR/webauthn-2/#webauthn-relying-party)). To use your own domain and bind the passkeys to it, please see the step 4.3.
 
 ### 4.2. Configure Redirect and Application URLs for deep linking
 
-To make sure deep linking inside the app works correctly, and the user gets redirected to the app to confirm email links, you need to configure the Redirect URL and Application URL in the developer panel. Set the Redirect URL to `https://{YOUR_PROJECT_ID}.frontend.api.corbado.io/login` and the Application URL to `https://{YOUR_PROJECT_ID}.frontend.api.corbado.io/emailLinkConfirm`. The applinks part in the apple-app-site-association.json file is used to enable deep linking between your app and the associated domain.
+To make sure deep linking inside the app works correctly, and the user gets redirected to the app to confirm email links, you need to configure the Redirect URL and Application URL in the developer panel. Set the Application URL to `https://{YOUR_PROJECT_ID}.auth.corbado.com/emailLinkConfirm` and the Redirect URL to `https://{YOUR_PROJECT_ID}.auth.corbado.com/login`. The applinks part in the apple-app-site-association.json file is used to enable deep linking between your app and the associated domain.
 
 > :warning: **Important**: You need to select integration mode "web component" in the [developer panel](https://app.corbado.com/app/settings/integration-mode) to modify the Application URL.
 
@@ -131,7 +132,9 @@ Variables:
 
 ### 4.4. Add authorized origin of your iOS app in the developer panel
 
-To let your iOS app securely communicate with Corbado, you need to add the iOS app's origin to the authorized origins in the [developer panel](https://app.corbado.com/app/settings/credentials). The iOS app's origin is in the form of `{PROJECT_ID}.frontend.api.corbado.io`. You can obtain the corresponding project ID from developer pannel.
+
+To let your iOS app securely communicate with Corbado, you need to add the iOS app's origin to the authorized origins in the [developer panel](https://app.corbado.com/app/settings/credentials). The iOS app's origin is in the form of `https://{PROJECT_ID}.auth.corbado.com`. You can obtain the corresponding project ID from developer pannel. By default it should already have been automatically added during project creation.
+
 
 ### 4.5. Configure Xcode project
 
@@ -144,7 +147,7 @@ In your Xcode workspace, you need to configure the following settings:
 
   Plleas note that you need Apple Developer account to add the `Associated Domains` capability.
 
-- In `Info` tab, set `FlutterDeepLinkingEnabled` to `true`.
+- In `Info` tab, set `FlutterDeepLinkingEnabled` to `YES`.
 
 ### 4.6. Run the iOS app
 
