@@ -21,8 +21,7 @@ class LoginActivity extends StatefulWidget {
       throw Exception("ProjectID not configured");
     }
     corbadoAuth = CorbadoAuth(projectID);
-    corbadoSvc = CorbadoService(
-        "https://$projectID.frontendapi.corbado.io/v1", projectID);
+    corbadoSvc = CorbadoService(projectID);
   }
 
   @override
@@ -33,8 +32,6 @@ class _LoginActivityState extends State<LoginActivity> {
   bool _showRedirectMessage;
   final TextEditingController usernameController = TextEditingController();
 
-  Color deviceSupportedTextColor = Colors.white;
-  String deviceSupportedText = "Checking if your device supports passkeys...";
   final bool emailLinkRedirect;
   String redirectedFromEmailLinkText =
       "Thanks for confirming your email! You can now login with your new passkey!";
@@ -143,22 +140,13 @@ class _LoginActivityState extends State<LoginActivity> {
                         ),
                       ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 80),
-                      child: Text(
-                        deviceSupportedText,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: deviceSupportedTextColor, fontSize: 16),
-                      ),
-                    ),
-                    Padding(
-                        padding: const EdgeInsets.only(top: 20),
+                        padding: const EdgeInsets.only(top: 120),
                         child: AutofillGroup(
                             child: TextField(
                           controller: usernameController,
                           keyboardType: TextInputType.emailAddress,
                           decoration: const InputDecoration(hintText: "Email"),
-                          autofillHints: <String>[
+                          autofillHints: const <String>[
                             AutofillHints.email
                           ], // Add this line
                         ))),

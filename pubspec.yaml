@@ -42,6 +42,8 @@ dependencies:
   shelf: ^1.4.0
   go_router: ^6.5.7
   corbado_auth: ^0.1.1
+  passkeys: ^0.1.1
+  corbado_frontend_api_client: ^0.1.1
 
 dev_dependencies:
   flutter_test:

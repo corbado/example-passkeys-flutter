@@ -58,7 +58,7 @@ packages:
     source: hosted
     version: "0.1.1"
   corbado_frontend_api_client:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: corbado_frontend_api_client
       sha256: "3770da208b53d7934a947c8cfda2e1713e68bb7d40524d85c874baf5c2ad6681"
@@ -257,7 +257,7 @@ packages:
     source: hosted
     version: "4.11.0"
   passkeys:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: passkeys
       sha256: "19c7d19eef01bbf3f0dbae07cff1c9c7ec5559af24c3de4b9d5d1224ee108bec"
