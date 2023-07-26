@@ -4,16 +4,12 @@ import 'package:flutter/material.dart';
 
 class ContentActivity extends StatefulWidget {
   final String username;
-  final String credentialId;
 
   ///Indicates whether the user has just registered
   final bool newUser;
 
   const ContentActivity(
-      {super.key,
-      required this.username,
-      required this.credentialId,
-      this.newUser = false});
+      {super.key, required this.username, this.newUser = false});
 
   @override
   _ContentActivityState createState() => _ContentActivityState();
@@ -54,14 +50,7 @@ class _ContentActivityState extends State<ContentActivity> {
                       style: const TextStyle(color: Colors.white, fontSize: 22),
                     )),
                 Padding(
-                    padding: const EdgeInsets.only(top: 130),
-                    child: Text(
-                      "Credential id: ${widget.credentialId}",
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(color: Colors.white, fontSize: 16),
-                    )),
-                Padding(
-                    padding: const EdgeInsets.only(top: 40),
+                    padding: const EdgeInsets.only(top: 150),
                     child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
