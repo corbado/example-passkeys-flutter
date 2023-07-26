@@ -41,7 +41,7 @@
 
                 <data
                     android:scheme="http"
-                    android:host="pro-5798164769410985121.frontendapi.corbado.io" />
+                    android:host="${PROJECT_ID}.frontendapi.corbado.io" />
                 <data android:scheme="https" />
             </intent-filter>
         </activity>
