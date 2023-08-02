@@ -37,11 +37,8 @@ Its default value for the example app is `com.corbado.corbadoauth.example`.
 
 To find your SHA-256 fingerprint, you can execute the following command:
 
-- macOS /
-  Linux: `keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android`
--
-
-Windows: `keytool -list -v -keystore "\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android`
+- macOS / Linux: `keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android`
+- Windows: `keytool -list -v -keystore "\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android`
 
 Alternatively, you can look in to the logs of the running example app. You will find a log message
 like `Fingerprint: 54:4C:94:2C:E9:...`.
