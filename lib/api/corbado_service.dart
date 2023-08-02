@@ -7,7 +7,6 @@ import 'package:passkeys/authenticator/passkey_authenticator.dart';
 ///Issues api calls to the corbado backend
 class CorbadoService {
   final String _projectID;
-  static String origin = "";
   final ApiClient _client;
   late final PasskeyAuthenticator _authenticator;
 
