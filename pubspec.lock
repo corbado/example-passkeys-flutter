@@ -53,18 +53,18 @@ packages:
     dependency: "direct main"
     description:
       name: corbado_auth
-      sha256: "1eb299ee84f66c09a7034742e94d6361084c568119f068742c7ae50629a4de0e"
+      sha256: "63d19dd993019f7162bbf671b8307755c32eb739af47045d1fdb33230e932bd7"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.1"
+    version: "1.0.0"
   corbado_frontend_api_client:
     dependency: "direct main"
     description:
       name: corbado_frontend_api_client
-      sha256: "3770da208b53d7934a947c8cfda2e1713e68bb7d40524d85c874baf5c2ad6681"
+      sha256: "2353d291c55e8f7f1fa842198c8ed82477c4129c34742ef74353e72ce7dc5ba8"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.1"
+    version: "1.0.0"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -124,10 +124,10 @@ packages:
     dependency: "direct main"
     description:
       name: http
-      sha256: "6aa2946395183537c8b880962d935877325d6a09a2867c3970c05c0fed6ac482"
+      sha256: "759d1a329847dd0f39226c688d3e06a6b8679668e350e2891a6474f8b4bb8525"
       url: "https://pub.dev"
     source: hosted
-    version: "0.13.5"
+    version: "1.1.0"
   http_parser:
     dependency: transitive
     description:
@@ -140,10 +140,10 @@ packages:
     dependency: transitive
     description:
       name: intl
-      sha256: "910f85bce16fb5c6f614e117efa303e85a1731bb0081edf3604a2ae6e9a3cc91"
+      sha256: "3bc132a9dbce73a7e4a21a17d06e1878839ffbf975568bc875c60537824b0c4d"
       url: "https://pub.dev"
     source: hosted
-    version: "0.17.0"
+    version: "0.18.1"
   js:
     dependency: transitive
     description:
@@ -228,34 +228,34 @@ packages:
     dependency: "direct main"
     description:
       name: passkeys
-      sha256: "19c7d19eef01bbf3f0dbae07cff1c9c7ec5559af24c3de4b9d5d1224ee108bec"
+      sha256: "790baa526b7da458f69b3be7bfa7aea67f2280a6a3157e60ba7e643d6342faa0"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.1"
+    version: "1.0.0"
   passkeys_android:
     dependency: transitive
     description:
       name: passkeys_android
-      sha256: "908780b68d867aa626478ce203c4a7a841f57cceea346610be2d8bdd2bfdd426"
+      sha256: d0bbc591cc85347767ea912f2d6540fdf7dd6d7d8ceb236709ff66a35e59e624
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.0"
+    version: "1.0.0"
   passkeys_ios:
     dependency: transitive
     description:
       name: passkeys_ios
-      sha256: "6ddacfc3344cfb3d0b31d72fff3cff89b699cdc94ef4eac47d7558434f16e012"
+      sha256: e9fda1c7091c8b7adf2b94a0c4b7cdeb5b2fcf131fb3f17c99c73a1192803687
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.0"
+    version: "1.0.0"
   passkeys_platform_interface:
     dependency: transitive
     description:
       name: passkeys_platform_interface
-      sha256: "57a6fb6c93b6bd9dd0ee8ae66812d6299e794b9a6bf7dbe430baf2d907122828"
+      sha256: a12a6b2e45e3bbec7d137c73cd99b27ad25ff4a2279ce28d995fe3a223e80e98
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.0"
+    version: "1.0.0"
   path:
     dependency: transitive
     description:
