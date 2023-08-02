@@ -98,7 +98,7 @@ verify that your `assetlinks.json` file is set up and hosted correctly.
 > You need to have a screen lock set up.
 > Moreover, if you use a virtual Android device, it needs to have API 33 (Android 13).
 
-`flutter run --dart-define=from-file=env.json`
+`flutter run --dart-define=from-file=env.json lib/main.dart`
 
 In case you run the app inside Android studio, edit the run configuration and
 add `--dart-define-from-file=env.json` to the
@@ -168,7 +168,7 @@ your own Corbado project ID and a different Bundle Identifier).
 
 ### 4.4 Start the example
 
-`flutter run --dart-define=CORBADO_PROJECT_ID=<your-corbado-project-id> lib/main.dart`
+`flutter run --dart-define=from-file=env.json lib/main.dart`
 
 Now you are fully set and you can start signing up with your first passkey in the example.
 
