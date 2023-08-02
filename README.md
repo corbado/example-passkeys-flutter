@@ -32,7 +32,7 @@ You will need your **Package name** (e.g. `com.corbado.corbadoauth.example`) and
 fingerprint** (
 e.g. `54:4C:94:2C:E9:...`).
 
-The package name of your app is defined in *example/android/app/build.gradle* (applicationId).
+The package name of your app is defined in *android/app/build.gradle* (applicationId).
 Its default value for the example app is `com.corbado.corbadoauth.example`.
 
 To find your SHA-256 fingerprint, you can execute the following command:
