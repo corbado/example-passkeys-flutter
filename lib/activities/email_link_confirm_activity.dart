@@ -1,6 +1,6 @@
 import 'package:corbado_demo/activities/login_activity.dart';
-import 'package:corbado_demo/api/corbado_service.dart';
 import 'package:corbado_demo/routes.dart';
+import 'package:corbado_demo/services/corbado_service.dart';
 import 'package:corbado_demo/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
