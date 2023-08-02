@@ -19,6 +19,7 @@ dependencies:
   corbado_auth: ^1.0.0
   passkeys: ^1.0.0
   corbado_frontend_api_client: ^1.0.0
+  get_it: ^7.6.0
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,6 @@
 import 'package:corbado_demo/activities/login_activity.dart';
 import 'package:corbado_demo/routes.dart';
+import 'package:corbado_demo/services/app_locator.dart';
 import 'package:corbado_demo/services/corbado_service.dart';
 import 'package:corbado_demo/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -8,22 +9,14 @@ import 'package:go_router/go_router.dart';
 class EmailLinkConfirmActivity extends StatefulWidget {
   final String emailLinkID;
   final String token;
-  final String projectID;
-  late final CorbadoService corbadoSvc;
 
   EmailLinkConfirmActivity({
     super.key,
     required this.emailLinkID,
     required this.token,
-  }) : projectID =
-            const String.fromEnvironment("PROJECT_ID", defaultValue: "") {
-    if (!projectID.startsWith("pro-")) {
-      throw Exception("ProjectID not configured");
-    }
-
+  }) {
     debugPrint(
         "EmailLinkConfirmActivity emailLinkID: $emailLinkID, token: $token");
-    corbadoSvc = CorbadoService(projectID);
   }
 
   @override
@@ -33,6 +26,7 @@ class EmailLinkConfirmActivity extends StatefulWidget {
 
 class _EmailLinkConfirmActivityState extends State<EmailLinkConfirmActivity> {
   late Future<void> _confirmationFuture;
+  final CorbadoService corbadoSvc = getIt<CorbadoService>();
 
   @override
   void initState() {
@@ -89,8 +83,8 @@ class _EmailLinkConfirmActivityState extends State<EmailLinkConfirmActivity> {
 
   Future<void> handleEmailLinkConfirm(BuildContext context) async {
     debugPrint("handleEmailLinkConfirm");
-    var emailConfirmed = await widget.corbadoSvc
-        .emailLinkConfirm(widget.emailLinkID, widget.token);
+    var emailConfirmed =
+        await corbadoSvc.emailLinkConfirm(widget.emailLinkID, widget.token);
     debugPrint("emailConfirmed: $emailConfirmed");
 
     debugPrint("emailConfirmed.httpStatusCode: ${emailConfirmed?.toJson()}");

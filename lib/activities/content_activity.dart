@@ -1,4 +1,9 @@
+import 'dart:async';
+
+import 'package:corbado_auth/corbado_auth.dart';
 import 'package:corbado_demo/components/custom_button.dart';
+import 'package:corbado_demo/services/app_locator.dart';
+import 'package:corbado_demo/services/auth_service.dart';
 import 'package:corbado_demo/theme/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +21,19 @@ class ContentActivity extends StatefulWidget {
 }
 
 class _ContentActivityState extends State<ContentActivity> {
+  final AuthService _authService = getIt<AuthService>();
+
+  User? user;
+  StreamSubscription? _userSub;
+
+  @override
+  void initState() {
+    super.initState();
+    _userSub = _authService.userSteam.listen((event) {
+      if (mounted) setState(() => user = event);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var text = widget.newUser ? "Sign-up successful" : "Login successful";
@@ -38,7 +56,7 @@ class _ContentActivityState extends State<ContentActivity> {
                 Padding(
                     padding: const EdgeInsets.only(top: 130),
                     child: Text(
-                      text,
+                      "Username: ${user!.username}",
                       style: const TextStyle(
                           color: Colors.lightGreen, fontSize: 22),
                     )),
@@ -61,5 +79,11 @@ class _ContentActivityState extends State<ContentActivity> {
                         ]))
               ],
             )));
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _userSub?.cancel();
   }
 }

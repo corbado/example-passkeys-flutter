@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:corbado_auth/corbado_auth.dart';
 import 'package:corbado_demo/activities/content_activity.dart';
 import 'package:corbado_demo/components/custom_button.dart';
-import 'package:corbado_demo/services/corbado_service.dart';
+import 'package:corbado_demo/services/app_locator.dart';
+import 'package:corbado_demo/services/auth_service.dart';
 import 'package:corbado_demo/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
@@ -11,18 +11,9 @@ import 'package:oktoast/oktoast.dart';
 class LoginActivity extends StatefulWidget {
   final String projectID;
   final bool emailLinkRedirect;
-  late final CorbadoAuth corbadoAuth;
-  late final CorbadoService corbadoSvc;
 
   LoginActivity({super.key, this.emailLinkRedirect = false})
-      : projectID =
-            const String.fromEnvironment("PROJECT_ID", defaultValue: "") {
-    if (!projectID.startsWith("pro-")) {
-      throw Exception("ProjectID not configured");
-    }
-    corbadoAuth = CorbadoAuth(projectID);
-    corbadoSvc = CorbadoService(projectID);
-  }
+      : projectID = const String.fromEnvironment('CORBADO_PROJECT_ID');
 
   @override
   _LoginActivityState createState() => _LoginActivityState(emailLinkRedirect);
@@ -30,6 +21,7 @@ class LoginActivity extends StatefulWidget {
 
 class _LoginActivityState extends State<LoginActivity> {
   bool _showRedirectMessage;
+  final AuthService _authService = getIt<AuthService>();
   final TextEditingController usernameController = TextEditingController();
 
   final bool emailLinkRedirect;
@@ -73,12 +65,12 @@ class _LoginActivityState extends State<LoginActivity> {
     }
 
     try {
-      final maybeError = await widget.corbadoAuth
-          .registerWithPasskey(email: username, fullName: username);
+      final maybeError = await _authService.register(email: username);
       if (maybeError != null) {
         _showError(maybeError);
+      } else {
+        _launchContentActivity(true);
       }
-      _launchContentActivity(true);
     } catch (e) {
       _showError(e.toString());
     }
@@ -92,7 +84,7 @@ class _LoginActivityState extends State<LoginActivity> {
     }
 
     try {
-      await widget.corbadoAuth.signInWithPasskey(email: username);
+      await _authService.signIn(email: username);
       _launchContentActivity(false);
     } catch (e) {
       _showError(e.toString());
@@ -161,5 +153,11 @@ class _LoginActivityState extends State<LoginActivity> {
                             ])),
                   ],
                 ))));
+  }
+
+  @override
+  void dispose() {
+    usernameController.dispose();
+    super.dispose();
   }
 }
