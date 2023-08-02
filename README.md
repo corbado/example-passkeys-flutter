@@ -18,7 +18,7 @@ Please follow the steps in [Getting started](https://docs.corbado.com/overview/g
 create a project in our [developer panel](https://app.corbado.com/signin#register). It will act as
 your relying party server. After successful sign up, in the wizard select 'Integration guide', '
 Native / mobile app' and 'No existing users'. After creating the project, you will get a Corbado
-project ID (e.g. pro-123456789).In the root
+project ID (e.g. pro-123456789). In the root
 folder of this repo, create an `env.json` file and copy the contents from `env.json.scel`. Here,
 fill in your Corbado project ID.
 
