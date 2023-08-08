@@ -13,7 +13,7 @@ class LoginActivity extends StatefulWidget {
   final bool emailLinkRedirect;
 
   LoginActivity({super.key, this.emailLinkRedirect = false})
-      : projectID = const String.fromEnvironment('CORBADO_PROJECT_ID');
+      : projectID = const String.fromEnvironment('PROJECT_ID');
 
   @override
   _LoginActivityState createState() => _LoginActivityState(emailLinkRedirect);

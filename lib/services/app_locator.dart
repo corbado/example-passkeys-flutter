@@ -6,7 +6,7 @@ import 'package:get_it/get_it.dart';
 GetIt getIt = GetIt.instance;
 
 initLocator() {
-  const corbadoProjectID = String.fromEnvironment('CORBADO_PROJECT_ID');
+  const corbadoProjectID = String.fromEnvironment('PROJECT_ID');
 
   getIt.registerSingleton<CorbadoAuth>(CorbadoAuth(corbadoProjectID));
   getIt.registerSingleton<AuthService>(AuthService());
