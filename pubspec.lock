@@ -53,10 +53,10 @@ packages:
     dependency: "direct main"
     description:
       name: corbado_auth
-      sha256: "63d19dd993019f7162bbf671b8307755c32eb739af47045d1fdb33230e932bd7"
+      sha256: e8e4a8468da51556bd68fad9ebfc345b296767fe86de5ab2532507b6115cd10b
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.0"
+    version: "1.0.1"
   corbado_frontend_api_client:
     dependency: "direct main"
     description:
@@ -236,10 +236,10 @@ packages:
     dependency: "direct main"
     description:
       name: passkeys
-      sha256: "790baa526b7da458f69b3be7bfa7aea67f2280a6a3157e60ba7e643d6342faa0"
+      sha256: "71da8c518bd0d890345ab957abdf01613103725705001c8c9c9a5a189cce2025"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.0"
+    version: "1.0.2"
   passkeys_android:
     dependency: transitive
     description:
@@ -252,10 +252,10 @@ packages:
     dependency: transitive
     description:
       name: passkeys_ios
-      sha256: e9fda1c7091c8b7adf2b94a0c4b7cdeb5b2fcf131fb3f17c99c73a1192803687
+      sha256: "62866544c45f2bbe90c0ca501f649fbbf62b6256731678a279773e6f451aaaeb"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.0"
+    version: "1.0.2"
   passkeys_platform_interface:
     dependency: transitive
     description:
@@ -288,14 +288,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.27.7"
-  shelf:
-    dependency: "direct main"
-    description:
-      name: shelf
-      sha256: c24a96135a2ccd62c64b69315a14adc5c3419df63b4d7c05832a346fdb73682c
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.4.0"
   sky_engine:
     dependency: transitive
     description: flutter

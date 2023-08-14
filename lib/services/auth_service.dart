@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:corbado_auth/corbado_auth.dart';
-import 'package:corbado_demo/services/app_locator.dart';
+import 'package:corbado_auth_demo/services/app_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:passkeys/relying_party_server/corbado/types/exceptions.dart';
 import 'package:rxdart/rxdart.dart';

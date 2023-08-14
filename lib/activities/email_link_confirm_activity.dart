@@ -1,8 +1,8 @@
-import 'package:corbado_demo/activities/login_activity.dart';
-import 'package:corbado_demo/routes.dart';
-import 'package:corbado_demo/services/app_locator.dart';
-import 'package:corbado_demo/services/corbado_service.dart';
-import 'package:corbado_demo/theme/theme.dart';
+import 'package:corbado_auth_demo/activities/login_activity.dart';
+import 'package:corbado_auth_demo/routes.dart';
+import 'package:corbado_auth_demo/services/app_locator.dart';
+import 'package:corbado_auth_demo/services/corbado_service.dart';
+import 'package:corbado_auth_demo/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

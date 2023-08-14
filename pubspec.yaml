@@ -1,5 +1,5 @@
-name: corbado_demo
-description: A new Flutter project.
+name: corbado_auth_demo
+description: An example how to use the corbado_auth package.
 publish_to: 'none'
 version: 1.0.0+1
 
@@ -14,10 +14,9 @@ dependencies:
   http: ^1.1.0
   oktoast: ^3.3.0
   convert: ^3.1.1
-  shelf: ^1.4.0
   go_router: ^6.5.7
-  corbado_auth: ^1.0.0
-  passkeys: ^1.0.0
+  corbado_auth: ^1.0.1
+  passkeys: ^1.0.2
   corbado_frontend_api_client: ^1.0.0
   get_it: ^7.6.0
 

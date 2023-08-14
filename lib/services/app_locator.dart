@@ -1,6 +1,6 @@
 import 'package:corbado_auth/corbado_auth.dart';
-import 'package:corbado_demo/services/auth_service.dart';
-import 'package:corbado_demo/services/corbado_service.dart';
+import 'package:corbado_auth_demo/services/auth_service.dart';
+import 'package:corbado_auth_demo/services/corbado_service.dart';
 import 'package:get_it/get_it.dart';
 
 GetIt getIt = GetIt.instance;

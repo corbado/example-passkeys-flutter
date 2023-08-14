@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:corbado_auth/corbado_auth.dart';
-import 'package:corbado_demo/components/custom_button.dart';
-import 'package:corbado_demo/services/app_locator.dart';
-import 'package:corbado_demo/services/auth_service.dart';
-import 'package:corbado_demo/theme/theme.dart';
+import 'package:corbado_auth_demo/components/custom_button.dart';
+import 'package:corbado_auth_demo/services/app_locator.dart';
+import 'package:corbado_auth_demo/services/auth_service.dart';
+import 'package:corbado_auth_demo/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 class ContentActivity extends StatefulWidget {

@@ -1,4 +1,4 @@
-import 'package:corbado_demo/theme/custom_material_color.dart';
+import 'package:corbado_auth_demo/theme/custom_material_color.dart';
 import 'package:flutter/material.dart';
 
 Color corbadoDark = const Color(0xff090f1f);

@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:corbado_demo/activities/content_activity.dart';
-import 'package:corbado_demo/components/custom_button.dart';
-import 'package:corbado_demo/services/app_locator.dart';
-import 'package:corbado_demo/services/auth_service.dart';
-import 'package:corbado_demo/theme/theme.dart';
+import 'package:corbado_auth_demo/activities/content_activity.dart';
+import 'package:corbado_auth_demo/components/custom_button.dart';
+import 'package:corbado_auth_demo/services/app_locator.dart';
+import 'package:corbado_auth_demo/services/auth_service.dart';
+import 'package:corbado_auth_demo/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 
@@ -64,15 +64,11 @@ class _LoginActivityState extends State<LoginActivity> {
       return;
     }
 
-    try {
-      final maybeError = await _authService.register(email: username);
-      if (maybeError != null) {
-        _showError(maybeError);
-      } else {
-        _launchContentActivity(true);
-      }
-    } catch (e) {
-      _showError(e.toString());
+    final maybeError = await _authService.register(email: username);
+    if (maybeError != null) {
+      _showError(maybeError);
+    } else {
+      _launchContentActivity(true);
     }
   }
 
@@ -83,11 +79,11 @@ class _LoginActivityState extends State<LoginActivity> {
       return;
     }
 
-    try {
-      await _authService.signIn(email: username);
+    final maybeError = await _authService.signIn(email: username);
+    if (maybeError != null) {
+      _showError(maybeError);
+    } else {
       _launchContentActivity(false);
-    } catch (e) {
-      _showError(e.toString());
     }
   }
 
