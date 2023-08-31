@@ -1,6 +1,7 @@
-# Complete passkeys integration example for Corbado API with Flutter
+# Complete passkeys integration example for Corbado with Flutter
 
-This is a sample implementation of a Flutter app with integration to Corbado API to use passkeys (based on FIDO2 / WebAuthn).
+This is a sample implementation of a Flutter app with integration to Corbado to use passkeys (based
+on FIDO2 / WebAuthn).
 
 ## 1. File Structure
 
@@ -14,24 +15,54 @@ This is a sample implementation of a Flutter app with integration to Corbado API
 ## 2. Prerequisites
 
 Please follow the steps in [Getting started](https://docs.corbado.com/overview/getting-started) to
-create a project in our [developer panel](https://app.corbado.com/signin#register). In the root folder of this repo, create an `env.json` file and copy the contents from `env.json.scel`. Here, fill in your project ID.
+create a project in our [developer panel](https://app.corbado.com/signin#register). It will act as
+your relying party server. After successful sign up, in the wizard select 'Integration guide', '
+Native / mobile app' and 'No existing users'. After creating the project, you will get a Corbado
+project ID (e.g. pro-123456789). In the root
+folder of this repo, create an `env.json` file and copy the contents from `env.json.scel`. Here,
+fill in your Corbado project ID.
 
 ## 3. Android
 
-### 3.1. Add Android app to developer panel
+### 3.1. Set up an Android app in Corbado
 
-Inside the developer panel, go to [Settings -> Credentials -> Native Apps](https://app.corbado.com/app/settings/credentials/native-apps) and click on 'Add new'. There you need to enter the package name (this sample application uses `com.corbado.passkeys` as default package name) as well as the SHA-256 fingerprint of your signing key (e.g. 6H:A7:BC:9A:...). It can be obtained by executing `gradlew signingReport` in the `android/` directory. If you just want your local debug-key which is used when developing the app in Android Studio, use `keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android`. Alternatively, you can look into the console when executing the app:
-<img width="960" alt="image" src="https://user-images.githubusercontent.com/23581140/232052174-821b4a06-0cd5-4b0f-9933-58251dc889c7.png">
+Set up an Android app at [*Settings* -> *Credentials* -> *Native
+apps*](https://app.corbado.com/app/settings/credentials/native-apps) by clicking "Add new".
+You will need your **Package name** (e.g. `com.corbado.corbadoauth.example`) and your **SHA-256
+fingerprint** (e.g. `54:4C:94:2C:E9:...`).
 
-If you've successfully entered the package name and fingerprint in the developer panel, Corbado deploys a required /.well-known/assetlinks.json file to `{project ID}.frontend.api.corbado.io`. This makes the `assetlinks.json` file publicly reachable and also binds your passkeys to `{project ID}.frontend.api.corbado.io` (the [WebAuthn relying party](https://www.w3.org/TR/webauthn-2/#webauthn-relying-party)). To use your own domain and bind the passkeys to it, please see the next step 3.2.
+The package name of your app is defined in *android/app/build.gradle* (applicationId).
+Its default value for the example app is `com.corbado.corbadoauth.example`.
+
+To find your SHA-256 fingerprint, you can execute the following command:
+
+- macOS / Linux: `keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android`
+- Windows: `keytool -list -v -keystore "\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android`
+
+Alternatively, you can look in to the logs of the running example app. You will find a log message
+like `Fingerprint: 54:4C:94:2C:E9:...`.
+Copy the full SHA-256 fingerprint and use it to set up the Android app in the Corbado developer
+panel.
 
 ### 3.2. (Optional) Bind the passkeys to your own domain
 
-If you want to bind the passkeys to your own domain (e.g. `your-domain.com`), you need to manually change the [WebAuthn relying party](https://www.w3.org/TR/webauthn-2/#webauthn-relying-party) and host the `assetlinks.json` file on this domain (so on `your-domain.com/.well-known/assetlinks.json`). To make it work with Corbado, you need to change the CNAME in the [developer panel](https://app.corbado.com/app/settings/general/go-live) to a subdomain of your domain, e.g. `auth.your-domain.com`. Corbado will then automatically bind your passkeys to the root / top-level domain of the provided CNAME unless it is on the [public suffix list](https://publicsuffix.org/learn/), here to `your-domain.com`.
+If you want to bind the passkeys to your own domain (e.g. `your-domain.com`), you need to manually
+change the [WebAuthn relying party](https://www.w3.org/TR/webauthn-2/#webauthn-relying-party) and
+host the `assetlinks.json` file on this domain (so
+on `your-domain.com/.well-known/assetlinks.json`). To make it work with Corbado, you need to change
+the CNAME in the [developer panel](https://app.corbado.com/app/settings/general/go-live) to a
+subdomain of your domain, e.g. `auth.your-domain.com`. Corbado will then automatically bind your
+passkeys to the root / top-level domain of the provided CNAME unless it is on
+the [public suffix list](https://publicsuffix.org/learn/), here to `your-domain.com`.
 
-> :warning: **Passkeys binding and sub-subdomain as CNAME**: If the CNAME you enter in Corbado developer panel is a sub-subdomain, e.g. `staging.auth.your-domain.com`, you still need to host the `assetlinks.json` file on the root / top-level domain: host `assetlinks.json` at `your-domain.com/.well-known/assetlinks.json`, as your relying party ID is the root / top-level domain `your-domain.com`.
+> :warning: **Passkeys binding and sub-subdomain as CNAME**: If the CNAME you enter in Corbado
+> developer panel is a sub-subdomain, e.g. `staging.auth.your-domain.com`, you still need to host
+> the `assetlinks.json` file on the root / top-level domain: host `assetlinks.json`
+> at `your-domain.com/.well-known/assetlinks.json`, as your relying party ID is the root / top-level
+> domain `your-domain.com`.
 
-Moreover, you need to associate your native app in the `assetlinks.json` file. Use the following JSON template and host it under
+Moreover, you need to associate your native app in the `assetlinks.json` file. Use the following
+JSON template and host it under
 `your-domain.com/.well-known/assetlinks.json`:
 
 ```json
@@ -44,7 +75,9 @@ Moreover, you need to associate your native app in the `assetlinks.json` file. U
     "target": {
       "namespace": "android_app",
       "package_name": "{PACKAGE-NAME}",
-      "sha256_cert_fingerprints": ["{FINGERPRINT-OF-YOUR-SIGNING-KEY}"]
+      "sha256_cert_fingerprints": [
+        "{FINGERPRINT-OF-YOUR-SIGNING-KEY}"
+      ]
     }
   }
 ]
@@ -58,114 +91,100 @@ Variables:
 You can use [Google's tool](https://developers.google.com/digital-asset-links/tools/generator) to
 verify that your `assetlinks.json` file is set up and hosted correctly.
 
-### 3.3. Add authorized origin of your Android app in the developer panel
+### 3.3 Run the Android app
 
-To let your Android app securely communicate with Corbado, you need to add the Android app's origin to the authorized origins in the [developer panel](https://app.corbado.com/app/settings/credentials). The Android app's origin is in the form of `android:apk-key-hash:xxx`. You can obtain it by having a look at the "Base64URL encoded" output from step 3.1. That's your Android app origin.
+> **Note**
+> You need to have a screen lock set up.
+> Moreover, if you use a virtual Android device, it needs to have API 33 (Android 13).
 
-### 3.4. Run the Android app
-
-Run the app by executing
-
-```
-flutter run --dart-define-from-file=env.json
-```
+`flutter run --dart-define=from-file=env.json lib/main.dart`
 
 In case you run the app inside Android studio, edit the run configuration and
 add `--dart-define-from-file=env.json` to the
 additional run args.
 
-### 3.5. Troubleshooting
+Now, you are fully set and can start signing up with your first passkey in the example.
 
-If the application says your device does not support biometrics yet, you have to properly setup biometrics on the phone.
-Open the settings and add a PIN as well as a fingerprint as shown below (PIN is required for fingerprint).
-![image](https://user-images.githubusercontent.com/23581140/232045115-86943a1a-c00a-48c3-bdc8-3f98daa962bc.png)
+### 3.4 Troubleshooting
+
+If you run the application in a virtual Android device, and it says that you can't create a passkey,
+you have to properly
+set up a screen lock or biometrics on the device. To do so, open the settings, search for security
+settings and add a
+PIN as well as a fingerprint as shown below (PIN is required for fingerprint):
+
+<img src="https://github.com/corbado/flutter-passkeys/blob/main/packages/passkeys/passkeys/doc/troubleshooting-no-screen-lock.png?raw=true" style="width: 100%" alt="troubleshooting"/>
 
 ## 4. iOS
 
-### 4.1. Add iOS app to developer panel
+### 4.1 Create an iOS app and configure the example in XCode
 
-Inside the developer panel, go to [Settings -> Credentials -> Native Apps](https://app.corbado.com/app/settings/credentials/native-apps) and click on 'Add new'. There you need to enter the application identifier prefix of your iOS application as well as the bundle identifier (this sample application uses `com.corbado.passkeys` as default bundle identifier). The application identifier prefix can be obtained by going to your [Apple Developer Certificates, Identifier & Profiles](https://developer.apple.com/account/resources/identifiers/bundleId) associated with your Apple Developer account, and finding the corresponding application identifier prefix.
+We need to establish trust between your iOS app and the relying party server.
+Your app will be identified through your **Application Identifier Prefix** (e.g. `9RF9KY77B2`) and
+your **Bundle Identifier** (e.g. `com.corbado.passkeys`).
+You need an Apple developer account to set up both.
+If you haven't got one yet, set up a new account.
 
+**Note:** When creating your Bundle Identifier, make sure that the "Associated Domains" capability
+is enabled.
 
-If you've successfully entered the application identifier prefix and the bundle identifier in the developer panel, Corbado deploys a required `/.well-known/apple-app-site-association` file to `https://{project ID}.frontendapi.corbado.io`. This makes the `apple-app-site-association` file publicly reachable and also binds your passkeys to `{project ID}.frontendapi.corbado.io` (the [WebAuthn relying party](https://www.w3.org/TR/webauthn-2/#webauthn-relying-party)). To use your own domain and bind the passkeys to it, please see the step 4.3.
+<img src="https://raw.githubusercontent.com/corbado/flutter-passkeys/main/packages/passkeys/passkeys/doc/bundleId.png" style="width: 100%" alt="xcode-associated-domains">
 
-### 4.2. Configure Redirect and Application URLs for deep linking
+Open the example in Xcode now by opening `packages/passkeys/passkeys/example/ios`.
+In *Runner* -> *Signing & Capabilites* enter your *Application Identifier Prefix* and your *Bundle
+Identifier*.
 
-To make sure deep linking inside the app works correctly, and the user gets redirected to the app to confirm email links, you need to configure the Redirect URL and Application URL in the developer panel. Set the Application URL to `https://{YOUR_PROJECT_ID}.frontendapi.corbado.io/emailLinkConfirm` and the Redirect URL to `https://{YOUR_PROJECT_ID}.frontendapi.corbado.io/login`. The applinks part in the apple-app-site-association.json file is used to enable deep linking between your app and the associated domain.
+### 4.2 Set up an iOS app in Corbado
 
-> :warning: **Important**: You need to select integration mode "web component" in the [developer panel](https://app.corbado.com/app/settings/integration-mode) to modify the Application URL.
+Make sure that under [*Settings* -> *User interface* -> *Identity
+verification*](https://app.corbado.com/app/settings/userinterface) "Option 2: No verification
+required" is selected. This should be set by default, when selecting 'Native / mobile app' in
+the [previous step](#2-set-up-corbado-project).
 
-By following these steps, your app will be properly configured to handle email link confirmations and deep linking, providing a seamless user experience.
+Set up an iOS app at [*Settings* -> *Credentials* -> *Native
+apps*](https://app.corbado.com/app/settings/credentials/native-apps) by clicking "Add New".
+You will need your **Application Identifier Prefix** and your **Bundle Identifier** that we set up
+in [step 1](#1-create-an-ios-app-and-configure-the-example-in-xcode).
 
-### 4.3. (Optional) Bind the passkeys to your own domain
+Afterwards, your relying party server will host an `apple-app-site-association` file
+at `https://{PROJECT_ID}}.frontendapi.corbado.io/.well-known/apple-app-site-association`.
+This file will by downloaded by iOS when you install your app.
+To tell iOS where to look for the file, we need the next step in our setup.
 
-If you want to bind the passkeys to your own domain (e.g. `your-domain.com`), you need to manually change the [WebAuthn relying party](https://www.w3.org/TR/webauthn-2/#webauthn-relying-party) and host the `apple-app-site-association.json` file on this domain (so on `your-domain.com/.well-known/apple-app-site-association`). To make it work with Corbado, you need to change the CNAME in the [developer panel](https://app.corbado.com/app/settings/general/go-live) to a subdomain of your domain, e.g. `auth.your-domain.com`. Corbado will then automatically bind your passkeys to the root / top-level domain of the provided CNAME unless it is on the [public suffix list](https://publicsuffix.org/learn/), here to `your-domain.com`.
-
-> :warning: **Passkeys binding and sub-subdomain as CNAME**: If the CNAME you enter in Corbado developer panel is a sub-subdomain, e.g. `staging.auth.your-domain.com`, you still need to host the `apple-app-site-association.json` file on the root / top-level domain: host `apple-app-site-association.json` at `your-domain.com/.well-known/apple-app-site-association`, as your relying party ID is the root / top-level domain `your-domain.com`.
-
-Moreover, you need to associate your native app in the `apple-app-site-association.json` file. Use the following JSON template and store it under
-`your-domain.com/.well-known/apple-app-site-association.json`:
-
-```json
-{
-  "appclips": {
-    "apps": []
-  },
-  "applinks": {
-    "details": [
-      {
-        "appIDs": ["{ APPLICATION_IDENTIFIER_PREFIX }.{ BUNDLE_IDENTIFIER }"],
-        "paths": ["*"]
-      }
-    ]
-  },
-  "webcredentials": {
-    "apps": ["{ APPLICATION_IDENTIFIER_PREFIX }.{ BUNDLE_IDENTIFIER }"]
-  }
-}
-```
-
-Variables:
-
-- APPLICATION_IDENTIFIER_PREFIX: The iOS application identifier prefix associated with your development team in your Apple Developer account.
-- BUNDLE_IDENTIFIER: The bundle identifier associated with your iOS application. Can be found in Xcode development environment.
-
-### 4.4. Add authorized origin of your iOS app in the developer panel
-
-
-To let your iOS app securely communicate with Corbado, you need to add the iOS app's origin to the authorized origins in the [developer panel](https://app.corbado.com/app/settings/credentials). The iOS app's origin is in the form of `https://{PROJECT_ID}.frontendapi.corbado.io`. You can obtain the corresponding project ID from developer pannel. By default it should already have been automatically added during project creation.
-
-
-### 4.5. Configure Xcode project
+### 4.3 Configure your iOS project
 
 In your Xcode workspace, you need to configure the following settings:
+In `Signing & Capabilities` tab, add the `Associated Domains` capability and add the following
+domain: `webcredentials:{PROJECT_ID}.frontendapi.corbado.io`
+Now, iOS knows where to download the `apple-app-site-association` file from.
 
-- In `Signing & Capabilities` tab, add the `Associated Domains` capability and add the following domains:
+If you forget about this step, the example will show you an error message
+like `Your app is not associated with your relying party server. You have to add...`.
+Your configuration inside Xcode should look something like in the screenshot below (you will have
+your own Corbado project ID and a different Bundle Identifier).
 
-  - `applinks:{PROJECT_ID}.frontend.api.corbado.io`
-  - `webcredentials:{PROJECT_ID}.frontend.api.corbado.io`
+<img src="https://raw.githubusercontent.com/corbado/flutter-passkeys/main/packages/passkeys/passkeys/doc/passkeys_example_ios_associated_domains.png" style="width: 100%" alt="xcode-associated-domains">
 
-  Plleas note that you need Apple Developer account to add the `Associated Domains` capability.
+### 4.4 Start the example
 
-- In `Info` tab, set `FlutterDeepLinkingEnabled` to `YES`.
+`flutter run --dart-define=from-file=env.json lib/main.dart`
 
-### 4.6. Run the iOS app
+Now you are fully set and you can start signing up with your first passkey in the example.
 
-Run the app by executing 
-```
-flutter run --dart-define-from-file=env.json
-```
-In case you run the app inside Xcode, edit the run configuration and
-add `--dart-define-from-file=env.json` to the
-additional run args.
+If you want to run the example from your IDE, please make sure to either
+- set the CORBADO_PROJECT_ID environment variable to your Corbado project ID
+- replace `const String.fromEnvironment('CORBADO_PROJECT_ID')` directly in the example with your Corbado project ID
 
 ## 5. Outlook
 
-This is a basic sample application that shows how passkeys can be integrated in a Flutter app using Corbado. This repository will be continuously updated and improved. We already have the following features on our roadmap that will be pushed within the next weeks:
+This is a basic sample application that shows how passkeys can be integrated in a Flutter app using
+Corbado. This repository will be continuously updated and improved. We already have the following
+features on our roadmap that will be pushed within the next weeks:
 
-- [ ] Automatic whitelisting of Android app's origin based on given package name and fingerprint
-- [ ] Opt-out for email confirmation via email magic link
 - [ ] Email magic links open the native Flutter app if openend on mobile device
 - [ ] Better cross-device & cross-platform showcase with a web app
 
-If you have questions, feedback or wishes regarding features, please reacht out to us via [email](mailto:contact@corbado.com) or join our passkeys community on [Slack](https://join.slack.com/t/corbado/shared_invite/zt-1b7867yz8-V~Xr~ngmSGbt7IA~g16ZsQ). We're also happy to receive pull requests if you have suggestions for improvement.
+If you have questions, feedback or wishes regarding features, please reacht out to us
+via [email](mailto:contact@corbado.com) or join our passkeys community
+on [Slack](https://join.slack.com/t/corbado/shared_invite/zt-1b7867yz8-V~Xr~ngmSGbt7IA~g16ZsQ).
+We're also happy to receive pull requests if you have suggestions for improvement.

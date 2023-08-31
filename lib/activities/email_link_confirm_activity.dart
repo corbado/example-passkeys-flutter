@@ -1,27 +1,22 @@
+import 'package:corbado_auth_demo/activities/login_activity.dart';
+import 'package:corbado_auth_demo/routes.dart';
+import 'package:corbado_auth_demo/services/app_locator.dart';
+import 'package:corbado_auth_demo/services/corbado_service.dart';
+import 'package:corbado_auth_demo/theme/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:corbado_demo/api/corbado_service.dart';
-import 'package:corbado_demo/activities/login_activity.dart';
-import 'package:corbado_demo/theme/theme.dart';
-import 'package:corbado_demo/routes.dart';
 import 'package:go_router/go_router.dart';
 
 class EmailLinkConfirmActivity extends StatefulWidget {
   final String emailLinkID;
   final String token;
-  final String projectID;
-  late final CorbadoService corbadoSvc;
 
   EmailLinkConfirmActivity({
     super.key,
     required this.emailLinkID,
     required this.token,
-  }) : projectID =
-            const String.fromEnvironment("PROJECT_ID", defaultValue: "") {
-    if (!projectID.startsWith("pro-")) {
-      throw Exception("ProjectID not configured");
-    }
-    corbadoSvc =
-        CorbadoService("https://$projectID.frontendapi.corbado.io/v1", projectID);
+  }) {
+    debugPrint(
+        "EmailLinkConfirmActivity emailLinkID: $emailLinkID, token: $token");
   }
 
   @override
@@ -31,6 +26,7 @@ class EmailLinkConfirmActivity extends StatefulWidget {
 
 class _EmailLinkConfirmActivityState extends State<EmailLinkConfirmActivity> {
   late Future<void> _confirmationFuture;
+  final CorbadoService corbadoSvc = getIt<CorbadoService>();
 
   @override
   void initState() {
@@ -51,7 +47,7 @@ class _EmailLinkConfirmActivityState extends State<EmailLinkConfirmActivity> {
               appBar: AppBar(
                 backgroundColor: corbadoDark,
                 leading: IconButton(
-                  icon: Icon(Icons.arrow_back, color: Colors.white70),
+                  icon: const Icon(Icons.arrow_back, color: Colors.white70),
                   onPressed: () {
                     final goRouter = GoRouter.of(context);
                     goRouter.go('/');
@@ -61,7 +57,7 @@ class _EmailLinkConfirmActivityState extends State<EmailLinkConfirmActivity> {
               body: Center(
                 child: Text(
                   'Couldn\'t confirm the email: ${snapshot.error}',
-                  style: TextStyle(color: Colors.white70, fontSize: 16),
+                  style: const TextStyle(color: Colors.white70, fontSize: 16),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -74,7 +70,7 @@ class _EmailLinkConfirmActivityState extends State<EmailLinkConfirmActivity> {
           // Show progress bar
           return Scaffold(
             backgroundColor: corbadoDark,
-            body: Center(
+            body: const Center(
               child: CircularProgressIndicator(
                 color: Colors.white70,
               ),
@@ -86,12 +82,16 @@ class _EmailLinkConfirmActivityState extends State<EmailLinkConfirmActivity> {
   }
 
   Future<void> handleEmailLinkConfirm(BuildContext context) async {
-    bool emailConfirmed =
-        await widget.corbadoSvc.confirmEmail(widget.emailLinkID, widget.token);
-    if (!emailConfirmed) {
+    debugPrint("handleEmailLinkConfirm");
+    var emailConfirmed =
+        await corbadoSvc.emailLinkConfirm(widget.emailLinkID, widget.token);
+    debugPrint("emailConfirmed: $emailConfirmed");
+
+    debugPrint("emailConfirmed.httpStatusCode: ${emailConfirmed?.toJson()}");
+    if (emailConfirmed == null) {
       throw Exception('Couldn\'t confirm the email');
     }
-    if (emailConfirmed) {
+    if (emailConfirmed.httpStatusCode == 200) {
       final goRouter = GoRouter.of(context);
       goRouter.go(loginRoute);
     }

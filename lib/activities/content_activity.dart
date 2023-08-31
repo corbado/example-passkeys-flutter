@@ -1,31 +1,45 @@
-import 'package:corbado_demo/components/custom_button.dart';
-import 'package:corbado_demo/theme/theme.dart';
+import 'dart:async';
+
+import 'package:corbado_auth/corbado_auth.dart';
+import 'package:corbado_auth_demo/components/custom_button.dart';
+import 'package:corbado_auth_demo/services/app_locator.dart';
+import 'package:corbado_auth_demo/services/auth_service.dart';
+import 'package:corbado_auth_demo/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 class ContentActivity extends StatefulWidget {
   final String username;
-  final String credentialId;
 
   ///Indicates whether the user has just registered
   final bool newUser;
 
   const ContentActivity(
-      {super.key,
-      required this.username,
-      required this.credentialId,
-      this.newUser = false});
+      {super.key, required this.username, this.newUser = false});
 
   @override
   _ContentActivityState createState() => _ContentActivityState();
 }
 
 class _ContentActivityState extends State<ContentActivity> {
+  final AuthService _authService = getIt<AuthService>();
+
+  User? user;
+  StreamSubscription? _userSub;
+
+  @override
+  void initState() {
+    super.initState();
+    _userSub = _authService.userSteam.listen((event) {
+      if (mounted) setState(() => user = event);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var text = widget.newUser ? "Sign-up successful" : "Login successful";
     var text2 = widget.newUser
-        ? "Welcome!\nPlease confirm your sign-up by clicking the link sent to ${widget.username}"
-        : "Welcome back!";
+        ? "Welcome, ${widget.username}!"
+        : "Welcome back, ${widget.username}!";
     return Scaffold(
         backgroundColor: corbadoDark,
         body: Container(
@@ -54,14 +68,7 @@ class _ContentActivityState extends State<ContentActivity> {
                       style: const TextStyle(color: Colors.white, fontSize: 22),
                     )),
                 Padding(
-                    padding: const EdgeInsets.only(top: 130),
-                    child: Text(
-                      "Credential id: ${widget.credentialId}",
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(color: Colors.white, fontSize: 16),
-                    )),
-                Padding(
-                    padding: const EdgeInsets.only(top: 40),
+                    padding: const EdgeInsets.only(top: 150),
                     child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -72,5 +79,11 @@ class _ContentActivityState extends State<ContentActivity> {
                         ]))
               ],
             )));
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _userSub?.cancel();
   }
 }
