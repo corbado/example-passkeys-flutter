@@ -29,8 +29,7 @@ fill in your Corbado project ID.
 Set up an Android app at [*Settings* -> *Credentials* -> *Native
 apps*](https://app.corbado.com/app/settings/credentials/native-apps) by clicking "Add new".
 You will need your **Package name** (e.g. `com.corbado.corbadoauth.example`) and your **SHA-256
-fingerprint** (
-e.g. `54:4C:94:2C:E9:...`).
+fingerprint** (e.g. `54:4C:94:2C:E9:...`).
 
 The package name of your app is defined in *android/app/build.gradle* (applicationId).
 Its default value for the example app is `com.corbado.corbadoauth.example`.
