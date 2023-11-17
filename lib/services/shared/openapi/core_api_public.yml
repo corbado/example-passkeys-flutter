@@ -1,0 +1,801 @@
+
+# Todos
+#
+# - Add examples
+openapi: 3.0.3
+
+###################################################################
+# General                                                         #
+###################################################################
+info:
+  version: 1.0.0
+  title: Corbado Core
+  description: Overview of all Corbado Core API calls to implement a password less future.
+  contact:
+    name: Corbado API Team
+    email: support@corbado.com
+    url: https://www.corbado.com
+
+servers:
+  - url: https://api.eu-1.corbado.com
+
+tags:
+  - name: Users
+    description: All API calls to handle users
+  - name: Projects
+    description: All API calls to handle projects
+
+paths:
+  ###################################################################
+  # Paths: Users                                                    #
+  ###################################################################
+  /v1/users:
+    put:
+      description: Updates a user
+      operationId: UserUpdate
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/userUpdateReq'
+
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+
+  ###################################################################
+  # Paths: Current user                                             #
+  ###################################################################
+  /v1/me:
+    get:
+      description: Gets current user
+      operationId: MeGet
+      tags:
+        - Users
+
+      responses:
+        '200':
+          description: Provides current user data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/meRsp'
+    delete:
+      description: Deletes current user
+      operationId: MeDelete
+      tags:
+        - Users
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/meDeleteReq'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+
+  ###################################################################
+  # Paths: Projects                                                 #
+  ###################################################################
+  /v1/projects:
+    get:
+      description: Lists user's projects for given filters
+      operationId: ProjectList
+      tags:
+        - Projects
+      parameters:
+        - $ref: 'common.yml#/components/parameters/remoteAddress'
+        - $ref: 'common.yml#/components/parameters/userAgent'
+        - $ref: 'common.yml#/components/parameters/sort'
+        - $ref: 'common.yml#/components/parameters/filter'
+        - $ref: 'common.yml#/components/parameters/page'
+        - $ref: 'common.yml#/components/parameters/pageSize'
+      responses:
+        '200':
+          description: Projects successfully retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/projectListRsp'
+        default:
+          $ref: '#/components/responses/error'
+    post:
+      description: Creates a new project
+      operationId: ProjectCreate
+      tags:
+        - Projects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/projectCreateReq'
+      responses:
+        '200':
+          description: Project successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/projectCreateRsp'
+    put:
+      description: Updates an existing project
+      operationId: ProjectUpdate
+      tags:
+        - Projects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/projectUpdateReq'
+      responses:
+        '200':
+          description: Project successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/projectUpdateRsp'
+    delete:
+      description: Deletes an existing project
+      operationId: ProjectDelete
+      tags:
+        - Projects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/projectDeleteReq'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+
+  /v1/automated/projects:
+    post:
+      description: Creates a new project
+      operationId: AutomatedProjectCreate
+      tags:
+        - Projects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/automatedProjectCreateReq'
+      responses:
+        '200':
+          description: Project successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/automatedProjectCreateRsp'
+
+  /v1/projects/{projectID}/invites:
+    get:
+      description: Lists all open invitations for a given project
+      operationId: ProjectInviteList
+      tags:
+        - Projects
+      parameters:
+        - $ref: 'common.yml#/components/parameters/remoteAddress'
+        - $ref: 'common.yml#/components/parameters/userAgent'
+        - $ref: 'common.yml#/components/parameters/sort'
+        - $ref: 'common.yml#/components/parameters/filter'
+        - $ref: 'common.yml#/components/parameters/page'
+        - $ref: 'common.yml#/components/parameters/pageSize'
+        - $ref: '#/components/parameters/projectID'
+      responses:
+        '200':
+          description: Project Invitations successfully retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/projectInviteListRsp'
+        default:
+          $ref: '#/components/responses/error'
+    post:
+      description: Invites a new user to an existing project
+      operationId: ProjectInvite
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/projectID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/projectInviteReq'
+      responses:
+        '200':
+          description: User successfully invited to project
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/projectInviteRsp'
+        default:
+          $ref: '#/components/responses/error'
+
+    put:
+      description: Resend a user invitation to an existing project
+      operationId: ProjectInviteResend
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/projectID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/projectInviteResendReq'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        default:
+          $ref: '#/components/responses/error'
+
+  /v1/projects/{projectID}/invites/{inviteID}:
+    delete:
+      description: Deletes project invite
+      operationId: ProjectInviteDelete
+      tags:
+        - Projects
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/projectInviteDeleteReq'
+      parameters:
+        - $ref: '#/components/parameters/projectID'
+        - $ref: '#/components/parameters/inviteID'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        default:
+          $ref: '#/components/responses/error'
+
+
+  /v1/projects/invites/accept:
+    post:
+      description: Accepts an invitation to an existing project
+      operationId: ProjectInviteAccept
+      tags:
+        - Projects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/projectInviteAcceptReq'
+      responses:
+        '200':
+          description: Project Invitation successfully accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/projectInviteAcceptRsp'
+        default:
+          $ref: '#/components/responses/error'
+
+  /v1/projects/{projectID}/permissions:
+    get:
+      description: Lists all other users that have permission to the project
+      operationId: ProjectPermissionList
+      tags:
+        - Projects
+      parameters:
+        - $ref: 'common.yml#/components/parameters/remoteAddress'
+        - $ref: 'common.yml#/components/parameters/userAgent'
+        - $ref: 'common.yml#/components/parameters/sort'
+        - $ref: 'common.yml#/components/parameters/filter'
+        - $ref: 'common.yml#/components/parameters/page'
+        - $ref: 'common.yml#/components/parameters/pageSize'
+        - $ref: '#/components/parameters/projectID'
+      responses:
+        '200':
+          description: Project Permissions successfully retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/projectPermissionListRsp'
+        default:
+          $ref: '#/components/responses/error'
+
+  /v1/projects/{projectID}/developerInfo:
+    post:
+      description: Creates a new developer info for a project
+      operationId: ProjectDeveloperInfoCreate
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/projectID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/projectDeveloperInfoCreateReq'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        default:
+          $ref: '#/components/responses/error'
+
+    get:
+      description: Get current developer info for a project
+      operationId: ProjectDeveloperInfoGet
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/projectID'
+      responses:
+        '200':
+          description: Get current developer info for a project
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/projectDeveloperInfoGetRsp'
+        default:
+          $ref: '#/components/responses/error'
+
+components:
+  ###################################################################
+  # Security schemes                                                #
+  ###################################################################
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  parameters:
+    projectID:
+      name: projectID
+      in: path
+      description: ID of project
+      required: true
+      schema:
+        type: string
+
+    inviteID:
+      name: inviteID
+      in: path
+      required: true
+      schema:
+        type: string
+      description: 'ID of the project invitation'
+      example: 'inv-123'
+
+  schemas:
+    ###################################################################
+    # Schemas: Users                                                  #
+    ###################################################################
+    meDeleteReq:
+      type: object
+      properties:
+        requestID:
+          $ref: 'common.yml#/components/schemas/requestID'
+        clientInfo:
+          $ref: 'common.yml#/components/schemas/clientInfo'
+
+    userUpdateReq:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: 'Name of the user'
+          example: 'John Doe'
+        requestID:
+          $ref: 'common.yml#/components/schemas/requestID'
+
+    meRsp:
+      allOf:
+        - $ref: 'common.yml#/components/schemas/genericRsp'
+        - type: object
+          required:
+            - fullName
+            - userIdentifier
+            - confirmed
+          properties:
+            fullName:
+              type: string
+            userIdentifier:
+              type: string
+            confirmed:
+              type: boolean
+
+    ###################################################################
+    # Schemas: Projects                                               #
+    ###################################################################
+    projectCreateReq:
+      type: object
+      required:
+        - name
+      properties:
+        wizard:
+          x-internal: true
+          type: boolean
+        name:
+          type: string
+        requestID:
+          $ref: 'common.yml#/components/schemas/requestID'
+
+    projectCreateRsp:
+      allOf:
+        - $ref: 'common.yml#/components/schemas/genericRsp'
+        - type: object
+          required:
+            - data
+          properties:
+            data:
+              $ref: '#/components/schemas/projectCreateResult'
+
+    automatedProjectCreateReq:
+      type: object
+      required:
+        - name
+        - domain
+      properties:
+        name:
+          type: string
+        domain:
+          type: string
+        requestID:
+          $ref: 'common.yml#/components/schemas/requestID'
+
+    automatedProjectCreateRsp:
+      allOf:
+        - $ref: 'common.yml#/components/schemas/genericRsp'
+        - type: object
+          required:
+            - data
+          properties:
+            data:
+              $ref: '#/components/schemas/automatedProjectCreateResult'
+
+    projectUpdateReq:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          $ref: 'common.yml#/components/schemas/projectID'
+        name:
+          type: string
+        domain:
+          type: string
+        requestID:
+          $ref: 'common.yml#/components/schemas/requestID'
+
+    projectUpdateRsp:
+      allOf:
+        - $ref: 'common.yml#/components/schemas/genericRsp'
+        - type: object
+          required:
+            - data
+          properties:
+            data:
+              $ref: '#/components/schemas/projectCreateResult'
+
+    automatedProjectCreateResult:
+      type: object
+      required:
+        - id
+        - name
+        - domain
+        - apiSecret
+        - externalAddress
+      properties:
+        id:
+          $ref: 'common.yml#/components/schemas/projectID'
+        name:
+          type: string
+        domain:
+          type: string
+        apiSecret:
+          type: string
+        externalAddress:
+          type: string
+
+    projectCreateResult:
+      type: object
+      required:
+        - project
+        - externalAddress
+        - internalPublicAddress
+        - internalPrivateAddress
+      properties:
+        project:
+          $ref: '#/components/schemas/project'
+        # deprecated
+        externalAddress:
+          type: string
+        # deprecated
+        internalPublicAddress:
+          type: string
+        # deprecated
+        internalPrivateAddress:
+          type: string
+
+    projectInviteListRsp:
+      allOf:
+        - $ref: 'common.yml#/components/schemas/genericRsp'
+        - type: object
+          required:
+            - data
+          properties:
+            data:
+              type: object
+              required:
+                - invites
+              properties:
+                invites:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/projectInvite'
+
+    projectListRsp:
+      allOf:
+        - $ref: 'common.yml#/components/schemas/genericRsp'
+        - type: object
+          required:
+            - data
+          properties:
+            data:
+              type: object
+              required:
+                - projects
+                - paging
+              properties:
+                projects:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/project'
+                paging:
+                  $ref: 'common.yml#/components/schemas/paging'
+
+    projectInviteReq:
+      type: object
+      required:
+        - email
+      properties:
+        email:
+          type: string
+        requestID:
+          $ref: 'common.yml#/components/schemas/requestID'
+
+    projectInviteResendReq:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+        requestID:
+          $ref: 'common.yml#/components/schemas/requestID'
+
+
+    projectInviteRsp:
+      allOf:
+        - $ref: 'common.yml#/components/schemas/genericRsp'
+        - type: object
+          required:
+            - data
+          properties:
+            data:
+              type: object
+              required:
+                - projectID
+                - inviteID
+              properties:
+                projectID:
+                  type: string
+                inviteID:
+                  type: string
+
+    projectInviteAcceptReq:
+      type: object
+      required:
+        - emailLinkID
+        - token
+      properties:
+        emailLinkID:
+          type: string
+        token:
+          type: string
+        requestID:
+          $ref: 'common.yml#/components/schemas/requestID'
+
+    projectInviteAcceptRsp:
+      allOf:
+        - $ref: 'common.yml#/components/schemas/genericRsp'
+        - type: object
+          required:
+            - loginToken
+          properties:
+            loginToken:
+              type: string
+
+    projectInviteDeleteReq:
+      type: object
+      properties:
+        requestID:
+          $ref: 'common.yml#/components/schemas/requestID'
+        clientInfo:
+          $ref: 'common.yml#/components/schemas/clientInfo'
+
+    projectPermissionListRsp:
+      allOf:
+        - $ref: 'common.yml#/components/schemas/genericRsp'
+        - type: object
+          required:
+            - data
+          properties:
+            data:
+              type: object
+              required:
+                - permissions
+              properties:
+                permissions:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/projectPermission'
+
+    projectDeveloperInfoCreateReq:
+      type: object
+      required:
+        - programmingLanguageFrontend
+        - programmingLanguageBackend
+        - integrationTarget
+      properties:
+        programmingLanguageFrontend:
+          type: string
+        programmingLanguageBackend:
+          type: string
+        integrationTarget:
+          type: string
+        requestID:
+          $ref: 'common.yml#/components/schemas/requestID'
+        clientInfo:
+          $ref: 'common.yml#/components/schemas/clientInfo'
+
+    projectDeveloperInfoGetRsp:
+      allOf:
+        - $ref: 'common.yml#/components/schemas/genericRsp'
+        - type: object
+          required:
+            - programmingLanguageFrontend
+            - programmingLanguageBackend
+            - integrationTarget
+          properties:
+            programmingLanguageFrontend:
+              type: string
+            programmingLanguageBackend:
+              type: string
+            integrationTarget:
+              type: string
+
+    project:
+      type: object
+      required:
+        - id
+        - name
+        - applicationUrl
+        - environment
+        - externalAddress
+        - internalPublicAddress
+        - internalPrivateAddress
+        - created
+        - updated
+      properties:
+        id:
+          $ref: 'common.yml#/components/schemas/projectID'
+        name:
+          type: string
+        domain:
+          type: string
+        authSuccessRedirectUrl:
+          type: string
+        applicationUrl:
+          type: string
+        environment:
+          type: string
+        externalAddress:
+          type: string
+        internalPublicAddress:
+          type: string
+        internalPrivateAddress:
+          type: string
+        created:
+          description: Timestamp in yyyy-MM-dd'T'HH:mm:ss format
+          type: string
+        updated:
+          description: Timestamp in yyyy-MM-dd'T'HH:mm:ss format
+          type: string
+
+    projectInvite:
+      type: object
+      required:
+        - id
+        - projectID
+        - email
+        - senderID
+        - created
+        - status
+        - updated
+      properties:
+        id:
+          type: string
+        projectID:
+          type: string
+        email:
+          type: string
+        senderID:
+          type: string
+        created:
+          description: Timestamp in yyyy-MM-dd'T'HH:mm:ss format
+          type: string
+        updated:
+          description: Timestamp in yyyy-MM-dd'T'HH:mm:ss format
+          type: string
+        status:
+          type: string
+
+    projectPermission:
+      type: object
+      required:
+        - id
+        - projectID
+        - email
+        - name
+        - created
+        - updated
+      properties:
+        projectID:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        created:
+          description: Timestamp in yyyy-MM-dd'T'HH:mm:ss format
+          type: string
+
+    projectDeleteReq:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          $ref: 'common.yml#/components/schemas/projectID'
+        requestID:
+          $ref: 'common.yml#/components/schemas/requestID'
+
+  responses:
+    error:
+      description: Error
+      content:
+        application/json:
+          schema:
+            $ref: 'common.yml#/components/schemas/errorRsp'
+    '200':
+      description: Operation succeeded
+      content:
+        application/json:
+          schema:
+            $ref: 'common.yml#/components/schemas/genericRsp'
+
+security:
+  - bearerAuth: [ ]
