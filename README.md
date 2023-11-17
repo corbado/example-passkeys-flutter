@@ -80,7 +80,7 @@ This is a basic sample application that shows how passkeys can be integrated in 
 Maybe it helped you to get a few ideas about how you can build your own app using passkey authentication.
 
 This repository will be continuously updated and improved (we plan to add more comments to the code).
-If you have questions, feedback or wishes regarding features, please reach out to us via [email](contact@corbado.com) or join our passkeys community on [Slack](https://join.slack.com/t/corbado/shared_invite/zt-1b7867yz8-V~Xr~ngmSGbt7IA~g16ZsQ). 
+If you have questions, feedback or wishes regarding features, please reach out to us via [email](mailto:contact@corbado.com) or join our passkeys community on [Slack](https://join.slack.com/t/corbado/shared_invite/zt-1b7867yz8-V~Xr~ngmSGbt7IA~g16ZsQ). 
 We are existed about what you are going to build.
 
 We're also happy to receive issues or pull requests if you have suggestions for improvement.
