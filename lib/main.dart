@@ -1,63 +1,78 @@
-import 'package:corbado_auth_demo/activities/email_link_confirm_activity.dart';
-import 'package:corbado_auth_demo/activities/login_activity.dart';
-import 'package:corbado_auth_demo/routes.dart';
-import 'package:corbado_auth_demo/services/app_locator.dart';
-import 'package:corbado_auth_demo/theme/theme.dart';
+import 'package:corbado_auth/corbado_auth.dart';
+import 'package:developer_panel_app/providers/auth_provider.dart';
+import 'package:developer_panel_app/providers/package_info_provider.dart';
+import 'package:developer_panel_app/router.dart';
+import 'package:developer_panel_app/screens/loading_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:oktoast/oktoast.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:overlay_support/overlay_support.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  initLocator();
-  runApp(MaterialApp.router(routerConfig: router));
+void main() async {
+  runApp(const LoadingScreen());
+
+  final corbadoAuth = CorbadoAuth("pro-1", customDomain: "https://corbado.com");
+  await corbadoAuth.init();
+
+  final packageInfo = await PackageInfo.fromPlatform();
+
+  runApp(ProviderScope(
+    overrides: [
+      corbadoProvider.overrideWithValue(corbadoAuth),
+      packageInfoProvider.overrideWithValue(packageInfo)
+    ],
+    child: const MyApp(),
+  ));
 }
 
-final router = GoRouter(
-  routes: [
-    GoRoute(
-      path: '/',
-      pageBuilder: (context, state) {
-        final queryParams = state.queryParams;
-        final emailLinkID = queryParams['corbadoEmailLinkID'];
-        final token = queryParams['corbadoToken'];
+class MyApp extends ConsumerWidget {
+  const MyApp({super.key});
 
-        debugPrint("emailLinkID: $emailLinkID");
-        debugPrint("token: $token");
-
-        if (emailLinkID == null || token == null) {
-          return MaterialPage(child: MyApp(homeWidget: LoginActivity()));
-        }
-        return MaterialPage(
-          child: EmailLinkConfirmActivity(
-            emailLinkID: emailLinkID,
-            token: token,
-          ),
-        );
-      },
-    ),
-    GoRoute(
-      path: loginRoute,
-      pageBuilder: (context, state) {
-        return MaterialPage(
-            child: MyApp(
-                homeWidget: LoginActivity(
-          emailLinkRedirect: true,
-        )));
-      },
-    ),
-  ],
-);
-
-class MyApp extends StatelessWidget {
-  final Widget homeWidget;
-
-  const MyApp({Key? key, required this.homeWidget}) : super(key: key);
-
+  // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return OKToast(
-        child:
-            MaterialApp(title: 'Corbado Demo', theme: theme, home: homeWidget));
+  Widget build(BuildContext context, WidgetRef ref) {
+    final router = ref.watch(routerProvider);
+
+    return OverlaySupport.global(
+        child: MaterialApp.router(
+      routeInformationParser: router.routeInformationParser,
+      routerDelegate: router.routerDelegate,
+      routeInformationProvider: router.routeInformationProvider,
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        fontFamily: 'Space Grotesk',
+        textTheme: const TextTheme(
+          headlineMedium: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+          ),
+          headlineSmall: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+          bodyMedium: TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+          ),
+          bodySmall: TextStyle(
+            color: Colors.white,
+            fontSize: 12,
+          ),
+        ),
+        colorScheme: const ColorScheme(
+          brightness: Brightness.light,
+          primary: Color(0xFF1953ff),
+          onPrimary: Colors.white,
+          secondary: Color(0xff59ACFF),
+          onSecondary: Colors.black,
+          error: Colors.redAccent,
+          onError: Colors.white,
+          background: Color(0xff090F1F),
+          onBackground: Colors.white,
+          surface: Color(0xFF2C334A),
+          onSurface: Color(0xFF1953ff),
+        ),
+        useMaterial3: true,
+      ),
+    ));
   }
 }

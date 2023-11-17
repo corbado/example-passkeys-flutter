@@ -1,31 +1,63 @@
-name: corbado_auth_demo
-description: An example how to use the corbado_auth package.
+name: developer_panel_app
+description: Native app for Corbado developer panel
 publish_to: 'none'
-version: 1.0.0+1
+
+version: 1.0.6+8
 
 environment:
-  sdk: ">=2.17.6 <3.0.0"
+  sdk: '>=3.0.6 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.2
+  corbado_auth: ^1.1.1
+  riverpod: ^2.3.10
+  flutter_riverpod: ^2.3.10
+  either_dart: ^1.0.0
+  flutter_hooks: 0.20.1
+  hooks_riverpod: 2.4.0
+  go_router: ^10.1.2
+  flutter_svg: ^2.0.7
+  otp_text_field: ^1.1.3
+
+  openapi_generator_annotations: ^4.10.0
   http: ^1.1.0
-  oktoast: ^3.3.0
-  convert: ^3.1.1
-  go_router: ^6.5.7
-  corbado_auth: ^1.0.1
-  passkeys: ^1.0.2
-  corbado_frontend_api_client: ^1.0.0
-  get_it: ^7.6.0
+  data_table_2: ^2.5.8
+  overlay_support: ^2.1.0
+  package_info_plus: ^4.1.0
+  any_link_preview: ^3.0.1
+  modal_bottom_sheet: ^3.0.0-pre
+  ua_client_hints: ^1.1.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
   flutter_lints: ^2.0.0
+
+  openapi_generator: ^4.13.1
+  build_runner: ^2.4.5
+
+  flutter_launcher_icons: ^0.13.1
 
 flutter:
   uses-material-design: true
+
   assets:
-    - assets/
+    - assets/logo/
+
+  fonts:
+    - family: Space Grotesk
+      fonts:
+        - asset: assets/fonts/SpaceGrotesk-VariableFont_wght.ttf
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  adaptive_icon_background: "#1953FF"
+  adaptive_icon_foreground: "assets/logo/corbado_android.png"
+
+  ios: true
+  image_path: "assets/logo/corbado_ios.png"
+  min_sdk_android: 21
+  remove_alpha_ios: true
