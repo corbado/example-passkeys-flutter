@@ -17,95 +17,86 @@ class PasskeysScreen extends StatefulHookConsumerWidget {
 }
 
 class _PasskeysScreenState extends ConsumerState<PasskeysScreen> {
-  bool _isLoading = false;
-  late String _userAgent;
-
-  @override
-  void initState() {
-    super.initState();
-    init();
-  }
-
-  void init() async {
-    _userAgent = await userAgent();
-    _isLoading = false;
-  }
-
   @override
   Widget build(BuildContext context) {
     final authService = ref.watch(authServiceProvider);
     final passkeys = ref.watch(passkeysProvider).value ?? [];
     final errorMessage = useState<String?>(null);
+    final passkeyAppendLoading = useState<bool>(false);
 
     return BaseBody(
-        isLoading: _isLoading,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Passkeys available',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
-                const SizedBox(height: 20),
-                Column(
-                  children: passkeys
-                      .map((p) => SizedBox(
-                          width: double.infinity,
-                          child: PasskeyCard(
-                              passkeyInfo: p,
-                              onDelete: (String credentialID) async {
-                                errorMessage.value = '';
-                                await authService.deletePasskey(credentialID);
-                                showSimpleNotification(
-                                    const Text(
-                                      'Passkey has been deleted successfully.',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                    leading: const Icon(
-                                      Icons.check,
-                                      color: Colors.green,
-                                    ),
-                                    background:
-                                        Theme.of(context).colorScheme.primary);
-                              })))
-                      .toList(),
-                ),
-                const SizedBox(height: 20),
-                SizedBox(
-                  width: double.infinity,
-                  child: FilledTextButton(
-                    content: 'Add passkey',
-                    onTap: () async {
-                      errorMessage.value = '';
-                      (await authService.appendPasskey()).either(
-                          (passkeyCreated) {
-                        if (!passkeyCreated) {
-                          return;
-                        }
-
-                        showSimpleNotification(
-                            const Text(
-                              'Passkey has been created successfully.',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            leading: const Icon(
-                              Icons.check,
-                              color: Colors.green,
-                            ),
-                            background: Theme.of(context).colorScheme.primary);
-                      }, (error) => errorMessage.value = error);
-                    },
-                  ),
-                ),
-                const SizedBox(height: 10),
-                MaybeError(errorMessage.value),
-                const SizedBox(height: 10),
-              ],
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Passkeys available',
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
-          ),
-        ));
+            const SizedBox(height: 20),
+            Column(
+              children: passkeys
+                  .map((p) => SizedBox(
+                      width: double.infinity,
+                      child: PasskeyCard(
+                          passkeyInfo: p,
+                          onDelete: (String credentialID) async {
+                            errorMessage.value = '';
+                            await authService.deletePasskey(credentialID);
+                            showSimpleNotification(
+                                const Text(
+                                  'Passkey has been deleted successfully.',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                leading: const Icon(
+                                  Icons.check,
+                                  color: Colors.green,
+                                ),
+                                background:
+                                    Theme.of(context).colorScheme.primary);
+                          })))
+                  .toList(),
+            ),
+            const SizedBox(height: 20),
+            SizedBox(
+              width: double.infinity,
+              child: FilledTextButton(
+                content: 'Add passkey',
+                isLoading: passkeyAppendLoading.value,
+                onTap: () async {
+                  passkeyAppendLoading.value = true;
+                  errorMessage.value = '';
+                  (await authService.appendPasskey()).either((passkeyCreated) {
+                    passkeyAppendLoading.value = false;
+                    if (!passkeyCreated) {
+                      return;
+                    }
+
+                    showSimpleNotification(
+                        const Text(
+                          'Passkey has been created successfully.',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        leading: const Icon(
+                          Icons.check,
+                          color: Colors.green,
+                        ),
+                        background: Theme.of(context).colorScheme.primary);
+                  }, (error) {
+                    passkeyAppendLoading.value = false;
+                    errorMessage.value = error;
+                  });
+                },
+              ),
+            ),
+            const SizedBox(height: 10),
+            MaybeError(errorMessage.value),
+            const SizedBox(height: 10),
+          ],
+        ),
+      ),
+    ));
   }
 }

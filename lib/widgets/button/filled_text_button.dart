@@ -15,6 +15,14 @@ class FilledTextButton extends StatelessWidget {
       this.disabled = false,
       this.isLoading = false});
 
+  void onPressed() {
+    if (isLoading) {
+      return;
+    }
+
+    onTap();
+  }
+
   @override
   Widget build(BuildContext context) {
     final textStyle = Theme.of(context)
@@ -32,7 +40,7 @@ class FilledTextButton extends StatelessWidget {
           backgroundColor: background ?? Theme.of(context).colorScheme.primary,
           disabledBackgroundColor: Colors.grey.withOpacity(0.25),
           padding: const EdgeInsets.all(15)),
-      onPressed: disabled ? null : onTap,
+      onPressed: disabled ? null : onPressed,
       child: isLoading
           ? SizedBox(
               height: progressIndicatorSize,

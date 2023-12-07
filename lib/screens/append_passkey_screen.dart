@@ -14,6 +14,7 @@ class AppendPasskeyScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final authService = ref.watch(authServiceProvider);
     final errorMessage = useState<String?>(null);
+    final passkeyAppendLoading = useState<bool>(false);
 
     return BaseBody(
       showNavigation: false,
@@ -38,15 +39,18 @@ class AppendPasskeyScreen extends HookConsumerWidget {
               width: double.infinity,
               child: FilledTextButton(
                 content: 'Activate',
+                isLoading: passkeyAppendLoading.value,
                 onTap: () async {
-                  (await authService.appendPasskey())
-                      .either((passkeyCreated) {
-                        if (passkeyCreated) {
-                          authService.finishSignUp();
-                        }
+                  passkeyAppendLoading.value = true;
+                  (await authService.appendPasskey()).either((passkeyCreated) {
+                    passkeyAppendLoading.value = false;
+                    if (passkeyCreated) {
+                      authService.finishSignUp();
+                    }
                   }, (error) {
                     errorMessage.value = error;
                   });
+                  passkeyAppendLoading.value = false;
                 },
               ),
             ),
