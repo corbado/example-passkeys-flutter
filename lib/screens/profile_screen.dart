@@ -111,7 +111,7 @@ class ProfileScreen extends HookConsumerWidget {
               width: double.infinity,
               child: FilledTextButton(
                 content: 'Delete account',
-                background: Theme.of(context).colorScheme.secondary,
+                background: Theme.of(context).colorScheme.error,
                 onTap: () async {
                   showDialog(
                       context: context,
@@ -126,6 +126,7 @@ class ProfileScreen extends HookConsumerWidget {
                               ),
                               FilledTextButton(
                                 content: 'Delete account',
+                                background: Theme.of(context).colorScheme.error,
                                 onTap: () async {
                                   try {
                                     context.pop();

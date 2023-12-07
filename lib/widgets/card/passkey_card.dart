@@ -52,6 +52,10 @@ class PasskeyCard extends StatelessWidget {
               Text(
                 'Created: ${passkeyInfo.created}',
                 style: txtStyle,
+              ),
+              Text(
+                'Synced: ${passkeyInfo.backupState}',
+                style: txtStyle,
               )
             ],
           ),

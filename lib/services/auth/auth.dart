@@ -42,10 +42,17 @@ class AuthService {
       await corbado.appendPasskey();
 
       return const Left(true);
+    } on SyncAccountNotAvailableException {
+      debugPrint('user has cancelled and can try again');
+
+      return const Left(false);
     } on PasskeyAuthCancelledException {
       debugPrint('user has cancelled and can try again');
 
       return const Left(false);
+    } on PasskeyAlreadyExistsException {
+      return const Right(
+          'You have already set up a passkey that can be used from this device. No need to create another one :)');
     } on Exception catch (e) {
       return Right(_buildErrorFromException(e));
     }

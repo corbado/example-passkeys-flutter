@@ -5,8 +5,13 @@ import 'package:flutter/material.dart';
 class BaseBody extends StatelessWidget {
   final Widget child;
   final bool showNavigation;
+  final bool isLoading;
 
-  const BaseBody({super.key, required this.child, this.showNavigation = true});
+  const BaseBody(
+      {super.key,
+      required this.child,
+      this.showNavigation = true,
+      this.isLoading = false});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +22,10 @@ class BaseBody extends StatelessWidget {
         child: Column(
           children: [
             const Header(),
-            Expanded(child: child),
+            Expanded(
+                child: isLoading
+                    ? const Center(child: CircularProgressIndicator())
+                    : child),
             _drawNavigation()
           ],
         ),

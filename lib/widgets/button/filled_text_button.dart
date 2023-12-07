@@ -30,6 +30,7 @@ class FilledTextButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(25.0),
           ),
           backgroundColor: background ?? Theme.of(context).colorScheme.primary,
+          disabledBackgroundColor: Colors.grey.withOpacity(0.25),
           padding: const EdgeInsets.all(15)),
       onPressed: disabled ? null : onTap,
       child: isLoading

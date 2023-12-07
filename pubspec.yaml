@@ -2,7 +2,7 @@ name: developer_panel_app
 description: Native app for Corbado developer panel
 publish_to: 'none'
 
-version: 1.0.6+8
+version: 1.0.7+9
 
 environment:
   sdk: '>=3.0.6 <4.0.0'
@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  corbado_auth: ^1.1.1
+  corbado_auth: ^1.2.0
   riverpod: ^2.3.10
   flutter_riverpod: ^2.3.10
   either_dart: ^1.0.0
