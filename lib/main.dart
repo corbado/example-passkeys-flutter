@@ -11,8 +11,8 @@ import 'package:package_info_plus/package_info_plus.dart';
 void main() async {
   runApp(const LoadingScreen());
 
-  final corbadoAuth = CorbadoAuth("pro-1");
-  await corbadoAuth.init();
+  final corbadoAuth = CorbadoAuth();
+  await corbadoAuth.init("pro-1");
 
   final packageInfo = await PackageInfo.fromPlatform();
 

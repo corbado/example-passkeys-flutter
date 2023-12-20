@@ -85,21 +85,17 @@ class EmailOTPScreenState extends ConsumerState<EmailOTPScreen> {
                     isLoading.value = true;
                     final maybeError =
                         await authService.signUpEmailComplete(code.value);
-                    isLoading.value = false;
                     if (maybeError != null) {
+                      isLoading.value = false;
                       errorMessage.value = maybeError;
                       return;
                     }
-
-                    if (!context.mounted) return;
-                    context.push(Routes.passkeyAppend);
                   },
                 ),
               ),
               const SizedBox(height: 10),
               GestureDetector(
                 onTap: () {
-                  print('on back');
                   context.pop();
                 },
                 child: SizedBox(

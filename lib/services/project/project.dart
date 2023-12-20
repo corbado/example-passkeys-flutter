@@ -2,6 +2,7 @@ import 'package:developer_panel_app/models/paginated_list.dart';
 import 'package:developer_panel_app/models/project_stats.dart';
 import 'package:developer_panel_app/models/user.dart';
 import 'package:developer_panel_app/services/shared/corbado_project_client/lib/api.dart' as api;
+import 'package:flutter/cupertino.dart';
 
 class ProjectService {
   final api.UserApi _userApi;
@@ -22,6 +23,7 @@ class ProjectService {
   }
 
   Future<ProjectStats> getProjectStats() async {
+    debugPrint('getProjectStats');
     final raw = await _userApi.userStatsList('month');
 
     return ProjectStats.fromResponse(raw!.data.stats);

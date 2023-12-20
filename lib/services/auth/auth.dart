@@ -10,7 +10,7 @@ class AuthService {
 
   Future<String?> signUpEmailInit(String email, String name) async {
     try {
-      await corbado.registerWithEmailCode(email: email, fullName: name);
+      await corbado.startSignUpWithEmailCode(email: email, fullName: name);
       return null;
     } on UserAlreadyExistsException {
       return 'User "$email" already exists.';
@@ -25,7 +25,7 @@ class AuthService {
 
   Future<String?> signUpEmailComplete(String code) async {
     try {
-      await corbado.completeEmailCode(code: code, askForPasskeyAppend: true);
+      await corbado.finishEmailCode(code: code);
     } on RequiredFieldEmptyException catch (e) {
       return 'Code can not be empty.';
     } on CorbadoException catch (e) {
@@ -69,21 +69,27 @@ class AuthService {
   }
 
   void finishSignUp() {
-    return corbado.finishSignUp();
+    return corbado.finishPasskeyAppendProcess();
   }
 
-  Future<Either<SignInHandler, String>> initAutoFillSignIn() async {
+  Future<String?> initAutoFillSignIn() async {
     try {
-      final signInHandler = await corbado.autocompletedSignInWithPasskey();
-      return Left(signInHandler);
-    } on Exception catch (e) {
-      return Right(_buildErrorFromException(e));
+      await corbado.autocompletedLoginWithPasskey();
+    } on PasskeyAuthCancelledException {
+      debugPrint('initAutoFillSignIn cancelled');
+      return null;
+    } on InvalidPasskeyException catch (e) {
+      return e.toString();
     }
+  }
+
+  Future<void> cancelAutoFillSignIn() async {
+    return corbado.cancelAuthenticatorOperation();
   }
 
   Future<Either<String?, String>> signIn(String email) async {
     try {
-      await corbado.signInWithPasskey(email: email);
+      await corbado.loginWithPasskey(email: email);
       return const Left(null);
     } on UnknownUserException {
       return Right(
@@ -103,7 +109,7 @@ class AuthService {
 
   Future<Either<String, String>> _fallbackSignIn(String email) async {
     try {
-      await corbado.signInWithEmailCode(email: email);
+      await corbado.startLoginWithEmailCode(email: email);
       return Left(Routes.buildEmailOtp(email));
     } on UnknownUserException {
       return Right(

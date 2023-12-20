@@ -44,9 +44,6 @@ class AppendPasskeyScreen extends HookConsumerWidget {
                   passkeyAppendLoading.value = true;
                   (await authService.appendPasskey()).either((passkeyCreated) {
                     passkeyAppendLoading.value = false;
-                    if (passkeyCreated) {
-                      authService.finishSignUp();
-                    }
                   }, (error) {
                     errorMessage.value = error;
                   });
