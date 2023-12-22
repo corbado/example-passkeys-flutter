@@ -103,7 +103,8 @@ class AuthService {
     } on PasskeyAuthCancelledException {
       return _fallbackSignIn(email);
     } on Exception catch (e) {
-      return Right(_buildErrorFromException(e));
+      debugPrint('signInError: $e');
+      return _fallbackSignIn(email);
     }
   }
 

@@ -27,7 +27,7 @@ class SignInScreen extends HookConsumerWidget {
     useEffect(() {
       isLoading.value = false;
 
-      final t = Timer(const Duration(milliseconds: 100), () async {
+      final t = Timer(const Duration(milliseconds: 500), () async {
         final authService = ref.watch(authServiceProvider);
         final maybeError = await authService.initAutoFillSignIn();
         if (maybeError != null) {
@@ -35,9 +35,7 @@ class SignInScreen extends HookConsumerWidget {
         }
       });
 
-      return () {
-        if (t.isActive) t.cancel();
-      };
+      return () => t.cancel();
     }, const []);
 
     return BaseBody(

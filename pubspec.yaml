@@ -2,7 +2,7 @@ name: developer_panel_app
 description: Native app for Corbado developer panel
 publish_to: 'none'
 
-version: 1.0.8+13
+version: 1.0.9+19
 
 environment:
   sdk: '>=3.0.6 <4.0.0'
