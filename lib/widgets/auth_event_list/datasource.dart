@@ -10,16 +10,19 @@ class DataSourceAsync extends AsyncDataTableSource {
   @override
   Future<AsyncRowsResponse> getRows(int startIndex, int count) async {
     final int startPage = (startIndex / count).floor();
-    final list = await _projectService.getUserList(startPage + 1, count);
+    final list = await _projectService.getAuthEvents(startPage + 1, count);
     return AsyncRowsResponse(
         list.totalItems,
-        list.currentItems.map((user) {
+        list.currentItems.map((e) {
+          final shortName = "${e.userName.substring(0, 5)}...${e.userName.substring(e.userName.length - 5)}";
           return DataRow(
-            key: ValueKey<String>(user.id),
+            key: ObjectKey(e),
             cells: [
-              DataCell(Text(user.id)),
-              DataCell(Text(user.name)),
-              DataCell(Text(user.created.toString())),
+              DataCell(Text(e.eventType)),
+              DataCell(Text(e.method)),
+              DataCell(Text(shortName)),
+              DataCell(Text(e.status)),
+              DataCell(Text(e.created.toString())),
             ],
           );
         }).toList());

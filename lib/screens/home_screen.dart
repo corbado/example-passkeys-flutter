@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:developer_panel_app/providers/auth_provider.dart';
 import 'package:developer_panel_app/providers/blog_provider.dart';
 import 'package:developer_panel_app/providers/project_provider.dart';
 import 'package:developer_panel_app/widgets/at_a_glance/at_a_glance.dart';
+import 'package:developer_panel_app/widgets/auth_event_list/auth_event_list.dart';
 import 'package:developer_panel_app/widgets/base_body.dart';
 import 'package:developer_panel_app/widgets/blog_article.dart';
 import 'package:flutter/material.dart';
@@ -47,25 +50,38 @@ class HomeScreen extends HookConsumerWidget {
             ),
             const SizedBox(height: 20),
             const AtAGlance(),
+            Platform.isIOS
+                ? Container()
+                : Column(
+                    children: [
+                      const SizedBox(height: 25),
+                      Text(
+                        'Latest passkey articles',
+                        style: Theme.of(context).textTheme.headlineMedium,
+                      ),
+                      const SizedBox(height: 10),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: blogUrls
+                              .map((url) => Padding(
+                                    padding: const EdgeInsets.only(right: 20),
+                                    child: BlogArticle(
+                                      url: url,
+                                    ),
+                                  ))
+                              .toList(),
+                        ),
+                      ),
+                    ],
+                  ),
             const SizedBox(height: 25),
             Text(
-              'Latest passkey articles',
+              'Auth events',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(height: 10),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: blogUrls
-                    .map((url) => Padding(
-                          padding: const EdgeInsets.only(right: 20),
-                          child: BlogArticle(
-                            url: url,
-                          ),
-                        ))
-                    .toList(),
-              ),
-            )
+            const SizedBox(height: 500, child: AuthEventList()),
           ],
         ),
       ),

@@ -1,8 +1,9 @@
+import 'package:developer_panel_app/models/auth_event.dart';
 import 'package:developer_panel_app/models/paginated_list.dart';
 import 'package:developer_panel_app/models/project_stats.dart';
 import 'package:developer_panel_app/models/user.dart';
-import 'package:developer_panel_app/services/shared/corbado_project_client/lib/api.dart' as api;
-import 'package:flutter/cupertino.dart';
+import 'package:developer_panel_app/services/shared/corbado_project_client/lib/api.dart'
+    as api;
 
 class ProjectService {
   final api.UserApi _userApi;
@@ -11,7 +12,7 @@ class ProjectService {
 
   Future<PaginatedList<User>> getUserList(int startIndex, int count) async {
     final users = await _userApi.userList(
-        page: startIndex, pageSize: count, sort: 'created');
+        page: startIndex, pageSize: count, sort: 'created:desc');
     if (users == null) {
       return PaginatedList.empty();
     }
@@ -23,9 +24,23 @@ class ProjectService {
   }
 
   Future<ProjectStats> getProjectStats() async {
-    debugPrint('getProjectStats');
     final raw = await _userApi.userStatsList('month');
 
     return ProjectStats.fromResponse(raw!.data.stats);
+  }
+
+  Future<PaginatedList<AuthEvent>> getAuthEvents(
+      int startIndex, int count) async {
+    final raw = await _userApi.userAuthLogList(
+        page: startIndex, pageSize: count, sort: 'created:desc');
+    if (raw == null) {
+      return PaginatedList.empty();
+    }
+
+    return PaginatedList(
+      currentItems:
+          raw.data.rows.map((e) => AuthEvent.fromResponse(e)).toList(),
+      totalItems: raw.data.paging.totalItems,
+    );
   }
 }

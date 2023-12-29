@@ -48,14 +48,14 @@ class MyApp extends ConsumerWidget {
             fontSize: 24,
           ),
           headlineSmall: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
           bodyMedium: TextStyle(
             color: Colors.white,
             fontSize: 16,
           ),
           bodySmall: TextStyle(
             color: Colors.white,
-            fontSize: 12,
+            fontSize: 10,
           ),
         ),
         colorScheme: const ColorScheme(
