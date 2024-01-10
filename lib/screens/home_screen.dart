@@ -53,6 +53,7 @@ class HomeScreen extends HookConsumerWidget {
             Platform.isIOS
                 ? Container()
                 : Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 25),
                       Text(

@@ -63,6 +63,8 @@ Page<dynamic> _customPageBuilder(
 }
 
 final routerProvider = Provider<GoRouter>((ref) {
+  final authState = ref.watch(authStateProvider);
+
   return GoRouter(
       initialLocation: Routes.signIn,
       routes: [
@@ -125,7 +127,6 @@ final routerProvider = Provider<GoRouter>((ref) {
             }),
       ],
       redirect: (BuildContext context, GoRouterState state) {
-        final authState = ref.watch(authStateProvider);
         final onLoggedOutRoutes = [
           Routes.signIn,
           Routes.signUp,

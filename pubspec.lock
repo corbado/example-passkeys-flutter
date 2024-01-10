@@ -191,7 +191,7 @@ packages:
       path: "../flutter-passkeys/packages/corbado_auth"
       relative: true
     source: path
-    version: "2.0.0-dev.1"
+    version: "2.0.0-dev.3"
   corbado_frontend_api_client:
     dependency: transitive
     description:
@@ -581,7 +581,7 @@ packages:
       path: "../flutter-passkeys/packages/passkeys/passkeys"
       relative: true
     source: path
-    version: "2.0.0-dev.1"
+    version: "2.0.0-dev.3"
   passkeys_android:
     dependency: transitive
     description:
@@ -596,23 +596,23 @@ packages:
       path: "../flutter-passkeys/packages/passkeys/passkeys_ios"
       relative: true
     source: path
-    version: "2.0.0-dev.1"
+    version: "2.0.0-dev.3"
   passkeys_platform_interface:
     dependency: transitive
     description:
       name: passkeys_platform_interface
-      sha256: a1b133bf03e717e2a3adfcdaa6f06d59465e62c2dc9c2f9bd01e732aeee10b55
+      sha256: c3e651cc62ef15f27ff34b314f6348a1bf3e4f1992827c185f58f7537d2255bf
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.0-dev.1"
+    version: "2.0.0-dev.2"
   passkeys_web:
     dependency: transitive
     description:
       name: passkeys_web
-      sha256: b813e856a95cbde0529bb6818414941818e946446c068e68b468a5414c978582
+      sha256: "3c9d6d298a1dc8ed64387ba9692199bb8fcc904cc357f9d743f8f57627464d81"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.0-dev.1"
+    version: "2.0.0-dev.2"
   path:
     dependency: transitive
     description:

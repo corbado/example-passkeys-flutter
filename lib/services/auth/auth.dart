@@ -25,6 +25,10 @@ class AuthService {
 
   Future<String?> signUpEmailComplete(String code) async {
     try {
+      if (code.length != 6) {
+        return 'Your OTP code must contain 6 digits.';
+      }
+
       await corbado.finishEmailCode(code: code);
     } on RequiredFieldEmptyException catch (e) {
       return 'Code can not be empty.';

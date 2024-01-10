@@ -43,11 +43,12 @@ class AppendPasskeyScreen extends HookConsumerWidget {
                 onTap: () async {
                   passkeyAppendLoading.value = true;
                   (await authService.appendPasskey()).either((passkeyCreated) {
-                    passkeyAppendLoading.value = false;
+                    if (!passkeyCreated) {
+                      passkeyAppendLoading.value = false;
+                    }
                   }, (error) {
                     errorMessage.value = error;
                   });
-                  passkeyAppendLoading.value = false;
                 },
               ),
             ),

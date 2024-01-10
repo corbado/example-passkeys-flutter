@@ -5,6 +5,10 @@
 	<key>com.apple.developer.associated-domains</key>
 	<array>
 		<string>webcredentials:corbado.com</string>
+		<string>webcredentials:local.corbado.com</string>
+		<string>webcredentials:local.corbado.com?mode=developer</string>
+		<string>webcredentials:staging1.cbhosts.com</string>
+		<string>webcredentials:staging1.cbhosts.com?mode=developer</string>
 	</array>
 </dict>
 </plist>
