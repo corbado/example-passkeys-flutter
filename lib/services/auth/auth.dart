@@ -79,6 +79,8 @@ class AuthService {
   Future<String?> initAutoFillSignIn() async {
     try {
       await corbado.autocompletedLoginWithPasskey();
+    } on ConditionalUiUnconfirmedCredential {
+      return 'You have not confirmed your account yet. Please log in once with your email address and OTP before you can use your passkey.';
     } on PasskeyAuthCancelledException {
       debugPrint('initAutoFillSignIn cancelled');
       return null;

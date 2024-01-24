@@ -188,10 +188,11 @@ packages:
   corbado_auth:
     dependency: "direct main"
     description:
-      path: "../flutter-passkeys/packages/corbado_auth"
-      relative: true
-    source: path
-    version: "2.0.0-dev.3"
+      name: corbado_auth
+      sha256: "3856290cb6260d6f61da2274c5e2d9b9e86e979973af451343130c9af98bffd2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.2"
   corbado_frontend_api_client:
     dependency: transitive
     description:
@@ -576,43 +577,45 @@ packages:
     source: hosted
     version: "2.0.1"
   passkeys:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
-      path: "../flutter-passkeys/packages/passkeys/passkeys"
-      relative: true
-    source: path
-    version: "2.0.0-dev.3"
+      name: passkeys
+      sha256: f0fb672962ecccc38bcad071bf9183201ed3f261167818aec159c96e243c766f
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.2"
   passkeys_android:
     dependency: transitive
     description:
       name: passkeys_android
-      sha256: "7be643afd6342dff152beffe6afe901491a1b145d2d867150f6473cf5528bb4d"
+      sha256: "3ec0827895cbcf9a03a6d45d64e492888f7efee2fcf8eb541b2c25c407fa6d64"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.0-dev.1"
+    version: "2.0.0"
   passkeys_ios:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
-      path: "../flutter-passkeys/packages/passkeys/passkeys_ios"
-      relative: true
-    source: path
-    version: "2.0.0-dev.3"
+      name: passkeys_ios
+      sha256: eb8820aa01ce978a982699449e15b23a96a25af026d0e26e1ef5cb380ae57d0e
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   passkeys_platform_interface:
     dependency: transitive
     description:
       name: passkeys_platform_interface
-      sha256: c3e651cc62ef15f27ff34b314f6348a1bf3e4f1992827c185f58f7537d2255bf
+      sha256: abca081b3e2f31f899d2b8a29350d460b98618b33027bb65c0f89754acfac048
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.0-dev.2"
+    version: "2.0.0"
   passkeys_web:
     dependency: transitive
     description:
       name: passkeys_web
-      sha256: "3c9d6d298a1dc8ed64387ba9692199bb8fcc904cc357f9d743f8f57627464d81"
+      sha256: "6118d76a37e11a7c944849609f78e5a80f22229718aa06c50896942828c3520f"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.0-dev.2"
+    version: "2.0.0"
   path:
     dependency: transitive
     description:
