@@ -76,7 +76,7 @@ class ProfileScreen extends HookConsumerWidget {
                 disabled: !usernameHasChanged.value,
                 onTap: () async {
                   isLoading.value = true;
-                  await userService.updateUsername(username.text);
+                  await userService.updateUsername(username.text); // TODO migrate
                   await authService.refresh();
                   isLoading.value = false;
                   usernameHasChanged.value = false;
@@ -130,7 +130,7 @@ class ProfileScreen extends HookConsumerWidget {
                                 onTap: () async {
                                   try {
                                     context.pop();
-                                    await userService.deleteUser();
+                                    await userService.deleteUser(); // TODO migrate
                                     if (!context.mounted) return;
 
                                     const duration = Duration(seconds: 5);

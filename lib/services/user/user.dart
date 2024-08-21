@@ -25,6 +25,7 @@ class UserService {
 
   Future<List<ProjectInfo>> getProjects() async {
     final raw = await _projectsApi.projectList();
+
     if (raw == null) {
       return [];
     }
