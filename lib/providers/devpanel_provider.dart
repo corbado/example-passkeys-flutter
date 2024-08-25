@@ -3,21 +3,10 @@ import 'package:developer_panel_app/models/project_stats.dart';
 import 'package:developer_panel_app/providers/auth_provider.dart';
 import 'package:developer_panel_app/providers/project_provider.dart';
 import 'package:developer_panel_app/services/project/project.dart';
-import 'package:developer_panel_app/services/shared/corbado_core_client/lib/api.dart'
-    as core;
 import 'package:developer_panel_app/services/shared/corbado_project_client/lib/api.dart'
     as project;
 import 'package:developer_panel_app/services/user/user.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-// clients
-final corbadoCoreClientProvider = Provider<core.ApiClient>((ref) {
-  final user = ref.watch(userProvider);
-
-  final client = core.ApiClient(basePath: 'https://app.corbado.com');
-  client.addDefaultHeader('cookie', 'cbo_short_session=${user.value?.idToken ?? ''}');
-  return client;
-});
 
 final corbadoProjectClientProvider =
     Provider.family<project.ApiClient, String>((ref, projectID) {
@@ -32,8 +21,9 @@ final corbadoProjectClientProvider =
 
 // services
 final userServiceProvider = Provider<UserService>((ref) {
-  final client = ref.watch(corbadoCoreClientProvider);
-  return UserService(client);
+  final user = ref.watch(userProvider);
+
+  return UserService(user.value?.idToken ?? "");
 });
 
 final projectServiceProvider = Provider<ProjectService>((ref) {
