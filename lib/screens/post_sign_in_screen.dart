@@ -23,12 +23,12 @@ class PostSignInScreen extends ConsumerWidget {
 
   Future<void> _postSignIn(WidgetRef ref) async {
     final userService = ref.watch(userServiceProvider);
-    final projects = await userService.getProjects(); // TODO migrate
+    final projects = await userService.getProjects();
 
     ProjectInfo? selected;
     // create a new default project if the user does not have one yet
     if (projects.isEmpty) {
-      (await userService.addProject('Default project')) // TODO migrate
+      (await userService.addProject('Default project'))
           .either((left) => selected = left, (right) => null);
     } else {
       selected = projects.first;
