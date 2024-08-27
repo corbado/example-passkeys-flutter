@@ -32,7 +32,7 @@ class UserService {
 
   Future<String?> updateUsername(String value) async {
     final response =
-        await _client.put(Uri.parse("$baseUrl/v1/user"), body: {"name": value});
+        await _client.put(Uri.parse("$baseUrl/v1/users"), body: {"name": value});
     if (response.statusCode != 200) {
       throw http.ClientException(
           "Request failed with status: ${response.statusCode}");
@@ -42,7 +42,7 @@ class UserService {
   }
 
   Future<String?> deleteUser() async {
-    await _client.delete(Uri.parse("$baseUrl/v1/user"));
+    await _client.delete(Uri.parse("$baseUrl/v1/users"));
 
     return null;
   }
@@ -76,7 +76,7 @@ class UserService {
         return Left(
             ProjectInfo(projectId, name, DateTime.now(), DateTime.now()));
       } else {
-        return const Right("Error occurred trying to create a new project")
+        return const Right("Error occurred trying to create a new project");
       }
     } on Exception catch (e) {
       return Right(e.toString());
