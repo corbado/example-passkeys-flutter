@@ -10,9 +10,9 @@
 
 part of openapi.api;
 
-
 class EmailTemplatesApi {
-  EmailTemplatesApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
+  EmailTemplatesApi([ApiClient? apiClient])
+      : apiClient = apiClient ?? defaultApiClient;
 
   final ApiClient apiClient;
 
@@ -23,7 +23,9 @@ class EmailTemplatesApi {
   /// Parameters:
   ///
   /// * [EmailTemplateCreateReq] emailTemplateCreateReq (required):
-  Future<Response> emailTemplateCreateWithHttpInfo(EmailTemplateCreateReq emailTemplateCreateReq,) async {
+  Future<Response> emailTemplateCreateWithHttpInfo(
+    EmailTemplateCreateReq emailTemplateCreateReq,
+  ) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/emailTemplates';
 
@@ -35,7 +37,6 @@ class EmailTemplatesApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -53,17 +54,24 @@ class EmailTemplatesApi {
   /// Parameters:
   ///
   /// * [EmailTemplateCreateReq] emailTemplateCreateReq (required):
-  Future<EmailTemplateCreateRsp?> emailTemplateCreate(EmailTemplateCreateReq emailTemplateCreateReq,) async {
-    final response = await emailTemplateCreateWithHttpInfo(emailTemplateCreateReq,);
+  Future<EmailTemplateCreateRsp?> emailTemplateCreate(
+    EmailTemplateCreateReq emailTemplateCreateReq,
+  ) async {
+    final response = await emailTemplateCreateWithHttpInfo(
+      emailTemplateCreateReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'EmailTemplateCreateRsp',) as EmailTemplateCreateRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'EmailTemplateCreateRsp',
+      ) as EmailTemplateCreateRsp;
     }
     return null;
   }
@@ -78,10 +86,13 @@ class EmailTemplatesApi {
   ///   ID of email template
   ///
   /// * [EmailTemplateDeleteReq] emailTemplateDeleteReq (required):
-  Future<Response> emailTemplateDeleteWithHttpInfo(String emailTemplateID, EmailTemplateDeleteReq emailTemplateDeleteReq,) async {
+  Future<Response> emailTemplateDeleteWithHttpInfo(
+    String emailTemplateID,
+    EmailTemplateDeleteReq emailTemplateDeleteReq,
+  ) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/emailTemplates/{emailTemplateID}'
-      .replaceAll('{emailTemplateID}', emailTemplateID);
+        .replaceAll('{emailTemplateID}', emailTemplateID);
 
     // ignore: prefer_final_locals
     Object? postBody = emailTemplateDeleteReq;
@@ -91,7 +102,6 @@ class EmailTemplatesApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -112,17 +122,26 @@ class EmailTemplatesApi {
   ///   ID of email template
   ///
   /// * [EmailTemplateDeleteReq] emailTemplateDeleteReq (required):
-  Future<GenericRsp?> emailTemplateDelete(String emailTemplateID, EmailTemplateDeleteReq emailTemplateDeleteReq,) async {
-    final response = await emailTemplateDeleteWithHttpInfo(emailTemplateID, emailTemplateDeleteReq,);
+  Future<GenericRsp?> emailTemplateDelete(
+    String emailTemplateID,
+    EmailTemplateDeleteReq emailTemplateDeleteReq,
+  ) async {
+    final response = await emailTemplateDeleteWithHttpInfo(
+      emailTemplateID,
+      emailTemplateDeleteReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GenericRsp',) as GenericRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'GenericRsp',
+      ) as GenericRsp;
     }
     return null;
   }

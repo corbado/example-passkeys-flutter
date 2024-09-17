@@ -61,8 +61,5 @@ void main() {
     test('to test the property `userFullName`', () async {
       // TODO
     });
-
-
   });
-
 }

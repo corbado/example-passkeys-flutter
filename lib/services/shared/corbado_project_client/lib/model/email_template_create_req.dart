@@ -86,65 +86,68 @@ class EmailTemplateCreateReq {
   ClientInfo? clientInfo;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is EmailTemplateCreateReq &&
-     other.lang == lang &&
-     other.type == type &&
-     other.name == name &&
-     other.subject == subject &&
-     other.plainTextBody == plainTextBody &&
-     other.htmlTextTitle == htmlTextTitle &&
-     other.htmlTextBody == htmlTextBody &&
-     other.htmlTextButton == htmlTextButton &&
-     other.htmlColorFont == htmlColorFont &&
-     other.htmlColorBackgroundOuter == htmlColorBackgroundOuter &&
-     other.htmlColorBackgroundInner == htmlColorBackgroundInner &&
-     other.htmlColorButton == htmlColorButton &&
-     other.htmlColorButtonFont == htmlColorButtonFont &&
-     other.isDefault == isDefault &&
-     other.action == action &&
-     other.requestID == requestID &&
-     other.clientInfo == clientInfo;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is EmailTemplateCreateReq &&
+          other.lang == lang &&
+          other.type == type &&
+          other.name == name &&
+          other.subject == subject &&
+          other.plainTextBody == plainTextBody &&
+          other.htmlTextTitle == htmlTextTitle &&
+          other.htmlTextBody == htmlTextBody &&
+          other.htmlTextButton == htmlTextButton &&
+          other.htmlColorFont == htmlColorFont &&
+          other.htmlColorBackgroundOuter == htmlColorBackgroundOuter &&
+          other.htmlColorBackgroundInner == htmlColorBackgroundInner &&
+          other.htmlColorButton == htmlColorButton &&
+          other.htmlColorButtonFont == htmlColorButtonFont &&
+          other.isDefault == isDefault &&
+          other.action == action &&
+          other.requestID == requestID &&
+          other.clientInfo == clientInfo;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (lang.hashCode) +
-    (type.hashCode) +
-    (name.hashCode) +
-    (subject.hashCode) +
-    (plainTextBody.hashCode) +
-    (htmlTextTitle.hashCode) +
-    (htmlTextBody.hashCode) +
-    (htmlTextButton.hashCode) +
-    (htmlColorFont.hashCode) +
-    (htmlColorBackgroundOuter.hashCode) +
-    (htmlColorBackgroundInner.hashCode) +
-    (htmlColorButton.hashCode) +
-    (htmlColorButtonFont.hashCode) +
-    (isDefault.hashCode) +
-    (action == null ? 0 : action!.hashCode) +
-    (requestID == null ? 0 : requestID!.hashCode) +
-    (clientInfo == null ? 0 : clientInfo!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (lang.hashCode) +
+      (type.hashCode) +
+      (name.hashCode) +
+      (subject.hashCode) +
+      (plainTextBody.hashCode) +
+      (htmlTextTitle.hashCode) +
+      (htmlTextBody.hashCode) +
+      (htmlTextButton.hashCode) +
+      (htmlColorFont.hashCode) +
+      (htmlColorBackgroundOuter.hashCode) +
+      (htmlColorBackgroundInner.hashCode) +
+      (htmlColorButton.hashCode) +
+      (htmlColorButtonFont.hashCode) +
+      (isDefault.hashCode) +
+      (action == null ? 0 : action!.hashCode) +
+      (requestID == null ? 0 : requestID!.hashCode) +
+      (clientInfo == null ? 0 : clientInfo!.hashCode);
 
   @override
-  String toString() => 'EmailTemplateCreateReq[lang=$lang, type=$type, name=$name, subject=$subject, plainTextBody=$plainTextBody, htmlTextTitle=$htmlTextTitle, htmlTextBody=$htmlTextBody, htmlTextButton=$htmlTextButton, htmlColorFont=$htmlColorFont, htmlColorBackgroundOuter=$htmlColorBackgroundOuter, htmlColorBackgroundInner=$htmlColorBackgroundInner, htmlColorButton=$htmlColorButton, htmlColorButtonFont=$htmlColorButtonFont, isDefault=$isDefault, action=$action, requestID=$requestID, clientInfo=$clientInfo]';
+  String toString() =>
+      'EmailTemplateCreateReq[lang=$lang, type=$type, name=$name, subject=$subject, plainTextBody=$plainTextBody, htmlTextTitle=$htmlTextTitle, htmlTextBody=$htmlTextBody, htmlTextButton=$htmlTextButton, htmlColorFont=$htmlColorFont, htmlColorBackgroundOuter=$htmlColorBackgroundOuter, htmlColorBackgroundInner=$htmlColorBackgroundInner, htmlColorButton=$htmlColorButton, htmlColorButtonFont=$htmlColorButtonFont, isDefault=$isDefault, action=$action, requestID=$requestID, clientInfo=$clientInfo]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'lang'] = this.lang;
-      json[r'type'] = this.type;
-      json[r'name'] = this.name;
-      json[r'subject'] = this.subject;
-      json[r'plainTextBody'] = this.plainTextBody;
-      json[r'htmlTextTitle'] = this.htmlTextTitle;
-      json[r'htmlTextBody'] = this.htmlTextBody;
-      json[r'htmlTextButton'] = this.htmlTextButton;
-      json[r'htmlColorFont'] = this.htmlColorFont;
-      json[r'htmlColorBackgroundOuter'] = this.htmlColorBackgroundOuter;
-      json[r'htmlColorBackgroundInner'] = this.htmlColorBackgroundInner;
-      json[r'htmlColorButton'] = this.htmlColorButton;
-      json[r'htmlColorButtonFont'] = this.htmlColorButtonFont;
-      json[r'isDefault'] = this.isDefault;
+    json[r'lang'] = this.lang;
+    json[r'type'] = this.type;
+    json[r'name'] = this.name;
+    json[r'subject'] = this.subject;
+    json[r'plainTextBody'] = this.plainTextBody;
+    json[r'htmlTextTitle'] = this.htmlTextTitle;
+    json[r'htmlTextBody'] = this.htmlTextBody;
+    json[r'htmlTextButton'] = this.htmlTextButton;
+    json[r'htmlColorFont'] = this.htmlColorFont;
+    json[r'htmlColorBackgroundOuter'] = this.htmlColorBackgroundOuter;
+    json[r'htmlColorBackgroundInner'] = this.htmlColorBackgroundInner;
+    json[r'htmlColorButton'] = this.htmlColorButton;
+    json[r'htmlColorButtonFont'] = this.htmlColorButtonFont;
+    json[r'isDefault'] = this.isDefault;
     if (this.action != null) {
       json[r'action'] = this.action;
     } else {
@@ -175,8 +178,10 @@ class EmailTemplateCreateReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "EmailTemplateCreateReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "EmailTemplateCreateReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "EmailTemplateCreateReq[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "EmailTemplateCreateReq[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -191,10 +196,13 @@ class EmailTemplateCreateReq {
         htmlTextBody: mapValueOfType<String>(json, r'htmlTextBody')!,
         htmlTextButton: mapValueOfType<String>(json, r'htmlTextButton')!,
         htmlColorFont: mapValueOfType<String>(json, r'htmlColorFont')!,
-        htmlColorBackgroundOuter: mapValueOfType<String>(json, r'htmlColorBackgroundOuter')!,
-        htmlColorBackgroundInner: mapValueOfType<String>(json, r'htmlColorBackgroundInner')!,
+        htmlColorBackgroundOuter:
+            mapValueOfType<String>(json, r'htmlColorBackgroundOuter')!,
+        htmlColorBackgroundInner:
+            mapValueOfType<String>(json, r'htmlColorBackgroundInner')!,
         htmlColorButton: mapValueOfType<String>(json, r'htmlColorButton')!,
-        htmlColorButtonFont: mapValueOfType<String>(json, r'htmlColorButtonFont')!,
+        htmlColorButtonFont:
+            mapValueOfType<String>(json, r'htmlColorButtonFont')!,
         isDefault: mapValueOfType<bool>(json, r'isDefault')!,
         action: mapValueOfType<String>(json, r'action'),
         requestID: mapValueOfType<String>(json, r'requestID'),
@@ -204,7 +212,10 @@ class EmailTemplateCreateReq {
     return null;
   }
 
-  static List<EmailTemplateCreateReq> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<EmailTemplateCreateReq> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <EmailTemplateCreateReq>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -232,13 +243,19 @@ class EmailTemplateCreateReq {
   }
 
   // maps a json object with a list of EmailTemplateCreateReq-objects as value to a dart map
-  static Map<String, List<EmailTemplateCreateReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<EmailTemplateCreateReq>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<EmailTemplateCreateReq>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = EmailTemplateCreateReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = EmailTemplateCreateReq.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -263,7 +280,6 @@ class EmailTemplateCreateReq {
   };
 }
 
-
 class EmailTemplateCreateReqLangEnum {
   /// Instantiate a new enum with the provided [value].
   const EmailTemplateCreateReqLangEnum._(this.value);
@@ -285,9 +301,13 @@ class EmailTemplateCreateReqLangEnum {
     de,
   ];
 
-  static EmailTemplateCreateReqLangEnum? fromJson(dynamic value) => EmailTemplateCreateReqLangEnumTypeTransformer().decode(value);
+  static EmailTemplateCreateReqLangEnum? fromJson(dynamic value) =>
+      EmailTemplateCreateReqLangEnumTypeTransformer().decode(value);
 
-  static List<EmailTemplateCreateReqLangEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<EmailTemplateCreateReqLangEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <EmailTemplateCreateReqLangEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -304,7 +324,8 @@ class EmailTemplateCreateReqLangEnum {
 /// Transformation class that can [encode] an instance of [EmailTemplateCreateReqLangEnum] to String,
 /// and [decode] dynamic data back to [EmailTemplateCreateReqLangEnum].
 class EmailTemplateCreateReqLangEnumTypeTransformer {
-  factory EmailTemplateCreateReqLangEnumTypeTransformer() => _instance ??= const EmailTemplateCreateReqLangEnumTypeTransformer._();
+  factory EmailTemplateCreateReqLangEnumTypeTransformer() =>
+      _instance ??= const EmailTemplateCreateReqLangEnumTypeTransformer._();
 
   const EmailTemplateCreateReqLangEnumTypeTransformer._();
 
@@ -318,11 +339,14 @@ class EmailTemplateCreateReqLangEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  EmailTemplateCreateReqLangEnum? decode(dynamic data, {bool allowNull = true}) {
+  EmailTemplateCreateReqLangEnum? decode(dynamic data,
+      {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'en': return EmailTemplateCreateReqLangEnum.en;
-        case r'de': return EmailTemplateCreateReqLangEnum.de;
+        case r'en':
+          return EmailTemplateCreateReqLangEnum.en;
+        case r'de':
+          return EmailTemplateCreateReqLangEnum.de;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -335,8 +359,6 @@ class EmailTemplateCreateReqLangEnumTypeTransformer {
   /// Singleton [EmailTemplateCreateReqLangEnumTypeTransformer] instance.
   static EmailTemplateCreateReqLangEnumTypeTransformer? _instance;
 }
-
-
 
 class EmailTemplateCreateReqTypeEnum {
   /// Instantiate a new enum with the provided [value].
@@ -351,9 +373,12 @@ class EmailTemplateCreateReqTypeEnum {
   String toJson() => value;
 
   static const emailLink = EmailTemplateCreateReqTypeEnum._(r'email_link');
-  static const emailLinkLogin = EmailTemplateCreateReqTypeEnum._(r'email_link_login');
-  static const loginNotification = EmailTemplateCreateReqTypeEnum._(r'login_notification');
-  static const passkeyNotification = EmailTemplateCreateReqTypeEnum._(r'passkey_notification');
+  static const emailLinkLogin =
+      EmailTemplateCreateReqTypeEnum._(r'email_link_login');
+  static const loginNotification =
+      EmailTemplateCreateReqTypeEnum._(r'login_notification');
+  static const passkeyNotification =
+      EmailTemplateCreateReqTypeEnum._(r'passkey_notification');
 
   /// List of all possible values in this [enum][EmailTemplateCreateReqTypeEnum].
   static const values = <EmailTemplateCreateReqTypeEnum>[
@@ -363,9 +388,13 @@ class EmailTemplateCreateReqTypeEnum {
     passkeyNotification,
   ];
 
-  static EmailTemplateCreateReqTypeEnum? fromJson(dynamic value) => EmailTemplateCreateReqTypeEnumTypeTransformer().decode(value);
+  static EmailTemplateCreateReqTypeEnum? fromJson(dynamic value) =>
+      EmailTemplateCreateReqTypeEnumTypeTransformer().decode(value);
 
-  static List<EmailTemplateCreateReqTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<EmailTemplateCreateReqTypeEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <EmailTemplateCreateReqTypeEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -382,7 +411,8 @@ class EmailTemplateCreateReqTypeEnum {
 /// Transformation class that can [encode] an instance of [EmailTemplateCreateReqTypeEnum] to String,
 /// and [decode] dynamic data back to [EmailTemplateCreateReqTypeEnum].
 class EmailTemplateCreateReqTypeEnumTypeTransformer {
-  factory EmailTemplateCreateReqTypeEnumTypeTransformer() => _instance ??= const EmailTemplateCreateReqTypeEnumTypeTransformer._();
+  factory EmailTemplateCreateReqTypeEnumTypeTransformer() =>
+      _instance ??= const EmailTemplateCreateReqTypeEnumTypeTransformer._();
 
   const EmailTemplateCreateReqTypeEnumTypeTransformer._();
 
@@ -396,13 +426,18 @@ class EmailTemplateCreateReqTypeEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  EmailTemplateCreateReqTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+  EmailTemplateCreateReqTypeEnum? decode(dynamic data,
+      {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'email_link': return EmailTemplateCreateReqTypeEnum.emailLink;
-        case r'email_link_login': return EmailTemplateCreateReqTypeEnum.emailLinkLogin;
-        case r'login_notification': return EmailTemplateCreateReqTypeEnum.loginNotification;
-        case r'passkey_notification': return EmailTemplateCreateReqTypeEnum.passkeyNotification;
+        case r'email_link':
+          return EmailTemplateCreateReqTypeEnum.emailLink;
+        case r'email_link_login':
+          return EmailTemplateCreateReqTypeEnum.emailLinkLogin;
+        case r'login_notification':
+          return EmailTemplateCreateReqTypeEnum.loginNotification;
+        case r'passkey_notification':
+          return EmailTemplateCreateReqTypeEnum.passkeyNotification;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -415,5 +450,3 @@ class EmailTemplateCreateReqTypeEnumTypeTransformer {
   /// Singleton [EmailTemplateCreateReqTypeEnumTypeTransformer] instance.
   static EmailTemplateCreateReqTypeEnumTypeTransformer? _instance;
 }
-
-

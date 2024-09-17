@@ -26,26 +26,27 @@ class SessionTokenVerifyRspAllOfData {
   String userData;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is SessionTokenVerifyRspAllOfData &&
-     other.userID == userID &&
-     other.user == user &&
-     other.userData == userData;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SessionTokenVerifyRspAllOfData &&
+          other.userID == userID &&
+          other.user == user &&
+          other.userData == userData;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (userID.hashCode) +
-    (user.hashCode) +
-    (userData.hashCode);
+      // ignore: unnecessary_parenthesis
+      (userID.hashCode) + (user.hashCode) + (userData.hashCode);
 
   @override
-  String toString() => 'SessionTokenVerifyRspAllOfData[userID=$userID, user=$user, userData=$userData]';
+  String toString() =>
+      'SessionTokenVerifyRspAllOfData[userID=$userID, user=$user, userData=$userData]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'userID'] = this.userID;
-      json[r'user'] = this.user;
-      json[r'userData'] = this.userData;
+    json[r'userID'] = this.userID;
+    json[r'user'] = this.user;
+    json[r'userData'] = this.userData;
     return json;
   }
 
@@ -61,8 +62,10 @@ class SessionTokenVerifyRspAllOfData {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "SessionTokenVerifyRspAllOfData[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "SessionTokenVerifyRspAllOfData[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "SessionTokenVerifyRspAllOfData[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "SessionTokenVerifyRspAllOfData[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -76,7 +79,10 @@ class SessionTokenVerifyRspAllOfData {
     return null;
   }
 
-  static List<SessionTokenVerifyRspAllOfData> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<SessionTokenVerifyRspAllOfData> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <SessionTokenVerifyRspAllOfData>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -104,13 +110,19 @@ class SessionTokenVerifyRspAllOfData {
   }
 
   // maps a json object with a list of SessionTokenVerifyRspAllOfData-objects as value to a dart map
-  static Map<String, List<SessionTokenVerifyRspAllOfData>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<SessionTokenVerifyRspAllOfData>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<SessionTokenVerifyRspAllOfData>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = SessionTokenVerifyRspAllOfData.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = SessionTokenVerifyRspAllOfData.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -123,4 +135,3 @@ class SessionTokenVerifyRspAllOfData {
     'userData',
   };
 }
-

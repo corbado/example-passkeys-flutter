@@ -65,30 +65,33 @@ class UserCreateReq {
   ClientInfo? clientInfo;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is UserCreateReq &&
-     other.name == name &&
-     other.fullName == fullName &&
-     other.email == email &&
-     other.phoneNumber == phoneNumber &&
-     other.requestID == requestID &&
-     other.clientInfo == clientInfo;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserCreateReq &&
+          other.name == name &&
+          other.fullName == fullName &&
+          other.email == email &&
+          other.phoneNumber == phoneNumber &&
+          other.requestID == requestID &&
+          other.clientInfo == clientInfo;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (name.hashCode) +
-    (fullName == null ? 0 : fullName!.hashCode) +
-    (email == null ? 0 : email!.hashCode) +
-    (phoneNumber == null ? 0 : phoneNumber!.hashCode) +
-    (requestID == null ? 0 : requestID!.hashCode) +
-    (clientInfo == null ? 0 : clientInfo!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (name.hashCode) +
+      (fullName == null ? 0 : fullName!.hashCode) +
+      (email == null ? 0 : email!.hashCode) +
+      (phoneNumber == null ? 0 : phoneNumber!.hashCode) +
+      (requestID == null ? 0 : requestID!.hashCode) +
+      (clientInfo == null ? 0 : clientInfo!.hashCode);
 
   @override
-  String toString() => 'UserCreateReq[name=$name, fullName=$fullName, email=$email, phoneNumber=$phoneNumber, requestID=$requestID, clientInfo=$clientInfo]';
+  String toString() =>
+      'UserCreateReq[name=$name, fullName=$fullName, email=$email, phoneNumber=$phoneNumber, requestID=$requestID, clientInfo=$clientInfo]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'name'] = this.name;
+    json[r'name'] = this.name;
     if (this.fullName != null) {
       json[r'fullName'] = this.fullName;
     } else {
@@ -129,8 +132,10 @@ class UserCreateReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UserCreateReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UserCreateReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "UserCreateReq[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "UserCreateReq[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -147,7 +152,10 @@ class UserCreateReq {
     return null;
   }
 
-  static List<UserCreateReq> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<UserCreateReq> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <UserCreateReq>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -175,13 +183,19 @@ class UserCreateReq {
   }
 
   // maps a json object with a list of UserCreateReq-objects as value to a dart map
-  static Map<String, List<UserCreateReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<UserCreateReq>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<UserCreateReq>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = UserCreateReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = UserCreateReq.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -192,4 +206,3 @@ class UserCreateReq {
     'name',
   };
 }
-

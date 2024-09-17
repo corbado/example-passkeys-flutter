@@ -61,42 +61,45 @@ class EmailLink {
   String? purpose;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is EmailLink &&
-     other.ID == ID &&
-     other.userID == userID &&
-     other.email == email &&
-     other.created == created &&
-     other.updated == updated &&
-     other.status == status &&
-     other.additionalPayload == additionalPayload &&
-     other.userFullName == userFullName &&
-     other.purpose == purpose;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is EmailLink &&
+          other.ID == ID &&
+          other.userID == userID &&
+          other.email == email &&
+          other.created == created &&
+          other.updated == updated &&
+          other.status == status &&
+          other.additionalPayload == additionalPayload &&
+          other.userFullName == userFullName &&
+          other.purpose == purpose;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (ID.hashCode) +
-    (userID.hashCode) +
-    (email.hashCode) +
-    (created.hashCode) +
-    (updated.hashCode) +
-    (status.hashCode) +
-    (additionalPayload.hashCode) +
-    (userFullName == null ? 0 : userFullName!.hashCode) +
-    (purpose == null ? 0 : purpose!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (ID.hashCode) +
+      (userID.hashCode) +
+      (email.hashCode) +
+      (created.hashCode) +
+      (updated.hashCode) +
+      (status.hashCode) +
+      (additionalPayload.hashCode) +
+      (userFullName == null ? 0 : userFullName!.hashCode) +
+      (purpose == null ? 0 : purpose!.hashCode);
 
   @override
-  String toString() => 'EmailLink[ID=$ID, userID=$userID, email=$email, created=$created, updated=$updated, status=$status, additionalPayload=$additionalPayload, userFullName=$userFullName, purpose=$purpose]';
+  String toString() =>
+      'EmailLink[ID=$ID, userID=$userID, email=$email, created=$created, updated=$updated, status=$status, additionalPayload=$additionalPayload, userFullName=$userFullName, purpose=$purpose]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'ID'] = this.ID;
-      json[r'userID'] = this.userID;
-      json[r'email'] = this.email;
-      json[r'created'] = this.created;
-      json[r'updated'] = this.updated;
-      json[r'status'] = this.status;
-      json[r'additionalPayload'] = this.additionalPayload;
+    json[r'ID'] = this.ID;
+    json[r'userID'] = this.userID;
+    json[r'email'] = this.email;
+    json[r'created'] = this.created;
+    json[r'updated'] = this.updated;
+    json[r'status'] = this.status;
+    json[r'additionalPayload'] = this.additionalPayload;
     if (this.userFullName != null) {
       json[r'userFullName'] = this.userFullName;
     } else {
@@ -122,8 +125,10 @@ class EmailLink {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "EmailLink[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "EmailLink[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "EmailLink[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "EmailLink[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -143,7 +148,10 @@ class EmailLink {
     return null;
   }
 
-  static List<EmailLink> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<EmailLink> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <EmailLink>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -171,13 +179,19 @@ class EmailLink {
   }
 
   // maps a json object with a list of EmailLink-objects as value to a dart map
-  static Map<String, List<EmailLink>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<EmailLink>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<EmailLink>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = EmailLink.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = EmailLink.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -217,9 +231,13 @@ class EmailLinkStatusEnum {
     confirmed,
   ];
 
-  static EmailLinkStatusEnum? fromJson(dynamic value) => EmailLinkStatusEnumTypeTransformer().decode(value);
+  static EmailLinkStatusEnum? fromJson(dynamic value) =>
+      EmailLinkStatusEnumTypeTransformer().decode(value);
 
-  static List<EmailLinkStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<EmailLinkStatusEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <EmailLinkStatusEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -236,7 +254,8 @@ class EmailLinkStatusEnum {
 /// Transformation class that can [encode] an instance of [EmailLinkStatusEnum] to String,
 /// and [decode] dynamic data back to [EmailLinkStatusEnum].
 class EmailLinkStatusEnumTypeTransformer {
-  factory EmailLinkStatusEnumTypeTransformer() => _instance ??= const EmailLinkStatusEnumTypeTransformer._();
+  factory EmailLinkStatusEnumTypeTransformer() =>
+      _instance ??= const EmailLinkStatusEnumTypeTransformer._();
 
   const EmailLinkStatusEnumTypeTransformer._();
 
@@ -253,8 +272,10 @@ class EmailLinkStatusEnumTypeTransformer {
   EmailLinkStatusEnum? decode(dynamic data, {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'active': return EmailLinkStatusEnum.active;
-        case r'confirmed': return EmailLinkStatusEnum.confirmed;
+        case r'active':
+          return EmailLinkStatusEnum.active;
+        case r'confirmed':
+          return EmailLinkStatusEnum.confirmed;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -267,5 +288,3 @@ class EmailLinkStatusEnumTypeTransformer {
   /// Singleton [EmailLinkStatusEnumTypeTransformer] instance.
   static EmailLinkStatusEnumTypeTransformer? _instance;
 }
-
-

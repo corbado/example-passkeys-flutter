@@ -19,20 +19,21 @@ class EmailLinkSendRspAllOfData {
   String emailLinkID;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is EmailLinkSendRspAllOfData &&
-     other.emailLinkID == emailLinkID;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is EmailLinkSendRspAllOfData && other.emailLinkID == emailLinkID;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (emailLinkID.hashCode);
+      // ignore: unnecessary_parenthesis
+      (emailLinkID.hashCode);
 
   @override
   String toString() => 'EmailLinkSendRspAllOfData[emailLinkID=$emailLinkID]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'emailLinkID'] = this.emailLinkID;
+    json[r'emailLinkID'] = this.emailLinkID;
     return json;
   }
 
@@ -48,8 +49,10 @@ class EmailLinkSendRspAllOfData {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "EmailLinkSendRspAllOfData[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "EmailLinkSendRspAllOfData[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "EmailLinkSendRspAllOfData[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "EmailLinkSendRspAllOfData[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -61,7 +64,10 @@ class EmailLinkSendRspAllOfData {
     return null;
   }
 
-  static List<EmailLinkSendRspAllOfData> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<EmailLinkSendRspAllOfData> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <EmailLinkSendRspAllOfData>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -89,13 +95,19 @@ class EmailLinkSendRspAllOfData {
   }
 
   // maps a json object with a list of EmailLinkSendRspAllOfData-objects as value to a dart map
-  static Map<String, List<EmailLinkSendRspAllOfData>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<EmailLinkSendRspAllOfData>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<EmailLinkSendRspAllOfData>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = EmailLinkSendRspAllOfData.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = EmailLinkSendRspAllOfData.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -106,4 +118,3 @@ class EmailLinkSendRspAllOfData {
     'emailLinkID',
   };
 }
-

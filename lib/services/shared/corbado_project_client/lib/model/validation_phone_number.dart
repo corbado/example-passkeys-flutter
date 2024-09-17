@@ -31,32 +31,35 @@ class ValidationPhoneNumber {
   String internationalFormatted;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is ValidationPhoneNumber &&
-     other.nationalNumber == nationalNumber &&
-     other.countryCode == countryCode &&
-     other.regionCode == regionCode &&
-     other.nationalFormatted == nationalFormatted &&
-     other.internationalFormatted == internationalFormatted;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ValidationPhoneNumber &&
+          other.nationalNumber == nationalNumber &&
+          other.countryCode == countryCode &&
+          other.regionCode == regionCode &&
+          other.nationalFormatted == nationalFormatted &&
+          other.internationalFormatted == internationalFormatted;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (nationalNumber.hashCode) +
-    (countryCode.hashCode) +
-    (regionCode.hashCode) +
-    (nationalFormatted.hashCode) +
-    (internationalFormatted.hashCode);
+      // ignore: unnecessary_parenthesis
+      (nationalNumber.hashCode) +
+      (countryCode.hashCode) +
+      (regionCode.hashCode) +
+      (nationalFormatted.hashCode) +
+      (internationalFormatted.hashCode);
 
   @override
-  String toString() => 'ValidationPhoneNumber[nationalNumber=$nationalNumber, countryCode=$countryCode, regionCode=$regionCode, nationalFormatted=$nationalFormatted, internationalFormatted=$internationalFormatted]';
+  String toString() =>
+      'ValidationPhoneNumber[nationalNumber=$nationalNumber, countryCode=$countryCode, regionCode=$regionCode, nationalFormatted=$nationalFormatted, internationalFormatted=$internationalFormatted]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'nationalNumber'] = this.nationalNumber;
-      json[r'countryCode'] = this.countryCode;
-      json[r'regionCode'] = this.regionCode;
-      json[r'nationalFormatted'] = this.nationalFormatted;
-      json[r'internationalFormatted'] = this.internationalFormatted;
+    json[r'nationalNumber'] = this.nationalNumber;
+    json[r'countryCode'] = this.countryCode;
+    json[r'regionCode'] = this.regionCode;
+    json[r'nationalFormatted'] = this.nationalFormatted;
+    json[r'internationalFormatted'] = this.internationalFormatted;
     return json;
   }
 
@@ -72,8 +75,10 @@ class ValidationPhoneNumber {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ValidationPhoneNumber[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ValidationPhoneNumber[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "ValidationPhoneNumber[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "ValidationPhoneNumber[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -83,13 +88,17 @@ class ValidationPhoneNumber {
         countryCode: mapValueOfType<int>(json, r'countryCode')!,
         regionCode: mapValueOfType<String>(json, r'regionCode')!,
         nationalFormatted: mapValueOfType<String>(json, r'nationalFormatted')!,
-        internationalFormatted: mapValueOfType<String>(json, r'internationalFormatted')!,
+        internationalFormatted:
+            mapValueOfType<String>(json, r'internationalFormatted')!,
       );
     }
     return null;
   }
 
-  static List<ValidationPhoneNumber> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ValidationPhoneNumber> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ValidationPhoneNumber>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -117,13 +126,19 @@ class ValidationPhoneNumber {
   }
 
   // maps a json object with a list of ValidationPhoneNumber-objects as value to a dart map
-  static Map<String, List<ValidationPhoneNumber>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<ValidationPhoneNumber>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<ValidationPhoneNumber>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = ValidationPhoneNumber.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = ValidationPhoneNumber.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -138,4 +153,3 @@ class ValidationPhoneNumber {
     'internationalFormatted',
   };
 }
-

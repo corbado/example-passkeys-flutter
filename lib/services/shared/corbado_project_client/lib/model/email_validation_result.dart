@@ -40,27 +40,30 @@ class EmailValidationResult {
   ValidationEmail? email;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is EmailValidationResult &&
-     other.isValid == isValid &&
-     other.validationCode == validationCode &&
-     other.suggestion == suggestion &&
-     other.email == email;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is EmailValidationResult &&
+          other.isValid == isValid &&
+          other.validationCode == validationCode &&
+          other.suggestion == suggestion &&
+          other.email == email;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (isValid.hashCode) +
-    (validationCode.hashCode) +
-    (suggestion == null ? 0 : suggestion!.hashCode) +
-    (email == null ? 0 : email!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (isValid.hashCode) +
+      (validationCode.hashCode) +
+      (suggestion == null ? 0 : suggestion!.hashCode) +
+      (email == null ? 0 : email!.hashCode);
 
   @override
-  String toString() => 'EmailValidationResult[isValid=$isValid, validationCode=$validationCode, suggestion=$suggestion, email=$email]';
+  String toString() =>
+      'EmailValidationResult[isValid=$isValid, validationCode=$validationCode, suggestion=$suggestion, email=$email]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'isValid'] = this.isValid;
-      json[r'validationCode'] = this.validationCode;
+    json[r'isValid'] = this.isValid;
+    json[r'validationCode'] = this.validationCode;
     if (this.suggestion != null) {
       json[r'suggestion'] = this.suggestion;
     } else {
@@ -86,15 +89,18 @@ class EmailValidationResult {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "EmailValidationResult[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "EmailValidationResult[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "EmailValidationResult[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "EmailValidationResult[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
       return EmailValidationResult(
         isValid: mapValueOfType<bool>(json, r'isValid')!,
-        validationCode: EmailValidationResultValidationCodeEnum.fromJson(json[r'validationCode'])!,
+        validationCode: EmailValidationResultValidationCodeEnum.fromJson(
+            json[r'validationCode'])!,
         suggestion: mapValueOfType<String>(json, r'suggestion'),
         email: ValidationEmail.fromJson(json[r'email']),
       );
@@ -102,7 +108,10 @@ class EmailValidationResult {
     return null;
   }
 
-  static List<EmailValidationResult> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<EmailValidationResult> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <EmailValidationResult>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -130,13 +139,19 @@ class EmailValidationResult {
   }
 
   // maps a json object with a list of EmailValidationResult-objects as value to a dart map
-  static Map<String, List<EmailValidationResult>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<EmailValidationResult>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<EmailValidationResult>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = EmailValidationResult.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = EmailValidationResult.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -148,7 +163,6 @@ class EmailValidationResult {
     'validationCode',
   };
 }
-
 
 class EmailValidationResultValidationCodeEnum {
   /// Instantiate a new enum with the provided [value].
@@ -163,9 +177,12 @@ class EmailValidationResultValidationCodeEnum {
   String toJson() => value;
 
   static const valid = EmailValidationResultValidationCodeEnum._(r'valid');
-  static const invalidSyntax = EmailValidationResultValidationCodeEnum._(r'invalid_syntax');
-  static const noSuchHost = EmailValidationResultValidationCodeEnum._(r'no_such_host');
-  static const notAllowed = EmailValidationResultValidationCodeEnum._(r'not_allowed');
+  static const invalidSyntax =
+      EmailValidationResultValidationCodeEnum._(r'invalid_syntax');
+  static const noSuchHost =
+      EmailValidationResultValidationCodeEnum._(r'no_such_host');
+  static const notAllowed =
+      EmailValidationResultValidationCodeEnum._(r'not_allowed');
   static const unknown = EmailValidationResultValidationCodeEnum._(r'unknown');
 
   /// List of all possible values in this [enum][EmailValidationResultValidationCodeEnum].
@@ -177,9 +194,13 @@ class EmailValidationResultValidationCodeEnum {
     unknown,
   ];
 
-  static EmailValidationResultValidationCodeEnum? fromJson(dynamic value) => EmailValidationResultValidationCodeEnumTypeTransformer().decode(value);
+  static EmailValidationResultValidationCodeEnum? fromJson(dynamic value) =>
+      EmailValidationResultValidationCodeEnumTypeTransformer().decode(value);
 
-  static List<EmailValidationResultValidationCodeEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<EmailValidationResultValidationCodeEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <EmailValidationResultValidationCodeEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -196,7 +217,9 @@ class EmailValidationResultValidationCodeEnum {
 /// Transformation class that can [encode] an instance of [EmailValidationResultValidationCodeEnum] to String,
 /// and [decode] dynamic data back to [EmailValidationResultValidationCodeEnum].
 class EmailValidationResultValidationCodeEnumTypeTransformer {
-  factory EmailValidationResultValidationCodeEnumTypeTransformer() => _instance ??= const EmailValidationResultValidationCodeEnumTypeTransformer._();
+  factory EmailValidationResultValidationCodeEnumTypeTransformer() =>
+      _instance ??=
+          const EmailValidationResultValidationCodeEnumTypeTransformer._();
 
   const EmailValidationResultValidationCodeEnumTypeTransformer._();
 
@@ -210,14 +233,20 @@ class EmailValidationResultValidationCodeEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  EmailValidationResultValidationCodeEnum? decode(dynamic data, {bool allowNull = true}) {
+  EmailValidationResultValidationCodeEnum? decode(dynamic data,
+      {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'valid': return EmailValidationResultValidationCodeEnum.valid;
-        case r'invalid_syntax': return EmailValidationResultValidationCodeEnum.invalidSyntax;
-        case r'no_such_host': return EmailValidationResultValidationCodeEnum.noSuchHost;
-        case r'not_allowed': return EmailValidationResultValidationCodeEnum.notAllowed;
-        case r'unknown': return EmailValidationResultValidationCodeEnum.unknown;
+        case r'valid':
+          return EmailValidationResultValidationCodeEnum.valid;
+        case r'invalid_syntax':
+          return EmailValidationResultValidationCodeEnum.invalidSyntax;
+        case r'no_such_host':
+          return EmailValidationResultValidationCodeEnum.noSuchHost;
+        case r'not_allowed':
+          return EmailValidationResultValidationCodeEnum.notAllowed;
+        case r'unknown':
+          return EmailValidationResultValidationCodeEnum.unknown;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -230,5 +259,3 @@ class EmailValidationResultValidationCodeEnumTypeTransformer {
   /// Singleton [EmailValidationResultValidationCodeEnumTypeTransformer] instance.
   static EmailValidationResultValidationCodeEnumTypeTransformer? _instance;
 }
-
-

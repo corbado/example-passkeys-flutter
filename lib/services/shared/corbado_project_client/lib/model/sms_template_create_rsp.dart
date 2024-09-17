@@ -36,32 +36,35 @@ class SmsTemplateCreateRsp {
   SmsTemplateCreateRspAllOfData data;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is SmsTemplateCreateRsp &&
-     other.httpStatusCode == httpStatusCode &&
-     other.message == message &&
-     other.requestData == requestData &&
-     other.runtime == runtime &&
-     other.data == data;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SmsTemplateCreateRsp &&
+          other.httpStatusCode == httpStatusCode &&
+          other.message == message &&
+          other.requestData == requestData &&
+          other.runtime == runtime &&
+          other.data == data;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (httpStatusCode.hashCode) +
-    (message.hashCode) +
-    (requestData.hashCode) +
-    (runtime.hashCode) +
-    (data.hashCode);
+      // ignore: unnecessary_parenthesis
+      (httpStatusCode.hashCode) +
+      (message.hashCode) +
+      (requestData.hashCode) +
+      (runtime.hashCode) +
+      (data.hashCode);
 
   @override
-  String toString() => 'SmsTemplateCreateRsp[httpStatusCode=$httpStatusCode, message=$message, requestData=$requestData, runtime=$runtime, data=$data]';
+  String toString() =>
+      'SmsTemplateCreateRsp[httpStatusCode=$httpStatusCode, message=$message, requestData=$requestData, runtime=$runtime, data=$data]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'httpStatusCode'] = this.httpStatusCode;
-      json[r'message'] = this.message;
-      json[r'requestData'] = this.requestData;
-      json[r'runtime'] = this.runtime;
-      json[r'data'] = this.data;
+    json[r'httpStatusCode'] = this.httpStatusCode;
+    json[r'message'] = this.message;
+    json[r'requestData'] = this.requestData;
+    json[r'runtime'] = this.runtime;
+    json[r'data'] = this.data;
     return json;
   }
 
@@ -77,8 +80,10 @@ class SmsTemplateCreateRsp {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "SmsTemplateCreateRsp[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "SmsTemplateCreateRsp[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "SmsTemplateCreateRsp[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "SmsTemplateCreateRsp[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -94,7 +99,10 @@ class SmsTemplateCreateRsp {
     return null;
   }
 
-  static List<SmsTemplateCreateRsp> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<SmsTemplateCreateRsp> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <SmsTemplateCreateRsp>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -122,13 +130,19 @@ class SmsTemplateCreateRsp {
   }
 
   // maps a json object with a list of SmsTemplateCreateRsp-objects as value to a dart map
-  static Map<String, List<SmsTemplateCreateRsp>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<SmsTemplateCreateRsp>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<SmsTemplateCreateRsp>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = SmsTemplateCreateRsp.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = SmsTemplateCreateRsp.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -143,4 +157,3 @@ class SmsTemplateCreateRsp {
     'data',
   };
 }
-

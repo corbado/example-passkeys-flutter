@@ -37,32 +37,35 @@ class WebAuthnCredentialRsp {
   WebAuthnCredentialRspStatusEnum status;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is WebAuthnCredentialRsp &&
-     other.httpStatusCode == httpStatusCode &&
-     other.message == message &&
-     other.requestData == requestData &&
-     other.runtime == runtime &&
-     other.status == status;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is WebAuthnCredentialRsp &&
+          other.httpStatusCode == httpStatusCode &&
+          other.message == message &&
+          other.requestData == requestData &&
+          other.runtime == runtime &&
+          other.status == status;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (httpStatusCode.hashCode) +
-    (message.hashCode) +
-    (requestData.hashCode) +
-    (runtime.hashCode) +
-    (status.hashCode);
+      // ignore: unnecessary_parenthesis
+      (httpStatusCode.hashCode) +
+      (message.hashCode) +
+      (requestData.hashCode) +
+      (runtime.hashCode) +
+      (status.hashCode);
 
   @override
-  String toString() => 'WebAuthnCredentialRsp[httpStatusCode=$httpStatusCode, message=$message, requestData=$requestData, runtime=$runtime, status=$status]';
+  String toString() =>
+      'WebAuthnCredentialRsp[httpStatusCode=$httpStatusCode, message=$message, requestData=$requestData, runtime=$runtime, status=$status]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'httpStatusCode'] = this.httpStatusCode;
-      json[r'message'] = this.message;
-      json[r'requestData'] = this.requestData;
-      json[r'runtime'] = this.runtime;
-      json[r'status'] = this.status;
+    json[r'httpStatusCode'] = this.httpStatusCode;
+    json[r'message'] = this.message;
+    json[r'requestData'] = this.requestData;
+    json[r'runtime'] = this.runtime;
+    json[r'status'] = this.status;
     return json;
   }
 
@@ -78,8 +81,10 @@ class WebAuthnCredentialRsp {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "WebAuthnCredentialRsp[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "WebAuthnCredentialRsp[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "WebAuthnCredentialRsp[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "WebAuthnCredentialRsp[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -95,7 +100,10 @@ class WebAuthnCredentialRsp {
     return null;
   }
 
-  static List<WebAuthnCredentialRsp> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<WebAuthnCredentialRsp> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <WebAuthnCredentialRsp>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -123,13 +131,19 @@ class WebAuthnCredentialRsp {
   }
 
   // maps a json object with a list of WebAuthnCredentialRsp-objects as value to a dart map
-  static Map<String, List<WebAuthnCredentialRsp>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<WebAuthnCredentialRsp>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<WebAuthnCredentialRsp>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = WebAuthnCredentialRsp.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = WebAuthnCredentialRsp.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -169,9 +183,13 @@ class WebAuthnCredentialRspStatusEnum {
     deleted,
   ];
 
-  static WebAuthnCredentialRspStatusEnum? fromJson(dynamic value) => WebAuthnCredentialRspStatusEnumTypeTransformer().decode(value);
+  static WebAuthnCredentialRspStatusEnum? fromJson(dynamic value) =>
+      WebAuthnCredentialRspStatusEnumTypeTransformer().decode(value);
 
-  static List<WebAuthnCredentialRspStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<WebAuthnCredentialRspStatusEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <WebAuthnCredentialRspStatusEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -188,7 +206,8 @@ class WebAuthnCredentialRspStatusEnum {
 /// Transformation class that can [encode] an instance of [WebAuthnCredentialRspStatusEnum] to String,
 /// and [decode] dynamic data back to [WebAuthnCredentialRspStatusEnum].
 class WebAuthnCredentialRspStatusEnumTypeTransformer {
-  factory WebAuthnCredentialRspStatusEnumTypeTransformer() => _instance ??= const WebAuthnCredentialRspStatusEnumTypeTransformer._();
+  factory WebAuthnCredentialRspStatusEnumTypeTransformer() =>
+      _instance ??= const WebAuthnCredentialRspStatusEnumTypeTransformer._();
 
   const WebAuthnCredentialRspStatusEnumTypeTransformer._();
 
@@ -202,12 +221,16 @@ class WebAuthnCredentialRspStatusEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  WebAuthnCredentialRspStatusEnum? decode(dynamic data, {bool allowNull = true}) {
+  WebAuthnCredentialRspStatusEnum? decode(dynamic data,
+      {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'pending': return WebAuthnCredentialRspStatusEnum.pending;
-        case r'active': return WebAuthnCredentialRspStatusEnum.active;
-        case r'deleted': return WebAuthnCredentialRspStatusEnum.deleted;
+        case r'pending':
+          return WebAuthnCredentialRspStatusEnum.pending;
+        case r'active':
+          return WebAuthnCredentialRspStatusEnum.active;
+        case r'deleted':
+          return WebAuthnCredentialRspStatusEnum.deleted;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -220,5 +243,3 @@ class WebAuthnCredentialRspStatusEnumTypeTransformer {
   /// Singleton [WebAuthnCredentialRspStatusEnumTypeTransformer] instance.
   static WebAuthnCredentialRspStatusEnumTypeTransformer? _instance;
 }
-
-

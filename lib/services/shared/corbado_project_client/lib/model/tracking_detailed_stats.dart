@@ -31,32 +31,35 @@ class TrackingDetailedStats {
   int conditionalUi;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is TrackingDetailedStats &&
-     other.timePoint == timePoint &&
-     other.visits == visits &&
-     other.webauthn == webauthn &&
-     other.platform == platform &&
-     other.conditionalUi == conditionalUi;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TrackingDetailedStats &&
+          other.timePoint == timePoint &&
+          other.visits == visits &&
+          other.webauthn == webauthn &&
+          other.platform == platform &&
+          other.conditionalUi == conditionalUi;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (timePoint.hashCode) +
-    (visits.hashCode) +
-    (webauthn.hashCode) +
-    (platform.hashCode) +
-    (conditionalUi.hashCode);
+      // ignore: unnecessary_parenthesis
+      (timePoint.hashCode) +
+      (visits.hashCode) +
+      (webauthn.hashCode) +
+      (platform.hashCode) +
+      (conditionalUi.hashCode);
 
   @override
-  String toString() => 'TrackingDetailedStats[timePoint=$timePoint, visits=$visits, webauthn=$webauthn, platform=$platform, conditionalUi=$conditionalUi]';
+  String toString() =>
+      'TrackingDetailedStats[timePoint=$timePoint, visits=$visits, webauthn=$webauthn, platform=$platform, conditionalUi=$conditionalUi]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'timePoint'] = this.timePoint;
-      json[r'visits'] = this.visits;
-      json[r'webauthn'] = this.webauthn;
-      json[r'platform'] = this.platform;
-      json[r'conditionalUi'] = this.conditionalUi;
+    json[r'timePoint'] = this.timePoint;
+    json[r'visits'] = this.visits;
+    json[r'webauthn'] = this.webauthn;
+    json[r'platform'] = this.platform;
+    json[r'conditionalUi'] = this.conditionalUi;
     return json;
   }
 
@@ -72,8 +75,10 @@ class TrackingDetailedStats {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "TrackingDetailedStats[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "TrackingDetailedStats[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "TrackingDetailedStats[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "TrackingDetailedStats[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -89,7 +94,10 @@ class TrackingDetailedStats {
     return null;
   }
 
-  static List<TrackingDetailedStats> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<TrackingDetailedStats> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <TrackingDetailedStats>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -117,13 +125,19 @@ class TrackingDetailedStats {
   }
 
   // maps a json object with a list of TrackingDetailedStats-objects as value to a dart map
-  static Map<String, List<TrackingDetailedStats>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<TrackingDetailedStats>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<TrackingDetailedStats>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = TrackingDetailedStats.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = TrackingDetailedStats.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -138,4 +152,3 @@ class TrackingDetailedStats {
     'conditionalUi',
   };
 }
-

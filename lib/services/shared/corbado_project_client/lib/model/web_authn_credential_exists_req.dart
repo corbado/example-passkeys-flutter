@@ -35,28 +35,31 @@ class WebAuthnCredentialExistsReq {
   String? requestID;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is WebAuthnCredentialExistsReq &&
-     other.loginIdentifier == loginIdentifier &&
-     other.loginIdentifierType == loginIdentifierType &&
-     other.clientInfo == clientInfo &&
-     other.requestID == requestID;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is WebAuthnCredentialExistsReq &&
+          other.loginIdentifier == loginIdentifier &&
+          other.loginIdentifierType == loginIdentifierType &&
+          other.clientInfo == clientInfo &&
+          other.requestID == requestID;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (loginIdentifier.hashCode) +
-    (loginIdentifierType.hashCode) +
-    (clientInfo.hashCode) +
-    (requestID == null ? 0 : requestID!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (loginIdentifier.hashCode) +
+      (loginIdentifierType.hashCode) +
+      (clientInfo.hashCode) +
+      (requestID == null ? 0 : requestID!.hashCode);
 
   @override
-  String toString() => 'WebAuthnCredentialExistsReq[loginIdentifier=$loginIdentifier, loginIdentifierType=$loginIdentifierType, clientInfo=$clientInfo, requestID=$requestID]';
+  String toString() =>
+      'WebAuthnCredentialExistsReq[loginIdentifier=$loginIdentifier, loginIdentifierType=$loginIdentifierType, clientInfo=$clientInfo, requestID=$requestID]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'loginIdentifier'] = this.loginIdentifier;
-      json[r'loginIdentifierType'] = this.loginIdentifierType;
-      json[r'clientInfo'] = this.clientInfo;
+    json[r'loginIdentifier'] = this.loginIdentifier;
+    json[r'loginIdentifierType'] = this.loginIdentifierType;
+    json[r'clientInfo'] = this.clientInfo;
     if (this.requestID != null) {
       json[r'requestID'] = this.requestID;
     } else {
@@ -77,15 +80,18 @@ class WebAuthnCredentialExistsReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "WebAuthnCredentialExistsReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "WebAuthnCredentialExistsReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "WebAuthnCredentialExistsReq[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "WebAuthnCredentialExistsReq[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
       return WebAuthnCredentialExistsReq(
         loginIdentifier: mapValueOfType<String>(json, r'loginIdentifier')!,
-        loginIdentifierType: LoginIdentifierType.fromJson(json[r'loginIdentifierType'])!,
+        loginIdentifierType:
+            LoginIdentifierType.fromJson(json[r'loginIdentifierType'])!,
         clientInfo: ClientInfo.fromJson(json[r'clientInfo'])!,
         requestID: mapValueOfType<String>(json, r'requestID'),
       );
@@ -93,7 +99,10 @@ class WebAuthnCredentialExistsReq {
     return null;
   }
 
-  static List<WebAuthnCredentialExistsReq> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<WebAuthnCredentialExistsReq> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <WebAuthnCredentialExistsReq>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -121,13 +130,19 @@ class WebAuthnCredentialExistsReq {
   }
 
   // maps a json object with a list of WebAuthnCredentialExistsReq-objects as value to a dart map
-  static Map<String, List<WebAuthnCredentialExistsReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<WebAuthnCredentialExistsReq>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<WebAuthnCredentialExistsReq>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = WebAuthnCredentialExistsReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = WebAuthnCredentialExistsReq.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -140,4 +155,3 @@ class WebAuthnCredentialExistsReq {
     'clientInfo',
   };
 }
-

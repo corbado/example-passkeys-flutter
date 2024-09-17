@@ -11,7 +11,6 @@
 import 'package:backend_api_public/api.dart';
 import 'package:test/test.dart';
 
-
 /// tests for AndroidAppConfigApi
 void main() {
   // final instance = AndroidAppConfigApi();
@@ -44,6 +43,5 @@ void main() {
     test('test androidAppConfigPut', () async {
       // TODO
     });
-
   });
 }

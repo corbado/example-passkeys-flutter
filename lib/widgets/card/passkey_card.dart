@@ -46,7 +46,7 @@ class PasskeyCard extends StatelessWidget {
                 style: txtStyle,
               ),
               Text(
-                'Device: ${passkeyInfo.userAgent}',
+                'Device: ${passkeyInfo.sourceOS}, ${passkeyInfo.sourceBrowser}',
                 style: txtStyle,
               ),
               Text(

@@ -11,7 +11,6 @@
 import 'package:backend_api_public/api.dart';
 import 'package:test/test.dart';
 
-
 /// tests for EmailTemplatesApi
 void main() {
   // final instance = EmailTemplatesApi();
@@ -30,6 +29,5 @@ void main() {
     test('test emailTemplateDelete', () async {
       // TODO
     });
-
   });
 }

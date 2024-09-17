@@ -39,35 +39,38 @@ class UserDeviceListRsp {
   Paging paging;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is UserDeviceListRsp &&
-     other.httpStatusCode == httpStatusCode &&
-     other.message == message &&
-     other.requestData == requestData &&
-     other.runtime == runtime &&
-     other.devices == devices &&
-     other.paging == paging;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserDeviceListRsp &&
+          other.httpStatusCode == httpStatusCode &&
+          other.message == message &&
+          other.requestData == requestData &&
+          other.runtime == runtime &&
+          other.devices == devices &&
+          other.paging == paging;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (httpStatusCode.hashCode) +
-    (message.hashCode) +
-    (requestData.hashCode) +
-    (runtime.hashCode) +
-    (devices.hashCode) +
-    (paging.hashCode);
+      // ignore: unnecessary_parenthesis
+      (httpStatusCode.hashCode) +
+      (message.hashCode) +
+      (requestData.hashCode) +
+      (runtime.hashCode) +
+      (devices.hashCode) +
+      (paging.hashCode);
 
   @override
-  String toString() => 'UserDeviceListRsp[httpStatusCode=$httpStatusCode, message=$message, requestData=$requestData, runtime=$runtime, devices=$devices, paging=$paging]';
+  String toString() =>
+      'UserDeviceListRsp[httpStatusCode=$httpStatusCode, message=$message, requestData=$requestData, runtime=$runtime, devices=$devices, paging=$paging]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'httpStatusCode'] = this.httpStatusCode;
-      json[r'message'] = this.message;
-      json[r'requestData'] = this.requestData;
-      json[r'runtime'] = this.runtime;
-      json[r'devices'] = this.devices;
-      json[r'paging'] = this.paging;
+    json[r'httpStatusCode'] = this.httpStatusCode;
+    json[r'message'] = this.message;
+    json[r'requestData'] = this.requestData;
+    json[r'runtime'] = this.runtime;
+    json[r'devices'] = this.devices;
+    json[r'paging'] = this.paging;
     return json;
   }
 
@@ -83,8 +86,10 @@ class UserDeviceListRsp {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UserDeviceListRsp[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UserDeviceListRsp[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "UserDeviceListRsp[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "UserDeviceListRsp[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -101,7 +106,10 @@ class UserDeviceListRsp {
     return null;
   }
 
-  static List<UserDeviceListRsp> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<UserDeviceListRsp> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <UserDeviceListRsp>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -129,13 +137,19 @@ class UserDeviceListRsp {
   }
 
   // maps a json object with a list of UserDeviceListRsp-objects as value to a dart map
-  static Map<String, List<UserDeviceListRsp>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<UserDeviceListRsp>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<UserDeviceListRsp>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = UserDeviceListRsp.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = UserDeviceListRsp.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -151,4 +165,3 @@ class UserDeviceListRsp {
     'paging',
   };
 }
-

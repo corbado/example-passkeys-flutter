@@ -22,23 +22,25 @@ class LongSessionListRspAllOfData {
   Paging paging;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is LongSessionListRspAllOfData &&
-     other.longSessions == longSessions &&
-     other.paging == paging;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is LongSessionListRspAllOfData &&
+          other.longSessions == longSessions &&
+          other.paging == paging;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (longSessions.hashCode) +
-    (paging.hashCode);
+      // ignore: unnecessary_parenthesis
+      (longSessions.hashCode) + (paging.hashCode);
 
   @override
-  String toString() => 'LongSessionListRspAllOfData[longSessions=$longSessions, paging=$paging]';
+  String toString() =>
+      'LongSessionListRspAllOfData[longSessions=$longSessions, paging=$paging]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'longSessions'] = this.longSessions;
-      json[r'paging'] = this.paging;
+    json[r'longSessions'] = this.longSessions;
+    json[r'paging'] = this.paging;
     return json;
   }
 
@@ -54,8 +56,10 @@ class LongSessionListRspAllOfData {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "LongSessionListRspAllOfData[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "LongSessionListRspAllOfData[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "LongSessionListRspAllOfData[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "LongSessionListRspAllOfData[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -68,7 +72,10 @@ class LongSessionListRspAllOfData {
     return null;
   }
 
-  static List<LongSessionListRspAllOfData> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<LongSessionListRspAllOfData> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <LongSessionListRspAllOfData>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -96,13 +103,19 @@ class LongSessionListRspAllOfData {
   }
 
   // maps a json object with a list of LongSessionListRspAllOfData-objects as value to a dart map
-  static Map<String, List<LongSessionListRspAllOfData>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<LongSessionListRspAllOfData>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<LongSessionListRspAllOfData>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = LongSessionListRspAllOfData.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = LongSessionListRspAllOfData.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -114,4 +127,3 @@ class LongSessionListRspAllOfData {
     'paging',
   };
 }
-

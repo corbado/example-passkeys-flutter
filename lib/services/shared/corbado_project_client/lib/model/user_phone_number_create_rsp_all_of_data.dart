@@ -19,20 +19,23 @@ class UserPhoneNumberCreateRspAllOfData {
   String phoneNumberID;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is UserPhoneNumberCreateRspAllOfData &&
-     other.phoneNumberID == phoneNumberID;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserPhoneNumberCreateRspAllOfData &&
+          other.phoneNumberID == phoneNumberID;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (phoneNumberID.hashCode);
+      // ignore: unnecessary_parenthesis
+      (phoneNumberID.hashCode);
 
   @override
-  String toString() => 'UserPhoneNumberCreateRspAllOfData[phoneNumberID=$phoneNumberID]';
+  String toString() =>
+      'UserPhoneNumberCreateRspAllOfData[phoneNumberID=$phoneNumberID]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'phoneNumberID'] = this.phoneNumberID;
+    json[r'phoneNumberID'] = this.phoneNumberID;
     return json;
   }
 
@@ -48,8 +51,10 @@ class UserPhoneNumberCreateRspAllOfData {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UserPhoneNumberCreateRspAllOfData[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UserPhoneNumberCreateRspAllOfData[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "UserPhoneNumberCreateRspAllOfData[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "UserPhoneNumberCreateRspAllOfData[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -61,7 +66,10 @@ class UserPhoneNumberCreateRspAllOfData {
     return null;
   }
 
-  static List<UserPhoneNumberCreateRspAllOfData> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<UserPhoneNumberCreateRspAllOfData> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <UserPhoneNumberCreateRspAllOfData>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -74,7 +82,8 @@ class UserPhoneNumberCreateRspAllOfData {
     return result.toList(growable: growable);
   }
 
-  static Map<String, UserPhoneNumberCreateRspAllOfData> mapFromJson(dynamic json) {
+  static Map<String, UserPhoneNumberCreateRspAllOfData> mapFromJson(
+      dynamic json) {
     final map = <String, UserPhoneNumberCreateRspAllOfData>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
@@ -89,13 +98,19 @@ class UserPhoneNumberCreateRspAllOfData {
   }
 
   // maps a json object with a list of UserPhoneNumberCreateRspAllOfData-objects as value to a dart map
-  static Map<String, List<UserPhoneNumberCreateRspAllOfData>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<UserPhoneNumberCreateRspAllOfData>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<UserPhoneNumberCreateRspAllOfData>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = UserPhoneNumberCreateRspAllOfData.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = UserPhoneNumberCreateRspAllOfData.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -106,4 +121,3 @@ class UserPhoneNumberCreateRspAllOfData {
     'phoneNumberID',
   };
 }
-

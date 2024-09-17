@@ -283,8 +283,5 @@ void main() {
     test('to test the property `supportEmail`', () async {
       // TODO
     });
-
-
   });
-
 }

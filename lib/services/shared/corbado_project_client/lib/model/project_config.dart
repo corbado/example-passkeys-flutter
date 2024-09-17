@@ -322,148 +322,164 @@ class ProjectConfig {
   String? supportEmail;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is ProjectConfig &&
-     other.projectID == projectID &&
-     other.externalName == externalName &&
-     other.emailFrom == emailFrom &&
-     other.smsFrom == smsFrom &&
-     other.fallbackLanguage == fallbackLanguage &&
-     other.autoDetectLanguage == autoDetectLanguage &&
-     other.integrationModeHosted == integrationModeHosted &&
-     other.integrationModeAPI == integrationModeAPI &&
-     other.integrationModeWebComponent == integrationModeWebComponent &&
-     other.hasExistingUsers == hasExistingUsers &&
-     other.hasVerifiedSession == hasVerifiedSession &&
-     other.hasGeneratedSession == hasGeneratedSession &&
-     other.hasStartedUsingPasskeys == hasStartedUsingPasskeys &&
-     other.hasStartedUsingSessions == hasStartedUsingSessions &&
-     other.backendAPIUrl == backendAPIUrl &&
-     other.frontendAPIUrl == frontendAPIUrl &&
-     other.applicationUrl == applicationUrl &&
-     other.useCli == useCli &&
-     other.doubleOptIn == doubleOptIn &&
-     other.userFullNameRequired == userFullNameRequired &&
-     other.webauthnRPID == webauthnRPID &&
-     other.webComponentDebug == webComponentDebug &&
-     other.created == created &&
-     other.updated == updated &&
-     other.status == status &&
-     other.appType == appType &&
-     other.productKey == productKey &&
-     other.externalApplicationProtocolVersion == externalApplicationProtocolVersion &&
-     other.webhookURL == webhookURL &&
-     other.webhookUsername == webhookUsername &&
-     other.webhookPassword == webhookPassword &&
-     other.webhookTestInvalidUsername == webhookTestInvalidUsername &&
-     other.webhookTestValidUsername == webhookTestValidUsername &&
-     other.webhookTestValidPassword == webhookTestValidPassword &&
-     other.externalApplicationUsername == externalApplicationUsername &&
-     other.externalApplicationPassword == externalApplicationPassword &&
-     other.legacyAuthMethodsUrl == legacyAuthMethodsUrl &&
-     other.passwordVerifyUrl == passwordVerifyUrl &&
-     other.authSuccessRedirectUrl == authSuccessRedirectUrl &&
-     other.passwordResetUrl == passwordResetUrl &&
-     other.allowUserRegistration == allowUserRegistration &&
-     other.allowIPStickiness == allowIPStickiness &&
-     other.passkeyAppendInterval == passkeyAppendInterval &&
-     other.cliSecret == cliSecret &&
-     other.environment == environment &&
-     other.frontendFramework == frontendFramework &&
-     other.domain == domain &&
-     other.smtpUseCustom == smtpUseCustom &&
-     other.smtpHost == smtpHost &&
-     other.smtpPort == smtpPort &&
-     other.smtpUsername == smtpUsername &&
-     other.smtpPassword == smtpPassword &&
-     other.supportEmail == supportEmail;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProjectConfig &&
+          other.projectID == projectID &&
+          other.externalName == externalName &&
+          other.emailFrom == emailFrom &&
+          other.smsFrom == smsFrom &&
+          other.fallbackLanguage == fallbackLanguage &&
+          other.autoDetectLanguage == autoDetectLanguage &&
+          other.integrationModeHosted == integrationModeHosted &&
+          other.integrationModeAPI == integrationModeAPI &&
+          other.integrationModeWebComponent == integrationModeWebComponent &&
+          other.hasExistingUsers == hasExistingUsers &&
+          other.hasVerifiedSession == hasVerifiedSession &&
+          other.hasGeneratedSession == hasGeneratedSession &&
+          other.hasStartedUsingPasskeys == hasStartedUsingPasskeys &&
+          other.hasStartedUsingSessions == hasStartedUsingSessions &&
+          other.backendAPIUrl == backendAPIUrl &&
+          other.frontendAPIUrl == frontendAPIUrl &&
+          other.applicationUrl == applicationUrl &&
+          other.useCli == useCli &&
+          other.doubleOptIn == doubleOptIn &&
+          other.userFullNameRequired == userFullNameRequired &&
+          other.webauthnRPID == webauthnRPID &&
+          other.webComponentDebug == webComponentDebug &&
+          other.created == created &&
+          other.updated == updated &&
+          other.status == status &&
+          other.appType == appType &&
+          other.productKey == productKey &&
+          other.externalApplicationProtocolVersion ==
+              externalApplicationProtocolVersion &&
+          other.webhookURL == webhookURL &&
+          other.webhookUsername == webhookUsername &&
+          other.webhookPassword == webhookPassword &&
+          other.webhookTestInvalidUsername == webhookTestInvalidUsername &&
+          other.webhookTestValidUsername == webhookTestValidUsername &&
+          other.webhookTestValidPassword == webhookTestValidPassword &&
+          other.externalApplicationUsername == externalApplicationUsername &&
+          other.externalApplicationPassword == externalApplicationPassword &&
+          other.legacyAuthMethodsUrl == legacyAuthMethodsUrl &&
+          other.passwordVerifyUrl == passwordVerifyUrl &&
+          other.authSuccessRedirectUrl == authSuccessRedirectUrl &&
+          other.passwordResetUrl == passwordResetUrl &&
+          other.allowUserRegistration == allowUserRegistration &&
+          other.allowIPStickiness == allowIPStickiness &&
+          other.passkeyAppendInterval == passkeyAppendInterval &&
+          other.cliSecret == cliSecret &&
+          other.environment == environment &&
+          other.frontendFramework == frontendFramework &&
+          other.domain == domain &&
+          other.smtpUseCustom == smtpUseCustom &&
+          other.smtpHost == smtpHost &&
+          other.smtpPort == smtpPort &&
+          other.smtpUsername == smtpUsername &&
+          other.smtpPassword == smtpPassword &&
+          other.supportEmail == supportEmail;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (projectID.hashCode) +
-    (externalName.hashCode) +
-    (emailFrom.hashCode) +
-    (smsFrom.hashCode) +
-    (fallbackLanguage.hashCode) +
-    (autoDetectLanguage.hashCode) +
-    (integrationModeHosted.hashCode) +
-    (integrationModeAPI.hashCode) +
-    (integrationModeWebComponent.hashCode) +
-    (hasExistingUsers.hashCode) +
-    (hasVerifiedSession.hashCode) +
-    (hasGeneratedSession.hashCode) +
-    (hasStartedUsingPasskeys.hashCode) +
-    (hasStartedUsingSessions.hashCode) +
-    (backendAPIUrl.hashCode) +
-    (frontendAPIUrl.hashCode) +
-    (applicationUrl.hashCode) +
-    (useCli.hashCode) +
-    (doubleOptIn.hashCode) +
-    (userFullNameRequired.hashCode) +
-    (webauthnRPID.hashCode) +
-    (webComponentDebug.hashCode) +
-    (created.hashCode) +
-    (updated.hashCode) +
-    (status.hashCode) +
-    (appType == null ? 0 : appType!.hashCode) +
-    (productKey == null ? 0 : productKey!.hashCode) +
-    (externalApplicationProtocolVersion == null ? 0 : externalApplicationProtocolVersion!.hashCode) +
-    (webhookURL == null ? 0 : webhookURL!.hashCode) +
-    (webhookUsername == null ? 0 : webhookUsername!.hashCode) +
-    (webhookPassword == null ? 0 : webhookPassword!.hashCode) +
-    (webhookTestInvalidUsername == null ? 0 : webhookTestInvalidUsername!.hashCode) +
-    (webhookTestValidUsername == null ? 0 : webhookTestValidUsername!.hashCode) +
-    (webhookTestValidPassword == null ? 0 : webhookTestValidPassword!.hashCode) +
-    (externalApplicationUsername == null ? 0 : externalApplicationUsername!.hashCode) +
-    (externalApplicationPassword == null ? 0 : externalApplicationPassword!.hashCode) +
-    (legacyAuthMethodsUrl == null ? 0 : legacyAuthMethodsUrl!.hashCode) +
-    (passwordVerifyUrl == null ? 0 : passwordVerifyUrl!.hashCode) +
-    (authSuccessRedirectUrl == null ? 0 : authSuccessRedirectUrl!.hashCode) +
-    (passwordResetUrl == null ? 0 : passwordResetUrl!.hashCode) +
-    (allowUserRegistration == null ? 0 : allowUserRegistration!.hashCode) +
-    (allowIPStickiness == null ? 0 : allowIPStickiness!.hashCode) +
-    (passkeyAppendInterval == null ? 0 : passkeyAppendInterval!.hashCode) +
-    (cliSecret == null ? 0 : cliSecret!.hashCode) +
-    (environment == null ? 0 : environment!.hashCode) +
-    (frontendFramework == null ? 0 : frontendFramework!.hashCode) +
-    (domain == null ? 0 : domain!.hashCode) +
-    (smtpUseCustom == null ? 0 : smtpUseCustom!.hashCode) +
-    (smtpHost == null ? 0 : smtpHost!.hashCode) +
-    (smtpPort == null ? 0 : smtpPort!.hashCode) +
-    (smtpUsername == null ? 0 : smtpUsername!.hashCode) +
-    (smtpPassword == null ? 0 : smtpPassword!.hashCode) +
-    (supportEmail == null ? 0 : supportEmail!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (projectID.hashCode) +
+      (externalName.hashCode) +
+      (emailFrom.hashCode) +
+      (smsFrom.hashCode) +
+      (fallbackLanguage.hashCode) +
+      (autoDetectLanguage.hashCode) +
+      (integrationModeHosted.hashCode) +
+      (integrationModeAPI.hashCode) +
+      (integrationModeWebComponent.hashCode) +
+      (hasExistingUsers.hashCode) +
+      (hasVerifiedSession.hashCode) +
+      (hasGeneratedSession.hashCode) +
+      (hasStartedUsingPasskeys.hashCode) +
+      (hasStartedUsingSessions.hashCode) +
+      (backendAPIUrl.hashCode) +
+      (frontendAPIUrl.hashCode) +
+      (applicationUrl.hashCode) +
+      (useCli.hashCode) +
+      (doubleOptIn.hashCode) +
+      (userFullNameRequired.hashCode) +
+      (webauthnRPID.hashCode) +
+      (webComponentDebug.hashCode) +
+      (created.hashCode) +
+      (updated.hashCode) +
+      (status.hashCode) +
+      (appType == null ? 0 : appType!.hashCode) +
+      (productKey == null ? 0 : productKey!.hashCode) +
+      (externalApplicationProtocolVersion == null
+          ? 0
+          : externalApplicationProtocolVersion!.hashCode) +
+      (webhookURL == null ? 0 : webhookURL!.hashCode) +
+      (webhookUsername == null ? 0 : webhookUsername!.hashCode) +
+      (webhookPassword == null ? 0 : webhookPassword!.hashCode) +
+      (webhookTestInvalidUsername == null
+          ? 0
+          : webhookTestInvalidUsername!.hashCode) +
+      (webhookTestValidUsername == null
+          ? 0
+          : webhookTestValidUsername!.hashCode) +
+      (webhookTestValidPassword == null
+          ? 0
+          : webhookTestValidPassword!.hashCode) +
+      (externalApplicationUsername == null
+          ? 0
+          : externalApplicationUsername!.hashCode) +
+      (externalApplicationPassword == null
+          ? 0
+          : externalApplicationPassword!.hashCode) +
+      (legacyAuthMethodsUrl == null ? 0 : legacyAuthMethodsUrl!.hashCode) +
+      (passwordVerifyUrl == null ? 0 : passwordVerifyUrl!.hashCode) +
+      (authSuccessRedirectUrl == null ? 0 : authSuccessRedirectUrl!.hashCode) +
+      (passwordResetUrl == null ? 0 : passwordResetUrl!.hashCode) +
+      (allowUserRegistration == null ? 0 : allowUserRegistration!.hashCode) +
+      (allowIPStickiness == null ? 0 : allowIPStickiness!.hashCode) +
+      (passkeyAppendInterval == null ? 0 : passkeyAppendInterval!.hashCode) +
+      (cliSecret == null ? 0 : cliSecret!.hashCode) +
+      (environment == null ? 0 : environment!.hashCode) +
+      (frontendFramework == null ? 0 : frontendFramework!.hashCode) +
+      (domain == null ? 0 : domain!.hashCode) +
+      (smtpUseCustom == null ? 0 : smtpUseCustom!.hashCode) +
+      (smtpHost == null ? 0 : smtpHost!.hashCode) +
+      (smtpPort == null ? 0 : smtpPort!.hashCode) +
+      (smtpUsername == null ? 0 : smtpUsername!.hashCode) +
+      (smtpPassword == null ? 0 : smtpPassword!.hashCode) +
+      (supportEmail == null ? 0 : supportEmail!.hashCode);
 
   @override
-  String toString() => 'ProjectConfig[projectID=$projectID, externalName=$externalName, emailFrom=$emailFrom, smsFrom=$smsFrom, fallbackLanguage=$fallbackLanguage, autoDetectLanguage=$autoDetectLanguage, integrationModeHosted=$integrationModeHosted, integrationModeAPI=$integrationModeAPI, integrationModeWebComponent=$integrationModeWebComponent, hasExistingUsers=$hasExistingUsers, hasVerifiedSession=$hasVerifiedSession, hasGeneratedSession=$hasGeneratedSession, hasStartedUsingPasskeys=$hasStartedUsingPasskeys, hasStartedUsingSessions=$hasStartedUsingSessions, backendAPIUrl=$backendAPIUrl, frontendAPIUrl=$frontendAPIUrl, applicationUrl=$applicationUrl, useCli=$useCli, doubleOptIn=$doubleOptIn, userFullNameRequired=$userFullNameRequired, webauthnRPID=$webauthnRPID, webComponentDebug=$webComponentDebug, created=$created, updated=$updated, status=$status, appType=$appType, productKey=$productKey, externalApplicationProtocolVersion=$externalApplicationProtocolVersion, webhookURL=$webhookURL, webhookUsername=$webhookUsername, webhookPassword=$webhookPassword, webhookTestInvalidUsername=$webhookTestInvalidUsername, webhookTestValidUsername=$webhookTestValidUsername, webhookTestValidPassword=$webhookTestValidPassword, externalApplicationUsername=$externalApplicationUsername, externalApplicationPassword=$externalApplicationPassword, legacyAuthMethodsUrl=$legacyAuthMethodsUrl, passwordVerifyUrl=$passwordVerifyUrl, authSuccessRedirectUrl=$authSuccessRedirectUrl, passwordResetUrl=$passwordResetUrl, allowUserRegistration=$allowUserRegistration, allowIPStickiness=$allowIPStickiness, passkeyAppendInterval=$passkeyAppendInterval, cliSecret=$cliSecret, environment=$environment, frontendFramework=$frontendFramework, domain=$domain, smtpUseCustom=$smtpUseCustom, smtpHost=$smtpHost, smtpPort=$smtpPort, smtpUsername=$smtpUsername, smtpPassword=$smtpPassword, supportEmail=$supportEmail]';
+  String toString() =>
+      'ProjectConfig[projectID=$projectID, externalName=$externalName, emailFrom=$emailFrom, smsFrom=$smsFrom, fallbackLanguage=$fallbackLanguage, autoDetectLanguage=$autoDetectLanguage, integrationModeHosted=$integrationModeHosted, integrationModeAPI=$integrationModeAPI, integrationModeWebComponent=$integrationModeWebComponent, hasExistingUsers=$hasExistingUsers, hasVerifiedSession=$hasVerifiedSession, hasGeneratedSession=$hasGeneratedSession, hasStartedUsingPasskeys=$hasStartedUsingPasskeys, hasStartedUsingSessions=$hasStartedUsingSessions, backendAPIUrl=$backendAPIUrl, frontendAPIUrl=$frontendAPIUrl, applicationUrl=$applicationUrl, useCli=$useCli, doubleOptIn=$doubleOptIn, userFullNameRequired=$userFullNameRequired, webauthnRPID=$webauthnRPID, webComponentDebug=$webComponentDebug, created=$created, updated=$updated, status=$status, appType=$appType, productKey=$productKey, externalApplicationProtocolVersion=$externalApplicationProtocolVersion, webhookURL=$webhookURL, webhookUsername=$webhookUsername, webhookPassword=$webhookPassword, webhookTestInvalidUsername=$webhookTestInvalidUsername, webhookTestValidUsername=$webhookTestValidUsername, webhookTestValidPassword=$webhookTestValidPassword, externalApplicationUsername=$externalApplicationUsername, externalApplicationPassword=$externalApplicationPassword, legacyAuthMethodsUrl=$legacyAuthMethodsUrl, passwordVerifyUrl=$passwordVerifyUrl, authSuccessRedirectUrl=$authSuccessRedirectUrl, passwordResetUrl=$passwordResetUrl, allowUserRegistration=$allowUserRegistration, allowIPStickiness=$allowIPStickiness, passkeyAppendInterval=$passkeyAppendInterval, cliSecret=$cliSecret, environment=$environment, frontendFramework=$frontendFramework, domain=$domain, smtpUseCustom=$smtpUseCustom, smtpHost=$smtpHost, smtpPort=$smtpPort, smtpUsername=$smtpUsername, smtpPassword=$smtpPassword, supportEmail=$supportEmail]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'projectID'] = this.projectID;
-      json[r'externalName'] = this.externalName;
-      json[r'emailFrom'] = this.emailFrom;
-      json[r'smsFrom'] = this.smsFrom;
-      json[r'fallbackLanguage'] = this.fallbackLanguage;
-      json[r'autoDetectLanguage'] = this.autoDetectLanguage;
-      json[r'integrationModeHosted'] = this.integrationModeHosted;
-      json[r'integrationModeAPI'] = this.integrationModeAPI;
-      json[r'integrationModeWebComponent'] = this.integrationModeWebComponent;
-      json[r'hasExistingUsers'] = this.hasExistingUsers;
-      json[r'hasVerifiedSession'] = this.hasVerifiedSession;
-      json[r'hasGeneratedSession'] = this.hasGeneratedSession;
-      json[r'hasStartedUsingPasskeys'] = this.hasStartedUsingPasskeys;
-      json[r'hasStartedUsingSessions'] = this.hasStartedUsingSessions;
-      json[r'backendAPIUrl'] = this.backendAPIUrl;
-      json[r'frontendAPIUrl'] = this.frontendAPIUrl;
-      json[r'applicationUrl'] = this.applicationUrl;
-      json[r'useCli'] = this.useCli;
-      json[r'doubleOptIn'] = this.doubleOptIn;
-      json[r'userFullNameRequired'] = this.userFullNameRequired;
-      json[r'webauthnRPID'] = this.webauthnRPID;
-      json[r'webComponentDebug'] = this.webComponentDebug;
-      json[r'created'] = this.created;
-      json[r'updated'] = this.updated;
-      json[r'status'] = this.status;
+    json[r'projectID'] = this.projectID;
+    json[r'externalName'] = this.externalName;
+    json[r'emailFrom'] = this.emailFrom;
+    json[r'smsFrom'] = this.smsFrom;
+    json[r'fallbackLanguage'] = this.fallbackLanguage;
+    json[r'autoDetectLanguage'] = this.autoDetectLanguage;
+    json[r'integrationModeHosted'] = this.integrationModeHosted;
+    json[r'integrationModeAPI'] = this.integrationModeAPI;
+    json[r'integrationModeWebComponent'] = this.integrationModeWebComponent;
+    json[r'hasExistingUsers'] = this.hasExistingUsers;
+    json[r'hasVerifiedSession'] = this.hasVerifiedSession;
+    json[r'hasGeneratedSession'] = this.hasGeneratedSession;
+    json[r'hasStartedUsingPasskeys'] = this.hasStartedUsingPasskeys;
+    json[r'hasStartedUsingSessions'] = this.hasStartedUsingSessions;
+    json[r'backendAPIUrl'] = this.backendAPIUrl;
+    json[r'frontendAPIUrl'] = this.frontendAPIUrl;
+    json[r'applicationUrl'] = this.applicationUrl;
+    json[r'useCli'] = this.useCli;
+    json[r'doubleOptIn'] = this.doubleOptIn;
+    json[r'userFullNameRequired'] = this.userFullNameRequired;
+    json[r'webauthnRPID'] = this.webauthnRPID;
+    json[r'webComponentDebug'] = this.webComponentDebug;
+    json[r'created'] = this.created;
+    json[r'updated'] = this.updated;
+    json[r'status'] = this.status;
     if (this.appType != null) {
       json[r'appType'] = this.appType;
     } else {
@@ -475,7 +491,8 @@ class ProjectConfig {
       json[r'productKey'] = null;
     }
     if (this.externalApplicationProtocolVersion != null) {
-      json[r'externalApplicationProtocolVersion'] = this.externalApplicationProtocolVersion;
+      json[r'externalApplicationProtocolVersion'] =
+          this.externalApplicationProtocolVersion;
     } else {
       json[r'externalApplicationProtocolVersion'] = null;
     }
@@ -619,8 +636,10 @@ class ProjectConfig {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ProjectConfig[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ProjectConfig[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "ProjectConfig[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "ProjectConfig[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -632,20 +651,26 @@ class ProjectConfig {
         smsFrom: mapValueOfType<String>(json, r'smsFrom')!,
         fallbackLanguage: mapValueOfType<String>(json, r'fallbackLanguage')!,
         autoDetectLanguage: mapValueOfType<bool>(json, r'autoDetectLanguage')!,
-        integrationModeHosted: mapValueOfType<bool>(json, r'integrationModeHosted')!,
+        integrationModeHosted:
+            mapValueOfType<bool>(json, r'integrationModeHosted')!,
         integrationModeAPI: mapValueOfType<bool>(json, r'integrationModeAPI')!,
-        integrationModeWebComponent: mapValueOfType<bool>(json, r'integrationModeWebComponent')!,
+        integrationModeWebComponent:
+            mapValueOfType<bool>(json, r'integrationModeWebComponent')!,
         hasExistingUsers: mapValueOfType<bool>(json, r'hasExistingUsers')!,
         hasVerifiedSession: mapValueOfType<bool>(json, r'hasVerifiedSession')!,
-        hasGeneratedSession: mapValueOfType<bool>(json, r'hasGeneratedSession')!,
-        hasStartedUsingPasskeys: mapValueOfType<bool>(json, r'hasStartedUsingPasskeys')!,
-        hasStartedUsingSessions: mapValueOfType<bool>(json, r'hasStartedUsingSessions')!,
+        hasGeneratedSession:
+            mapValueOfType<bool>(json, r'hasGeneratedSession')!,
+        hasStartedUsingPasskeys:
+            mapValueOfType<bool>(json, r'hasStartedUsingPasskeys')!,
+        hasStartedUsingSessions:
+            mapValueOfType<bool>(json, r'hasStartedUsingSessions')!,
         backendAPIUrl: mapValueOfType<String>(json, r'backendAPIUrl')!,
         frontendAPIUrl: mapValueOfType<String>(json, r'frontendAPIUrl')!,
         applicationUrl: mapValueOfType<String>(json, r'applicationUrl')!,
         useCli: mapValueOfType<bool>(json, r'useCli')!,
         doubleOptIn: mapValueOfType<bool>(json, r'doubleOptIn')!,
-        userFullNameRequired: mapValueOfType<bool>(json, r'userFullNameRequired')!,
+        userFullNameRequired:
+            mapValueOfType<bool>(json, r'userFullNameRequired')!,
         webauthnRPID: mapValueOfType<String>(json, r'webauthnRPID')!,
         webComponentDebug: mapValueOfType<bool>(json, r'webComponentDebug')!,
         created: mapValueOfType<String>(json, r'created')!,
@@ -653,25 +678,37 @@ class ProjectConfig {
         status: ProjectConfigStatusEnum.fromJson(json[r'status'])!,
         appType: ProjectConfigAppTypeEnum.fromJson(json[r'appType']),
         productKey: mapValueOfType<String>(json, r'productKey'),
-        externalApplicationProtocolVersion: mapValueOfType<String>(json, r'externalApplicationProtocolVersion'),
+        externalApplicationProtocolVersion:
+            mapValueOfType<String>(json, r'externalApplicationProtocolVersion'),
         webhookURL: mapValueOfType<String>(json, r'webhookURL'),
         webhookUsername: mapValueOfType<String>(json, r'webhookUsername'),
         webhookPassword: mapValueOfType<String>(json, r'webhookPassword'),
-        webhookTestInvalidUsername: mapValueOfType<String>(json, r'webhookTestInvalidUsername'),
-        webhookTestValidUsername: mapValueOfType<String>(json, r'webhookTestValidUsername'),
-        webhookTestValidPassword: mapValueOfType<String>(json, r'webhookTestValidPassword'),
-        externalApplicationUsername: mapValueOfType<String>(json, r'externalApplicationUsername'),
-        externalApplicationPassword: mapValueOfType<String>(json, r'externalApplicationPassword'),
-        legacyAuthMethodsUrl: mapValueOfType<String>(json, r'legacyAuthMethodsUrl'),
+        webhookTestInvalidUsername:
+            mapValueOfType<String>(json, r'webhookTestInvalidUsername'),
+        webhookTestValidUsername:
+            mapValueOfType<String>(json, r'webhookTestValidUsername'),
+        webhookTestValidPassword:
+            mapValueOfType<String>(json, r'webhookTestValidPassword'),
+        externalApplicationUsername:
+            mapValueOfType<String>(json, r'externalApplicationUsername'),
+        externalApplicationPassword:
+            mapValueOfType<String>(json, r'externalApplicationPassword'),
+        legacyAuthMethodsUrl:
+            mapValueOfType<String>(json, r'legacyAuthMethodsUrl'),
         passwordVerifyUrl: mapValueOfType<String>(json, r'passwordVerifyUrl'),
-        authSuccessRedirectUrl: mapValueOfType<String>(json, r'authSuccessRedirectUrl'),
+        authSuccessRedirectUrl:
+            mapValueOfType<String>(json, r'authSuccessRedirectUrl'),
         passwordResetUrl: mapValueOfType<String>(json, r'passwordResetUrl'),
-        allowUserRegistration: mapValueOfType<bool>(json, r'allowUserRegistration'),
+        allowUserRegistration:
+            mapValueOfType<bool>(json, r'allowUserRegistration'),
         allowIPStickiness: mapValueOfType<bool>(json, r'allowIPStickiness'),
-        passkeyAppendInterval: ProjectConfigPasskeyAppendIntervalEnum.fromJson(json[r'passkeyAppendInterval']),
+        passkeyAppendInterval: ProjectConfigPasskeyAppendIntervalEnum.fromJson(
+            json[r'passkeyAppendInterval']),
         cliSecret: mapValueOfType<String>(json, r'cliSecret'),
-        environment: ProjectConfigEnvironmentEnum.fromJson(json[r'environment']),
-        frontendFramework: ProjectConfigFrontendFrameworkEnum.fromJson(json[r'frontendFramework']),
+        environment:
+            ProjectConfigEnvironmentEnum.fromJson(json[r'environment']),
+        frontendFramework: ProjectConfigFrontendFrameworkEnum.fromJson(
+            json[r'frontendFramework']),
         domain: mapValueOfType<String>(json, r'domain'),
         smtpUseCustom: mapValueOfType<bool>(json, r'smtpUseCustom'),
         smtpHost: mapValueOfType<String>(json, r'smtpHost'),
@@ -684,7 +721,10 @@ class ProjectConfig {
     return null;
   }
 
-  static List<ProjectConfig> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ProjectConfig> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ProjectConfig>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -712,13 +752,19 @@ class ProjectConfig {
   }
 
   // maps a json object with a list of ProjectConfig-objects as value to a dart map
-  static Map<String, List<ProjectConfig>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<ProjectConfig>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<ProjectConfig>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = ProjectConfig.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = ProjectConfig.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -754,7 +800,6 @@ class ProjectConfig {
   };
 }
 
-
 class ProjectConfigStatusEnum {
   /// Instantiate a new enum with the provided [value].
   const ProjectConfigStatusEnum._(this.value);
@@ -776,9 +821,13 @@ class ProjectConfigStatusEnum {
     configuring,
   ];
 
-  static ProjectConfigStatusEnum? fromJson(dynamic value) => ProjectConfigStatusEnumTypeTransformer().decode(value);
+  static ProjectConfigStatusEnum? fromJson(dynamic value) =>
+      ProjectConfigStatusEnumTypeTransformer().decode(value);
 
-  static List<ProjectConfigStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ProjectConfigStatusEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ProjectConfigStatusEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -795,7 +844,8 @@ class ProjectConfigStatusEnum {
 /// Transformation class that can [encode] an instance of [ProjectConfigStatusEnum] to String,
 /// and [decode] dynamic data back to [ProjectConfigStatusEnum].
 class ProjectConfigStatusEnumTypeTransformer {
-  factory ProjectConfigStatusEnumTypeTransformer() => _instance ??= const ProjectConfigStatusEnumTypeTransformer._();
+  factory ProjectConfigStatusEnumTypeTransformer() =>
+      _instance ??= const ProjectConfigStatusEnumTypeTransformer._();
 
   const ProjectConfigStatusEnumTypeTransformer._();
 
@@ -812,8 +862,10 @@ class ProjectConfigStatusEnumTypeTransformer {
   ProjectConfigStatusEnum? decode(dynamic data, {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'active': return ProjectConfigStatusEnum.active;
-        case r'configuring': return ProjectConfigStatusEnum.configuring;
+        case r'active':
+          return ProjectConfigStatusEnum.active;
+        case r'configuring':
+          return ProjectConfigStatusEnum.configuring;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -826,8 +878,6 @@ class ProjectConfigStatusEnumTypeTransformer {
   /// Singleton [ProjectConfigStatusEnumTypeTransformer] instance.
   static ProjectConfigStatusEnumTypeTransformer? _instance;
 }
-
-
 
 class ProjectConfigAppTypeEnum {
   /// Instantiate a new enum with the provided [value].
@@ -850,9 +900,13 @@ class ProjectConfigAppTypeEnum {
     native_,
   ];
 
-  static ProjectConfigAppTypeEnum? fromJson(dynamic value) => ProjectConfigAppTypeEnumTypeTransformer().decode(value);
+  static ProjectConfigAppTypeEnum? fromJson(dynamic value) =>
+      ProjectConfigAppTypeEnumTypeTransformer().decode(value);
 
-  static List<ProjectConfigAppTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ProjectConfigAppTypeEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ProjectConfigAppTypeEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -869,7 +923,8 @@ class ProjectConfigAppTypeEnum {
 /// Transformation class that can [encode] an instance of [ProjectConfigAppTypeEnum] to String,
 /// and [decode] dynamic data back to [ProjectConfigAppTypeEnum].
 class ProjectConfigAppTypeEnumTypeTransformer {
-  factory ProjectConfigAppTypeEnumTypeTransformer() => _instance ??= const ProjectConfigAppTypeEnumTypeTransformer._();
+  factory ProjectConfigAppTypeEnumTypeTransformer() =>
+      _instance ??= const ProjectConfigAppTypeEnumTypeTransformer._();
 
   const ProjectConfigAppTypeEnumTypeTransformer._();
 
@@ -886,8 +941,10 @@ class ProjectConfigAppTypeEnumTypeTransformer {
   ProjectConfigAppTypeEnum? decode(dynamic data, {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'web': return ProjectConfigAppTypeEnum.web;
-        case r'native': return ProjectConfigAppTypeEnum.native_;
+        case r'web':
+          return ProjectConfigAppTypeEnum.web;
+        case r'native':
+          return ProjectConfigAppTypeEnum.native_;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -900,8 +957,6 @@ class ProjectConfigAppTypeEnumTypeTransformer {
   /// Singleton [ProjectConfigAppTypeEnumTypeTransformer] instance.
   static ProjectConfigAppTypeEnumTypeTransformer? _instance;
 }
-
-
 
 class ProjectConfigPasskeyAppendIntervalEnum {
   /// Instantiate a new enum with the provided [value].
@@ -934,9 +989,13 @@ class ProjectConfigPasskeyAppendIntervalEnum {
     n3m,
   ];
 
-  static ProjectConfigPasskeyAppendIntervalEnum? fromJson(dynamic value) => ProjectConfigPasskeyAppendIntervalEnumTypeTransformer().decode(value);
+  static ProjectConfigPasskeyAppendIntervalEnum? fromJson(dynamic value) =>
+      ProjectConfigPasskeyAppendIntervalEnumTypeTransformer().decode(value);
 
-  static List<ProjectConfigPasskeyAppendIntervalEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ProjectConfigPasskeyAppendIntervalEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ProjectConfigPasskeyAppendIntervalEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -953,7 +1012,9 @@ class ProjectConfigPasskeyAppendIntervalEnum {
 /// Transformation class that can [encode] an instance of [ProjectConfigPasskeyAppendIntervalEnum] to String,
 /// and [decode] dynamic data back to [ProjectConfigPasskeyAppendIntervalEnum].
 class ProjectConfigPasskeyAppendIntervalEnumTypeTransformer {
-  factory ProjectConfigPasskeyAppendIntervalEnumTypeTransformer() => _instance ??= const ProjectConfigPasskeyAppendIntervalEnumTypeTransformer._();
+  factory ProjectConfigPasskeyAppendIntervalEnumTypeTransformer() =>
+      _instance ??=
+          const ProjectConfigPasskeyAppendIntervalEnumTypeTransformer._();
 
   const ProjectConfigPasskeyAppendIntervalEnumTypeTransformer._();
 
@@ -967,16 +1028,24 @@ class ProjectConfigPasskeyAppendIntervalEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  ProjectConfigPasskeyAppendIntervalEnum? decode(dynamic data, {bool allowNull = true}) {
+  ProjectConfigPasskeyAppendIntervalEnum? decode(dynamic data,
+      {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'0d': return ProjectConfigPasskeyAppendIntervalEnum.n0d;
-        case r'1d': return ProjectConfigPasskeyAppendIntervalEnum.n1d;
-        case r'3d': return ProjectConfigPasskeyAppendIntervalEnum.n3d;
-        case r'1w': return ProjectConfigPasskeyAppendIntervalEnum.n1w;
-        case r'3w': return ProjectConfigPasskeyAppendIntervalEnum.n3w;
-        case r'1m': return ProjectConfigPasskeyAppendIntervalEnum.n1m;
-        case r'3m': return ProjectConfigPasskeyAppendIntervalEnum.n3m;
+        case r'0d':
+          return ProjectConfigPasskeyAppendIntervalEnum.n0d;
+        case r'1d':
+          return ProjectConfigPasskeyAppendIntervalEnum.n1d;
+        case r'3d':
+          return ProjectConfigPasskeyAppendIntervalEnum.n3d;
+        case r'1w':
+          return ProjectConfigPasskeyAppendIntervalEnum.n1w;
+        case r'3w':
+          return ProjectConfigPasskeyAppendIntervalEnum.n3w;
+        case r'1m':
+          return ProjectConfigPasskeyAppendIntervalEnum.n1m;
+        case r'3m':
+          return ProjectConfigPasskeyAppendIntervalEnum.n3m;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -989,8 +1058,6 @@ class ProjectConfigPasskeyAppendIntervalEnumTypeTransformer {
   /// Singleton [ProjectConfigPasskeyAppendIntervalEnumTypeTransformer] instance.
   static ProjectConfigPasskeyAppendIntervalEnumTypeTransformer? _instance;
 }
-
-
 
 class ProjectConfigEnvironmentEnum {
   /// Instantiate a new enum with the provided [value].
@@ -1013,9 +1080,13 @@ class ProjectConfigEnvironmentEnum {
     prod,
   ];
 
-  static ProjectConfigEnvironmentEnum? fromJson(dynamic value) => ProjectConfigEnvironmentEnumTypeTransformer().decode(value);
+  static ProjectConfigEnvironmentEnum? fromJson(dynamic value) =>
+      ProjectConfigEnvironmentEnumTypeTransformer().decode(value);
 
-  static List<ProjectConfigEnvironmentEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ProjectConfigEnvironmentEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ProjectConfigEnvironmentEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -1032,7 +1103,8 @@ class ProjectConfigEnvironmentEnum {
 /// Transformation class that can [encode] an instance of [ProjectConfigEnvironmentEnum] to String,
 /// and [decode] dynamic data back to [ProjectConfigEnvironmentEnum].
 class ProjectConfigEnvironmentEnumTypeTransformer {
-  factory ProjectConfigEnvironmentEnumTypeTransformer() => _instance ??= const ProjectConfigEnvironmentEnumTypeTransformer._();
+  factory ProjectConfigEnvironmentEnumTypeTransformer() =>
+      _instance ??= const ProjectConfigEnvironmentEnumTypeTransformer._();
 
   const ProjectConfigEnvironmentEnumTypeTransformer._();
 
@@ -1049,8 +1121,10 @@ class ProjectConfigEnvironmentEnumTypeTransformer {
   ProjectConfigEnvironmentEnum? decode(dynamic data, {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'dev': return ProjectConfigEnvironmentEnum.dev;
-        case r'prod': return ProjectConfigEnvironmentEnum.prod;
+        case r'dev':
+          return ProjectConfigEnvironmentEnum.dev;
+        case r'prod':
+          return ProjectConfigEnvironmentEnum.prod;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -1063,8 +1137,6 @@ class ProjectConfigEnvironmentEnumTypeTransformer {
   /// Singleton [ProjectConfigEnvironmentEnumTypeTransformer] instance.
   static ProjectConfigEnvironmentEnumTypeTransformer? _instance;
 }
-
-
 
 class ProjectConfigFrontendFrameworkEnum {
   /// Instantiate a new enum with the provided [value].
@@ -1089,9 +1161,13 @@ class ProjectConfigFrontendFrameworkEnum {
     vanillajs,
   ];
 
-  static ProjectConfigFrontendFrameworkEnum? fromJson(dynamic value) => ProjectConfigFrontendFrameworkEnumTypeTransformer().decode(value);
+  static ProjectConfigFrontendFrameworkEnum? fromJson(dynamic value) =>
+      ProjectConfigFrontendFrameworkEnumTypeTransformer().decode(value);
 
-  static List<ProjectConfigFrontendFrameworkEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ProjectConfigFrontendFrameworkEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ProjectConfigFrontendFrameworkEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -1108,7 +1184,8 @@ class ProjectConfigFrontendFrameworkEnum {
 /// Transformation class that can [encode] an instance of [ProjectConfigFrontendFrameworkEnum] to String,
 /// and [decode] dynamic data back to [ProjectConfigFrontendFrameworkEnum].
 class ProjectConfigFrontendFrameworkEnumTypeTransformer {
-  factory ProjectConfigFrontendFrameworkEnumTypeTransformer() => _instance ??= const ProjectConfigFrontendFrameworkEnumTypeTransformer._();
+  factory ProjectConfigFrontendFrameworkEnumTypeTransformer() =>
+      _instance ??= const ProjectConfigFrontendFrameworkEnumTypeTransformer._();
 
   const ProjectConfigFrontendFrameworkEnumTypeTransformer._();
 
@@ -1122,12 +1199,16 @@ class ProjectConfigFrontendFrameworkEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  ProjectConfigFrontendFrameworkEnum? decode(dynamic data, {bool allowNull = true}) {
+  ProjectConfigFrontendFrameworkEnum? decode(dynamic data,
+      {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'react': return ProjectConfigFrontendFrameworkEnum.react;
-        case r'vuejs': return ProjectConfigFrontendFrameworkEnum.vuejs;
-        case r'vanillajs': return ProjectConfigFrontendFrameworkEnum.vanillajs;
+        case r'react':
+          return ProjectConfigFrontendFrameworkEnum.react;
+        case r'vuejs':
+          return ProjectConfigFrontendFrameworkEnum.vuejs;
+        case r'vanillajs':
+          return ProjectConfigFrontendFrameworkEnum.vanillajs;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -1140,5 +1221,3 @@ class ProjectConfigFrontendFrameworkEnumTypeTransformer {
   /// Singleton [ProjectConfigFrontendFrameworkEnumTypeTransformer] instance.
   static ProjectConfigFrontendFrameworkEnumTypeTransformer? _instance;
 }
-
-

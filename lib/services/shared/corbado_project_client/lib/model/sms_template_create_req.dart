@@ -47,33 +47,36 @@ class SmsTemplateCreateReq {
   ClientInfo? clientInfo;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is SmsTemplateCreateReq &&
-     other.type == type &&
-     other.name == name &&
-     other.textPlain == textPlain &&
-     other.isDefault == isDefault &&
-     other.requestID == requestID &&
-     other.clientInfo == clientInfo;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SmsTemplateCreateReq &&
+          other.type == type &&
+          other.name == name &&
+          other.textPlain == textPlain &&
+          other.isDefault == isDefault &&
+          other.requestID == requestID &&
+          other.clientInfo == clientInfo;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (type.hashCode) +
-    (name.hashCode) +
-    (textPlain.hashCode) +
-    (isDefault.hashCode) +
-    (requestID == null ? 0 : requestID!.hashCode) +
-    (clientInfo == null ? 0 : clientInfo!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (type.hashCode) +
+      (name.hashCode) +
+      (textPlain.hashCode) +
+      (isDefault.hashCode) +
+      (requestID == null ? 0 : requestID!.hashCode) +
+      (clientInfo == null ? 0 : clientInfo!.hashCode);
 
   @override
-  String toString() => 'SmsTemplateCreateReq[type=$type, name=$name, textPlain=$textPlain, isDefault=$isDefault, requestID=$requestID, clientInfo=$clientInfo]';
+  String toString() =>
+      'SmsTemplateCreateReq[type=$type, name=$name, textPlain=$textPlain, isDefault=$isDefault, requestID=$requestID, clientInfo=$clientInfo]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'type'] = this.type;
-      json[r'name'] = this.name;
-      json[r'textPlain'] = this.textPlain;
-      json[r'isDefault'] = this.isDefault;
+    json[r'type'] = this.type;
+    json[r'name'] = this.name;
+    json[r'textPlain'] = this.textPlain;
+    json[r'isDefault'] = this.isDefault;
     if (this.requestID != null) {
       json[r'requestID'] = this.requestID;
     } else {
@@ -99,8 +102,10 @@ class SmsTemplateCreateReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "SmsTemplateCreateReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "SmsTemplateCreateReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "SmsTemplateCreateReq[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "SmsTemplateCreateReq[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -117,7 +122,10 @@ class SmsTemplateCreateReq {
     return null;
   }
 
-  static List<SmsTemplateCreateReq> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<SmsTemplateCreateReq> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <SmsTemplateCreateReq>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -145,13 +153,19 @@ class SmsTemplateCreateReq {
   }
 
   // maps a json object with a list of SmsTemplateCreateReq-objects as value to a dart map
-  static Map<String, List<SmsTemplateCreateReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<SmsTemplateCreateReq>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<SmsTemplateCreateReq>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = SmsTemplateCreateReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = SmsTemplateCreateReq.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -166,7 +180,6 @@ class SmsTemplateCreateReq {
   };
 }
 
-
 class SmsTemplateCreateReqTypeEnum {
   /// Instantiate a new enum with the provided [value].
   const SmsTemplateCreateReqTypeEnum._(this.value);
@@ -180,7 +193,8 @@ class SmsTemplateCreateReqTypeEnum {
   String toJson() => value;
 
   static const smsCode = SmsTemplateCreateReqTypeEnum._(r'sms_code');
-  static const passkeyNotification = SmsTemplateCreateReqTypeEnum._(r'passkey_notification');
+  static const passkeyNotification =
+      SmsTemplateCreateReqTypeEnum._(r'passkey_notification');
 
   /// List of all possible values in this [enum][SmsTemplateCreateReqTypeEnum].
   static const values = <SmsTemplateCreateReqTypeEnum>[
@@ -188,9 +202,13 @@ class SmsTemplateCreateReqTypeEnum {
     passkeyNotification,
   ];
 
-  static SmsTemplateCreateReqTypeEnum? fromJson(dynamic value) => SmsTemplateCreateReqTypeEnumTypeTransformer().decode(value);
+  static SmsTemplateCreateReqTypeEnum? fromJson(dynamic value) =>
+      SmsTemplateCreateReqTypeEnumTypeTransformer().decode(value);
 
-  static List<SmsTemplateCreateReqTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<SmsTemplateCreateReqTypeEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <SmsTemplateCreateReqTypeEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -207,7 +225,8 @@ class SmsTemplateCreateReqTypeEnum {
 /// Transformation class that can [encode] an instance of [SmsTemplateCreateReqTypeEnum] to String,
 /// and [decode] dynamic data back to [SmsTemplateCreateReqTypeEnum].
 class SmsTemplateCreateReqTypeEnumTypeTransformer {
-  factory SmsTemplateCreateReqTypeEnumTypeTransformer() => _instance ??= const SmsTemplateCreateReqTypeEnumTypeTransformer._();
+  factory SmsTemplateCreateReqTypeEnumTypeTransformer() =>
+      _instance ??= const SmsTemplateCreateReqTypeEnumTypeTransformer._();
 
   const SmsTemplateCreateReqTypeEnumTypeTransformer._();
 
@@ -224,8 +243,10 @@ class SmsTemplateCreateReqTypeEnumTypeTransformer {
   SmsTemplateCreateReqTypeEnum? decode(dynamic data, {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'sms_code': return SmsTemplateCreateReqTypeEnum.smsCode;
-        case r'passkey_notification': return SmsTemplateCreateReqTypeEnum.passkeyNotification;
+        case r'sms_code':
+          return SmsTemplateCreateReqTypeEnum.smsCode;
+        case r'passkey_notification':
+          return SmsTemplateCreateReqTypeEnum.passkeyNotification;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -238,5 +259,3 @@ class SmsTemplateCreateReqTypeEnumTypeTransformer {
   /// Singleton [SmsTemplateCreateReqTypeEnumTypeTransformer] instance.
   static SmsTemplateCreateReqTypeEnumTypeTransformer? _instance;
 }
-
-

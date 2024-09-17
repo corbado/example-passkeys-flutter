@@ -60,8 +60,5 @@ void main() {
     test('to test the property `osVersion`', () async {
       // TODO
     });
-
-
   });
-
 }

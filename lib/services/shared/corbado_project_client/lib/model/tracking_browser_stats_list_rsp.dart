@@ -36,32 +36,35 @@ class TrackingBrowserStatsListRsp {
   TrackingBrowserStatsListRspAllOfData data;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is TrackingBrowserStatsListRsp &&
-     other.httpStatusCode == httpStatusCode &&
-     other.message == message &&
-     other.requestData == requestData &&
-     other.runtime == runtime &&
-     other.data == data;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TrackingBrowserStatsListRsp &&
+          other.httpStatusCode == httpStatusCode &&
+          other.message == message &&
+          other.requestData == requestData &&
+          other.runtime == runtime &&
+          other.data == data;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (httpStatusCode.hashCode) +
-    (message.hashCode) +
-    (requestData.hashCode) +
-    (runtime.hashCode) +
-    (data.hashCode);
+      // ignore: unnecessary_parenthesis
+      (httpStatusCode.hashCode) +
+      (message.hashCode) +
+      (requestData.hashCode) +
+      (runtime.hashCode) +
+      (data.hashCode);
 
   @override
-  String toString() => 'TrackingBrowserStatsListRsp[httpStatusCode=$httpStatusCode, message=$message, requestData=$requestData, runtime=$runtime, data=$data]';
+  String toString() =>
+      'TrackingBrowserStatsListRsp[httpStatusCode=$httpStatusCode, message=$message, requestData=$requestData, runtime=$runtime, data=$data]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'httpStatusCode'] = this.httpStatusCode;
-      json[r'message'] = this.message;
-      json[r'requestData'] = this.requestData;
-      json[r'runtime'] = this.runtime;
-      json[r'data'] = this.data;
+    json[r'httpStatusCode'] = this.httpStatusCode;
+    json[r'message'] = this.message;
+    json[r'requestData'] = this.requestData;
+    json[r'runtime'] = this.runtime;
+    json[r'data'] = this.data;
     return json;
   }
 
@@ -77,8 +80,10 @@ class TrackingBrowserStatsListRsp {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "TrackingBrowserStatsListRsp[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "TrackingBrowserStatsListRsp[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "TrackingBrowserStatsListRsp[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "TrackingBrowserStatsListRsp[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -94,7 +99,10 @@ class TrackingBrowserStatsListRsp {
     return null;
   }
 
-  static List<TrackingBrowserStatsListRsp> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<TrackingBrowserStatsListRsp> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <TrackingBrowserStatsListRsp>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -122,13 +130,19 @@ class TrackingBrowserStatsListRsp {
   }
 
   // maps a json object with a list of TrackingBrowserStatsListRsp-objects as value to a dart map
-  static Map<String, List<TrackingBrowserStatsListRsp>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<TrackingBrowserStatsListRsp>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<TrackingBrowserStatsListRsp>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = TrackingBrowserStatsListRsp.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = TrackingBrowserStatsListRsp.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -143,4 +157,3 @@ class TrackingBrowserStatsListRsp {
     'data',
   };
 }
-

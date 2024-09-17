@@ -36,35 +36,38 @@ class UserAuthLog {
   String created;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is UserAuthLog &&
-     other.userID == userID &&
-     other.userName == userName &&
-     other.method == method &&
-     other.eventType == eventType &&
-     other.status == status &&
-     other.created == created;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserAuthLog &&
+          other.userID == userID &&
+          other.userName == userName &&
+          other.method == method &&
+          other.eventType == eventType &&
+          other.status == status &&
+          other.created == created;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (userID.hashCode) +
-    (userName.hashCode) +
-    (method.hashCode) +
-    (eventType.hashCode) +
-    (status.hashCode) +
-    (created.hashCode);
+      // ignore: unnecessary_parenthesis
+      (userID.hashCode) +
+      (userName.hashCode) +
+      (method.hashCode) +
+      (eventType.hashCode) +
+      (status.hashCode) +
+      (created.hashCode);
 
   @override
-  String toString() => 'UserAuthLog[userID=$userID, userName=$userName, method=$method, eventType=$eventType, status=$status, created=$created]';
+  String toString() =>
+      'UserAuthLog[userID=$userID, userName=$userName, method=$method, eventType=$eventType, status=$status, created=$created]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'userID'] = this.userID;
-      json[r'userName'] = this.userName;
-      json[r'method'] = this.method;
-      json[r'eventType'] = this.eventType;
-      json[r'status'] = this.status;
-      json[r'created'] = this.created;
+    json[r'userID'] = this.userID;
+    json[r'userName'] = this.userName;
+    json[r'method'] = this.method;
+    json[r'eventType'] = this.eventType;
+    json[r'status'] = this.status;
+    json[r'created'] = this.created;
     return json;
   }
 
@@ -80,8 +83,10 @@ class UserAuthLog {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UserAuthLog[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UserAuthLog[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "UserAuthLog[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "UserAuthLog[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -98,7 +103,10 @@ class UserAuthLog {
     return null;
   }
 
-  static List<UserAuthLog> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<UserAuthLog> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <UserAuthLog>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -126,13 +134,19 @@ class UserAuthLog {
   }
 
   // maps a json object with a list of UserAuthLog-objects as value to a dart map
-  static Map<String, List<UserAuthLog>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<UserAuthLog>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<UserAuthLog>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = UserAuthLog.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = UserAuthLog.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -148,4 +162,3 @@ class UserAuthLog {
     'created',
   };
 }
-

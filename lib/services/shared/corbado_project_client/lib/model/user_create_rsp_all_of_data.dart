@@ -25,26 +25,27 @@ class UserCreateRspAllOfData {
   String phoneNumberID;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is UserCreateRspAllOfData &&
-     other.userID == userID &&
-     other.emailID == emailID &&
-     other.phoneNumberID == phoneNumberID;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserCreateRspAllOfData &&
+          other.userID == userID &&
+          other.emailID == emailID &&
+          other.phoneNumberID == phoneNumberID;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (userID.hashCode) +
-    (emailID.hashCode) +
-    (phoneNumberID.hashCode);
+      // ignore: unnecessary_parenthesis
+      (userID.hashCode) + (emailID.hashCode) + (phoneNumberID.hashCode);
 
   @override
-  String toString() => 'UserCreateRspAllOfData[userID=$userID, emailID=$emailID, phoneNumberID=$phoneNumberID]';
+  String toString() =>
+      'UserCreateRspAllOfData[userID=$userID, emailID=$emailID, phoneNumberID=$phoneNumberID]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'userID'] = this.userID;
-      json[r'emailID'] = this.emailID;
-      json[r'phoneNumberID'] = this.phoneNumberID;
+    json[r'userID'] = this.userID;
+    json[r'emailID'] = this.emailID;
+    json[r'phoneNumberID'] = this.phoneNumberID;
     return json;
   }
 
@@ -60,8 +61,10 @@ class UserCreateRspAllOfData {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UserCreateRspAllOfData[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UserCreateRspAllOfData[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "UserCreateRspAllOfData[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "UserCreateRspAllOfData[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -75,7 +78,10 @@ class UserCreateRspAllOfData {
     return null;
   }
 
-  static List<UserCreateRspAllOfData> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<UserCreateRspAllOfData> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <UserCreateRspAllOfData>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -103,13 +109,19 @@ class UserCreateRspAllOfData {
   }
 
   // maps a json object with a list of UserCreateRspAllOfData-objects as value to a dart map
-  static Map<String, List<UserCreateRspAllOfData>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<UserCreateRspAllOfData>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<UserCreateRspAllOfData>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = UserCreateRspAllOfData.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = UserCreateRspAllOfData.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -122,4 +134,3 @@ class UserCreateRspAllOfData {
     'phoneNumberID',
   };
 }
-

@@ -19,20 +19,21 @@ class SmsCodeSendRspAllOfData {
   String smsCodeID;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is SmsCodeSendRspAllOfData &&
-     other.smsCodeID == smsCodeID;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SmsCodeSendRspAllOfData && other.smsCodeID == smsCodeID;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (smsCodeID.hashCode);
+      // ignore: unnecessary_parenthesis
+      (smsCodeID.hashCode);
 
   @override
   String toString() => 'SmsCodeSendRspAllOfData[smsCodeID=$smsCodeID]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'smsCodeID'] = this.smsCodeID;
+    json[r'smsCodeID'] = this.smsCodeID;
     return json;
   }
 
@@ -48,8 +49,10 @@ class SmsCodeSendRspAllOfData {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "SmsCodeSendRspAllOfData[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "SmsCodeSendRspAllOfData[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "SmsCodeSendRspAllOfData[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "SmsCodeSendRspAllOfData[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -61,7 +64,10 @@ class SmsCodeSendRspAllOfData {
     return null;
   }
 
-  static List<SmsCodeSendRspAllOfData> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<SmsCodeSendRspAllOfData> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <SmsCodeSendRspAllOfData>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -89,13 +95,19 @@ class SmsCodeSendRspAllOfData {
   }
 
   // maps a json object with a list of SmsCodeSendRspAllOfData-objects as value to a dart map
-  static Map<String, List<SmsCodeSendRspAllOfData>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<SmsCodeSendRspAllOfData>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<SmsCodeSendRspAllOfData>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = SmsCodeSendRspAllOfData.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = SmsCodeSendRspAllOfData.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -106,4 +118,3 @@ class SmsCodeSendRspAllOfData {
     'smsCodeID',
   };
 }
-

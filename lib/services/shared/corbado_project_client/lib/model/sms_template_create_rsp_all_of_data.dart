@@ -19,20 +19,23 @@ class SmsTemplateCreateRspAllOfData {
   String smsTemplateID;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is SmsTemplateCreateRspAllOfData &&
-     other.smsTemplateID == smsTemplateID;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SmsTemplateCreateRspAllOfData &&
+          other.smsTemplateID == smsTemplateID;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (smsTemplateID.hashCode);
+      // ignore: unnecessary_parenthesis
+      (smsTemplateID.hashCode);
 
   @override
-  String toString() => 'SmsTemplateCreateRspAllOfData[smsTemplateID=$smsTemplateID]';
+  String toString() =>
+      'SmsTemplateCreateRspAllOfData[smsTemplateID=$smsTemplateID]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'smsTemplateID'] = this.smsTemplateID;
+    json[r'smsTemplateID'] = this.smsTemplateID;
     return json;
   }
 
@@ -48,8 +51,10 @@ class SmsTemplateCreateRspAllOfData {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "SmsTemplateCreateRspAllOfData[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "SmsTemplateCreateRspAllOfData[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "SmsTemplateCreateRspAllOfData[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "SmsTemplateCreateRspAllOfData[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -61,7 +66,10 @@ class SmsTemplateCreateRspAllOfData {
     return null;
   }
 
-  static List<SmsTemplateCreateRspAllOfData> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<SmsTemplateCreateRspAllOfData> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <SmsTemplateCreateRspAllOfData>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -89,13 +97,19 @@ class SmsTemplateCreateRspAllOfData {
   }
 
   // maps a json object with a list of SmsTemplateCreateRspAllOfData-objects as value to a dart map
-  static Map<String, List<SmsTemplateCreateRspAllOfData>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<SmsTemplateCreateRspAllOfData>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<SmsTemplateCreateRspAllOfData>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = SmsTemplateCreateRspAllOfData.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = SmsTemplateCreateRspAllOfData.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -106,4 +120,3 @@ class SmsTemplateCreateRspAllOfData {
     'smsTemplateID',
   };
 }
-

@@ -19,20 +19,23 @@ class UserCustomLoginIdentifierGetRspAllOfData {
   CustomLoginIdentifier customLoginIdentifier;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is UserCustomLoginIdentifierGetRspAllOfData &&
-     other.customLoginIdentifier == customLoginIdentifier;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserCustomLoginIdentifierGetRspAllOfData &&
+          other.customLoginIdentifier == customLoginIdentifier;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (customLoginIdentifier.hashCode);
+      // ignore: unnecessary_parenthesis
+      (customLoginIdentifier.hashCode);
 
   @override
-  String toString() => 'UserCustomLoginIdentifierGetRspAllOfData[customLoginIdentifier=$customLoginIdentifier]';
+  String toString() =>
+      'UserCustomLoginIdentifierGetRspAllOfData[customLoginIdentifier=$customLoginIdentifier]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'customLoginIdentifier'] = this.customLoginIdentifier;
+    json[r'customLoginIdentifier'] = this.customLoginIdentifier;
     return json;
   }
 
@@ -48,20 +51,26 @@ class UserCustomLoginIdentifierGetRspAllOfData {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UserCustomLoginIdentifierGetRspAllOfData[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UserCustomLoginIdentifierGetRspAllOfData[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "UserCustomLoginIdentifierGetRspAllOfData[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "UserCustomLoginIdentifierGetRspAllOfData[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
       return UserCustomLoginIdentifierGetRspAllOfData(
-        customLoginIdentifier: CustomLoginIdentifier.fromJson(json[r'customLoginIdentifier'])!,
+        customLoginIdentifier:
+            CustomLoginIdentifier.fromJson(json[r'customLoginIdentifier'])!,
       );
     }
     return null;
   }
 
-  static List<UserCustomLoginIdentifierGetRspAllOfData> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<UserCustomLoginIdentifierGetRspAllOfData> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <UserCustomLoginIdentifierGetRspAllOfData>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -74,12 +83,14 @@ class UserCustomLoginIdentifierGetRspAllOfData {
     return result.toList(growable: growable);
   }
 
-  static Map<String, UserCustomLoginIdentifierGetRspAllOfData> mapFromJson(dynamic json) {
+  static Map<String, UserCustomLoginIdentifierGetRspAllOfData> mapFromJson(
+      dynamic json) {
     final map = <String, UserCustomLoginIdentifierGetRspAllOfData>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = UserCustomLoginIdentifierGetRspAllOfData.fromJson(entry.value);
+        final value =
+            UserCustomLoginIdentifierGetRspAllOfData.fromJson(entry.value);
         if (value != null) {
           map[entry.key] = value;
         }
@@ -89,13 +100,20 @@ class UserCustomLoginIdentifierGetRspAllOfData {
   }
 
   // maps a json object with a list of UserCustomLoginIdentifierGetRspAllOfData-objects as value to a dart map
-  static Map<String, List<UserCustomLoginIdentifierGetRspAllOfData>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<UserCustomLoginIdentifierGetRspAllOfData>>
+      mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<UserCustomLoginIdentifierGetRspAllOfData>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = UserCustomLoginIdentifierGetRspAllOfData.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = UserCustomLoginIdentifierGetRspAllOfData.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -106,4 +124,3 @@ class UserCustomLoginIdentifierGetRspAllOfData {
     'customLoginIdentifier',
   };
 }
-

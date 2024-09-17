@@ -38,24 +38,27 @@ class ProjectConfigWebhookTestReq {
   ClientInfo? clientInfo;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is ProjectConfigWebhookTestReq &&
-     other.action == action &&
-     other.requestID == requestID &&
-     other.clientInfo == clientInfo;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProjectConfigWebhookTestReq &&
+          other.action == action &&
+          other.requestID == requestID &&
+          other.clientInfo == clientInfo;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (action.hashCode) +
-    (requestID == null ? 0 : requestID!.hashCode) +
-    (clientInfo == null ? 0 : clientInfo!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (action.hashCode) +
+      (requestID == null ? 0 : requestID!.hashCode) +
+      (clientInfo == null ? 0 : clientInfo!.hashCode);
 
   @override
-  String toString() => 'ProjectConfigWebhookTestReq[action=$action, requestID=$requestID, clientInfo=$clientInfo]';
+  String toString() =>
+      'ProjectConfigWebhookTestReq[action=$action, requestID=$requestID, clientInfo=$clientInfo]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'action'] = this.action;
+    json[r'action'] = this.action;
     if (this.requestID != null) {
       json[r'requestID'] = this.requestID;
     } else {
@@ -81,14 +84,17 @@ class ProjectConfigWebhookTestReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ProjectConfigWebhookTestReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ProjectConfigWebhookTestReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "ProjectConfigWebhookTestReq[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "ProjectConfigWebhookTestReq[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
       return ProjectConfigWebhookTestReq(
-        action: ProjectConfigWebhookTestReqActionEnum.fromJson(json[r'action'])!,
+        action:
+            ProjectConfigWebhookTestReqActionEnum.fromJson(json[r'action'])!,
         requestID: mapValueOfType<String>(json, r'requestID'),
         clientInfo: ClientInfo.fromJson(json[r'clientInfo']),
       );
@@ -96,7 +102,10 @@ class ProjectConfigWebhookTestReq {
     return null;
   }
 
-  static List<ProjectConfigWebhookTestReq> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ProjectConfigWebhookTestReq> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ProjectConfigWebhookTestReq>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -124,13 +133,19 @@ class ProjectConfigWebhookTestReq {
   }
 
   // maps a json object with a list of ProjectConfigWebhookTestReq-objects as value to a dart map
-  static Map<String, List<ProjectConfigWebhookTestReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<ProjectConfigWebhookTestReq>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<ProjectConfigWebhookTestReq>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = ProjectConfigWebhookTestReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = ProjectConfigWebhookTestReq.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -141,7 +156,6 @@ class ProjectConfigWebhookTestReq {
     'action',
   };
 }
-
 
 class ProjectConfigWebhookTestReqActionEnum {
   /// Instantiate a new enum with the provided [value].
@@ -155,8 +169,10 @@ class ProjectConfigWebhookTestReqActionEnum {
 
   String toJson() => value;
 
-  static const authMethods = ProjectConfigWebhookTestReqActionEnum._(r'authMethods');
-  static const passwordVerify = ProjectConfigWebhookTestReqActionEnum._(r'passwordVerify');
+  static const authMethods =
+      ProjectConfigWebhookTestReqActionEnum._(r'authMethods');
+  static const passwordVerify =
+      ProjectConfigWebhookTestReqActionEnum._(r'passwordVerify');
 
   /// List of all possible values in this [enum][ProjectConfigWebhookTestReqActionEnum].
   static const values = <ProjectConfigWebhookTestReqActionEnum>[
@@ -164,9 +180,13 @@ class ProjectConfigWebhookTestReqActionEnum {
     passwordVerify,
   ];
 
-  static ProjectConfigWebhookTestReqActionEnum? fromJson(dynamic value) => ProjectConfigWebhookTestReqActionEnumTypeTransformer().decode(value);
+  static ProjectConfigWebhookTestReqActionEnum? fromJson(dynamic value) =>
+      ProjectConfigWebhookTestReqActionEnumTypeTransformer().decode(value);
 
-  static List<ProjectConfigWebhookTestReqActionEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ProjectConfigWebhookTestReqActionEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ProjectConfigWebhookTestReqActionEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -183,7 +203,9 @@ class ProjectConfigWebhookTestReqActionEnum {
 /// Transformation class that can [encode] an instance of [ProjectConfigWebhookTestReqActionEnum] to String,
 /// and [decode] dynamic data back to [ProjectConfigWebhookTestReqActionEnum].
 class ProjectConfigWebhookTestReqActionEnumTypeTransformer {
-  factory ProjectConfigWebhookTestReqActionEnumTypeTransformer() => _instance ??= const ProjectConfigWebhookTestReqActionEnumTypeTransformer._();
+  factory ProjectConfigWebhookTestReqActionEnumTypeTransformer() =>
+      _instance ??=
+          const ProjectConfigWebhookTestReqActionEnumTypeTransformer._();
 
   const ProjectConfigWebhookTestReqActionEnumTypeTransformer._();
 
@@ -197,11 +219,14 @@ class ProjectConfigWebhookTestReqActionEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  ProjectConfigWebhookTestReqActionEnum? decode(dynamic data, {bool allowNull = true}) {
+  ProjectConfigWebhookTestReqActionEnum? decode(dynamic data,
+      {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'authMethods': return ProjectConfigWebhookTestReqActionEnum.authMethods;
-        case r'passwordVerify': return ProjectConfigWebhookTestReqActionEnum.passwordVerify;
+        case r'authMethods':
+          return ProjectConfigWebhookTestReqActionEnum.authMethods;
+        case r'passwordVerify':
+          return ProjectConfigWebhookTestReqActionEnum.passwordVerify;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -214,5 +239,3 @@ class ProjectConfigWebhookTestReqActionEnumTypeTransformer {
   /// Singleton [ProjectConfigWebhookTestReqActionEnumTypeTransformer] instance.
   static ProjectConfigWebhookTestReqActionEnumTypeTransformer? _instance;
 }
-
-

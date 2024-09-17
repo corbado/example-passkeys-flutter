@@ -41,35 +41,38 @@ class ExampleGetRsp {
   ExampleGetRspExtension_Enum extension_;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is ExampleGetRsp &&
-     other.httpStatusCode == httpStatusCode &&
-     other.message == message &&
-     other.requestData == requestData &&
-     other.runtime == runtime &&
-     other.data == data &&
-     other.extension_ == extension_;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ExampleGetRsp &&
+          other.httpStatusCode == httpStatusCode &&
+          other.message == message &&
+          other.requestData == requestData &&
+          other.runtime == runtime &&
+          other.data == data &&
+          other.extension_ == extension_;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (httpStatusCode.hashCode) +
-    (message.hashCode) +
-    (requestData.hashCode) +
-    (runtime.hashCode) +
-    (data.hashCode) +
-    (extension_.hashCode);
+      // ignore: unnecessary_parenthesis
+      (httpStatusCode.hashCode) +
+      (message.hashCode) +
+      (requestData.hashCode) +
+      (runtime.hashCode) +
+      (data.hashCode) +
+      (extension_.hashCode);
 
   @override
-  String toString() => 'ExampleGetRsp[httpStatusCode=$httpStatusCode, message=$message, requestData=$requestData, runtime=$runtime, data=$data, extension_=$extension_]';
+  String toString() =>
+      'ExampleGetRsp[httpStatusCode=$httpStatusCode, message=$message, requestData=$requestData, runtime=$runtime, data=$data, extension_=$extension_]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'httpStatusCode'] = this.httpStatusCode;
-      json[r'message'] = this.message;
-      json[r'requestData'] = this.requestData;
-      json[r'runtime'] = this.runtime;
-      json[r'data'] = this.data;
-      json[r'extension'] = this.extension_;
+    json[r'httpStatusCode'] = this.httpStatusCode;
+    json[r'message'] = this.message;
+    json[r'requestData'] = this.requestData;
+    json[r'runtime'] = this.runtime;
+    json[r'data'] = this.data;
+    json[r'extension'] = this.extension_;
     return json;
   }
 
@@ -85,8 +88,10 @@ class ExampleGetRsp {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ExampleGetRsp[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ExampleGetRsp[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "ExampleGetRsp[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "ExampleGetRsp[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -103,7 +108,10 @@ class ExampleGetRsp {
     return null;
   }
 
-  static List<ExampleGetRsp> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ExampleGetRsp> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ExampleGetRsp>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -131,13 +139,19 @@ class ExampleGetRsp {
   }
 
   // maps a json object with a list of ExampleGetRsp-objects as value to a dart map
-  static Map<String, List<ExampleGetRsp>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<ExampleGetRsp>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<ExampleGetRsp>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = ExampleGetRsp.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = ExampleGetRsp.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -176,9 +190,13 @@ class ExampleGetRspExtension_Enum {
     tarPeriodGz,
   ];
 
-  static ExampleGetRspExtension_Enum? fromJson(dynamic value) => ExampleGetRspExtension_EnumTypeTransformer().decode(value);
+  static ExampleGetRspExtension_Enum? fromJson(dynamic value) =>
+      ExampleGetRspExtension_EnumTypeTransformer().decode(value);
 
-  static List<ExampleGetRspExtension_Enum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ExampleGetRspExtension_Enum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ExampleGetRspExtension_Enum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -195,7 +213,8 @@ class ExampleGetRspExtension_Enum {
 /// Transformation class that can [encode] an instance of [ExampleGetRspExtension_Enum] to String,
 /// and [decode] dynamic data back to [ExampleGetRspExtension_Enum].
 class ExampleGetRspExtension_EnumTypeTransformer {
-  factory ExampleGetRspExtension_EnumTypeTransformer() => _instance ??= const ExampleGetRspExtension_EnumTypeTransformer._();
+  factory ExampleGetRspExtension_EnumTypeTransformer() =>
+      _instance ??= const ExampleGetRspExtension_EnumTypeTransformer._();
 
   const ExampleGetRspExtension_EnumTypeTransformer._();
 
@@ -212,8 +231,10 @@ class ExampleGetRspExtension_EnumTypeTransformer {
   ExampleGetRspExtension_Enum? decode(dynamic data, {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'zip': return ExampleGetRspExtension_Enum.zip;
-        case r'tar.gz': return ExampleGetRspExtension_Enum.tarPeriodGz;
+        case r'zip':
+          return ExampleGetRspExtension_Enum.zip;
+        case r'tar.gz':
+          return ExampleGetRspExtension_Enum.tarPeriodGz;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -226,5 +247,3 @@ class ExampleGetRspExtension_EnumTypeTransformer {
   /// Singleton [ExampleGetRspExtension_EnumTypeTransformer] instance.
   static ExampleGetRspExtension_EnumTypeTransformer? _instance;
 }
-
-

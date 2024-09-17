@@ -13,9 +13,5 @@ import 'package:test/test.dart';
 
 // tests for Status
 void main() {
-
-  group('test Status', () {
-
-  });
-
+  group('test Status', () {});
 }

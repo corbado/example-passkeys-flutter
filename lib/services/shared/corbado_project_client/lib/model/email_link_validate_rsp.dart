@@ -62,42 +62,45 @@ class EmailLinkValidateRsp {
   String? loginToken;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is EmailLinkValidateRsp &&
-     other.httpStatusCode == httpStatusCode &&
-     other.message == message &&
-     other.requestData == requestData &&
-     other.runtime == runtime &&
-     other.userID == userID &&
-     other.userFullName == userFullName &&
-     other.userEmail == userEmail &&
-     other.additionalPayload == additionalPayload &&
-     other.loginToken == loginToken;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is EmailLinkValidateRsp &&
+          other.httpStatusCode == httpStatusCode &&
+          other.message == message &&
+          other.requestData == requestData &&
+          other.runtime == runtime &&
+          other.userID == userID &&
+          other.userFullName == userFullName &&
+          other.userEmail == userEmail &&
+          other.additionalPayload == additionalPayload &&
+          other.loginToken == loginToken;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (httpStatusCode.hashCode) +
-    (message.hashCode) +
-    (requestData.hashCode) +
-    (runtime.hashCode) +
-    (userID.hashCode) +
-    (userFullName.hashCode) +
-    (userEmail.hashCode) +
-    (additionalPayload == null ? 0 : additionalPayload!.hashCode) +
-    (loginToken == null ? 0 : loginToken!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (httpStatusCode.hashCode) +
+      (message.hashCode) +
+      (requestData.hashCode) +
+      (runtime.hashCode) +
+      (userID.hashCode) +
+      (userFullName.hashCode) +
+      (userEmail.hashCode) +
+      (additionalPayload == null ? 0 : additionalPayload!.hashCode) +
+      (loginToken == null ? 0 : loginToken!.hashCode);
 
   @override
-  String toString() => 'EmailLinkValidateRsp[httpStatusCode=$httpStatusCode, message=$message, requestData=$requestData, runtime=$runtime, userID=$userID, userFullName=$userFullName, userEmail=$userEmail, additionalPayload=$additionalPayload, loginToken=$loginToken]';
+  String toString() =>
+      'EmailLinkValidateRsp[httpStatusCode=$httpStatusCode, message=$message, requestData=$requestData, runtime=$runtime, userID=$userID, userFullName=$userFullName, userEmail=$userEmail, additionalPayload=$additionalPayload, loginToken=$loginToken]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'httpStatusCode'] = this.httpStatusCode;
-      json[r'message'] = this.message;
-      json[r'requestData'] = this.requestData;
-      json[r'runtime'] = this.runtime;
-      json[r'userID'] = this.userID;
-      json[r'userFullName'] = this.userFullName;
-      json[r'userEmail'] = this.userEmail;
+    json[r'httpStatusCode'] = this.httpStatusCode;
+    json[r'message'] = this.message;
+    json[r'requestData'] = this.requestData;
+    json[r'runtime'] = this.runtime;
+    json[r'userID'] = this.userID;
+    json[r'userFullName'] = this.userFullName;
+    json[r'userEmail'] = this.userEmail;
     if (this.additionalPayload != null) {
       json[r'additionalPayload'] = this.additionalPayload;
     } else {
@@ -123,8 +126,10 @@ class EmailLinkValidateRsp {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "EmailLinkValidateRsp[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "EmailLinkValidateRsp[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "EmailLinkValidateRsp[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "EmailLinkValidateRsp[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -144,7 +149,10 @@ class EmailLinkValidateRsp {
     return null;
   }
 
-  static List<EmailLinkValidateRsp> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<EmailLinkValidateRsp> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <EmailLinkValidateRsp>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -172,13 +180,19 @@ class EmailLinkValidateRsp {
   }
 
   // maps a json object with a list of EmailLinkValidateRsp-objects as value to a dart map
-  static Map<String, List<EmailLinkValidateRsp>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<EmailLinkValidateRsp>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<EmailLinkValidateRsp>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = EmailLinkValidateRsp.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = EmailLinkValidateRsp.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -195,4 +209,3 @@ class EmailLinkValidateRsp {
     'userEmail',
   };
 }
-

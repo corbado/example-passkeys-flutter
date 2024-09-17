@@ -25,26 +25,27 @@ class ProjectConfigWebhookTestRspAllOfData {
   double runtime;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is ProjectConfigWebhookTestRspAllOfData &&
-     other.code == code &&
-     other.details == details &&
-     other.runtime == runtime;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProjectConfigWebhookTestRspAllOfData &&
+          other.code == code &&
+          other.details == details &&
+          other.runtime == runtime;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (code.hashCode) +
-    (details.hashCode) +
-    (runtime.hashCode);
+      // ignore: unnecessary_parenthesis
+      (code.hashCode) + (details.hashCode) + (runtime.hashCode);
 
   @override
-  String toString() => 'ProjectConfigWebhookTestRspAllOfData[code=$code, details=$details, runtime=$runtime]';
+  String toString() =>
+      'ProjectConfigWebhookTestRspAllOfData[code=$code, details=$details, runtime=$runtime]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'code'] = this.code;
-      json[r'details'] = this.details;
-      json[r'runtime'] = this.runtime;
+    json[r'code'] = this.code;
+    json[r'details'] = this.details;
+    json[r'runtime'] = this.runtime;
     return json;
   }
 
@@ -60,8 +61,10 @@ class ProjectConfigWebhookTestRspAllOfData {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ProjectConfigWebhookTestRspAllOfData[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ProjectConfigWebhookTestRspAllOfData[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "ProjectConfigWebhookTestRspAllOfData[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "ProjectConfigWebhookTestRspAllOfData[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -75,7 +78,10 @@ class ProjectConfigWebhookTestRspAllOfData {
     return null;
   }
 
-  static List<ProjectConfigWebhookTestRspAllOfData> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ProjectConfigWebhookTestRspAllOfData> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ProjectConfigWebhookTestRspAllOfData>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -88,12 +94,14 @@ class ProjectConfigWebhookTestRspAllOfData {
     return result.toList(growable: growable);
   }
 
-  static Map<String, ProjectConfigWebhookTestRspAllOfData> mapFromJson(dynamic json) {
+  static Map<String, ProjectConfigWebhookTestRspAllOfData> mapFromJson(
+      dynamic json) {
     final map = <String, ProjectConfigWebhookTestRspAllOfData>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = ProjectConfigWebhookTestRspAllOfData.fromJson(entry.value);
+        final value =
+            ProjectConfigWebhookTestRspAllOfData.fromJson(entry.value);
         if (value != null) {
           map[entry.key] = value;
         }
@@ -103,13 +111,20 @@ class ProjectConfigWebhookTestRspAllOfData {
   }
 
   // maps a json object with a list of ProjectConfigWebhookTestRspAllOfData-objects as value to a dart map
-  static Map<String, List<ProjectConfigWebhookTestRspAllOfData>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<ProjectConfigWebhookTestRspAllOfData>>
+      mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<ProjectConfigWebhookTestRspAllOfData>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = ProjectConfigWebhookTestRspAllOfData.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = ProjectConfigWebhookTestRspAllOfData.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -122,4 +137,3 @@ class ProjectConfigWebhookTestRspAllOfData {
     'runtime',
   };
 }
-

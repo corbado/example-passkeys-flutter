@@ -19,20 +19,21 @@ class UserCustomLoginIdentifierCreateRspAllOf {
   UserCustomLoginIdentifierCreateRspAllOfData data;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is UserCustomLoginIdentifierCreateRspAllOf &&
-     other.data == data;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserCustomLoginIdentifierCreateRspAllOf && other.data == data;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (data.hashCode);
+      // ignore: unnecessary_parenthesis
+      (data.hashCode);
 
   @override
   String toString() => 'UserCustomLoginIdentifierCreateRspAllOf[data=$data]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'data'] = this.data;
+    json[r'data'] = this.data;
     return json;
   }
 
@@ -48,20 +49,26 @@ class UserCustomLoginIdentifierCreateRspAllOf {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UserCustomLoginIdentifierCreateRspAllOf[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UserCustomLoginIdentifierCreateRspAllOf[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "UserCustomLoginIdentifierCreateRspAllOf[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "UserCustomLoginIdentifierCreateRspAllOf[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
       return UserCustomLoginIdentifierCreateRspAllOf(
-        data: UserCustomLoginIdentifierCreateRspAllOfData.fromJson(json[r'data'])!,
+        data: UserCustomLoginIdentifierCreateRspAllOfData.fromJson(
+            json[r'data'])!,
       );
     }
     return null;
   }
 
-  static List<UserCustomLoginIdentifierCreateRspAllOf> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<UserCustomLoginIdentifierCreateRspAllOf> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <UserCustomLoginIdentifierCreateRspAllOf>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -74,12 +81,14 @@ class UserCustomLoginIdentifierCreateRspAllOf {
     return result.toList(growable: growable);
   }
 
-  static Map<String, UserCustomLoginIdentifierCreateRspAllOf> mapFromJson(dynamic json) {
+  static Map<String, UserCustomLoginIdentifierCreateRspAllOf> mapFromJson(
+      dynamic json) {
     final map = <String, UserCustomLoginIdentifierCreateRspAllOf>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = UserCustomLoginIdentifierCreateRspAllOf.fromJson(entry.value);
+        final value =
+            UserCustomLoginIdentifierCreateRspAllOf.fromJson(entry.value);
         if (value != null) {
           map[entry.key] = value;
         }
@@ -89,13 +98,20 @@ class UserCustomLoginIdentifierCreateRspAllOf {
   }
 
   // maps a json object with a list of UserCustomLoginIdentifierCreateRspAllOf-objects as value to a dart map
-  static Map<String, List<UserCustomLoginIdentifierCreateRspAllOf>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<UserCustomLoginIdentifierCreateRspAllOf>>
+      mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<UserCustomLoginIdentifierCreateRspAllOf>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = UserCustomLoginIdentifierCreateRspAllOf.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = UserCustomLoginIdentifierCreateRspAllOf.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -106,4 +122,3 @@ class UserCustomLoginIdentifierCreateRspAllOf {
     'data',
   };
 }
-

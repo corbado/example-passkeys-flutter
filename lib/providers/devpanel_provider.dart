@@ -5,14 +5,27 @@ import 'package:developer_panel_app/providers/project_provider.dart';
 import 'package:developer_panel_app/services/project/project.dart';
 import 'package:developer_panel_app/services/shared/corbado_project_client/lib/api.dart'
     as project;
+import 'package:developer_panel_app/services/shared/developerpanel_client/lib/api.dart'
+as developerpanel;
 import 'package:developer_panel_app/services/user/user.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+final corbadoDeveloperPanelClientProvider = Provider<developerpanel.ApiClient>((ref) {
+  final user = ref.watch(userProvider);
+
+  final client = developerpanel.ApiClient(basePath: 'https://developerpanel.cloud.corbado-staging.io');
+  // final client = developerpanel.ApiClient(basePath: 'https://app.corbado-dev.com');
+  client.addDefaultHeader('Authorization', 'Bearer ${user.value?.idToken ?? ''}');
+
+  return client;
+});
 
 final corbadoProjectClientProvider =
     Provider.family<project.ApiClient, String>((ref, projectID) {
   final user = ref.watch(userProvider);
 
-  final client = project.ApiClient(basePath: 'https://api.corbado.com');
+  final client = project.ApiClient(basePath: 'https://backendapi.cloud.corbado-staging.io');
+  // final client = project.ApiClient(basePath: 'https://api.corbado-dev.com');
   client.addDefaultHeader('cookie', 'cbo_short_session=${user.value?.idToken ?? ''}');
   client.addDefaultHeader('X-Corbado-Projectid', projectID);
 
@@ -21,9 +34,9 @@ final corbadoProjectClientProvider =
 
 // services
 final userServiceProvider = Provider<UserService>((ref) {
-  final user = ref.watch(userProvider);
+  final client = ref.watch(corbadoDeveloperPanelClientProvider);
 
-  return UserService(user.value?.idToken ?? "");
+  return UserService(client);
 });
 
 final projectServiceProvider = Provider<ProjectService>((ref) {

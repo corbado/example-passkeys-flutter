@@ -53,22 +53,25 @@ class UserUpdateReq {
   ClientInfo? clientInfo;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is UserUpdateReq &&
-     other.name == name &&
-     other.fullName == fullName &&
-     other.requestID == requestID &&
-     other.clientInfo == clientInfo;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserUpdateReq &&
+          other.name == name &&
+          other.fullName == fullName &&
+          other.requestID == requestID &&
+          other.clientInfo == clientInfo;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (name == null ? 0 : name!.hashCode) +
-    (fullName == null ? 0 : fullName!.hashCode) +
-    (requestID == null ? 0 : requestID!.hashCode) +
-    (clientInfo == null ? 0 : clientInfo!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (name == null ? 0 : name!.hashCode) +
+      (fullName == null ? 0 : fullName!.hashCode) +
+      (requestID == null ? 0 : requestID!.hashCode) +
+      (clientInfo == null ? 0 : clientInfo!.hashCode);
 
   @override
-  String toString() => 'UserUpdateReq[name=$name, fullName=$fullName, requestID=$requestID, clientInfo=$clientInfo]';
+  String toString() =>
+      'UserUpdateReq[name=$name, fullName=$fullName, requestID=$requestID, clientInfo=$clientInfo]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -107,8 +110,10 @@ class UserUpdateReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UserUpdateReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UserUpdateReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "UserUpdateReq[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "UserUpdateReq[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -123,7 +128,10 @@ class UserUpdateReq {
     return null;
   }
 
-  static List<UserUpdateReq> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<UserUpdateReq> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <UserUpdateReq>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -151,20 +159,24 @@ class UserUpdateReq {
   }
 
   // maps a json object with a list of UserUpdateReq-objects as value to a dart map
-  static Map<String, List<UserUpdateReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<UserUpdateReq>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<UserUpdateReq>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = UserUpdateReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = UserUpdateReq.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
   }
 
   /// The list of required keys that must be present in a JSON.
-  static const requiredKeys = <String>{
-  };
+  static const requiredKeys = <String>{};
 }
-

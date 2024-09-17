@@ -24,23 +24,24 @@ class WebauthnSettingCreate {
   String origin;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is WebauthnSettingCreate &&
-     other.name == name &&
-     other.origin == origin;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is WebauthnSettingCreate &&
+          other.name == name &&
+          other.origin == origin;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (name.hashCode) +
-    (origin.hashCode);
+      // ignore: unnecessary_parenthesis
+      (name.hashCode) + (origin.hashCode);
 
   @override
   String toString() => 'WebauthnSettingCreate[name=$name, origin=$origin]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'name'] = this.name;
-      json[r'origin'] = this.origin;
+    json[r'name'] = this.name;
+    json[r'origin'] = this.origin;
     return json;
   }
 
@@ -56,8 +57,10 @@ class WebauthnSettingCreate {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "WebauthnSettingCreate[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "WebauthnSettingCreate[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "WebauthnSettingCreate[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "WebauthnSettingCreate[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -70,7 +73,10 @@ class WebauthnSettingCreate {
     return null;
   }
 
-  static List<WebauthnSettingCreate> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<WebauthnSettingCreate> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <WebauthnSettingCreate>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -98,13 +104,19 @@ class WebauthnSettingCreate {
   }
 
   // maps a json object with a list of WebauthnSettingCreate-objects as value to a dart map
-  static Map<String, List<WebauthnSettingCreate>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<WebauthnSettingCreate>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<WebauthnSettingCreate>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = WebauthnSettingCreate.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = WebauthnSettingCreate.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -116,4 +128,3 @@ class WebauthnSettingCreate {
     'origin',
   };
 }
-

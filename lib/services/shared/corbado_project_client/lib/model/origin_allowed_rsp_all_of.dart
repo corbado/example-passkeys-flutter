@@ -19,20 +19,21 @@ class OriginAllowedRspAllOf {
   bool allowed;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is OriginAllowedRspAllOf &&
-     other.allowed == allowed;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is OriginAllowedRspAllOf && other.allowed == allowed;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (allowed.hashCode);
+      // ignore: unnecessary_parenthesis
+      (allowed.hashCode);
 
   @override
   String toString() => 'OriginAllowedRspAllOf[allowed=$allowed]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'allowed'] = this.allowed;
+    json[r'allowed'] = this.allowed;
     return json;
   }
 
@@ -48,8 +49,10 @@ class OriginAllowedRspAllOf {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "OriginAllowedRspAllOf[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "OriginAllowedRspAllOf[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "OriginAllowedRspAllOf[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "OriginAllowedRspAllOf[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -61,7 +64,10 @@ class OriginAllowedRspAllOf {
     return null;
   }
 
-  static List<OriginAllowedRspAllOf> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<OriginAllowedRspAllOf> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <OriginAllowedRspAllOf>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -89,13 +95,19 @@ class OriginAllowedRspAllOf {
   }
 
   // maps a json object with a list of OriginAllowedRspAllOf-objects as value to a dart map
-  static Map<String, List<OriginAllowedRspAllOf>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<OriginAllowedRspAllOf>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<OriginAllowedRspAllOf>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = OriginAllowedRspAllOf.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = OriginAllowedRspAllOf.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -106,4 +118,3 @@ class OriginAllowedRspAllOf {
     'allowed',
   };
 }
-

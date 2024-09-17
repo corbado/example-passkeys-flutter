@@ -50,8 +50,5 @@ void main() {
     test('to test the property `conditionalUi`', () async {
       // TODO
     });
-
-
   });
-
 }

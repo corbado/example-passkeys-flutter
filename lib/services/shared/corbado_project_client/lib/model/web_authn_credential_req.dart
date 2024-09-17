@@ -38,24 +38,27 @@ class WebAuthnCredentialReq {
   ClientInfo? clientInfo;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is WebAuthnCredentialReq &&
-     other.status == status &&
-     other.requestID == requestID &&
-     other.clientInfo == clientInfo;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is WebAuthnCredentialReq &&
+          other.status == status &&
+          other.requestID == requestID &&
+          other.clientInfo == clientInfo;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (status.hashCode) +
-    (requestID == null ? 0 : requestID!.hashCode) +
-    (clientInfo == null ? 0 : clientInfo!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (status.hashCode) +
+      (requestID == null ? 0 : requestID!.hashCode) +
+      (clientInfo == null ? 0 : clientInfo!.hashCode);
 
   @override
-  String toString() => 'WebAuthnCredentialReq[status=$status, requestID=$requestID, clientInfo=$clientInfo]';
+  String toString() =>
+      'WebAuthnCredentialReq[status=$status, requestID=$requestID, clientInfo=$clientInfo]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'status'] = this.status;
+    json[r'status'] = this.status;
     if (this.requestID != null) {
       json[r'requestID'] = this.requestID;
     } else {
@@ -81,8 +84,10 @@ class WebAuthnCredentialReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "WebAuthnCredentialReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "WebAuthnCredentialReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "WebAuthnCredentialReq[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "WebAuthnCredentialReq[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -96,7 +101,10 @@ class WebAuthnCredentialReq {
     return null;
   }
 
-  static List<WebAuthnCredentialReq> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<WebAuthnCredentialReq> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <WebAuthnCredentialReq>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -124,13 +132,19 @@ class WebAuthnCredentialReq {
   }
 
   // maps a json object with a list of WebAuthnCredentialReq-objects as value to a dart map
-  static Map<String, List<WebAuthnCredentialReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<WebAuthnCredentialReq>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<WebAuthnCredentialReq>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = WebAuthnCredentialReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = WebAuthnCredentialReq.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -141,7 +155,6 @@ class WebAuthnCredentialReq {
     'status',
   };
 }
-
 
 class WebAuthnCredentialReqStatusEnum {
   /// Instantiate a new enum with the provided [value].
@@ -166,9 +179,13 @@ class WebAuthnCredentialReqStatusEnum {
     deleted,
   ];
 
-  static WebAuthnCredentialReqStatusEnum? fromJson(dynamic value) => WebAuthnCredentialReqStatusEnumTypeTransformer().decode(value);
+  static WebAuthnCredentialReqStatusEnum? fromJson(dynamic value) =>
+      WebAuthnCredentialReqStatusEnumTypeTransformer().decode(value);
 
-  static List<WebAuthnCredentialReqStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<WebAuthnCredentialReqStatusEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <WebAuthnCredentialReqStatusEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -185,7 +202,8 @@ class WebAuthnCredentialReqStatusEnum {
 /// Transformation class that can [encode] an instance of [WebAuthnCredentialReqStatusEnum] to String,
 /// and [decode] dynamic data back to [WebAuthnCredentialReqStatusEnum].
 class WebAuthnCredentialReqStatusEnumTypeTransformer {
-  factory WebAuthnCredentialReqStatusEnumTypeTransformer() => _instance ??= const WebAuthnCredentialReqStatusEnumTypeTransformer._();
+  factory WebAuthnCredentialReqStatusEnumTypeTransformer() =>
+      _instance ??= const WebAuthnCredentialReqStatusEnumTypeTransformer._();
 
   const WebAuthnCredentialReqStatusEnumTypeTransformer._();
 
@@ -199,12 +217,16 @@ class WebAuthnCredentialReqStatusEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  WebAuthnCredentialReqStatusEnum? decode(dynamic data, {bool allowNull = true}) {
+  WebAuthnCredentialReqStatusEnum? decode(dynamic data,
+      {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'pending': return WebAuthnCredentialReqStatusEnum.pending;
-        case r'active': return WebAuthnCredentialReqStatusEnum.active;
-        case r'deleted': return WebAuthnCredentialReqStatusEnum.deleted;
+        case r'pending':
+          return WebAuthnCredentialReqStatusEnum.pending;
+        case r'active':
+          return WebAuthnCredentialReqStatusEnum.active;
+        case r'deleted':
+          return WebAuthnCredentialReqStatusEnum.deleted;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -217,5 +239,3 @@ class WebAuthnCredentialReqStatusEnumTypeTransformer {
   /// Singleton [WebAuthnCredentialReqStatusEnumTypeTransformer] instance.
   static WebAuthnCredentialReqStatusEnumTypeTransformer? _instance;
 }
-
-

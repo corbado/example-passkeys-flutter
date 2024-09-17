@@ -37,28 +37,31 @@ class SessionTokenCreateReq {
   String? requestID;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is SessionTokenCreateReq &&
-     other.userID == userID &&
-     other.userData == userData &&
-     other.clientInfo == clientInfo &&
-     other.requestID == requestID;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SessionTokenCreateReq &&
+          other.userID == userID &&
+          other.userData == userData &&
+          other.clientInfo == clientInfo &&
+          other.requestID == requestID;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (userID.hashCode) +
-    (userData.hashCode) +
-    (clientInfo.hashCode) +
-    (requestID == null ? 0 : requestID!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (userID.hashCode) +
+      (userData.hashCode) +
+      (clientInfo.hashCode) +
+      (requestID == null ? 0 : requestID!.hashCode);
 
   @override
-  String toString() => 'SessionTokenCreateReq[userID=$userID, userData=$userData, clientInfo=$clientInfo, requestID=$requestID]';
+  String toString() =>
+      'SessionTokenCreateReq[userID=$userID, userData=$userData, clientInfo=$clientInfo, requestID=$requestID]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'userID'] = this.userID;
-      json[r'userData'] = this.userData;
-      json[r'clientInfo'] = this.clientInfo;
+    json[r'userID'] = this.userID;
+    json[r'userData'] = this.userData;
+    json[r'clientInfo'] = this.clientInfo;
     if (this.requestID != null) {
       json[r'requestID'] = this.requestID;
     } else {
@@ -79,8 +82,10 @@ class SessionTokenCreateReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "SessionTokenCreateReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "SessionTokenCreateReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "SessionTokenCreateReq[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "SessionTokenCreateReq[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -95,7 +100,10 @@ class SessionTokenCreateReq {
     return null;
   }
 
-  static List<SessionTokenCreateReq> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<SessionTokenCreateReq> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <SessionTokenCreateReq>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -123,13 +131,19 @@ class SessionTokenCreateReq {
   }
 
   // maps a json object with a list of SessionTokenCreateReq-objects as value to a dart map
-  static Map<String, List<SessionTokenCreateReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<SessionTokenCreateReq>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<SessionTokenCreateReq>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = SessionTokenCreateReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = SessionTokenCreateReq.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -142,4 +156,3 @@ class SessionTokenCreateReq {
     'clientInfo',
   };
 }
-

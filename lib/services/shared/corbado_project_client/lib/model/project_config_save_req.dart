@@ -107,7 +107,8 @@ class ProjectConfigSaveReq {
   String? smsFrom;
 
   /// Defines which version of webhook is used
-  ProjectConfigSaveReqExternalApplicationProtocolVersionEnum? externalApplicationProtocolVersion;
+  ProjectConfigSaveReqExternalApplicationProtocolVersionEnum?
+      externalApplicationProtocolVersion;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -429,112 +430,134 @@ class ProjectConfigSaveReq {
   ClientInfo? clientInfo;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is ProjectConfigSaveReq &&
-     other.wizard == wizard &&
-     other.externalName == externalName &&
-     other.appType == appType &&
-     other.productKey == productKey &&
-     other.emailFrom == emailFrom &&
-     other.smsFrom == smsFrom &&
-     other.externalApplicationProtocolVersion == externalApplicationProtocolVersion &&
-     other.webhookURL == webhookURL &&
-     other.webhookUsername == webhookUsername &&
-     other.webhookPassword == webhookPassword &&
-     other.webhookTestInvalidUsername == webhookTestInvalidUsername &&
-     other.webhookTestValidUsername == webhookTestValidUsername &&
-     other.webhookTestValidPassword == webhookTestValidPassword &&
-     other.externalApplicationUsername == externalApplicationUsername &&
-     other.externalApplicationPassword == externalApplicationPassword &&
-     other.legacyAuthMethodsUrl == legacyAuthMethodsUrl &&
-     other.passwordVerifyUrl == passwordVerifyUrl &&
-     other.authSuccessRedirectUrl == authSuccessRedirectUrl &&
-     other.passwordResetUrl == passwordResetUrl &&
-     other.allowUserRegistration == allowUserRegistration &&
-     other.allowIPStickiness == allowIPStickiness &&
-     other.passkeyAppendInterval == passkeyAppendInterval &&
-     other.fallbackLanguage == fallbackLanguage &&
-     other.autoDetectLanguage == autoDetectLanguage &&
-     other.integrationModeHosted == integrationModeHosted &&
-     other.integrationModeAPI == integrationModeAPI &&
-     other.integrationModeWebComponent == integrationModeWebComponent &&
-     other.hasExistingUsers == hasExistingUsers &&
-     other.hasVerifiedSession == hasVerifiedSession &&
-     other.hasGeneratedSession == hasGeneratedSession &&
-     other.hasStartedUsingPasskeys == hasStartedUsingPasskeys &&
-     other.hasStartedUsingSessions == hasStartedUsingSessions &&
-     other.applicationUrl == applicationUrl &&
-     other.useCli == useCli &&
-     other.doubleOptIn == doubleOptIn &&
-     other.userFullNameRequired == userFullNameRequired &&
-     other.webauthnRPID == webauthnRPID &&
-     other.domain == domain &&
-     other.environment == environment &&
-     other.frontendFramework == frontendFramework &&
-     other.webComponentDebug == webComponentDebug &&
-     other.smtpUseCustom == smtpUseCustom &&
-     other.smtpHost == smtpHost &&
-     other.smtpPort == smtpPort &&
-     other.smtpUsername == smtpUsername &&
-     other.smtpPassword == smtpPassword &&
-     other.supportEmail == supportEmail &&
-     other.requestID == requestID &&
-     other.clientInfo == clientInfo;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProjectConfigSaveReq &&
+          other.wizard == wizard &&
+          other.externalName == externalName &&
+          other.appType == appType &&
+          other.productKey == productKey &&
+          other.emailFrom == emailFrom &&
+          other.smsFrom == smsFrom &&
+          other.externalApplicationProtocolVersion ==
+              externalApplicationProtocolVersion &&
+          other.webhookURL == webhookURL &&
+          other.webhookUsername == webhookUsername &&
+          other.webhookPassword == webhookPassword &&
+          other.webhookTestInvalidUsername == webhookTestInvalidUsername &&
+          other.webhookTestValidUsername == webhookTestValidUsername &&
+          other.webhookTestValidPassword == webhookTestValidPassword &&
+          other.externalApplicationUsername == externalApplicationUsername &&
+          other.externalApplicationPassword == externalApplicationPassword &&
+          other.legacyAuthMethodsUrl == legacyAuthMethodsUrl &&
+          other.passwordVerifyUrl == passwordVerifyUrl &&
+          other.authSuccessRedirectUrl == authSuccessRedirectUrl &&
+          other.passwordResetUrl == passwordResetUrl &&
+          other.allowUserRegistration == allowUserRegistration &&
+          other.allowIPStickiness == allowIPStickiness &&
+          other.passkeyAppendInterval == passkeyAppendInterval &&
+          other.fallbackLanguage == fallbackLanguage &&
+          other.autoDetectLanguage == autoDetectLanguage &&
+          other.integrationModeHosted == integrationModeHosted &&
+          other.integrationModeAPI == integrationModeAPI &&
+          other.integrationModeWebComponent == integrationModeWebComponent &&
+          other.hasExistingUsers == hasExistingUsers &&
+          other.hasVerifiedSession == hasVerifiedSession &&
+          other.hasGeneratedSession == hasGeneratedSession &&
+          other.hasStartedUsingPasskeys == hasStartedUsingPasskeys &&
+          other.hasStartedUsingSessions == hasStartedUsingSessions &&
+          other.applicationUrl == applicationUrl &&
+          other.useCli == useCli &&
+          other.doubleOptIn == doubleOptIn &&
+          other.userFullNameRequired == userFullNameRequired &&
+          other.webauthnRPID == webauthnRPID &&
+          other.domain == domain &&
+          other.environment == environment &&
+          other.frontendFramework == frontendFramework &&
+          other.webComponentDebug == webComponentDebug &&
+          other.smtpUseCustom == smtpUseCustom &&
+          other.smtpHost == smtpHost &&
+          other.smtpPort == smtpPort &&
+          other.smtpUsername == smtpUsername &&
+          other.smtpPassword == smtpPassword &&
+          other.supportEmail == supportEmail &&
+          other.requestID == requestID &&
+          other.clientInfo == clientInfo;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (wizard == null ? 0 : wizard!.hashCode) +
-    (externalName == null ? 0 : externalName!.hashCode) +
-    (appType == null ? 0 : appType!.hashCode) +
-    (productKey == null ? 0 : productKey!.hashCode) +
-    (emailFrom == null ? 0 : emailFrom!.hashCode) +
-    (smsFrom == null ? 0 : smsFrom!.hashCode) +
-    (externalApplicationProtocolVersion == null ? 0 : externalApplicationProtocolVersion!.hashCode) +
-    (webhookURL == null ? 0 : webhookURL!.hashCode) +
-    (webhookUsername == null ? 0 : webhookUsername!.hashCode) +
-    (webhookPassword == null ? 0 : webhookPassword!.hashCode) +
-    (webhookTestInvalidUsername == null ? 0 : webhookTestInvalidUsername!.hashCode) +
-    (webhookTestValidUsername == null ? 0 : webhookTestValidUsername!.hashCode) +
-    (webhookTestValidPassword == null ? 0 : webhookTestValidPassword!.hashCode) +
-    (externalApplicationUsername == null ? 0 : externalApplicationUsername!.hashCode) +
-    (externalApplicationPassword == null ? 0 : externalApplicationPassword!.hashCode) +
-    (legacyAuthMethodsUrl == null ? 0 : legacyAuthMethodsUrl!.hashCode) +
-    (passwordVerifyUrl == null ? 0 : passwordVerifyUrl!.hashCode) +
-    (authSuccessRedirectUrl == null ? 0 : authSuccessRedirectUrl!.hashCode) +
-    (passwordResetUrl == null ? 0 : passwordResetUrl!.hashCode) +
-    (allowUserRegistration == null ? 0 : allowUserRegistration!.hashCode) +
-    (allowIPStickiness == null ? 0 : allowIPStickiness!.hashCode) +
-    (passkeyAppendInterval == null ? 0 : passkeyAppendInterval!.hashCode) +
-    (fallbackLanguage == null ? 0 : fallbackLanguage!.hashCode) +
-    (autoDetectLanguage == null ? 0 : autoDetectLanguage!.hashCode) +
-    (integrationModeHosted == null ? 0 : integrationModeHosted!.hashCode) +
-    (integrationModeAPI == null ? 0 : integrationModeAPI!.hashCode) +
-    (integrationModeWebComponent == null ? 0 : integrationModeWebComponent!.hashCode) +
-    (hasExistingUsers == null ? 0 : hasExistingUsers!.hashCode) +
-    (hasVerifiedSession == null ? 0 : hasVerifiedSession!.hashCode) +
-    (hasGeneratedSession == null ? 0 : hasGeneratedSession!.hashCode) +
-    (hasStartedUsingPasskeys == null ? 0 : hasStartedUsingPasskeys!.hashCode) +
-    (hasStartedUsingSessions == null ? 0 : hasStartedUsingSessions!.hashCode) +
-    (applicationUrl == null ? 0 : applicationUrl!.hashCode) +
-    (useCli == null ? 0 : useCli!.hashCode) +
-    (doubleOptIn == null ? 0 : doubleOptIn!.hashCode) +
-    (userFullNameRequired == null ? 0 : userFullNameRequired!.hashCode) +
-    (webauthnRPID == null ? 0 : webauthnRPID!.hashCode) +
-    (domain == null ? 0 : domain!.hashCode) +
-    (environment == null ? 0 : environment!.hashCode) +
-    (frontendFramework == null ? 0 : frontendFramework!.hashCode) +
-    (webComponentDebug == null ? 0 : webComponentDebug!.hashCode) +
-    (smtpUseCustom == null ? 0 : smtpUseCustom!.hashCode) +
-    (smtpHost == null ? 0 : smtpHost!.hashCode) +
-    (smtpPort == null ? 0 : smtpPort!.hashCode) +
-    (smtpUsername == null ? 0 : smtpUsername!.hashCode) +
-    (smtpPassword == null ? 0 : smtpPassword!.hashCode) +
-    (supportEmail == null ? 0 : supportEmail!.hashCode) +
-    (requestID == null ? 0 : requestID!.hashCode) +
-    (clientInfo == null ? 0 : clientInfo!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (wizard == null ? 0 : wizard!.hashCode) +
+      (externalName == null ? 0 : externalName!.hashCode) +
+      (appType == null ? 0 : appType!.hashCode) +
+      (productKey == null ? 0 : productKey!.hashCode) +
+      (emailFrom == null ? 0 : emailFrom!.hashCode) +
+      (smsFrom == null ? 0 : smsFrom!.hashCode) +
+      (externalApplicationProtocolVersion == null
+          ? 0
+          : externalApplicationProtocolVersion!.hashCode) +
+      (webhookURL == null ? 0 : webhookURL!.hashCode) +
+      (webhookUsername == null ? 0 : webhookUsername!.hashCode) +
+      (webhookPassword == null ? 0 : webhookPassword!.hashCode) +
+      (webhookTestInvalidUsername == null
+          ? 0
+          : webhookTestInvalidUsername!.hashCode) +
+      (webhookTestValidUsername == null
+          ? 0
+          : webhookTestValidUsername!.hashCode) +
+      (webhookTestValidPassword == null
+          ? 0
+          : webhookTestValidPassword!.hashCode) +
+      (externalApplicationUsername == null
+          ? 0
+          : externalApplicationUsername!.hashCode) +
+      (externalApplicationPassword == null
+          ? 0
+          : externalApplicationPassword!.hashCode) +
+      (legacyAuthMethodsUrl == null ? 0 : legacyAuthMethodsUrl!.hashCode) +
+      (passwordVerifyUrl == null ? 0 : passwordVerifyUrl!.hashCode) +
+      (authSuccessRedirectUrl == null ? 0 : authSuccessRedirectUrl!.hashCode) +
+      (passwordResetUrl == null ? 0 : passwordResetUrl!.hashCode) +
+      (allowUserRegistration == null ? 0 : allowUserRegistration!.hashCode) +
+      (allowIPStickiness == null ? 0 : allowIPStickiness!.hashCode) +
+      (passkeyAppendInterval == null ? 0 : passkeyAppendInterval!.hashCode) +
+      (fallbackLanguage == null ? 0 : fallbackLanguage!.hashCode) +
+      (autoDetectLanguage == null ? 0 : autoDetectLanguage!.hashCode) +
+      (integrationModeHosted == null ? 0 : integrationModeHosted!.hashCode) +
+      (integrationModeAPI == null ? 0 : integrationModeAPI!.hashCode) +
+      (integrationModeWebComponent == null
+          ? 0
+          : integrationModeWebComponent!.hashCode) +
+      (hasExistingUsers == null ? 0 : hasExistingUsers!.hashCode) +
+      (hasVerifiedSession == null ? 0 : hasVerifiedSession!.hashCode) +
+      (hasGeneratedSession == null ? 0 : hasGeneratedSession!.hashCode) +
+      (hasStartedUsingPasskeys == null
+          ? 0
+          : hasStartedUsingPasskeys!.hashCode) +
+      (hasStartedUsingSessions == null
+          ? 0
+          : hasStartedUsingSessions!.hashCode) +
+      (applicationUrl == null ? 0 : applicationUrl!.hashCode) +
+      (useCli == null ? 0 : useCli!.hashCode) +
+      (doubleOptIn == null ? 0 : doubleOptIn!.hashCode) +
+      (userFullNameRequired == null ? 0 : userFullNameRequired!.hashCode) +
+      (webauthnRPID == null ? 0 : webauthnRPID!.hashCode) +
+      (domain == null ? 0 : domain!.hashCode) +
+      (environment == null ? 0 : environment!.hashCode) +
+      (frontendFramework == null ? 0 : frontendFramework!.hashCode) +
+      (webComponentDebug == null ? 0 : webComponentDebug!.hashCode) +
+      (smtpUseCustom == null ? 0 : smtpUseCustom!.hashCode) +
+      (smtpHost == null ? 0 : smtpHost!.hashCode) +
+      (smtpPort == null ? 0 : smtpPort!.hashCode) +
+      (smtpUsername == null ? 0 : smtpUsername!.hashCode) +
+      (smtpPassword == null ? 0 : smtpPassword!.hashCode) +
+      (supportEmail == null ? 0 : supportEmail!.hashCode) +
+      (requestID == null ? 0 : requestID!.hashCode) +
+      (clientInfo == null ? 0 : clientInfo!.hashCode);
 
   @override
-  String toString() => 'ProjectConfigSaveReq[wizard=$wizard, externalName=$externalName, appType=$appType, productKey=$productKey, emailFrom=$emailFrom, smsFrom=$smsFrom, externalApplicationProtocolVersion=$externalApplicationProtocolVersion, webhookURL=$webhookURL, webhookUsername=$webhookUsername, webhookPassword=$webhookPassword, webhookTestInvalidUsername=$webhookTestInvalidUsername, webhookTestValidUsername=$webhookTestValidUsername, webhookTestValidPassword=$webhookTestValidPassword, externalApplicationUsername=$externalApplicationUsername, externalApplicationPassword=$externalApplicationPassword, legacyAuthMethodsUrl=$legacyAuthMethodsUrl, passwordVerifyUrl=$passwordVerifyUrl, authSuccessRedirectUrl=$authSuccessRedirectUrl, passwordResetUrl=$passwordResetUrl, allowUserRegistration=$allowUserRegistration, allowIPStickiness=$allowIPStickiness, passkeyAppendInterval=$passkeyAppendInterval, fallbackLanguage=$fallbackLanguage, autoDetectLanguage=$autoDetectLanguage, integrationModeHosted=$integrationModeHosted, integrationModeAPI=$integrationModeAPI, integrationModeWebComponent=$integrationModeWebComponent, hasExistingUsers=$hasExistingUsers, hasVerifiedSession=$hasVerifiedSession, hasGeneratedSession=$hasGeneratedSession, hasStartedUsingPasskeys=$hasStartedUsingPasskeys, hasStartedUsingSessions=$hasStartedUsingSessions, applicationUrl=$applicationUrl, useCli=$useCli, doubleOptIn=$doubleOptIn, userFullNameRequired=$userFullNameRequired, webauthnRPID=$webauthnRPID, domain=$domain, environment=$environment, frontendFramework=$frontendFramework, webComponentDebug=$webComponentDebug, smtpUseCustom=$smtpUseCustom, smtpHost=$smtpHost, smtpPort=$smtpPort, smtpUsername=$smtpUsername, smtpPassword=$smtpPassword, supportEmail=$supportEmail, requestID=$requestID, clientInfo=$clientInfo]';
+  String toString() =>
+      'ProjectConfigSaveReq[wizard=$wizard, externalName=$externalName, appType=$appType, productKey=$productKey, emailFrom=$emailFrom, smsFrom=$smsFrom, externalApplicationProtocolVersion=$externalApplicationProtocolVersion, webhookURL=$webhookURL, webhookUsername=$webhookUsername, webhookPassword=$webhookPassword, webhookTestInvalidUsername=$webhookTestInvalidUsername, webhookTestValidUsername=$webhookTestValidUsername, webhookTestValidPassword=$webhookTestValidPassword, externalApplicationUsername=$externalApplicationUsername, externalApplicationPassword=$externalApplicationPassword, legacyAuthMethodsUrl=$legacyAuthMethodsUrl, passwordVerifyUrl=$passwordVerifyUrl, authSuccessRedirectUrl=$authSuccessRedirectUrl, passwordResetUrl=$passwordResetUrl, allowUserRegistration=$allowUserRegistration, allowIPStickiness=$allowIPStickiness, passkeyAppendInterval=$passkeyAppendInterval, fallbackLanguage=$fallbackLanguage, autoDetectLanguage=$autoDetectLanguage, integrationModeHosted=$integrationModeHosted, integrationModeAPI=$integrationModeAPI, integrationModeWebComponent=$integrationModeWebComponent, hasExistingUsers=$hasExistingUsers, hasVerifiedSession=$hasVerifiedSession, hasGeneratedSession=$hasGeneratedSession, hasStartedUsingPasskeys=$hasStartedUsingPasskeys, hasStartedUsingSessions=$hasStartedUsingSessions, applicationUrl=$applicationUrl, useCli=$useCli, doubleOptIn=$doubleOptIn, userFullNameRequired=$userFullNameRequired, webauthnRPID=$webauthnRPID, domain=$domain, environment=$environment, frontendFramework=$frontendFramework, webComponentDebug=$webComponentDebug, smtpUseCustom=$smtpUseCustom, smtpHost=$smtpHost, smtpPort=$smtpPort, smtpUsername=$smtpUsername, smtpPassword=$smtpPassword, supportEmail=$supportEmail, requestID=$requestID, clientInfo=$clientInfo]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -569,7 +592,8 @@ class ProjectConfigSaveReq {
       json[r'smsFrom'] = null;
     }
     if (this.externalApplicationProtocolVersion != null) {
-      json[r'externalApplicationProtocolVersion'] = this.externalApplicationProtocolVersion;
+      json[r'externalApplicationProtocolVersion'] =
+          this.externalApplicationProtocolVersion;
     } else {
       json[r'externalApplicationProtocolVersion'] = null;
     }
@@ -798,8 +822,10 @@ class ProjectConfigSaveReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ProjectConfigSaveReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ProjectConfigSaveReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "ProjectConfigSaveReq[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "ProjectConfigSaveReq[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -811,40 +837,59 @@ class ProjectConfigSaveReq {
         productKey: mapValueOfType<String>(json, r'productKey'),
         emailFrom: mapValueOfType<String>(json, r'emailFrom'),
         smsFrom: mapValueOfType<String>(json, r'smsFrom'),
-        externalApplicationProtocolVersion: ProjectConfigSaveReqExternalApplicationProtocolVersionEnum.fromJson(json[r'externalApplicationProtocolVersion']),
+        externalApplicationProtocolVersion:
+            ProjectConfigSaveReqExternalApplicationProtocolVersionEnum.fromJson(
+                json[r'externalApplicationProtocolVersion']),
         webhookURL: mapValueOfType<String>(json, r'webhookURL'),
         webhookUsername: mapValueOfType<String>(json, r'webhookUsername'),
         webhookPassword: mapValueOfType<String>(json, r'webhookPassword'),
-        webhookTestInvalidUsername: mapValueOfType<String>(json, r'webhookTestInvalidUsername'),
-        webhookTestValidUsername: mapValueOfType<String>(json, r'webhookTestValidUsername'),
-        webhookTestValidPassword: mapValueOfType<String>(json, r'webhookTestValidPassword'),
-        externalApplicationUsername: mapValueOfType<String>(json, r'externalApplicationUsername'),
-        externalApplicationPassword: mapValueOfType<String>(json, r'externalApplicationPassword'),
-        legacyAuthMethodsUrl: mapValueOfType<String>(json, r'legacyAuthMethodsUrl'),
+        webhookTestInvalidUsername:
+            mapValueOfType<String>(json, r'webhookTestInvalidUsername'),
+        webhookTestValidUsername:
+            mapValueOfType<String>(json, r'webhookTestValidUsername'),
+        webhookTestValidPassword:
+            mapValueOfType<String>(json, r'webhookTestValidPassword'),
+        externalApplicationUsername:
+            mapValueOfType<String>(json, r'externalApplicationUsername'),
+        externalApplicationPassword:
+            mapValueOfType<String>(json, r'externalApplicationPassword'),
+        legacyAuthMethodsUrl:
+            mapValueOfType<String>(json, r'legacyAuthMethodsUrl'),
         passwordVerifyUrl: mapValueOfType<String>(json, r'passwordVerifyUrl'),
-        authSuccessRedirectUrl: mapValueOfType<String>(json, r'authSuccessRedirectUrl'),
+        authSuccessRedirectUrl:
+            mapValueOfType<String>(json, r'authSuccessRedirectUrl'),
         passwordResetUrl: mapValueOfType<String>(json, r'passwordResetUrl'),
-        allowUserRegistration: mapValueOfType<bool>(json, r'allowUserRegistration'),
+        allowUserRegistration:
+            mapValueOfType<bool>(json, r'allowUserRegistration'),
         allowIPStickiness: mapValueOfType<bool>(json, r'allowIPStickiness'),
-        passkeyAppendInterval: ProjectConfigSaveReqPasskeyAppendIntervalEnum.fromJson(json[r'passkeyAppendInterval']),
+        passkeyAppendInterval:
+            ProjectConfigSaveReqPasskeyAppendIntervalEnum.fromJson(
+                json[r'passkeyAppendInterval']),
         fallbackLanguage: mapValueOfType<String>(json, r'fallbackLanguage'),
         autoDetectLanguage: mapValueOfType<bool>(json, r'autoDetectLanguage'),
-        integrationModeHosted: mapValueOfType<bool>(json, r'integrationModeHosted'),
+        integrationModeHosted:
+            mapValueOfType<bool>(json, r'integrationModeHosted'),
         integrationModeAPI: mapValueOfType<bool>(json, r'integrationModeAPI'),
-        integrationModeWebComponent: mapValueOfType<bool>(json, r'integrationModeWebComponent'),
+        integrationModeWebComponent:
+            mapValueOfType<bool>(json, r'integrationModeWebComponent'),
         hasExistingUsers: mapValueOfType<bool>(json, r'hasExistingUsers'),
         hasVerifiedSession: mapValueOfType<bool>(json, r'hasVerifiedSession'),
         hasGeneratedSession: mapValueOfType<bool>(json, r'hasGeneratedSession'),
-        hasStartedUsingPasskeys: mapValueOfType<bool>(json, r'hasStartedUsingPasskeys'),
-        hasStartedUsingSessions: mapValueOfType<bool>(json, r'hasStartedUsingSessions'),
+        hasStartedUsingPasskeys:
+            mapValueOfType<bool>(json, r'hasStartedUsingPasskeys'),
+        hasStartedUsingSessions:
+            mapValueOfType<bool>(json, r'hasStartedUsingSessions'),
         applicationUrl: mapValueOfType<String>(json, r'applicationUrl'),
         useCli: mapValueOfType<bool>(json, r'useCli'),
         doubleOptIn: mapValueOfType<bool>(json, r'doubleOptIn'),
-        userFullNameRequired: mapValueOfType<bool>(json, r'userFullNameRequired'),
+        userFullNameRequired:
+            mapValueOfType<bool>(json, r'userFullNameRequired'),
         webauthnRPID: mapValueOfType<String>(json, r'webauthnRPID'),
         domain: mapValueOfType<String>(json, r'domain'),
-        environment: ProjectConfigSaveReqEnvironmentEnum.fromJson(json[r'environment']),
-        frontendFramework: ProjectConfigSaveReqFrontendFrameworkEnum.fromJson(json[r'frontendFramework']),
+        environment:
+            ProjectConfigSaveReqEnvironmentEnum.fromJson(json[r'environment']),
+        frontendFramework: ProjectConfigSaveReqFrontendFrameworkEnum.fromJson(
+            json[r'frontendFramework']),
         webComponentDebug: mapValueOfType<bool>(json, r'webComponentDebug'),
         smtpUseCustom: mapValueOfType<bool>(json, r'smtpUseCustom'),
         smtpHost: mapValueOfType<String>(json, r'smtpHost'),
@@ -859,7 +904,10 @@ class ProjectConfigSaveReq {
     return null;
   }
 
-  static List<ProjectConfigSaveReq> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ProjectConfigSaveReq> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ProjectConfigSaveReq>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -887,23 +935,27 @@ class ProjectConfigSaveReq {
   }
 
   // maps a json object with a list of ProjectConfigSaveReq-objects as value to a dart map
-  static Map<String, List<ProjectConfigSaveReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<ProjectConfigSaveReq>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<ProjectConfigSaveReq>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = ProjectConfigSaveReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = ProjectConfigSaveReq.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
   }
 
   /// The list of required keys that must be present in a JSON.
-  static const requiredKeys = <String>{
-  };
+  static const requiredKeys = <String>{};
 }
-
 
 class ProjectConfigSaveReqAppTypeEnum {
   /// Instantiate a new enum with the provided [value].
@@ -926,9 +978,13 @@ class ProjectConfigSaveReqAppTypeEnum {
     native_,
   ];
 
-  static ProjectConfigSaveReqAppTypeEnum? fromJson(dynamic value) => ProjectConfigSaveReqAppTypeEnumTypeTransformer().decode(value);
+  static ProjectConfigSaveReqAppTypeEnum? fromJson(dynamic value) =>
+      ProjectConfigSaveReqAppTypeEnumTypeTransformer().decode(value);
 
-  static List<ProjectConfigSaveReqAppTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ProjectConfigSaveReqAppTypeEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ProjectConfigSaveReqAppTypeEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -945,7 +1001,8 @@ class ProjectConfigSaveReqAppTypeEnum {
 /// Transformation class that can [encode] an instance of [ProjectConfigSaveReqAppTypeEnum] to String,
 /// and [decode] dynamic data back to [ProjectConfigSaveReqAppTypeEnum].
 class ProjectConfigSaveReqAppTypeEnumTypeTransformer {
-  factory ProjectConfigSaveReqAppTypeEnumTypeTransformer() => _instance ??= const ProjectConfigSaveReqAppTypeEnumTypeTransformer._();
+  factory ProjectConfigSaveReqAppTypeEnumTypeTransformer() =>
+      _instance ??= const ProjectConfigSaveReqAppTypeEnumTypeTransformer._();
 
   const ProjectConfigSaveReqAppTypeEnumTypeTransformer._();
 
@@ -959,11 +1016,14 @@ class ProjectConfigSaveReqAppTypeEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  ProjectConfigSaveReqAppTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+  ProjectConfigSaveReqAppTypeEnum? decode(dynamic data,
+      {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'web': return ProjectConfigSaveReqAppTypeEnum.web;
-        case r'native': return ProjectConfigSaveReqAppTypeEnum.native_;
+        case r'web':
+          return ProjectConfigSaveReqAppTypeEnum.web;
+        case r'native':
+          return ProjectConfigSaveReqAppTypeEnum.native_;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -977,11 +1037,11 @@ class ProjectConfigSaveReqAppTypeEnumTypeTransformer {
   static ProjectConfigSaveReqAppTypeEnumTypeTransformer? _instance;
 }
 
-
 /// Defines which version of webhook is used
 class ProjectConfigSaveReqExternalApplicationProtocolVersionEnum {
   /// Instantiate a new enum with the provided [value].
-  const ProjectConfigSaveReqExternalApplicationProtocolVersionEnum._(this.value);
+  const ProjectConfigSaveReqExternalApplicationProtocolVersionEnum._(
+      this.value);
 
   /// The underlying value of this enum member.
   final String value;
@@ -991,22 +1051,35 @@ class ProjectConfigSaveReqExternalApplicationProtocolVersionEnum {
 
   String toJson() => value;
 
-  static const v1 = ProjectConfigSaveReqExternalApplicationProtocolVersionEnum._(r'v1');
-  static const v2 = ProjectConfigSaveReqExternalApplicationProtocolVersionEnum._(r'v2');
+  static const v1 =
+      ProjectConfigSaveReqExternalApplicationProtocolVersionEnum._(r'v1');
+  static const v2 =
+      ProjectConfigSaveReqExternalApplicationProtocolVersionEnum._(r'v2');
 
   /// List of all possible values in this [enum][ProjectConfigSaveReqExternalApplicationProtocolVersionEnum].
-  static const values = <ProjectConfigSaveReqExternalApplicationProtocolVersionEnum>[
+  static const values =
+      <ProjectConfigSaveReqExternalApplicationProtocolVersionEnum>[
     v1,
     v2,
   ];
 
-  static ProjectConfigSaveReqExternalApplicationProtocolVersionEnum? fromJson(dynamic value) => ProjectConfigSaveReqExternalApplicationProtocolVersionEnumTypeTransformer().decode(value);
+  static ProjectConfigSaveReqExternalApplicationProtocolVersionEnum? fromJson(
+          dynamic value) =>
+      ProjectConfigSaveReqExternalApplicationProtocolVersionEnumTypeTransformer()
+          .decode(value);
 
-  static List<ProjectConfigSaveReqExternalApplicationProtocolVersionEnum> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <ProjectConfigSaveReqExternalApplicationProtocolVersionEnum>[];
+  static List<ProjectConfigSaveReqExternalApplicationProtocolVersionEnum>
+      listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
+    final result =
+        <ProjectConfigSaveReqExternalApplicationProtocolVersionEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
-        final value = ProjectConfigSaveReqExternalApplicationProtocolVersionEnum.fromJson(row);
+        final value =
+            ProjectConfigSaveReqExternalApplicationProtocolVersionEnum.fromJson(
+                row);
         if (value != null) {
           result.add(value);
         }
@@ -1019,11 +1092,16 @@ class ProjectConfigSaveReqExternalApplicationProtocolVersionEnum {
 /// Transformation class that can [encode] an instance of [ProjectConfigSaveReqExternalApplicationProtocolVersionEnum] to String,
 /// and [decode] dynamic data back to [ProjectConfigSaveReqExternalApplicationProtocolVersionEnum].
 class ProjectConfigSaveReqExternalApplicationProtocolVersionEnumTypeTransformer {
-  factory ProjectConfigSaveReqExternalApplicationProtocolVersionEnumTypeTransformer() => _instance ??= const ProjectConfigSaveReqExternalApplicationProtocolVersionEnumTypeTransformer._();
+  factory ProjectConfigSaveReqExternalApplicationProtocolVersionEnumTypeTransformer() =>
+      _instance ??=
+          const ProjectConfigSaveReqExternalApplicationProtocolVersionEnumTypeTransformer
+              ._();
 
   const ProjectConfigSaveReqExternalApplicationProtocolVersionEnumTypeTransformer._();
 
-  String encode(ProjectConfigSaveReqExternalApplicationProtocolVersionEnum data) => data.value;
+  String encode(
+          ProjectConfigSaveReqExternalApplicationProtocolVersionEnum data) =>
+      data.value;
 
   /// Decodes a [dynamic value][data] to a ProjectConfigSaveReqExternalApplicationProtocolVersionEnum.
   ///
@@ -1033,11 +1111,15 @@ class ProjectConfigSaveReqExternalApplicationProtocolVersionEnumTypeTransformer 
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  ProjectConfigSaveReqExternalApplicationProtocolVersionEnum? decode(dynamic data, {bool allowNull = true}) {
+  ProjectConfigSaveReqExternalApplicationProtocolVersionEnum? decode(
+      dynamic data,
+      {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'v1': return ProjectConfigSaveReqExternalApplicationProtocolVersionEnum.v1;
-        case r'v2': return ProjectConfigSaveReqExternalApplicationProtocolVersionEnum.v2;
+        case r'v1':
+          return ProjectConfigSaveReqExternalApplicationProtocolVersionEnum.v1;
+        case r'v2':
+          return ProjectConfigSaveReqExternalApplicationProtocolVersionEnum.v2;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -1048,10 +1130,9 @@ class ProjectConfigSaveReqExternalApplicationProtocolVersionEnumTypeTransformer 
   }
 
   /// Singleton [ProjectConfigSaveReqExternalApplicationProtocolVersionEnumTypeTransformer] instance.
-  static ProjectConfigSaveReqExternalApplicationProtocolVersionEnumTypeTransformer? _instance;
+  static ProjectConfigSaveReqExternalApplicationProtocolVersionEnumTypeTransformer?
+      _instance;
 }
-
-
 
 class ProjectConfigSaveReqPasskeyAppendIntervalEnum {
   /// Instantiate a new enum with the provided [value].
@@ -1084,13 +1165,20 @@ class ProjectConfigSaveReqPasskeyAppendIntervalEnum {
     n3m,
   ];
 
-  static ProjectConfigSaveReqPasskeyAppendIntervalEnum? fromJson(dynamic value) => ProjectConfigSaveReqPasskeyAppendIntervalEnumTypeTransformer().decode(value);
+  static ProjectConfigSaveReqPasskeyAppendIntervalEnum? fromJson(
+          dynamic value) =>
+      ProjectConfigSaveReqPasskeyAppendIntervalEnumTypeTransformer()
+          .decode(value);
 
-  static List<ProjectConfigSaveReqPasskeyAppendIntervalEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ProjectConfigSaveReqPasskeyAppendIntervalEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ProjectConfigSaveReqPasskeyAppendIntervalEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
-        final value = ProjectConfigSaveReqPasskeyAppendIntervalEnum.fromJson(row);
+        final value =
+            ProjectConfigSaveReqPasskeyAppendIntervalEnum.fromJson(row);
         if (value != null) {
           result.add(value);
         }
@@ -1103,11 +1191,15 @@ class ProjectConfigSaveReqPasskeyAppendIntervalEnum {
 /// Transformation class that can [encode] an instance of [ProjectConfigSaveReqPasskeyAppendIntervalEnum] to String,
 /// and [decode] dynamic data back to [ProjectConfigSaveReqPasskeyAppendIntervalEnum].
 class ProjectConfigSaveReqPasskeyAppendIntervalEnumTypeTransformer {
-  factory ProjectConfigSaveReqPasskeyAppendIntervalEnumTypeTransformer() => _instance ??= const ProjectConfigSaveReqPasskeyAppendIntervalEnumTypeTransformer._();
+  factory ProjectConfigSaveReqPasskeyAppendIntervalEnumTypeTransformer() =>
+      _instance ??=
+          const ProjectConfigSaveReqPasskeyAppendIntervalEnumTypeTransformer
+              ._();
 
   const ProjectConfigSaveReqPasskeyAppendIntervalEnumTypeTransformer._();
 
-  String encode(ProjectConfigSaveReqPasskeyAppendIntervalEnum data) => data.value;
+  String encode(ProjectConfigSaveReqPasskeyAppendIntervalEnum data) =>
+      data.value;
 
   /// Decodes a [dynamic value][data] to a ProjectConfigSaveReqPasskeyAppendIntervalEnum.
   ///
@@ -1117,16 +1209,24 @@ class ProjectConfigSaveReqPasskeyAppendIntervalEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  ProjectConfigSaveReqPasskeyAppendIntervalEnum? decode(dynamic data, {bool allowNull = true}) {
+  ProjectConfigSaveReqPasskeyAppendIntervalEnum? decode(dynamic data,
+      {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'0d': return ProjectConfigSaveReqPasskeyAppendIntervalEnum.n0d;
-        case r'1d': return ProjectConfigSaveReqPasskeyAppendIntervalEnum.n1d;
-        case r'3d': return ProjectConfigSaveReqPasskeyAppendIntervalEnum.n3d;
-        case r'1w': return ProjectConfigSaveReqPasskeyAppendIntervalEnum.n1w;
-        case r'3w': return ProjectConfigSaveReqPasskeyAppendIntervalEnum.n3w;
-        case r'1m': return ProjectConfigSaveReqPasskeyAppendIntervalEnum.n1m;
-        case r'3m': return ProjectConfigSaveReqPasskeyAppendIntervalEnum.n3m;
+        case r'0d':
+          return ProjectConfigSaveReqPasskeyAppendIntervalEnum.n0d;
+        case r'1d':
+          return ProjectConfigSaveReqPasskeyAppendIntervalEnum.n1d;
+        case r'3d':
+          return ProjectConfigSaveReqPasskeyAppendIntervalEnum.n3d;
+        case r'1w':
+          return ProjectConfigSaveReqPasskeyAppendIntervalEnum.n1w;
+        case r'3w':
+          return ProjectConfigSaveReqPasskeyAppendIntervalEnum.n3w;
+        case r'1m':
+          return ProjectConfigSaveReqPasskeyAppendIntervalEnum.n1m;
+        case r'3m':
+          return ProjectConfigSaveReqPasskeyAppendIntervalEnum.n3m;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -1137,10 +1237,9 @@ class ProjectConfigSaveReqPasskeyAppendIntervalEnumTypeTransformer {
   }
 
   /// Singleton [ProjectConfigSaveReqPasskeyAppendIntervalEnumTypeTransformer] instance.
-  static ProjectConfigSaveReqPasskeyAppendIntervalEnumTypeTransformer? _instance;
+  static ProjectConfigSaveReqPasskeyAppendIntervalEnumTypeTransformer?
+      _instance;
 }
-
-
 
 class ProjectConfigSaveReqEnvironmentEnum {
   /// Instantiate a new enum with the provided [value].
@@ -1163,9 +1262,13 @@ class ProjectConfigSaveReqEnvironmentEnum {
     prod,
   ];
 
-  static ProjectConfigSaveReqEnvironmentEnum? fromJson(dynamic value) => ProjectConfigSaveReqEnvironmentEnumTypeTransformer().decode(value);
+  static ProjectConfigSaveReqEnvironmentEnum? fromJson(dynamic value) =>
+      ProjectConfigSaveReqEnvironmentEnumTypeTransformer().decode(value);
 
-  static List<ProjectConfigSaveReqEnvironmentEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ProjectConfigSaveReqEnvironmentEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ProjectConfigSaveReqEnvironmentEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -1182,7 +1285,8 @@ class ProjectConfigSaveReqEnvironmentEnum {
 /// Transformation class that can [encode] an instance of [ProjectConfigSaveReqEnvironmentEnum] to String,
 /// and [decode] dynamic data back to [ProjectConfigSaveReqEnvironmentEnum].
 class ProjectConfigSaveReqEnvironmentEnumTypeTransformer {
-  factory ProjectConfigSaveReqEnvironmentEnumTypeTransformer() => _instance ??= const ProjectConfigSaveReqEnvironmentEnumTypeTransformer._();
+  factory ProjectConfigSaveReqEnvironmentEnumTypeTransformer() => _instance ??=
+      const ProjectConfigSaveReqEnvironmentEnumTypeTransformer._();
 
   const ProjectConfigSaveReqEnvironmentEnumTypeTransformer._();
 
@@ -1196,11 +1300,14 @@ class ProjectConfigSaveReqEnvironmentEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  ProjectConfigSaveReqEnvironmentEnum? decode(dynamic data, {bool allowNull = true}) {
+  ProjectConfigSaveReqEnvironmentEnum? decode(dynamic data,
+      {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'dev': return ProjectConfigSaveReqEnvironmentEnum.dev;
-        case r'prod': return ProjectConfigSaveReqEnvironmentEnum.prod;
+        case r'dev':
+          return ProjectConfigSaveReqEnvironmentEnum.dev;
+        case r'prod':
+          return ProjectConfigSaveReqEnvironmentEnum.prod;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -1213,8 +1320,6 @@ class ProjectConfigSaveReqEnvironmentEnumTypeTransformer {
   /// Singleton [ProjectConfigSaveReqEnvironmentEnumTypeTransformer] instance.
   static ProjectConfigSaveReqEnvironmentEnumTypeTransformer? _instance;
 }
-
-
 
 class ProjectConfigSaveReqFrontendFrameworkEnum {
   /// Instantiate a new enum with the provided [value].
@@ -1230,7 +1335,8 @@ class ProjectConfigSaveReqFrontendFrameworkEnum {
 
   static const react = ProjectConfigSaveReqFrontendFrameworkEnum._(r'react');
   static const vuejs = ProjectConfigSaveReqFrontendFrameworkEnum._(r'vuejs');
-  static const vanillajs = ProjectConfigSaveReqFrontendFrameworkEnum._(r'vanillajs');
+  static const vanillajs =
+      ProjectConfigSaveReqFrontendFrameworkEnum._(r'vanillajs');
 
   /// List of all possible values in this [enum][ProjectConfigSaveReqFrontendFrameworkEnum].
   static const values = <ProjectConfigSaveReqFrontendFrameworkEnum>[
@@ -1239,9 +1345,13 @@ class ProjectConfigSaveReqFrontendFrameworkEnum {
     vanillajs,
   ];
 
-  static ProjectConfigSaveReqFrontendFrameworkEnum? fromJson(dynamic value) => ProjectConfigSaveReqFrontendFrameworkEnumTypeTransformer().decode(value);
+  static ProjectConfigSaveReqFrontendFrameworkEnum? fromJson(dynamic value) =>
+      ProjectConfigSaveReqFrontendFrameworkEnumTypeTransformer().decode(value);
 
-  static List<ProjectConfigSaveReqFrontendFrameworkEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ProjectConfigSaveReqFrontendFrameworkEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ProjectConfigSaveReqFrontendFrameworkEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -1258,7 +1368,9 @@ class ProjectConfigSaveReqFrontendFrameworkEnum {
 /// Transformation class that can [encode] an instance of [ProjectConfigSaveReqFrontendFrameworkEnum] to String,
 /// and [decode] dynamic data back to [ProjectConfigSaveReqFrontendFrameworkEnum].
 class ProjectConfigSaveReqFrontendFrameworkEnumTypeTransformer {
-  factory ProjectConfigSaveReqFrontendFrameworkEnumTypeTransformer() => _instance ??= const ProjectConfigSaveReqFrontendFrameworkEnumTypeTransformer._();
+  factory ProjectConfigSaveReqFrontendFrameworkEnumTypeTransformer() =>
+      _instance ??=
+          const ProjectConfigSaveReqFrontendFrameworkEnumTypeTransformer._();
 
   const ProjectConfigSaveReqFrontendFrameworkEnumTypeTransformer._();
 
@@ -1272,12 +1384,16 @@ class ProjectConfigSaveReqFrontendFrameworkEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  ProjectConfigSaveReqFrontendFrameworkEnum? decode(dynamic data, {bool allowNull = true}) {
+  ProjectConfigSaveReqFrontendFrameworkEnum? decode(dynamic data,
+      {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'react': return ProjectConfigSaveReqFrontendFrameworkEnum.react;
-        case r'vuejs': return ProjectConfigSaveReqFrontendFrameworkEnum.vuejs;
-        case r'vanillajs': return ProjectConfigSaveReqFrontendFrameworkEnum.vanillajs;
+        case r'react':
+          return ProjectConfigSaveReqFrontendFrameworkEnum.react;
+        case r'vuejs':
+          return ProjectConfigSaveReqFrontendFrameworkEnum.vuejs;
+        case r'vanillajs':
+          return ProjectConfigSaveReqFrontendFrameworkEnum.vanillajs;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -1290,5 +1406,3 @@ class ProjectConfigSaveReqFrontendFrameworkEnumTypeTransformer {
   /// Singleton [ProjectConfigSaveReqFrontendFrameworkEnumTypeTransformer] instance.
   static ProjectConfigSaveReqFrontendFrameworkEnumTypeTransformer? _instance;
 }
-
-

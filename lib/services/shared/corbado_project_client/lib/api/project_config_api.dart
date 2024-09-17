@@ -10,9 +10,9 @@
 
 part of openapi.api;
 
-
 class ProjectConfigApi {
-  ProjectConfigApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
+  ProjectConfigApi([ApiClient? apiClient])
+      : apiClient = apiClient ?? defaultApiClient;
 
   final ApiClient apiClient;
 
@@ -23,7 +23,9 @@ class ProjectConfigApi {
   /// Parameters:
   ///
   /// * [EmptyReq] emptyReq (required):
-  Future<Response> projectActivateWithHttpInfo(EmptyReq emptyReq,) async {
+  Future<Response> projectActivateWithHttpInfo(
+    EmptyReq emptyReq,
+  ) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/projects/activate';
 
@@ -35,7 +37,6 @@ class ProjectConfigApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -53,17 +54,24 @@ class ProjectConfigApi {
   /// Parameters:
   ///
   /// * [EmptyReq] emptyReq (required):
-  Future<GenericRsp?> projectActivate(EmptyReq emptyReq,) async {
-    final response = await projectActivateWithHttpInfo(emptyReq,);
+  Future<GenericRsp?> projectActivate(
+    EmptyReq emptyReq,
+  ) async {
+    final response = await projectActivateWithHttpInfo(
+      emptyReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GenericRsp',) as GenericRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'GenericRsp',
+      ) as GenericRsp;
     }
     return null;
   }
@@ -83,7 +91,6 @@ class ProjectConfigApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -105,9 +112,12 @@ class ProjectConfigApi {
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ProjectConfigGetRsp',) as ProjectConfigGetRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'ProjectConfigGetRsp',
+      ) as ProjectConfigGetRsp;
     }
     return null;
   }
@@ -119,7 +129,9 @@ class ProjectConfigApi {
   /// Parameters:
   ///
   /// * [ProjectConfigSaveReq] projectConfigSaveReq (required):
-  Future<Response> projectConfigSaveWithHttpInfo(ProjectConfigSaveReq projectConfigSaveReq,) async {
+  Future<Response> projectConfigSaveWithHttpInfo(
+    ProjectConfigSaveReq projectConfigSaveReq,
+  ) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/projectConfig';
 
@@ -131,7 +143,6 @@ class ProjectConfigApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -149,17 +160,24 @@ class ProjectConfigApi {
   /// Parameters:
   ///
   /// * [ProjectConfigSaveReq] projectConfigSaveReq (required):
-  Future<GenericRsp?> projectConfigSave(ProjectConfigSaveReq projectConfigSaveReq,) async {
-    final response = await projectConfigSaveWithHttpInfo(projectConfigSaveReq,);
+  Future<GenericRsp?> projectConfigSave(
+    ProjectConfigSaveReq projectConfigSaveReq,
+  ) async {
+    final response = await projectConfigSaveWithHttpInfo(
+      projectConfigSaveReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GenericRsp',) as GenericRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'GenericRsp',
+      ) as GenericRsp;
     }
     return null;
   }
@@ -171,7 +189,9 @@ class ProjectConfigApi {
   /// Parameters:
   ///
   /// * [ProjectConfigWebhookTestReq] projectConfigWebhookTestReq (required):
-  Future<Response> projectConfigWebhookTestWithHttpInfo(ProjectConfigWebhookTestReq projectConfigWebhookTestReq,) async {
+  Future<Response> projectConfigWebhookTestWithHttpInfo(
+    ProjectConfigWebhookTestReq projectConfigWebhookTestReq,
+  ) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/projectConfig/testWebhook';
 
@@ -183,7 +203,6 @@ class ProjectConfigApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -201,17 +220,24 @@ class ProjectConfigApi {
   /// Parameters:
   ///
   /// * [ProjectConfigWebhookTestReq] projectConfigWebhookTestReq (required):
-  Future<ProjectConfigWebhookTestRsp?> projectConfigWebhookTest(ProjectConfigWebhookTestReq projectConfigWebhookTestReq,) async {
-    final response = await projectConfigWebhookTestWithHttpInfo(projectConfigWebhookTestReq,);
+  Future<ProjectConfigWebhookTestRsp?> projectConfigWebhookTest(
+    ProjectConfigWebhookTestReq projectConfigWebhookTestReq,
+  ) async {
+    final response = await projectConfigWebhookTestWithHttpInfo(
+      projectConfigWebhookTestReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ProjectConfigWebhookTestRsp',) as ProjectConfigWebhookTestRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'ProjectConfigWebhookTestRsp',
+      ) as ProjectConfigWebhookTestRsp;
     }
     return null;
   }

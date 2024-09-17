@@ -45,8 +45,5 @@ void main() {
     test('to test the property `browserId`', () async {
       // TODO
     });
-
-
   });
-
 }

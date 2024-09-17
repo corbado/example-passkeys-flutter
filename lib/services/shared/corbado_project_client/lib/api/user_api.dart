@@ -10,7 +10,6 @@
 
 part of openapi.api;
 
-
 class UserApi {
   UserApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
 
@@ -39,7 +38,14 @@ class UserApi {
   ///
   /// * [int] pageSize:
   ///   Number of items per page
-  Future<Response> userAuthLogListWithHttpInfo({ String? remoteAddress, String? userAgent, String? sort, List<String>? filterLeftSquareBracketRightSquareBracket, int? page, int? pageSize, }) async {
+  Future<Response> userAuthLogListWithHttpInfo({
+    String? remoteAddress,
+    String? userAgent,
+    String? sort,
+    List<String>? filterLeftSquareBracketRightSquareBracket,
+    int? page,
+    int? pageSize,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/userauthlogs';
 
@@ -60,7 +66,8 @@ class UserApi {
       queryParams.addAll(_queryParams('', 'sort', sort));
     }
     if (filterLeftSquareBracketRightSquareBracket != null) {
-      queryParams.addAll(_queryParams('multi', 'filter[]', filterLeftSquareBracketRightSquareBracket));
+      queryParams.addAll(_queryParams(
+          'multi', 'filter[]', filterLeftSquareBracketRightSquareBracket));
     }
     if (page != null) {
       queryParams.addAll(_queryParams('', 'page', page));
@@ -70,7 +77,6 @@ class UserApi {
     }
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -104,17 +110,35 @@ class UserApi {
   ///
   /// * [int] pageSize:
   ///   Number of items per page
-  Future<UserAuthLogListRsp?> userAuthLogList({ String? remoteAddress, String? userAgent, String? sort, List<String>? filterLeftSquareBracketRightSquareBracket, int? page, int? pageSize, }) async {
-    final response = await userAuthLogListWithHttpInfo( remoteAddress: remoteAddress, userAgent: userAgent, sort: sort, filterLeftSquareBracketRightSquareBracket: filterLeftSquareBracketRightSquareBracket, page: page, pageSize: pageSize, );
+  Future<UserAuthLogListRsp?> userAuthLogList({
+    String? remoteAddress,
+    String? userAgent,
+    String? sort,
+    List<String>? filterLeftSquareBracketRightSquareBracket,
+    int? page,
+    int? pageSize,
+  }) async {
+    final response = await userAuthLogListWithHttpInfo(
+      remoteAddress: remoteAddress,
+      userAgent: userAgent,
+      sort: sort,
+      filterLeftSquareBracketRightSquareBracket:
+          filterLeftSquareBracketRightSquareBracket,
+      page: page,
+      pageSize: pageSize,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UserAuthLogListRsp',) as UserAuthLogListRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'UserAuthLogListRsp',
+      ) as UserAuthLogListRsp;
     }
     return null;
   }
@@ -126,7 +150,9 @@ class UserApi {
   /// Parameters:
   ///
   /// * [UserCreateReq] userCreateReq (required):
-  Future<Response> userCreateWithHttpInfo(UserCreateReq userCreateReq,) async {
+  Future<Response> userCreateWithHttpInfo(
+    UserCreateReq userCreateReq,
+  ) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/users';
 
@@ -139,7 +165,6 @@ class UserApi {
 
     const contentTypes = <String>['application/json'];
 
-
     return apiClient.invokeAPI(
       path,
       'POST',
@@ -156,17 +181,24 @@ class UserApi {
   /// Parameters:
   ///
   /// * [UserCreateReq] userCreateReq (required):
-  Future<UserCreateRsp?> userCreate(UserCreateReq userCreateReq,) async {
-    final response = await userCreateWithHttpInfo(userCreateReq,);
+  Future<UserCreateRsp?> userCreate(
+    UserCreateReq userCreateReq,
+  ) async {
+    final response = await userCreateWithHttpInfo(
+      userCreateReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UserCreateRsp',) as UserCreateRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'UserCreateRsp',
+      ) as UserCreateRsp;
     }
     return null;
   }
@@ -181,10 +213,13 @@ class UserApi {
   ///   ID of user
   ///
   /// * [UserCustomLoginIdentifierCreateReq] userCustomLoginIdentifierCreateReq (required):
-  Future<Response> userCustomLoginIdentifierCreateWithHttpInfo(String userID, UserCustomLoginIdentifierCreateReq userCustomLoginIdentifierCreateReq,) async {
+  Future<Response> userCustomLoginIdentifierCreateWithHttpInfo(
+    String userID,
+    UserCustomLoginIdentifierCreateReq userCustomLoginIdentifierCreateReq,
+  ) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/users/{userID}/customLoginIdentifiers'
-      .replaceAll('{userID}', userID);
+        .replaceAll('{userID}', userID);
 
     // ignore: prefer_final_locals
     Object? postBody = userCustomLoginIdentifierCreateReq;
@@ -194,7 +229,6 @@ class UserApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -215,17 +249,26 @@ class UserApi {
   ///   ID of user
   ///
   /// * [UserCustomLoginIdentifierCreateReq] userCustomLoginIdentifierCreateReq (required):
-  Future<UserCustomLoginIdentifierCreateRsp?> userCustomLoginIdentifierCreate(String userID, UserCustomLoginIdentifierCreateReq userCustomLoginIdentifierCreateReq,) async {
-    final response = await userCustomLoginIdentifierCreateWithHttpInfo(userID, userCustomLoginIdentifierCreateReq,);
+  Future<UserCustomLoginIdentifierCreateRsp?> userCustomLoginIdentifierCreate(
+    String userID,
+    UserCustomLoginIdentifierCreateReq userCustomLoginIdentifierCreateReq,
+  ) async {
+    final response = await userCustomLoginIdentifierCreateWithHttpInfo(
+      userID,
+      userCustomLoginIdentifierCreateReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UserCustomLoginIdentifierCreateRsp',) as UserCustomLoginIdentifierCreateRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'UserCustomLoginIdentifierCreateRsp',
+      ) as UserCustomLoginIdentifierCreateRsp;
     }
     return null;
   }
@@ -243,11 +286,16 @@ class UserApi {
   ///   ID of custom login identifier
   ///
   /// * [UserCustomLoginIdentifierDeleteReq] userCustomLoginIdentifierDeleteReq (required):
-  Future<Response> userCustomLoginIdentifierDeleteWithHttpInfo(String userID, String customLoginIdentifierID, UserCustomLoginIdentifierDeleteReq userCustomLoginIdentifierDeleteReq,) async {
+  Future<Response> userCustomLoginIdentifierDeleteWithHttpInfo(
+    String userID,
+    String customLoginIdentifierID,
+    UserCustomLoginIdentifierDeleteReq userCustomLoginIdentifierDeleteReq,
+  ) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/users/{userID}/customLoginIdentifiers/{customLoginIdentifierID}'
-      .replaceAll('{userID}', userID)
-      .replaceAll('{customLoginIdentifierID}', customLoginIdentifierID);
+    final path =
+        r'/v1/users/{userID}/customLoginIdentifiers/{customLoginIdentifierID}'
+            .replaceAll('{userID}', userID)
+            .replaceAll('{customLoginIdentifierID}', customLoginIdentifierID);
 
     // ignore: prefer_final_locals
     Object? postBody = userCustomLoginIdentifierDeleteReq;
@@ -257,7 +305,6 @@ class UserApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -281,17 +328,28 @@ class UserApi {
   ///   ID of custom login identifier
   ///
   /// * [UserCustomLoginIdentifierDeleteReq] userCustomLoginIdentifierDeleteReq (required):
-  Future<GenericRsp?> userCustomLoginIdentifierDelete(String userID, String customLoginIdentifierID, UserCustomLoginIdentifierDeleteReq userCustomLoginIdentifierDeleteReq,) async {
-    final response = await userCustomLoginIdentifierDeleteWithHttpInfo(userID, customLoginIdentifierID, userCustomLoginIdentifierDeleteReq,);
+  Future<GenericRsp?> userCustomLoginIdentifierDelete(
+    String userID,
+    String customLoginIdentifierID,
+    UserCustomLoginIdentifierDeleteReq userCustomLoginIdentifierDeleteReq,
+  ) async {
+    final response = await userCustomLoginIdentifierDeleteWithHttpInfo(
+      userID,
+      customLoginIdentifierID,
+      userCustomLoginIdentifierDeleteReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GenericRsp',) as GenericRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'GenericRsp',
+      ) as GenericRsp;
     }
     return null;
   }
@@ -313,11 +371,17 @@ class UserApi {
   ///
   /// * [String] userAgent:
   ///   Client's user agent
-  Future<Response> userCustomLoginIdentifierGetWithHttpInfo(String userID, String customLoginIdentifierID, { String? remoteAddress, String? userAgent, }) async {
+  Future<Response> userCustomLoginIdentifierGetWithHttpInfo(
+    String userID,
+    String customLoginIdentifierID, {
+    String? remoteAddress,
+    String? userAgent,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/users/{userID}/customLoginIdentifiers/{customLoginIdentifierID}'
-      .replaceAll('{userID}', userID)
-      .replaceAll('{customLoginIdentifierID}', customLoginIdentifierID);
+    final path =
+        r'/v1/users/{userID}/customLoginIdentifiers/{customLoginIdentifierID}'
+            .replaceAll('{userID}', userID)
+            .replaceAll('{customLoginIdentifierID}', customLoginIdentifierID);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -334,7 +398,6 @@ class UserApi {
     }
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -362,17 +425,30 @@ class UserApi {
   ///
   /// * [String] userAgent:
   ///   Client's user agent
-  Future<UserCustomLoginIdentifierGetRsp?> userCustomLoginIdentifierGet(String userID, String customLoginIdentifierID, { String? remoteAddress, String? userAgent, }) async {
-    final response = await userCustomLoginIdentifierGetWithHttpInfo(userID, customLoginIdentifierID,  remoteAddress: remoteAddress, userAgent: userAgent, );
+  Future<UserCustomLoginIdentifierGetRsp?> userCustomLoginIdentifierGet(
+    String userID,
+    String customLoginIdentifierID, {
+    String? remoteAddress,
+    String? userAgent,
+  }) async {
+    final response = await userCustomLoginIdentifierGetWithHttpInfo(
+      userID,
+      customLoginIdentifierID,
+      remoteAddress: remoteAddress,
+      userAgent: userAgent,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UserCustomLoginIdentifierGetRsp',) as UserCustomLoginIdentifierGetRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'UserCustomLoginIdentifierGetRsp',
+      ) as UserCustomLoginIdentifierGetRsp;
     }
     return null;
   }
@@ -387,10 +463,12 @@ class UserApi {
   ///   ID of user
   ///
   /// * [UserDeleteReq] userDeleteReq (required):
-  Future<Response> userDeleteWithHttpInfo(String userID, UserDeleteReq userDeleteReq,) async {
+  Future<Response> userDeleteWithHttpInfo(
+    String userID,
+    UserDeleteReq userDeleteReq,
+  ) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/users/{userID}'
-      .replaceAll('{userID}', userID);
+    final path = r'/v1/users/{userID}'.replaceAll('{userID}', userID);
 
     // ignore: prefer_final_locals
     Object? postBody = userDeleteReq;
@@ -400,7 +478,6 @@ class UserApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -421,17 +498,26 @@ class UserApi {
   ///   ID of user
   ///
   /// * [UserDeleteReq] userDeleteReq (required):
-  Future<GenericRsp?> userDelete(String userID, UserDeleteReq userDeleteReq,) async {
-    final response = await userDeleteWithHttpInfo(userID, userDeleteReq,);
+  Future<GenericRsp?> userDelete(
+    String userID,
+    UserDeleteReq userDeleteReq,
+  ) async {
+    final response = await userDeleteWithHttpInfo(
+      userID,
+      userDeleteReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GenericRsp',) as GenericRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'GenericRsp',
+      ) as GenericRsp;
     }
     return null;
   }
@@ -462,10 +548,17 @@ class UserApi {
   ///
   /// * [int] pageSize:
   ///   Number of items per page
-  Future<Response> userDeviceListWithHttpInfo(String userID, { String? remoteAddress, String? userAgent, String? sort, List<String>? filterLeftSquareBracketRightSquareBracket, int? page, int? pageSize, }) async {
+  Future<Response> userDeviceListWithHttpInfo(
+    String userID, {
+    String? remoteAddress,
+    String? userAgent,
+    String? sort,
+    List<String>? filterLeftSquareBracketRightSquareBracket,
+    int? page,
+    int? pageSize,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/users/{userID}/devices'
-      .replaceAll('{userID}', userID);
+    final path = r'/v1/users/{userID}/devices'.replaceAll('{userID}', userID);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -484,7 +577,8 @@ class UserApi {
       queryParams.addAll(_queryParams('', 'sort', sort));
     }
     if (filterLeftSquareBracketRightSquareBracket != null) {
-      queryParams.addAll(_queryParams('multi', 'filter[]', filterLeftSquareBracketRightSquareBracket));
+      queryParams.addAll(_queryParams(
+          'multi', 'filter[]', filterLeftSquareBracketRightSquareBracket));
     }
     if (page != null) {
       queryParams.addAll(_queryParams('', 'page', page));
@@ -494,7 +588,6 @@ class UserApi {
     }
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -531,17 +624,37 @@ class UserApi {
   ///
   /// * [int] pageSize:
   ///   Number of items per page
-  Future<UserDeviceListRsp?> userDeviceList(String userID, { String? remoteAddress, String? userAgent, String? sort, List<String>? filterLeftSquareBracketRightSquareBracket, int? page, int? pageSize, }) async {
-    final response = await userDeviceListWithHttpInfo(userID,  remoteAddress: remoteAddress, userAgent: userAgent, sort: sort, filterLeftSquareBracketRightSquareBracket: filterLeftSquareBracketRightSquareBracket, page: page, pageSize: pageSize, );
+  Future<UserDeviceListRsp?> userDeviceList(
+    String userID, {
+    String? remoteAddress,
+    String? userAgent,
+    String? sort,
+    List<String>? filterLeftSquareBracketRightSquareBracket,
+    int? page,
+    int? pageSize,
+  }) async {
+    final response = await userDeviceListWithHttpInfo(
+      userID,
+      remoteAddress: remoteAddress,
+      userAgent: userAgent,
+      sort: sort,
+      filterLeftSquareBracketRightSquareBracket:
+          filterLeftSquareBracketRightSquareBracket,
+      page: page,
+      pageSize: pageSize,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UserDeviceListRsp',) as UserDeviceListRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'UserDeviceListRsp',
+      ) as UserDeviceListRsp;
     }
     return null;
   }
@@ -556,10 +669,12 @@ class UserApi {
   ///   ID of user
   ///
   /// * [UserEmailCreateReq] userEmailCreateReq (required):
-  Future<Response> userEmailCreateWithHttpInfo(String userID, UserEmailCreateReq userEmailCreateReq,) async {
+  Future<Response> userEmailCreateWithHttpInfo(
+    String userID,
+    UserEmailCreateReq userEmailCreateReq,
+  ) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/users/{userID}/emails'
-      .replaceAll('{userID}', userID);
+    final path = r'/v1/users/{userID}/emails'.replaceAll('{userID}', userID);
 
     // ignore: prefer_final_locals
     Object? postBody = userEmailCreateReq;
@@ -569,7 +684,6 @@ class UserApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -590,17 +704,26 @@ class UserApi {
   ///   ID of user
   ///
   /// * [UserEmailCreateReq] userEmailCreateReq (required):
-  Future<UserEmailCreateRsp?> userEmailCreate(String userID, UserEmailCreateReq userEmailCreateReq,) async {
-    final response = await userEmailCreateWithHttpInfo(userID, userEmailCreateReq,);
+  Future<UserEmailCreateRsp?> userEmailCreate(
+    String userID,
+    UserEmailCreateReq userEmailCreateReq,
+  ) async {
+    final response = await userEmailCreateWithHttpInfo(
+      userID,
+      userEmailCreateReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UserEmailCreateRsp',) as UserEmailCreateRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'UserEmailCreateRsp',
+      ) as UserEmailCreateRsp;
     }
     return null;
   }
@@ -618,11 +741,15 @@ class UserApi {
   ///   ID of email
   ///
   /// * [UserEmailDeleteReq] userEmailDeleteReq (required):
-  Future<Response> userEmailDeleteWithHttpInfo(String userID, String emailID, UserEmailDeleteReq userEmailDeleteReq,) async {
+  Future<Response> userEmailDeleteWithHttpInfo(
+    String userID,
+    String emailID,
+    UserEmailDeleteReq userEmailDeleteReq,
+  ) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/users/{userID}/emails/{emailID}'
-      .replaceAll('{userID}', userID)
-      .replaceAll('{emailID}', emailID);
+        .replaceAll('{userID}', userID)
+        .replaceAll('{emailID}', emailID);
 
     // ignore: prefer_final_locals
     Object? postBody = userEmailDeleteReq;
@@ -632,7 +759,6 @@ class UserApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -656,17 +782,28 @@ class UserApi {
   ///   ID of email
   ///
   /// * [UserEmailDeleteReq] userEmailDeleteReq (required):
-  Future<GenericRsp?> userEmailDelete(String userID, String emailID, UserEmailDeleteReq userEmailDeleteReq,) async {
-    final response = await userEmailDeleteWithHttpInfo(userID, emailID, userEmailDeleteReq,);
+  Future<GenericRsp?> userEmailDelete(
+    String userID,
+    String emailID,
+    UserEmailDeleteReq userEmailDeleteReq,
+  ) async {
+    final response = await userEmailDeleteWithHttpInfo(
+      userID,
+      emailID,
+      userEmailDeleteReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GenericRsp',) as GenericRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'GenericRsp',
+      ) as GenericRsp;
     }
     return null;
   }
@@ -688,11 +825,16 @@ class UserApi {
   ///
   /// * [String] userAgent:
   ///   Client's user agent
-  Future<Response> userEmailGetWithHttpInfo(String userID, String emailID, { String? remoteAddress, String? userAgent, }) async {
+  Future<Response> userEmailGetWithHttpInfo(
+    String userID,
+    String emailID, {
+    String? remoteAddress,
+    String? userAgent,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/users/{userID}/emails/{emailID}'
-      .replaceAll('{userID}', userID)
-      .replaceAll('{emailID}', emailID);
+        .replaceAll('{userID}', userID)
+        .replaceAll('{emailID}', emailID);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -709,7 +851,6 @@ class UserApi {
     }
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -737,17 +878,30 @@ class UserApi {
   ///
   /// * [String] userAgent:
   ///   Client's user agent
-  Future<UserEmailGetRsp?> userEmailGet(String userID, String emailID, { String? remoteAddress, String? userAgent, }) async {
-    final response = await userEmailGetWithHttpInfo(userID, emailID,  remoteAddress: remoteAddress, userAgent: userAgent, );
+  Future<UserEmailGetRsp?> userEmailGet(
+    String userID,
+    String emailID, {
+    String? remoteAddress,
+    String? userAgent,
+  }) async {
+    final response = await userEmailGetWithHttpInfo(
+      userID,
+      emailID,
+      remoteAddress: remoteAddress,
+      userAgent: userAgent,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UserEmailGetRsp',) as UserEmailGetRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'UserEmailGetRsp',
+      ) as UserEmailGetRsp;
     }
     return null;
   }
@@ -766,10 +920,13 @@ class UserApi {
   ///
   /// * [String] userAgent:
   ///   Client's user agent
-  Future<Response> userGetWithHttpInfo(String userID, { String? remoteAddress, String? userAgent, }) async {
+  Future<Response> userGetWithHttpInfo(
+    String userID, {
+    String? remoteAddress,
+    String? userAgent,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/users/{userID}'
-      .replaceAll('{userID}', userID);
+    final path = r'/v1/users/{userID}'.replaceAll('{userID}', userID);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -786,7 +943,6 @@ class UserApi {
     }
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -811,17 +967,28 @@ class UserApi {
   ///
   /// * [String] userAgent:
   ///   Client's user agent
-  Future<UserGetRsp?> userGet(String userID, { String? remoteAddress, String? userAgent, }) async {
-    final response = await userGetWithHttpInfo(userID,  remoteAddress: remoteAddress, userAgent: userAgent, );
+  Future<UserGetRsp?> userGet(
+    String userID, {
+    String? remoteAddress,
+    String? userAgent,
+  }) async {
+    final response = await userGetWithHttpInfo(
+      userID,
+      remoteAddress: remoteAddress,
+      userAgent: userAgent,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UserGetRsp',) as UserGetRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'UserGetRsp',
+      ) as UserGetRsp;
     }
     return null;
   }
@@ -849,7 +1016,14 @@ class UserApi {
   ///
   /// * [int] pageSize:
   ///   Number of items per page
-  Future<Response> userListWithHttpInfo({ String? remoteAddress, String? userAgent, String? sort, List<String>? filterLeftSquareBracketRightSquareBracket, int? page, int? pageSize, }) async {
+  Future<Response> userListWithHttpInfo({
+    String? remoteAddress,
+    String? userAgent,
+    String? sort,
+    List<String>? filterLeftSquareBracketRightSquareBracket,
+    int? page,
+    int? pageSize,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/users';
 
@@ -870,7 +1044,8 @@ class UserApi {
       queryParams.addAll(_queryParams('', 'sort', sort));
     }
     if (filterLeftSquareBracketRightSquareBracket != null) {
-      queryParams.addAll(_queryParams('multi', 'filter[]', filterLeftSquareBracketRightSquareBracket));
+      queryParams.addAll(_queryParams(
+          'multi', 'filter[]', filterLeftSquareBracketRightSquareBracket));
     }
     if (page != null) {
       queryParams.addAll(_queryParams('', 'page', page));
@@ -880,7 +1055,6 @@ class UserApi {
     }
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -914,17 +1088,35 @@ class UserApi {
   ///
   /// * [int] pageSize:
   ///   Number of items per page
-  Future<UserListRsp?> userList({ String? remoteAddress, String? userAgent, String? sort, List<String>? filterLeftSquareBracketRightSquareBracket, int? page, int? pageSize, }) async {
-    final response = await userListWithHttpInfo( remoteAddress: remoteAddress, userAgent: userAgent, sort: sort, filterLeftSquareBracketRightSquareBracket: filterLeftSquareBracketRightSquareBracket, page: page, pageSize: pageSize, );
+  Future<UserListRsp?> userList({
+    String? remoteAddress,
+    String? userAgent,
+    String? sort,
+    List<String>? filterLeftSquareBracketRightSquareBracket,
+    int? page,
+    int? pageSize,
+  }) async {
+    final response = await userListWithHttpInfo(
+      remoteAddress: remoteAddress,
+      userAgent: userAgent,
+      sort: sort,
+      filterLeftSquareBracketRightSquareBracket:
+          filterLeftSquareBracketRightSquareBracket,
+      page: page,
+      pageSize: pageSize,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UserListRsp',) as UserListRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'UserListRsp',
+      ) as UserListRsp;
     }
     return null;
   }
@@ -939,10 +1131,13 @@ class UserApi {
   ///   ID of user
   ///
   /// * [UserPhoneNumberCreateReq] userPhoneNumberCreateReq (required):
-  Future<Response> userPhoneNumberCreateWithHttpInfo(String userID, UserPhoneNumberCreateReq userPhoneNumberCreateReq,) async {
+  Future<Response> userPhoneNumberCreateWithHttpInfo(
+    String userID,
+    UserPhoneNumberCreateReq userPhoneNumberCreateReq,
+  ) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/users/{userID}/phoneNumbers'
-      .replaceAll('{userID}', userID);
+    final path =
+        r'/v1/users/{userID}/phoneNumbers'.replaceAll('{userID}', userID);
 
     // ignore: prefer_final_locals
     Object? postBody = userPhoneNumberCreateReq;
@@ -952,7 +1147,6 @@ class UserApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -973,17 +1167,26 @@ class UserApi {
   ///   ID of user
   ///
   /// * [UserPhoneNumberCreateReq] userPhoneNumberCreateReq (required):
-  Future<UserPhoneNumberCreateRsp?> userPhoneNumberCreate(String userID, UserPhoneNumberCreateReq userPhoneNumberCreateReq,) async {
-    final response = await userPhoneNumberCreateWithHttpInfo(userID, userPhoneNumberCreateReq,);
+  Future<UserPhoneNumberCreateRsp?> userPhoneNumberCreate(
+    String userID,
+    UserPhoneNumberCreateReq userPhoneNumberCreateReq,
+  ) async {
+    final response = await userPhoneNumberCreateWithHttpInfo(
+      userID,
+      userPhoneNumberCreateReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UserPhoneNumberCreateRsp',) as UserPhoneNumberCreateRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'UserPhoneNumberCreateRsp',
+      ) as UserPhoneNumberCreateRsp;
     }
     return null;
   }
@@ -1001,11 +1204,15 @@ class UserApi {
   ///   ID of phone number
   ///
   /// * [UserPhoneNumberDeleteReq] userPhoneNumberDeleteReq (required):
-  Future<Response> userPhoneNumberDeleteWithHttpInfo(String userID, String phoneNumberID, UserPhoneNumberDeleteReq userPhoneNumberDeleteReq,) async {
+  Future<Response> userPhoneNumberDeleteWithHttpInfo(
+    String userID,
+    String phoneNumberID,
+    UserPhoneNumberDeleteReq userPhoneNumberDeleteReq,
+  ) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/users/{userID}/phoneNumbers/{phoneNumberID}'
-      .replaceAll('{userID}', userID)
-      .replaceAll('{phoneNumberID}', phoneNumberID);
+        .replaceAll('{userID}', userID)
+        .replaceAll('{phoneNumberID}', phoneNumberID);
 
     // ignore: prefer_final_locals
     Object? postBody = userPhoneNumberDeleteReq;
@@ -1015,7 +1222,6 @@ class UserApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -1039,17 +1245,28 @@ class UserApi {
   ///   ID of phone number
   ///
   /// * [UserPhoneNumberDeleteReq] userPhoneNumberDeleteReq (required):
-  Future<GenericRsp?> userPhoneNumberDelete(String userID, String phoneNumberID, UserPhoneNumberDeleteReq userPhoneNumberDeleteReq,) async {
-    final response = await userPhoneNumberDeleteWithHttpInfo(userID, phoneNumberID, userPhoneNumberDeleteReq,);
+  Future<GenericRsp?> userPhoneNumberDelete(
+    String userID,
+    String phoneNumberID,
+    UserPhoneNumberDeleteReq userPhoneNumberDeleteReq,
+  ) async {
+    final response = await userPhoneNumberDeleteWithHttpInfo(
+      userID,
+      phoneNumberID,
+      userPhoneNumberDeleteReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GenericRsp',) as GenericRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'GenericRsp',
+      ) as GenericRsp;
     }
     return null;
   }
@@ -1071,11 +1288,16 @@ class UserApi {
   ///
   /// * [String] userAgent:
   ///   Client's user agent
-  Future<Response> userPhoneNumberGetWithHttpInfo(String userID, String phoneNumberID, { String? remoteAddress, String? userAgent, }) async {
+  Future<Response> userPhoneNumberGetWithHttpInfo(
+    String userID,
+    String phoneNumberID, {
+    String? remoteAddress,
+    String? userAgent,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/users/{userID}/phoneNumbers/{phoneNumberID}'
-      .replaceAll('{userID}', userID)
-      .replaceAll('{phoneNumberID}', phoneNumberID);
+        .replaceAll('{userID}', userID)
+        .replaceAll('{phoneNumberID}', phoneNumberID);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -1092,7 +1314,6 @@ class UserApi {
     }
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -1120,17 +1341,30 @@ class UserApi {
   ///
   /// * [String] userAgent:
   ///   Client's user agent
-  Future<UserPhoneNumberGetRsp?> userPhoneNumberGet(String userID, String phoneNumberID, { String? remoteAddress, String? userAgent, }) async {
-    final response = await userPhoneNumberGetWithHttpInfo(userID, phoneNumberID,  remoteAddress: remoteAddress, userAgent: userAgent, );
+  Future<UserPhoneNumberGetRsp?> userPhoneNumberGet(
+    String userID,
+    String phoneNumberID, {
+    String? remoteAddress,
+    String? userAgent,
+  }) async {
+    final response = await userPhoneNumberGetWithHttpInfo(
+      userID,
+      phoneNumberID,
+      remoteAddress: remoteAddress,
+      userAgent: userAgent,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UserPhoneNumberGetRsp',) as UserPhoneNumberGetRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'UserPhoneNumberGetRsp',
+      ) as UserPhoneNumberGetRsp;
     }
     return null;
   }
@@ -1161,7 +1395,15 @@ class UserApi {
   ///
   /// * [int] pageSize:
   ///   Number of items per page
-  Future<Response> userStatsListWithHttpInfo(String granularity, { String? remoteAddress, String? userAgent, String? sort, List<String>? filterLeftSquareBracketRightSquareBracket, int? page, int? pageSize, }) async {
+  Future<Response> userStatsListWithHttpInfo(
+    String granularity, {
+    String? remoteAddress,
+    String? userAgent,
+    String? sort,
+    List<String>? filterLeftSquareBracketRightSquareBracket,
+    int? page,
+    int? pageSize,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/users/stats';
 
@@ -1182,7 +1424,8 @@ class UserApi {
       queryParams.addAll(_queryParams('', 'sort', sort));
     }
     if (filterLeftSquareBracketRightSquareBracket != null) {
-      queryParams.addAll(_queryParams('multi', 'filter[]', filterLeftSquareBracketRightSquareBracket));
+      queryParams.addAll(_queryParams(
+          'multi', 'filter[]', filterLeftSquareBracketRightSquareBracket));
     }
     if (page != null) {
       queryParams.addAll(_queryParams('', 'page', page));
@@ -1190,10 +1433,9 @@ class UserApi {
     if (pageSize != null) {
       queryParams.addAll(_queryParams('', 'pageSize', pageSize));
     }
-      queryParams.addAll(_queryParams('', 'granularity', granularity));
+    queryParams.addAll(_queryParams('', 'granularity', granularity));
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -1230,17 +1472,37 @@ class UserApi {
   ///
   /// * [int] pageSize:
   ///   Number of items per page
-  Future<UserStatsListRsp?> userStatsList(String granularity, { String? remoteAddress, String? userAgent, String? sort, List<String>? filterLeftSquareBracketRightSquareBracket, int? page, int? pageSize, }) async {
-    final response = await userStatsListWithHttpInfo(granularity,  remoteAddress: remoteAddress, userAgent: userAgent, sort: sort, filterLeftSquareBracketRightSquareBracket: filterLeftSquareBracketRightSquareBracket, page: page, pageSize: pageSize, );
+  Future<UserStatsListRsp?> userStatsList(
+    String granularity, {
+    String? remoteAddress,
+    String? userAgent,
+    String? sort,
+    List<String>? filterLeftSquareBracketRightSquareBracket,
+    int? page,
+    int? pageSize,
+  }) async {
+    final response = await userStatsListWithHttpInfo(
+      granularity,
+      remoteAddress: remoteAddress,
+      userAgent: userAgent,
+      sort: sort,
+      filterLeftSquareBracketRightSquareBracket:
+          filterLeftSquareBracketRightSquareBracket,
+      page: page,
+      pageSize: pageSize,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UserStatsListRsp',) as UserStatsListRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'UserStatsListRsp',
+      ) as UserStatsListRsp;
     }
     return null;
   }
@@ -1255,10 +1517,12 @@ class UserApi {
   ///   ID of user
   ///
   /// * [UserUpdateReq] userUpdateReq (required):
-  Future<Response> userUpdateWithHttpInfo(String userID, UserUpdateReq userUpdateReq,) async {
+  Future<Response> userUpdateWithHttpInfo(
+    String userID,
+    UserUpdateReq userUpdateReq,
+  ) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/users/{userID}'
-      .replaceAll('{userID}', userID);
+    final path = r'/v1/users/{userID}'.replaceAll('{userID}', userID);
 
     // ignore: prefer_final_locals
     Object? postBody = userUpdateReq;
@@ -1268,7 +1532,6 @@ class UserApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -1289,17 +1552,26 @@ class UserApi {
   ///   ID of user
   ///
   /// * [UserUpdateReq] userUpdateReq (required):
-  Future<UserUpdateRsp?> userUpdate(String userID, UserUpdateReq userUpdateReq,) async {
-    final response = await userUpdateWithHttpInfo(userID, userUpdateReq,);
+  Future<UserUpdateRsp?> userUpdate(
+    String userID,
+    UserUpdateReq userUpdateReq,
+  ) async {
+    final response = await userUpdateWithHttpInfo(
+      userID,
+      userUpdateReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UserUpdateRsp',) as UserUpdateRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'UserUpdateRsp',
+      ) as UserUpdateRsp;
     }
     return null;
   }

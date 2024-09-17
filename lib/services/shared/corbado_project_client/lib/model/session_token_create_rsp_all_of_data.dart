@@ -19,20 +19,21 @@ class SessionTokenCreateRspAllOfData {
   String token;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is SessionTokenCreateRspAllOfData &&
-     other.token == token;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SessionTokenCreateRspAllOfData && other.token == token;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (token.hashCode);
+      // ignore: unnecessary_parenthesis
+      (token.hashCode);
 
   @override
   String toString() => 'SessionTokenCreateRspAllOfData[token=$token]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'token'] = this.token;
+    json[r'token'] = this.token;
     return json;
   }
 
@@ -48,8 +49,10 @@ class SessionTokenCreateRspAllOfData {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "SessionTokenCreateRspAllOfData[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "SessionTokenCreateRspAllOfData[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "SessionTokenCreateRspAllOfData[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "SessionTokenCreateRspAllOfData[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -61,7 +64,10 @@ class SessionTokenCreateRspAllOfData {
     return null;
   }
 
-  static List<SessionTokenCreateRspAllOfData> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<SessionTokenCreateRspAllOfData> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <SessionTokenCreateRspAllOfData>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -89,13 +95,19 @@ class SessionTokenCreateRspAllOfData {
   }
 
   // maps a json object with a list of SessionTokenCreateRspAllOfData-objects as value to a dart map
-  static Map<String, List<SessionTokenCreateRspAllOfData>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<SessionTokenCreateRspAllOfData>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<SessionTokenCreateRspAllOfData>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = SessionTokenCreateRspAllOfData.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = SessionTokenCreateRspAllOfData.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -106,4 +118,3 @@ class SessionTokenCreateRspAllOfData {
     'token',
   };
 }
-

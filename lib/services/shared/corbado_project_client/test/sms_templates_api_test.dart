@@ -11,7 +11,6 @@
 import 'package:backend_api_public/api.dart';
 import 'package:test/test.dart';
 
-
 /// tests for SMSTemplatesApi
 void main() {
   // final instance = SMSTemplatesApi();
@@ -30,6 +29,5 @@ void main() {
     test('test smsTemplateDelete', () async {
       // TODO
     });
-
   });
 }

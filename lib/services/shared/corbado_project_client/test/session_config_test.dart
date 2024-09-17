@@ -83,8 +83,5 @@ void main() {
     test('to test the property `active`', () async {
       // TODO
     });
-
-
   });
-
 }

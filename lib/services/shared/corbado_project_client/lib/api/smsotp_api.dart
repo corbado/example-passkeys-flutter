@@ -10,7 +10,6 @@
 
 part of openapi.api;
 
-
 class SMSOTPApi {
   SMSOTPApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
 
@@ -23,7 +22,9 @@ class SMSOTPApi {
   /// Parameters:
   ///
   /// * [SmsCodeSendReq] smsCodeSendReq (required):
-  Future<Response> smsCodeSendWithHttpInfo(SmsCodeSendReq smsCodeSendReq,) async {
+  Future<Response> smsCodeSendWithHttpInfo(
+    SmsCodeSendReq smsCodeSendReq,
+  ) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/smsCodes';
 
@@ -35,7 +36,6 @@ class SMSOTPApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -53,17 +53,24 @@ class SMSOTPApi {
   /// Parameters:
   ///
   /// * [SmsCodeSendReq] smsCodeSendReq (required):
-  Future<SmsCodeSendRsp?> smsCodeSend(SmsCodeSendReq smsCodeSendReq,) async {
-    final response = await smsCodeSendWithHttpInfo(smsCodeSendReq,);
+  Future<SmsCodeSendRsp?> smsCodeSend(
+    SmsCodeSendReq smsCodeSendReq,
+  ) async {
+    final response = await smsCodeSendWithHttpInfo(
+      smsCodeSendReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'SmsCodeSendRsp',) as SmsCodeSendRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'SmsCodeSendRsp',
+      ) as SmsCodeSendRsp;
     }
     return null;
   }
@@ -78,10 +85,13 @@ class SMSOTPApi {
   ///   ID of SMS OTP
   ///
   /// * [SmsCodeValidateReq] smsCodeValidateReq (required):
-  Future<Response> smsCodeValidateWithHttpInfo(String smsCodeID, SmsCodeValidateReq smsCodeValidateReq,) async {
+  Future<Response> smsCodeValidateWithHttpInfo(
+    String smsCodeID,
+    SmsCodeValidateReq smsCodeValidateReq,
+  ) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/smsCodes/{smsCodeID}/validate'
-      .replaceAll('{smsCodeID}', smsCodeID);
+        .replaceAll('{smsCodeID}', smsCodeID);
 
     // ignore: prefer_final_locals
     Object? postBody = smsCodeValidateReq;
@@ -91,7 +101,6 @@ class SMSOTPApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -112,17 +121,26 @@ class SMSOTPApi {
   ///   ID of SMS OTP
   ///
   /// * [SmsCodeValidateReq] smsCodeValidateReq (required):
-  Future<SmsCodeValidateRsp?> smsCodeValidate(String smsCodeID, SmsCodeValidateReq smsCodeValidateReq,) async {
-    final response = await smsCodeValidateWithHttpInfo(smsCodeID, smsCodeValidateReq,);
+  Future<SmsCodeValidateRsp?> smsCodeValidate(
+    String smsCodeID,
+    SmsCodeValidateReq smsCodeValidateReq,
+  ) async {
+    final response = await smsCodeValidateWithHttpInfo(
+      smsCodeID,
+      smsCodeValidateReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'SmsCodeValidateRsp',) as SmsCodeValidateRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'SmsCodeValidateRsp',
+      ) as SmsCodeValidateRsp;
     }
     return null;
   }

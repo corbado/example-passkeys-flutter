@@ -311,7 +311,6 @@ part 'model/webhook_logs_list_rsp.dart';
 part 'model/webhook_logs_list_rsp_all_of.dart';
 part 'model/webhook_logs_list_rsp_all_of_data.dart';
 
-
 const _delimiters = {'csv': ',', 'ssv': ' ', 'tsv': '\t', 'pipes': '|'};
 const _dateEpochMarker = 'epoch';
 final _dateFormatter = DateFormat('yyyy-MM-dd');

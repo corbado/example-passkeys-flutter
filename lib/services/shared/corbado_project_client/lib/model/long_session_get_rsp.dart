@@ -36,32 +36,35 @@ class LongSessionGetRsp {
   LongSessionGetRspAllOfData data;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is LongSessionGetRsp &&
-     other.httpStatusCode == httpStatusCode &&
-     other.message == message &&
-     other.requestData == requestData &&
-     other.runtime == runtime &&
-     other.data == data;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is LongSessionGetRsp &&
+          other.httpStatusCode == httpStatusCode &&
+          other.message == message &&
+          other.requestData == requestData &&
+          other.runtime == runtime &&
+          other.data == data;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (httpStatusCode.hashCode) +
-    (message.hashCode) +
-    (requestData.hashCode) +
-    (runtime.hashCode) +
-    (data.hashCode);
+      // ignore: unnecessary_parenthesis
+      (httpStatusCode.hashCode) +
+      (message.hashCode) +
+      (requestData.hashCode) +
+      (runtime.hashCode) +
+      (data.hashCode);
 
   @override
-  String toString() => 'LongSessionGetRsp[httpStatusCode=$httpStatusCode, message=$message, requestData=$requestData, runtime=$runtime, data=$data]';
+  String toString() =>
+      'LongSessionGetRsp[httpStatusCode=$httpStatusCode, message=$message, requestData=$requestData, runtime=$runtime, data=$data]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'httpStatusCode'] = this.httpStatusCode;
-      json[r'message'] = this.message;
-      json[r'requestData'] = this.requestData;
-      json[r'runtime'] = this.runtime;
-      json[r'data'] = this.data;
+    json[r'httpStatusCode'] = this.httpStatusCode;
+    json[r'message'] = this.message;
+    json[r'requestData'] = this.requestData;
+    json[r'runtime'] = this.runtime;
+    json[r'data'] = this.data;
     return json;
   }
 
@@ -77,8 +80,10 @@ class LongSessionGetRsp {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "LongSessionGetRsp[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "LongSessionGetRsp[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "LongSessionGetRsp[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "LongSessionGetRsp[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -94,7 +99,10 @@ class LongSessionGetRsp {
     return null;
   }
 
-  static List<LongSessionGetRsp> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<LongSessionGetRsp> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <LongSessionGetRsp>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -122,13 +130,19 @@ class LongSessionGetRsp {
   }
 
   // maps a json object with a list of LongSessionGetRsp-objects as value to a dart map
-  static Map<String, List<LongSessionGetRsp>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<LongSessionGetRsp>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<LongSessionGetRsp>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = LongSessionGetRsp.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = LongSessionGetRsp.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -143,4 +157,3 @@ class LongSessionGetRsp {
     'data',
   };
 }
-

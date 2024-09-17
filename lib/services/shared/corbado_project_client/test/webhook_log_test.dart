@@ -34,7 +34,7 @@ void main() {
       // TODO
     });
 
-    // Unique ID of response, you can provide your own while responding to the webhook, if not the ID will be randomly generated on server side. This has the same meaning as overriding requestID for API requests. 
+    // Unique ID of response, you can provide your own while responding to the webhook, if not the ID will be randomly generated on server side. This has the same meaning as overriding requestID for API requests.
     // String responseID
     test('to test the property `responseID`', () async {
       // TODO
@@ -87,8 +87,5 @@ void main() {
     test('to test the property `created`', () async {
       // TODO
     });
-
-
   });
-
 }

@@ -39,35 +39,38 @@ class ProjectSecretListRsp {
   Paging paging;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is ProjectSecretListRsp &&
-     other.httpStatusCode == httpStatusCode &&
-     other.message == message &&
-     other.requestData == requestData &&
-     other.runtime == runtime &&
-     other.rows == rows &&
-     other.paging == paging;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProjectSecretListRsp &&
+          other.httpStatusCode == httpStatusCode &&
+          other.message == message &&
+          other.requestData == requestData &&
+          other.runtime == runtime &&
+          other.rows == rows &&
+          other.paging == paging;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (httpStatusCode.hashCode) +
-    (message.hashCode) +
-    (requestData.hashCode) +
-    (runtime.hashCode) +
-    (rows.hashCode) +
-    (paging.hashCode);
+      // ignore: unnecessary_parenthesis
+      (httpStatusCode.hashCode) +
+      (message.hashCode) +
+      (requestData.hashCode) +
+      (runtime.hashCode) +
+      (rows.hashCode) +
+      (paging.hashCode);
 
   @override
-  String toString() => 'ProjectSecretListRsp[httpStatusCode=$httpStatusCode, message=$message, requestData=$requestData, runtime=$runtime, rows=$rows, paging=$paging]';
+  String toString() =>
+      'ProjectSecretListRsp[httpStatusCode=$httpStatusCode, message=$message, requestData=$requestData, runtime=$runtime, rows=$rows, paging=$paging]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'httpStatusCode'] = this.httpStatusCode;
-      json[r'message'] = this.message;
-      json[r'requestData'] = this.requestData;
-      json[r'runtime'] = this.runtime;
-      json[r'rows'] = this.rows;
-      json[r'paging'] = this.paging;
+    json[r'httpStatusCode'] = this.httpStatusCode;
+    json[r'message'] = this.message;
+    json[r'requestData'] = this.requestData;
+    json[r'runtime'] = this.runtime;
+    json[r'rows'] = this.rows;
+    json[r'paging'] = this.paging;
     return json;
   }
 
@@ -83,8 +86,10 @@ class ProjectSecretListRsp {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ProjectSecretListRsp[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ProjectSecretListRsp[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "ProjectSecretListRsp[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "ProjectSecretListRsp[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -101,7 +106,10 @@ class ProjectSecretListRsp {
     return null;
   }
 
-  static List<ProjectSecretListRsp> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ProjectSecretListRsp> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ProjectSecretListRsp>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -129,13 +137,19 @@ class ProjectSecretListRsp {
   }
 
   // maps a json object with a list of ProjectSecretListRsp-objects as value to a dart map
-  static Map<String, List<ProjectSecretListRsp>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<ProjectSecretListRsp>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<ProjectSecretListRsp>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = ProjectSecretListRsp.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = ProjectSecretListRsp.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -151,4 +165,3 @@ class ProjectSecretListRsp {
     'paging',
   };
 }
-

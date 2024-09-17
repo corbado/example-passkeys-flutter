@@ -24,23 +24,27 @@ class WebAuthnAuthenticateStartRspAllOf {
   WebAuthnAuthenticateStartRspAllOfStatusEnum status;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is WebAuthnAuthenticateStartRspAllOf &&
-     other.publicKeyCredentialRequestOptions == publicKeyCredentialRequestOptions &&
-     other.status == status;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is WebAuthnAuthenticateStartRspAllOf &&
+          other.publicKeyCredentialRequestOptions ==
+              publicKeyCredentialRequestOptions &&
+          other.status == status;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (publicKeyCredentialRequestOptions.hashCode) +
-    (status.hashCode);
+      // ignore: unnecessary_parenthesis
+      (publicKeyCredentialRequestOptions.hashCode) + (status.hashCode);
 
   @override
-  String toString() => 'WebAuthnAuthenticateStartRspAllOf[publicKeyCredentialRequestOptions=$publicKeyCredentialRequestOptions, status=$status]';
+  String toString() =>
+      'WebAuthnAuthenticateStartRspAllOf[publicKeyCredentialRequestOptions=$publicKeyCredentialRequestOptions, status=$status]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'publicKeyCredentialRequestOptions'] = this.publicKeyCredentialRequestOptions;
-      json[r'status'] = this.status;
+    json[r'publicKeyCredentialRequestOptions'] =
+        this.publicKeyCredentialRequestOptions;
+    json[r'status'] = this.status;
     return json;
   }
 
@@ -56,21 +60,28 @@ class WebAuthnAuthenticateStartRspAllOf {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "WebAuthnAuthenticateStartRspAllOf[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "WebAuthnAuthenticateStartRspAllOf[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "WebAuthnAuthenticateStartRspAllOf[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "WebAuthnAuthenticateStartRspAllOf[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
       return WebAuthnAuthenticateStartRspAllOf(
-        publicKeyCredentialRequestOptions: mapValueOfType<String>(json, r'publicKeyCredentialRequestOptions')!,
-        status: WebAuthnAuthenticateStartRspAllOfStatusEnum.fromJson(json[r'status'])!,
+        publicKeyCredentialRequestOptions:
+            mapValueOfType<String>(json, r'publicKeyCredentialRequestOptions')!,
+        status: WebAuthnAuthenticateStartRspAllOfStatusEnum.fromJson(
+            json[r'status'])!,
       );
     }
     return null;
   }
 
-  static List<WebAuthnAuthenticateStartRspAllOf> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<WebAuthnAuthenticateStartRspAllOf> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <WebAuthnAuthenticateStartRspAllOf>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -83,7 +94,8 @@ class WebAuthnAuthenticateStartRspAllOf {
     return result.toList(growable: growable);
   }
 
-  static Map<String, WebAuthnAuthenticateStartRspAllOf> mapFromJson(dynamic json) {
+  static Map<String, WebAuthnAuthenticateStartRspAllOf> mapFromJson(
+      dynamic json) {
     final map = <String, WebAuthnAuthenticateStartRspAllOf>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
@@ -98,13 +110,19 @@ class WebAuthnAuthenticateStartRspAllOf {
   }
 
   // maps a json object with a list of WebAuthnAuthenticateStartRspAllOf-objects as value to a dart map
-  static Map<String, List<WebAuthnAuthenticateStartRspAllOf>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<WebAuthnAuthenticateStartRspAllOf>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<WebAuthnAuthenticateStartRspAllOf>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = WebAuthnAuthenticateStartRspAllOf.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = WebAuthnAuthenticateStartRspAllOf.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -130,9 +148,12 @@ class WebAuthnAuthenticateStartRspAllOfStatusEnum {
 
   String toJson() => value;
 
-  static const success = WebAuthnAuthenticateStartRspAllOfStatusEnum._(r'success');
-  static const unknownDevice = WebAuthnAuthenticateStartRspAllOfStatusEnum._(r'unknownDevice');
-  static const unconfirmedDevice = WebAuthnAuthenticateStartRspAllOfStatusEnum._(r'unconfirmedDevice');
+  static const success =
+      WebAuthnAuthenticateStartRspAllOfStatusEnum._(r'success');
+  static const unknownDevice =
+      WebAuthnAuthenticateStartRspAllOfStatusEnum._(r'unknownDevice');
+  static const unconfirmedDevice =
+      WebAuthnAuthenticateStartRspAllOfStatusEnum._(r'unconfirmedDevice');
 
   /// List of all possible values in this [enum][WebAuthnAuthenticateStartRspAllOfStatusEnum].
   static const values = <WebAuthnAuthenticateStartRspAllOfStatusEnum>[
@@ -141,9 +162,14 @@ class WebAuthnAuthenticateStartRspAllOfStatusEnum {
     unconfirmedDevice,
   ];
 
-  static WebAuthnAuthenticateStartRspAllOfStatusEnum? fromJson(dynamic value) => WebAuthnAuthenticateStartRspAllOfStatusEnumTypeTransformer().decode(value);
+  static WebAuthnAuthenticateStartRspAllOfStatusEnum? fromJson(dynamic value) =>
+      WebAuthnAuthenticateStartRspAllOfStatusEnumTypeTransformer()
+          .decode(value);
 
-  static List<WebAuthnAuthenticateStartRspAllOfStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<WebAuthnAuthenticateStartRspAllOfStatusEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <WebAuthnAuthenticateStartRspAllOfStatusEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -160,7 +186,9 @@ class WebAuthnAuthenticateStartRspAllOfStatusEnum {
 /// Transformation class that can [encode] an instance of [WebAuthnAuthenticateStartRspAllOfStatusEnum] to String,
 /// and [decode] dynamic data back to [WebAuthnAuthenticateStartRspAllOfStatusEnum].
 class WebAuthnAuthenticateStartRspAllOfStatusEnumTypeTransformer {
-  factory WebAuthnAuthenticateStartRspAllOfStatusEnumTypeTransformer() => _instance ??= const WebAuthnAuthenticateStartRspAllOfStatusEnumTypeTransformer._();
+  factory WebAuthnAuthenticateStartRspAllOfStatusEnumTypeTransformer() =>
+      _instance ??=
+          const WebAuthnAuthenticateStartRspAllOfStatusEnumTypeTransformer._();
 
   const WebAuthnAuthenticateStartRspAllOfStatusEnumTypeTransformer._();
 
@@ -174,12 +202,16 @@ class WebAuthnAuthenticateStartRspAllOfStatusEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  WebAuthnAuthenticateStartRspAllOfStatusEnum? decode(dynamic data, {bool allowNull = true}) {
+  WebAuthnAuthenticateStartRspAllOfStatusEnum? decode(dynamic data,
+      {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'success': return WebAuthnAuthenticateStartRspAllOfStatusEnum.success;
-        case r'unknownDevice': return WebAuthnAuthenticateStartRspAllOfStatusEnum.unknownDevice;
-        case r'unconfirmedDevice': return WebAuthnAuthenticateStartRspAllOfStatusEnum.unconfirmedDevice;
+        case r'success':
+          return WebAuthnAuthenticateStartRspAllOfStatusEnum.success;
+        case r'unknownDevice':
+          return WebAuthnAuthenticateStartRspAllOfStatusEnum.unknownDevice;
+        case r'unconfirmedDevice':
+          return WebAuthnAuthenticateStartRspAllOfStatusEnum.unconfirmedDevice;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -192,5 +224,3 @@ class WebAuthnAuthenticateStartRspAllOfStatusEnumTypeTransformer {
   /// Singleton [WebAuthnAuthenticateStartRspAllOfStatusEnumTypeTransformer] instance.
   static WebAuthnAuthenticateStartRspAllOfStatusEnumTypeTransformer? _instance;
 }
-
-

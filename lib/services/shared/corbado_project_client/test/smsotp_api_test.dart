@@ -11,7 +11,6 @@
 import 'package:backend_api_public/api.dart';
 import 'package:test/test.dart';
 
-
 /// tests for SMSOTPApi
 void main() {
   // final instance = SMSOTPApi();
@@ -30,6 +29,5 @@ void main() {
     test('test smsCodeValidate', () async {
       // TODO
     });
-
   });
 }

@@ -32,25 +32,28 @@ class SessionTokenVerifyReq {
   String? requestID;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is SessionTokenVerifyReq &&
-     other.token == token &&
-     other.clientInfo == clientInfo &&
-     other.requestID == requestID;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SessionTokenVerifyReq &&
+          other.token == token &&
+          other.clientInfo == clientInfo &&
+          other.requestID == requestID;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (token.hashCode) +
-    (clientInfo.hashCode) +
-    (requestID == null ? 0 : requestID!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (token.hashCode) +
+      (clientInfo.hashCode) +
+      (requestID == null ? 0 : requestID!.hashCode);
 
   @override
-  String toString() => 'SessionTokenVerifyReq[token=$token, clientInfo=$clientInfo, requestID=$requestID]';
+  String toString() =>
+      'SessionTokenVerifyReq[token=$token, clientInfo=$clientInfo, requestID=$requestID]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'token'] = this.token;
-      json[r'clientInfo'] = this.clientInfo;
+    json[r'token'] = this.token;
+    json[r'clientInfo'] = this.clientInfo;
     if (this.requestID != null) {
       json[r'requestID'] = this.requestID;
     } else {
@@ -71,8 +74,10 @@ class SessionTokenVerifyReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "SessionTokenVerifyReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "SessionTokenVerifyReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "SessionTokenVerifyReq[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "SessionTokenVerifyReq[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -86,7 +91,10 @@ class SessionTokenVerifyReq {
     return null;
   }
 
-  static List<SessionTokenVerifyReq> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<SessionTokenVerifyReq> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <SessionTokenVerifyReq>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -114,13 +122,19 @@ class SessionTokenVerifyReq {
   }
 
   // maps a json object with a list of SessionTokenVerifyReq-objects as value to a dart map
-  static Map<String, List<SessionTokenVerifyReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<SessionTokenVerifyReq>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<SessionTokenVerifyReq>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = SessionTokenVerifyReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = SessionTokenVerifyReq.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -132,4 +146,3 @@ class SessionTokenVerifyReq {
     'clientInfo',
   };
 }
-

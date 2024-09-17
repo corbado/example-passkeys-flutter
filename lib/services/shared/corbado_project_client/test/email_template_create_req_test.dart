@@ -101,8 +101,5 @@ void main() {
     test('to test the property `clientInfo`', () async {
       // TODO
     });
-
-
   });
-
 }

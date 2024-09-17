@@ -20,20 +20,21 @@ class WebAuthnCredentialRspAllOf {
   WebAuthnCredentialRspAllOfStatusEnum status;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is WebAuthnCredentialRspAllOf &&
-     other.status == status;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is WebAuthnCredentialRspAllOf && other.status == status;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (status.hashCode);
+      // ignore: unnecessary_parenthesis
+      (status.hashCode);
 
   @override
   String toString() => 'WebAuthnCredentialRspAllOf[status=$status]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'status'] = this.status;
+    json[r'status'] = this.status;
     return json;
   }
 
@@ -49,8 +50,10 @@ class WebAuthnCredentialRspAllOf {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "WebAuthnCredentialRspAllOf[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "WebAuthnCredentialRspAllOf[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "WebAuthnCredentialRspAllOf[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "WebAuthnCredentialRspAllOf[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -62,7 +65,10 @@ class WebAuthnCredentialRspAllOf {
     return null;
   }
 
-  static List<WebAuthnCredentialRspAllOf> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<WebAuthnCredentialRspAllOf> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <WebAuthnCredentialRspAllOf>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -90,13 +96,19 @@ class WebAuthnCredentialRspAllOf {
   }
 
   // maps a json object with a list of WebAuthnCredentialRspAllOf-objects as value to a dart map
-  static Map<String, List<WebAuthnCredentialRspAllOf>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<WebAuthnCredentialRspAllOf>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<WebAuthnCredentialRspAllOf>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = WebAuthnCredentialRspAllOf.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = WebAuthnCredentialRspAllOf.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -132,9 +144,13 @@ class WebAuthnCredentialRspAllOfStatusEnum {
     deleted,
   ];
 
-  static WebAuthnCredentialRspAllOfStatusEnum? fromJson(dynamic value) => WebAuthnCredentialRspAllOfStatusEnumTypeTransformer().decode(value);
+  static WebAuthnCredentialRspAllOfStatusEnum? fromJson(dynamic value) =>
+      WebAuthnCredentialRspAllOfStatusEnumTypeTransformer().decode(value);
 
-  static List<WebAuthnCredentialRspAllOfStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<WebAuthnCredentialRspAllOfStatusEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <WebAuthnCredentialRspAllOfStatusEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -151,7 +167,8 @@ class WebAuthnCredentialRspAllOfStatusEnum {
 /// Transformation class that can [encode] an instance of [WebAuthnCredentialRspAllOfStatusEnum] to String,
 /// and [decode] dynamic data back to [WebAuthnCredentialRspAllOfStatusEnum].
 class WebAuthnCredentialRspAllOfStatusEnumTypeTransformer {
-  factory WebAuthnCredentialRspAllOfStatusEnumTypeTransformer() => _instance ??= const WebAuthnCredentialRspAllOfStatusEnumTypeTransformer._();
+  factory WebAuthnCredentialRspAllOfStatusEnumTypeTransformer() => _instance ??=
+      const WebAuthnCredentialRspAllOfStatusEnumTypeTransformer._();
 
   const WebAuthnCredentialRspAllOfStatusEnumTypeTransformer._();
 
@@ -165,12 +182,16 @@ class WebAuthnCredentialRspAllOfStatusEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  WebAuthnCredentialRspAllOfStatusEnum? decode(dynamic data, {bool allowNull = true}) {
+  WebAuthnCredentialRspAllOfStatusEnum? decode(dynamic data,
+      {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'pending': return WebAuthnCredentialRspAllOfStatusEnum.pending;
-        case r'active': return WebAuthnCredentialRspAllOfStatusEnum.active;
-        case r'deleted': return WebAuthnCredentialRspAllOfStatusEnum.deleted;
+        case r'pending':
+          return WebAuthnCredentialRspAllOfStatusEnum.pending;
+        case r'active':
+          return WebAuthnCredentialRspAllOfStatusEnum.active;
+        case r'deleted':
+          return WebAuthnCredentialRspAllOfStatusEnum.deleted;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -183,5 +204,3 @@ class WebAuthnCredentialRspAllOfStatusEnumTypeTransformer {
   /// Singleton [WebAuthnCredentialRspAllOfStatusEnumTypeTransformer] instance.
   static WebAuthnCredentialRspAllOfStatusEnumTypeTransformer? _instance;
 }
-
-

@@ -19,20 +19,21 @@ class ProjectConfigGetRspAllOf {
   ProjectConfig data;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is ProjectConfigGetRspAllOf &&
-     other.data == data;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProjectConfigGetRspAllOf && other.data == data;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (data.hashCode);
+      // ignore: unnecessary_parenthesis
+      (data.hashCode);
 
   @override
   String toString() => 'ProjectConfigGetRspAllOf[data=$data]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'data'] = this.data;
+    json[r'data'] = this.data;
     return json;
   }
 
@@ -48,8 +49,10 @@ class ProjectConfigGetRspAllOf {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ProjectConfigGetRspAllOf[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ProjectConfigGetRspAllOf[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "ProjectConfigGetRspAllOf[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "ProjectConfigGetRspAllOf[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -61,7 +64,10 @@ class ProjectConfigGetRspAllOf {
     return null;
   }
 
-  static List<ProjectConfigGetRspAllOf> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ProjectConfigGetRspAllOf> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ProjectConfigGetRspAllOf>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -89,13 +95,19 @@ class ProjectConfigGetRspAllOf {
   }
 
   // maps a json object with a list of ProjectConfigGetRspAllOf-objects as value to a dart map
-  static Map<String, List<ProjectConfigGetRspAllOf>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<ProjectConfigGetRspAllOf>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<ProjectConfigGetRspAllOf>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = ProjectConfigGetRspAllOf.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = ProjectConfigGetRspAllOf.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -106,4 +118,3 @@ class ProjectConfigGetRspAllOf {
     'data',
   };
 }
-

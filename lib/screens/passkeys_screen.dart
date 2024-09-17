@@ -19,7 +19,7 @@ class PasskeysScreen extends StatefulHookConsumerWidget {
 class _PasskeysScreenState extends ConsumerState<PasskeysScreen> {
   @override
   Widget build(BuildContext context) {
-    final authService = ref.watch(authServiceProvider);
+    final corbado = ref.watch(corbadoProvider);
     final passkeys = ref.watch(passkeysProvider).value ?? [];
     final errorMessage = useState<String?>(null);
     final passkeyAppendLoading = useState<bool>(false);
@@ -44,7 +44,7 @@ class _PasskeysScreenState extends ConsumerState<PasskeysScreen> {
                           passkeyInfo: p,
                           onDelete: (String credentialID) async {
                             errorMessage.value = '';
-                            await authService.deletePasskey(credentialID);
+                            await corbado.deletePasskey(credentialID: credentialID);
                             showSimpleNotification(
                                 const Text(
                                   'Passkey has been deleted successfully.',
@@ -54,8 +54,7 @@ class _PasskeysScreenState extends ConsumerState<PasskeysScreen> {
                                   Icons.check,
                                   color: Colors.green,
                                 ),
-                                background:
-                                    Theme.of(context).colorScheme.primary);
+                                background: Theme.of(context).colorScheme.primary);
                           })))
                   .toList(),
             ),
@@ -68,12 +67,10 @@ class _PasskeysScreenState extends ConsumerState<PasskeysScreen> {
                 onTap: () async {
                   passkeyAppendLoading.value = true;
                   errorMessage.value = '';
-                  (await authService.appendPasskey()).either((passkeyCreated) {
-                    passkeyAppendLoading.value = false;
-                    if (!passkeyCreated) {
-                      return;
-                    }
 
+                  try {
+                    passkeyAppendLoading.value = false;
+                    await corbado.appendPasskey();
                     showSimpleNotification(
                         const Text(
                           'Passkey has been created successfully.',
@@ -84,10 +81,11 @@ class _PasskeysScreenState extends ConsumerState<PasskeysScreen> {
                           color: Colors.green,
                         ),
                         background: Theme.of(context).colorScheme.primary);
-                  }, (error) {
                     passkeyAppendLoading.value = false;
-                    errorMessage.value = error;
-                  });
+                  } catch (e) {
+                    passkeyAppendLoading.value = false;
+                    errorMessage.value = e.toString();
+                  }
                 },
               ),
             ),

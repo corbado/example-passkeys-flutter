@@ -43,27 +43,30 @@ class WebauthnSettingCreateReq {
   ClientInfo? clientInfo;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is WebauthnSettingCreateReq &&
-     other.name == name &&
-     other.origin == origin &&
-     other.requestID == requestID &&
-     other.clientInfo == clientInfo;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is WebauthnSettingCreateReq &&
+          other.name == name &&
+          other.origin == origin &&
+          other.requestID == requestID &&
+          other.clientInfo == clientInfo;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (name.hashCode) +
-    (origin.hashCode) +
-    (requestID == null ? 0 : requestID!.hashCode) +
-    (clientInfo == null ? 0 : clientInfo!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (name.hashCode) +
+      (origin.hashCode) +
+      (requestID == null ? 0 : requestID!.hashCode) +
+      (clientInfo == null ? 0 : clientInfo!.hashCode);
 
   @override
-  String toString() => 'WebauthnSettingCreateReq[name=$name, origin=$origin, requestID=$requestID, clientInfo=$clientInfo]';
+  String toString() =>
+      'WebauthnSettingCreateReq[name=$name, origin=$origin, requestID=$requestID, clientInfo=$clientInfo]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'name'] = this.name;
-      json[r'origin'] = this.origin;
+    json[r'name'] = this.name;
+    json[r'origin'] = this.origin;
     if (this.requestID != null) {
       json[r'requestID'] = this.requestID;
     } else {
@@ -89,8 +92,10 @@ class WebauthnSettingCreateReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "WebauthnSettingCreateReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "WebauthnSettingCreateReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "WebauthnSettingCreateReq[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "WebauthnSettingCreateReq[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -105,7 +110,10 @@ class WebauthnSettingCreateReq {
     return null;
   }
 
-  static List<WebauthnSettingCreateReq> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<WebauthnSettingCreateReq> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <WebauthnSettingCreateReq>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -133,13 +141,19 @@ class WebauthnSettingCreateReq {
   }
 
   // maps a json object with a list of WebauthnSettingCreateReq-objects as value to a dart map
-  static Map<String, List<WebauthnSettingCreateReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<WebauthnSettingCreateReq>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<WebauthnSettingCreateReq>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = WebauthnSettingCreateReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = WebauthnSettingCreateReq.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -151,4 +165,3 @@ class WebauthnSettingCreateReq {
     'origin',
   };
 }
-

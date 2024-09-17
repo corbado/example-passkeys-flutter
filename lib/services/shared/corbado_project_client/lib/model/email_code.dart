@@ -52,40 +52,43 @@ class EmailCode {
   String? userFullName;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is EmailCode &&
-     other.ID == ID &&
-     other.userID == userID &&
-     other.email == email &&
-     other.additionalPayload == additionalPayload &&
-     other.created == created &&
-     other.updated == updated &&
-     other.status == status &&
-     other.userFullName == userFullName;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is EmailCode &&
+          other.ID == ID &&
+          other.userID == userID &&
+          other.email == email &&
+          other.additionalPayload == additionalPayload &&
+          other.created == created &&
+          other.updated == updated &&
+          other.status == status &&
+          other.userFullName == userFullName;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (ID.hashCode) +
-    (userID.hashCode) +
-    (email.hashCode) +
-    (additionalPayload.hashCode) +
-    (created.hashCode) +
-    (updated.hashCode) +
-    (status.hashCode) +
-    (userFullName == null ? 0 : userFullName!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (ID.hashCode) +
+      (userID.hashCode) +
+      (email.hashCode) +
+      (additionalPayload.hashCode) +
+      (created.hashCode) +
+      (updated.hashCode) +
+      (status.hashCode) +
+      (userFullName == null ? 0 : userFullName!.hashCode);
 
   @override
-  String toString() => 'EmailCode[ID=$ID, userID=$userID, email=$email, additionalPayload=$additionalPayload, created=$created, updated=$updated, status=$status, userFullName=$userFullName]';
+  String toString() =>
+      'EmailCode[ID=$ID, userID=$userID, email=$email, additionalPayload=$additionalPayload, created=$created, updated=$updated, status=$status, userFullName=$userFullName]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'ID'] = this.ID;
-      json[r'userID'] = this.userID;
-      json[r'email'] = this.email;
-      json[r'additionalPayload'] = this.additionalPayload;
-      json[r'created'] = this.created;
-      json[r'updated'] = this.updated;
-      json[r'status'] = this.status;
+    json[r'ID'] = this.ID;
+    json[r'userID'] = this.userID;
+    json[r'email'] = this.email;
+    json[r'additionalPayload'] = this.additionalPayload;
+    json[r'created'] = this.created;
+    json[r'updated'] = this.updated;
+    json[r'status'] = this.status;
     if (this.userFullName != null) {
       json[r'userFullName'] = this.userFullName;
     } else {
@@ -106,8 +109,10 @@ class EmailCode {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "EmailCode[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "EmailCode[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "EmailCode[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "EmailCode[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -126,7 +131,10 @@ class EmailCode {
     return null;
   }
 
-  static List<EmailCode> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<EmailCode> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <EmailCode>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -154,13 +162,19 @@ class EmailCode {
   }
 
   // maps a json object with a list of EmailCode-objects as value to a dart map
-  static Map<String, List<EmailCode>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<EmailCode>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<EmailCode>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = EmailCode.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = EmailCode.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -200,9 +214,13 @@ class EmailCodeStatusEnum {
     confirmed,
   ];
 
-  static EmailCodeStatusEnum? fromJson(dynamic value) => EmailCodeStatusEnumTypeTransformer().decode(value);
+  static EmailCodeStatusEnum? fromJson(dynamic value) =>
+      EmailCodeStatusEnumTypeTransformer().decode(value);
 
-  static List<EmailCodeStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<EmailCodeStatusEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <EmailCodeStatusEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -219,7 +237,8 @@ class EmailCodeStatusEnum {
 /// Transformation class that can [encode] an instance of [EmailCodeStatusEnum] to String,
 /// and [decode] dynamic data back to [EmailCodeStatusEnum].
 class EmailCodeStatusEnumTypeTransformer {
-  factory EmailCodeStatusEnumTypeTransformer() => _instance ??= const EmailCodeStatusEnumTypeTransformer._();
+  factory EmailCodeStatusEnumTypeTransformer() =>
+      _instance ??= const EmailCodeStatusEnumTypeTransformer._();
 
   const EmailCodeStatusEnumTypeTransformer._();
 
@@ -236,8 +255,10 @@ class EmailCodeStatusEnumTypeTransformer {
   EmailCodeStatusEnum? decode(dynamic data, {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'active': return EmailCodeStatusEnum.active;
-        case r'confirmed': return EmailCodeStatusEnum.confirmed;
+        case r'active':
+          return EmailCodeStatusEnum.active;
+        case r'confirmed':
+          return EmailCodeStatusEnum.confirmed;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -250,5 +271,3 @@ class EmailCodeStatusEnumTypeTransformer {
   /// Singleton [EmailCodeStatusEnumTypeTransformer] instance.
   static EmailCodeStatusEnumTypeTransformer? _instance;
 }
-
-

@@ -28,26 +28,27 @@ class WebauthnSettingItemAllOf {
   String updated;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is WebauthnSettingItemAllOf &&
-     other.id == id &&
-     other.created == created &&
-     other.updated == updated;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is WebauthnSettingItemAllOf &&
+          other.id == id &&
+          other.created == created &&
+          other.updated == updated;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (id.hashCode) +
-    (created.hashCode) +
-    (updated.hashCode);
+      // ignore: unnecessary_parenthesis
+      (id.hashCode) + (created.hashCode) + (updated.hashCode);
 
   @override
-  String toString() => 'WebauthnSettingItemAllOf[id=$id, created=$created, updated=$updated]';
+  String toString() =>
+      'WebauthnSettingItemAllOf[id=$id, created=$created, updated=$updated]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'id'] = this.id;
-      json[r'created'] = this.created;
-      json[r'updated'] = this.updated;
+    json[r'id'] = this.id;
+    json[r'created'] = this.created;
+    json[r'updated'] = this.updated;
     return json;
   }
 
@@ -63,8 +64,10 @@ class WebauthnSettingItemAllOf {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "WebauthnSettingItemAllOf[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "WebauthnSettingItemAllOf[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "WebauthnSettingItemAllOf[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "WebauthnSettingItemAllOf[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -78,7 +81,10 @@ class WebauthnSettingItemAllOf {
     return null;
   }
 
-  static List<WebauthnSettingItemAllOf> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<WebauthnSettingItemAllOf> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <WebauthnSettingItemAllOf>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -106,13 +112,19 @@ class WebauthnSettingItemAllOf {
   }
 
   // maps a json object with a list of WebauthnSettingItemAllOf-objects as value to a dart map
-  static Map<String, List<WebauthnSettingItemAllOf>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<WebauthnSettingItemAllOf>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<WebauthnSettingItemAllOf>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = WebauthnSettingItemAllOf.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = WebauthnSettingItemAllOf.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -125,4 +137,3 @@ class WebauthnSettingItemAllOf {
     'updated',
   };
 }
-

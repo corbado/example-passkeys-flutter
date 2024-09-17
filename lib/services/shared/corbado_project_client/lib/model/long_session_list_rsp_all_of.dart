@@ -19,20 +19,21 @@ class LongSessionListRspAllOf {
   LongSessionListRspAllOfData data;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is LongSessionListRspAllOf &&
-     other.data == data;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is LongSessionListRspAllOf && other.data == data;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (data.hashCode);
+      // ignore: unnecessary_parenthesis
+      (data.hashCode);
 
   @override
   String toString() => 'LongSessionListRspAllOf[data=$data]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'data'] = this.data;
+    json[r'data'] = this.data;
     return json;
   }
 
@@ -48,8 +49,10 @@ class LongSessionListRspAllOf {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "LongSessionListRspAllOf[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "LongSessionListRspAllOf[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "LongSessionListRspAllOf[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "LongSessionListRspAllOf[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -61,7 +64,10 @@ class LongSessionListRspAllOf {
     return null;
   }
 
-  static List<LongSessionListRspAllOf> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<LongSessionListRspAllOf> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <LongSessionListRspAllOf>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -89,13 +95,19 @@ class LongSessionListRspAllOf {
   }
 
   // maps a json object with a list of LongSessionListRspAllOf-objects as value to a dart map
-  static Map<String, List<LongSessionListRspAllOf>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<LongSessionListRspAllOf>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<LongSessionListRspAllOf>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = LongSessionListRspAllOf.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = LongSessionListRspAllOf.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -106,4 +118,3 @@ class LongSessionListRspAllOf {
     'data',
   };
 }
-

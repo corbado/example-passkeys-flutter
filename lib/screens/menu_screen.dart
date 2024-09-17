@@ -54,8 +54,8 @@ class MenuScreen extends ConsumerWidget {
       'Sign out',
       'Goodbye.',
       onTap: (BuildContext context, WidgetRef ref) {
-        final auth = ref.read(authServiceProvider);
-        auth.signOut();
+        final corbado = ref.read(corbadoProvider);
+        corbado.signOut();
       },
     );
 

@@ -10,9 +10,9 @@
 
 part of openapi.api;
 
-
 class AuthTokensApi {
-  AuthTokensApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
+  AuthTokensApi([ApiClient? apiClient])
+      : apiClient = apiClient ?? defaultApiClient;
 
   final ApiClient apiClient;
 
@@ -23,7 +23,9 @@ class AuthTokensApi {
   /// Parameters:
   ///
   /// * [AuthTokenValidateReq] authTokenValidateReq (required):
-  Future<Response> authTokenValidateWithHttpInfo(AuthTokenValidateReq authTokenValidateReq,) async {
+  Future<Response> authTokenValidateWithHttpInfo(
+    AuthTokenValidateReq authTokenValidateReq,
+  ) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/authTokens/validate';
 
@@ -36,7 +38,6 @@ class AuthTokensApi {
 
     const contentTypes = <String>['application/json'];
 
-
     return apiClient.invokeAPI(
       path,
       'POST',
@@ -53,17 +54,24 @@ class AuthTokensApi {
   /// Parameters:
   ///
   /// * [AuthTokenValidateReq] authTokenValidateReq (required):
-  Future<AuthTokenValidateRsp?> authTokenValidate(AuthTokenValidateReq authTokenValidateReq,) async {
-    final response = await authTokenValidateWithHttpInfo(authTokenValidateReq,);
+  Future<AuthTokenValidateRsp?> authTokenValidate(
+    AuthTokenValidateReq authTokenValidateReq,
+  ) async {
+    final response = await authTokenValidateWithHttpInfo(
+      authTokenValidateReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'AuthTokenValidateRsp',) as AuthTokenValidateRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'AuthTokenValidateRsp',
+      ) as AuthTokenValidateRsp;
     }
     return null;
   }
@@ -75,7 +83,9 @@ class AuthTokensApi {
   /// Parameters:
   ///
   /// * [SessionTokenCreateReq] sessionTokenCreateReq (required):
-  Future<Response> sessionTokenCreateWithHttpInfo(SessionTokenCreateReq sessionTokenCreateReq,) async {
+  Future<Response> sessionTokenCreateWithHttpInfo(
+    SessionTokenCreateReq sessionTokenCreateReq,
+  ) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/sessions';
 
@@ -88,7 +98,6 @@ class AuthTokensApi {
 
     const contentTypes = <String>['application/json'];
 
-
     return apiClient.invokeAPI(
       path,
       'POST',
@@ -105,17 +114,24 @@ class AuthTokensApi {
   /// Parameters:
   ///
   /// * [SessionTokenCreateReq] sessionTokenCreateReq (required):
-  Future<SessionTokenCreateRsp?> sessionTokenCreate(SessionTokenCreateReq sessionTokenCreateReq,) async {
-    final response = await sessionTokenCreateWithHttpInfo(sessionTokenCreateReq,);
+  Future<SessionTokenCreateRsp?> sessionTokenCreate(
+    SessionTokenCreateReq sessionTokenCreateReq,
+  ) async {
+    final response = await sessionTokenCreateWithHttpInfo(
+      sessionTokenCreateReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'SessionTokenCreateRsp',) as SessionTokenCreateRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'SessionTokenCreateRsp',
+      ) as SessionTokenCreateRsp;
     }
     return null;
   }
@@ -127,7 +143,9 @@ class AuthTokensApi {
   /// Parameters:
   ///
   /// * [SessionTokenVerifyReq] sessionTokenVerifyReq (required):
-  Future<Response> sessionTokenVerifyWithHttpInfo(SessionTokenVerifyReq sessionTokenVerifyReq,) async {
+  Future<Response> sessionTokenVerifyWithHttpInfo(
+    SessionTokenVerifyReq sessionTokenVerifyReq,
+  ) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/sessions/verify';
 
@@ -139,7 +157,6 @@ class AuthTokensApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -157,17 +174,24 @@ class AuthTokensApi {
   /// Parameters:
   ///
   /// * [SessionTokenVerifyReq] sessionTokenVerifyReq (required):
-  Future<SessionTokenVerifyRsp?> sessionTokenVerify(SessionTokenVerifyReq sessionTokenVerifyReq,) async {
-    final response = await sessionTokenVerifyWithHttpInfo(sessionTokenVerifyReq,);
+  Future<SessionTokenVerifyRsp?> sessionTokenVerify(
+    SessionTokenVerifyReq sessionTokenVerifyReq,
+  ) async {
+    final response = await sessionTokenVerifyWithHttpInfo(
+      sessionTokenVerifyReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'SessionTokenVerifyRsp',) as SessionTokenVerifyRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'SessionTokenVerifyRsp',
+      ) as SessionTokenVerifyRsp;
     }
     return null;
   }

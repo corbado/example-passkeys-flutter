@@ -11,7 +11,6 @@
 import 'package:backend_api_public/api.dart';
 import 'package:test/test.dart';
 
-
 /// tests for EmailOTPApi
 void main() {
   // final instance = EmailOTPApi();
@@ -37,6 +36,5 @@ void main() {
     test('test emailCodeValidate', () async {
       // TODO
     });
-
   });
 }

@@ -38,28 +38,31 @@ class ProjectSecretItem {
   String? secret;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is ProjectSecretItem &&
-     other.id == id &&
-     other.hint == hint &&
-     other.created == created &&
-     other.secret == secret;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProjectSecretItem &&
+          other.id == id &&
+          other.hint == hint &&
+          other.created == created &&
+          other.secret == secret;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (id.hashCode) +
-    (hint.hashCode) +
-    (created.hashCode) +
-    (secret == null ? 0 : secret!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (id.hashCode) +
+      (hint.hashCode) +
+      (created.hashCode) +
+      (secret == null ? 0 : secret!.hashCode);
 
   @override
-  String toString() => 'ProjectSecretItem[id=$id, hint=$hint, created=$created, secret=$secret]';
+  String toString() =>
+      'ProjectSecretItem[id=$id, hint=$hint, created=$created, secret=$secret]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'id'] = this.id;
-      json[r'hint'] = this.hint;
-      json[r'created'] = this.created;
+    json[r'id'] = this.id;
+    json[r'hint'] = this.hint;
+    json[r'created'] = this.created;
     if (this.secret != null) {
       json[r'secret'] = this.secret;
     } else {
@@ -80,8 +83,10 @@ class ProjectSecretItem {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ProjectSecretItem[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ProjectSecretItem[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "ProjectSecretItem[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "ProjectSecretItem[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -96,7 +101,10 @@ class ProjectSecretItem {
     return null;
   }
 
-  static List<ProjectSecretItem> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ProjectSecretItem> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ProjectSecretItem>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -124,13 +132,19 @@ class ProjectSecretItem {
   }
 
   // maps a json object with a list of ProjectSecretItem-objects as value to a dart map
-  static Map<String, List<ProjectSecretItem>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<ProjectSecretItem>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<ProjectSecretItem>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = ProjectSecretItem.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = ProjectSecretItem.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -143,4 +157,3 @@ class ProjectSecretItem {
     'created',
   };
 }
-

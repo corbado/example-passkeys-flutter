@@ -25,26 +25,27 @@ class TrackingEnums {
   List<String> osPlatforms;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is TrackingEnums &&
-     other.browserNames == browserNames &&
-     other.osNames == osNames &&
-     other.osPlatforms == osPlatforms;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TrackingEnums &&
+          other.browserNames == browserNames &&
+          other.osNames == osNames &&
+          other.osPlatforms == osPlatforms;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (browserNames.hashCode) +
-    (osNames.hashCode) +
-    (osPlatforms.hashCode);
+      // ignore: unnecessary_parenthesis
+      (browserNames.hashCode) + (osNames.hashCode) + (osPlatforms.hashCode);
 
   @override
-  String toString() => 'TrackingEnums[browserNames=$browserNames, osNames=$osNames, osPlatforms=$osPlatforms]';
+  String toString() =>
+      'TrackingEnums[browserNames=$browserNames, osNames=$osNames, osPlatforms=$osPlatforms]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'browserNames'] = this.browserNames;
-      json[r'osNames'] = this.osNames;
-      json[r'osPlatforms'] = this.osPlatforms;
+    json[r'browserNames'] = this.browserNames;
+    json[r'osNames'] = this.osNames;
+    json[r'osPlatforms'] = this.osPlatforms;
     return json;
   }
 
@@ -60,8 +61,10 @@ class TrackingEnums {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "TrackingEnums[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "TrackingEnums[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "TrackingEnums[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "TrackingEnums[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -81,7 +84,10 @@ class TrackingEnums {
     return null;
   }
 
-  static List<TrackingEnums> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<TrackingEnums> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <TrackingEnums>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -109,13 +115,19 @@ class TrackingEnums {
   }
 
   // maps a json object with a list of TrackingEnums-objects as value to a dart map
-  static Map<String, List<TrackingEnums>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<TrackingEnums>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<TrackingEnums>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = TrackingEnums.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = TrackingEnums.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -128,4 +140,3 @@ class TrackingEnums {
     'osPlatforms',
   };
 }
-

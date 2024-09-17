@@ -31,32 +31,35 @@ class TrackingStats {
   int aggregateConditionalUi;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is TrackingStats &&
-     other.timePoint == timePoint &&
-     other.aggregateVisits == aggregateVisits &&
-     other.aggregateWebauthn == aggregateWebauthn &&
-     other.aggregatePlatform == aggregatePlatform &&
-     other.aggregateConditionalUi == aggregateConditionalUi;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TrackingStats &&
+          other.timePoint == timePoint &&
+          other.aggregateVisits == aggregateVisits &&
+          other.aggregateWebauthn == aggregateWebauthn &&
+          other.aggregatePlatform == aggregatePlatform &&
+          other.aggregateConditionalUi == aggregateConditionalUi;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (timePoint.hashCode) +
-    (aggregateVisits.hashCode) +
-    (aggregateWebauthn.hashCode) +
-    (aggregatePlatform.hashCode) +
-    (aggregateConditionalUi.hashCode);
+      // ignore: unnecessary_parenthesis
+      (timePoint.hashCode) +
+      (aggregateVisits.hashCode) +
+      (aggregateWebauthn.hashCode) +
+      (aggregatePlatform.hashCode) +
+      (aggregateConditionalUi.hashCode);
 
   @override
-  String toString() => 'TrackingStats[timePoint=$timePoint, aggregateVisits=$aggregateVisits, aggregateWebauthn=$aggregateWebauthn, aggregatePlatform=$aggregatePlatform, aggregateConditionalUi=$aggregateConditionalUi]';
+  String toString() =>
+      'TrackingStats[timePoint=$timePoint, aggregateVisits=$aggregateVisits, aggregateWebauthn=$aggregateWebauthn, aggregatePlatform=$aggregatePlatform, aggregateConditionalUi=$aggregateConditionalUi]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'timePoint'] = this.timePoint;
-      json[r'aggregateVisits'] = this.aggregateVisits;
-      json[r'aggregateWebauthn'] = this.aggregateWebauthn;
-      json[r'aggregatePlatform'] = this.aggregatePlatform;
-      json[r'aggregateConditionalUi'] = this.aggregateConditionalUi;
+    json[r'timePoint'] = this.timePoint;
+    json[r'aggregateVisits'] = this.aggregateVisits;
+    json[r'aggregateWebauthn'] = this.aggregateWebauthn;
+    json[r'aggregatePlatform'] = this.aggregatePlatform;
+    json[r'aggregateConditionalUi'] = this.aggregateConditionalUi;
     return json;
   }
 
@@ -72,8 +75,10 @@ class TrackingStats {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "TrackingStats[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "TrackingStats[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "TrackingStats[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "TrackingStats[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -83,13 +88,17 @@ class TrackingStats {
         aggregateVisits: mapValueOfType<int>(json, r'aggregateVisits')!,
         aggregateWebauthn: mapValueOfType<int>(json, r'aggregateWebauthn')!,
         aggregatePlatform: mapValueOfType<int>(json, r'aggregatePlatform')!,
-        aggregateConditionalUi: mapValueOfType<int>(json, r'aggregateConditionalUi')!,
+        aggregateConditionalUi:
+            mapValueOfType<int>(json, r'aggregateConditionalUi')!,
       );
     }
     return null;
   }
 
-  static List<TrackingStats> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<TrackingStats> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <TrackingStats>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -117,13 +126,19 @@ class TrackingStats {
   }
 
   // maps a json object with a list of TrackingStats-objects as value to a dart map
-  static Map<String, List<TrackingStats>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<TrackingStats>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<TrackingStats>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = TrackingStats.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = TrackingStats.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -138,4 +153,3 @@ class TrackingStats {
     'aggregateConditionalUi',
   };
 }
-

@@ -24,23 +24,25 @@ class ClientInfo {
   String userAgent;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is ClientInfo &&
-     other.remoteAddress == remoteAddress &&
-     other.userAgent == userAgent;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ClientInfo &&
+          other.remoteAddress == remoteAddress &&
+          other.userAgent == userAgent;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (remoteAddress.hashCode) +
-    (userAgent.hashCode);
+      // ignore: unnecessary_parenthesis
+      (remoteAddress.hashCode) + (userAgent.hashCode);
 
   @override
-  String toString() => 'ClientInfo[remoteAddress=$remoteAddress, userAgent=$userAgent]';
+  String toString() =>
+      'ClientInfo[remoteAddress=$remoteAddress, userAgent=$userAgent]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'remoteAddress'] = this.remoteAddress;
-      json[r'userAgent'] = this.userAgent;
+    json[r'remoteAddress'] = this.remoteAddress;
+    json[r'userAgent'] = this.userAgent;
     return json;
   }
 
@@ -56,8 +58,10 @@ class ClientInfo {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ClientInfo[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ClientInfo[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "ClientInfo[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "ClientInfo[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -70,7 +74,10 @@ class ClientInfo {
     return null;
   }
 
-  static List<ClientInfo> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ClientInfo> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ClientInfo>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -98,13 +105,19 @@ class ClientInfo {
   }
 
   // maps a json object with a list of ClientInfo-objects as value to a dart map
-  static Map<String, List<ClientInfo>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<ClientInfo>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<ClientInfo>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = ClientInfo.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = ClientInfo.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -116,4 +129,3 @@ class ClientInfo {
     'userAgent',
   };
 }
-

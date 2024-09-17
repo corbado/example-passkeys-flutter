@@ -13,9 +13,5 @@ import 'package:test/test.dart';
 
 // tests for LoginIdentifierType
 void main() {
-
-  group('test LoginIdentifierType', () {
-
-  });
-
+  group('test LoginIdentifierType', () {});
 }

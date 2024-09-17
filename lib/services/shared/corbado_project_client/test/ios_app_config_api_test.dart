@@ -11,7 +11,6 @@
 import 'package:backend_api_public/api.dart';
 import 'package:test/test.dart';
 
-
 /// tests for IOSAppConfigApi
 void main() {
   // final instance = IOSAppConfigApi();
@@ -44,6 +43,5 @@ void main() {
     test('test iOSAppConfigPut', () async {
       // TODO
     });
-
   });
 }

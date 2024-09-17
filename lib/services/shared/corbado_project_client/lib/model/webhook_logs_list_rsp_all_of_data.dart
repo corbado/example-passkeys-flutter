@@ -22,23 +22,25 @@ class WebhookLogsListRspAllOfData {
   Paging paging;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is WebhookLogsListRspAllOfData &&
-     other.logs == logs &&
-     other.paging == paging;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is WebhookLogsListRspAllOfData &&
+          other.logs == logs &&
+          other.paging == paging;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (logs.hashCode) +
-    (paging.hashCode);
+      // ignore: unnecessary_parenthesis
+      (logs.hashCode) + (paging.hashCode);
 
   @override
-  String toString() => 'WebhookLogsListRspAllOfData[logs=$logs, paging=$paging]';
+  String toString() =>
+      'WebhookLogsListRspAllOfData[logs=$logs, paging=$paging]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'logs'] = this.logs;
-      json[r'paging'] = this.paging;
+    json[r'logs'] = this.logs;
+    json[r'paging'] = this.paging;
     return json;
   }
 
@@ -54,8 +56,10 @@ class WebhookLogsListRspAllOfData {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "WebhookLogsListRspAllOfData[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "WebhookLogsListRspAllOfData[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "WebhookLogsListRspAllOfData[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "WebhookLogsListRspAllOfData[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -68,7 +72,10 @@ class WebhookLogsListRspAllOfData {
     return null;
   }
 
-  static List<WebhookLogsListRspAllOfData> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<WebhookLogsListRspAllOfData> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <WebhookLogsListRspAllOfData>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -96,13 +103,19 @@ class WebhookLogsListRspAllOfData {
   }
 
   // maps a json object with a list of WebhookLogsListRspAllOfData-objects as value to a dart map
-  static Map<String, List<WebhookLogsListRspAllOfData>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<WebhookLogsListRspAllOfData>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<WebhookLogsListRspAllOfData>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = WebhookLogsListRspAllOfData.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = WebhookLogsListRspAllOfData.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -114,4 +127,3 @@ class WebhookLogsListRspAllOfData {
     'paging',
   };
 }
-

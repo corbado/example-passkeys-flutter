@@ -11,7 +11,6 @@
 import 'package:backend_api_public/api.dart';
 import 'package:test/test.dart';
 
-
 /// tests for PasskeysBiometricsApi
 void main() {
   // final instance = PasskeysBiometricsApi();
@@ -121,6 +120,5 @@ void main() {
     test('test webAuthnSettingPut', () async {
       // TODO
     });
-
   });
 }

@@ -11,7 +11,6 @@
 import 'package:backend_api_public/api.dart';
 import 'package:test/test.dart';
 
-
 /// tests for AuthMethodsApi
 void main() {
   // final instance = AuthMethodsApi();
@@ -23,6 +22,5 @@ void main() {
     test('test authMethodsList', () async {
       // TODO
     });
-
   });
 }

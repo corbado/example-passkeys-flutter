@@ -1,3 +1,5 @@
+import 'package:developer_panel_app/services/shared/developerpanel_client/lib/api.dart';
+
 class ProjectInfo {
   final String id;
   final String name;
@@ -6,7 +8,7 @@ class ProjectInfo {
 
   ProjectInfo(this.id, this.name, this.created, this.updated);
 
-  factory ProjectInfo.fromResponse(dynamic v) {
+  factory ProjectInfo.fromResponse(Project v) {
     return ProjectInfo(
       v.projectID,
       v.name,

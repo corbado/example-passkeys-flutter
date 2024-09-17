@@ -55,47 +55,50 @@ class IOSAppConfigUpdateRsp {
   String updated;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is IOSAppConfigUpdateRsp &&
-     other.httpStatusCode == httpStatusCode &&
-     other.message == message &&
-     other.requestData == requestData &&
-     other.runtime == runtime &&
-     other.id == id &&
-     other.projectID == projectID &&
-     other.appIDPrefix == appIDPrefix &&
-     other.bundleID == bundleID &&
-     other.created == created &&
-     other.updated == updated;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is IOSAppConfigUpdateRsp &&
+          other.httpStatusCode == httpStatusCode &&
+          other.message == message &&
+          other.requestData == requestData &&
+          other.runtime == runtime &&
+          other.id == id &&
+          other.projectID == projectID &&
+          other.appIDPrefix == appIDPrefix &&
+          other.bundleID == bundleID &&
+          other.created == created &&
+          other.updated == updated;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (httpStatusCode.hashCode) +
-    (message.hashCode) +
-    (requestData.hashCode) +
-    (runtime.hashCode) +
-    (id.hashCode) +
-    (projectID.hashCode) +
-    (appIDPrefix.hashCode) +
-    (bundleID.hashCode) +
-    (created.hashCode) +
-    (updated.hashCode);
+      // ignore: unnecessary_parenthesis
+      (httpStatusCode.hashCode) +
+      (message.hashCode) +
+      (requestData.hashCode) +
+      (runtime.hashCode) +
+      (id.hashCode) +
+      (projectID.hashCode) +
+      (appIDPrefix.hashCode) +
+      (bundleID.hashCode) +
+      (created.hashCode) +
+      (updated.hashCode);
 
   @override
-  String toString() => 'IOSAppConfigUpdateRsp[httpStatusCode=$httpStatusCode, message=$message, requestData=$requestData, runtime=$runtime, id=$id, projectID=$projectID, appIDPrefix=$appIDPrefix, bundleID=$bundleID, created=$created, updated=$updated]';
+  String toString() =>
+      'IOSAppConfigUpdateRsp[httpStatusCode=$httpStatusCode, message=$message, requestData=$requestData, runtime=$runtime, id=$id, projectID=$projectID, appIDPrefix=$appIDPrefix, bundleID=$bundleID, created=$created, updated=$updated]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'httpStatusCode'] = this.httpStatusCode;
-      json[r'message'] = this.message;
-      json[r'requestData'] = this.requestData;
-      json[r'runtime'] = this.runtime;
-      json[r'id'] = this.id;
-      json[r'projectID'] = this.projectID;
-      json[r'appIDPrefix'] = this.appIDPrefix;
-      json[r'bundleID'] = this.bundleID;
-      json[r'created'] = this.created;
-      json[r'updated'] = this.updated;
+    json[r'httpStatusCode'] = this.httpStatusCode;
+    json[r'message'] = this.message;
+    json[r'requestData'] = this.requestData;
+    json[r'runtime'] = this.runtime;
+    json[r'id'] = this.id;
+    json[r'projectID'] = this.projectID;
+    json[r'appIDPrefix'] = this.appIDPrefix;
+    json[r'bundleID'] = this.bundleID;
+    json[r'created'] = this.created;
+    json[r'updated'] = this.updated;
     return json;
   }
 
@@ -111,8 +114,10 @@ class IOSAppConfigUpdateRsp {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "IOSAppConfigUpdateRsp[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "IOSAppConfigUpdateRsp[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "IOSAppConfigUpdateRsp[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "IOSAppConfigUpdateRsp[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -133,7 +138,10 @@ class IOSAppConfigUpdateRsp {
     return null;
   }
 
-  static List<IOSAppConfigUpdateRsp> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<IOSAppConfigUpdateRsp> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <IOSAppConfigUpdateRsp>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -161,13 +169,19 @@ class IOSAppConfigUpdateRsp {
   }
 
   // maps a json object with a list of IOSAppConfigUpdateRsp-objects as value to a dart map
-  static Map<String, List<IOSAppConfigUpdateRsp>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<IOSAppConfigUpdateRsp>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<IOSAppConfigUpdateRsp>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = IOSAppConfigUpdateRsp.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = IOSAppConfigUpdateRsp.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -187,4 +201,3 @@ class IOSAppConfigUpdateRsp {
     'updated',
   };
 }
-

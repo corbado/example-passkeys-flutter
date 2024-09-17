@@ -36,7 +36,7 @@ class WebhookLog {
   /// Webhook action
   String action;
 
-  /// Unique ID of response, you can provide your own while responding to the webhook, if not the ID will be randomly generated on server side. This has the same meaning as overriding requestID for API requests. 
+  /// Unique ID of response, you can provide your own while responding to the webhook, if not the ID will be randomly generated on server side. This has the same meaning as overriding requestID for API requests.
   String responseID;
 
   /// Absolute request URL of webhook backend
@@ -64,53 +64,56 @@ class WebhookLog {
   String created;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is WebhookLog &&
-     other.webhookID == webhookID &&
-     other.projectID == projectID &&
-     other.action == action &&
-     other.responseID == responseID &&
-     other.requestURL == requestURL &&
-     other.requestBody == requestBody &&
-     other.responseStatus == responseStatus &&
-     other.responseHeaders == responseHeaders &&
-     other.responseBody == responseBody &&
-     other.responseError == responseError &&
-     other.runtime == runtime &&
-     other.created == created;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is WebhookLog &&
+          other.webhookID == webhookID &&
+          other.projectID == projectID &&
+          other.action == action &&
+          other.responseID == responseID &&
+          other.requestURL == requestURL &&
+          other.requestBody == requestBody &&
+          other.responseStatus == responseStatus &&
+          other.responseHeaders == responseHeaders &&
+          other.responseBody == responseBody &&
+          other.responseError == responseError &&
+          other.runtime == runtime &&
+          other.created == created;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (webhookID.hashCode) +
-    (projectID.hashCode) +
-    (action.hashCode) +
-    (responseID.hashCode) +
-    (requestURL.hashCode) +
-    (requestBody.hashCode) +
-    (responseStatus.hashCode) +
-    (responseHeaders.hashCode) +
-    (responseBody.hashCode) +
-    (responseError.hashCode) +
-    (runtime.hashCode) +
-    (created.hashCode);
+      // ignore: unnecessary_parenthesis
+      (webhookID.hashCode) +
+      (projectID.hashCode) +
+      (action.hashCode) +
+      (responseID.hashCode) +
+      (requestURL.hashCode) +
+      (requestBody.hashCode) +
+      (responseStatus.hashCode) +
+      (responseHeaders.hashCode) +
+      (responseBody.hashCode) +
+      (responseError.hashCode) +
+      (runtime.hashCode) +
+      (created.hashCode);
 
   @override
-  String toString() => 'WebhookLog[webhookID=$webhookID, projectID=$projectID, action=$action, responseID=$responseID, requestURL=$requestURL, requestBody=$requestBody, responseStatus=$responseStatus, responseHeaders=$responseHeaders, responseBody=$responseBody, responseError=$responseError, runtime=$runtime, created=$created]';
+  String toString() =>
+      'WebhookLog[webhookID=$webhookID, projectID=$projectID, action=$action, responseID=$responseID, requestURL=$requestURL, requestBody=$requestBody, responseStatus=$responseStatus, responseHeaders=$responseHeaders, responseBody=$responseBody, responseError=$responseError, runtime=$runtime, created=$created]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'webhookID'] = this.webhookID;
-      json[r'projectID'] = this.projectID;
-      json[r'action'] = this.action;
-      json[r'responseID'] = this.responseID;
-      json[r'requestURL'] = this.requestURL;
-      json[r'requestBody'] = this.requestBody;
-      json[r'responseStatus'] = this.responseStatus;
-      json[r'responseHeaders'] = this.responseHeaders;
-      json[r'responseBody'] = this.responseBody;
-      json[r'responseError'] = this.responseError;
-      json[r'runtime'] = this.runtime;
-      json[r'created'] = this.created;
+    json[r'webhookID'] = this.webhookID;
+    json[r'projectID'] = this.projectID;
+    json[r'action'] = this.action;
+    json[r'responseID'] = this.responseID;
+    json[r'requestURL'] = this.requestURL;
+    json[r'requestBody'] = this.requestBody;
+    json[r'responseStatus'] = this.responseStatus;
+    json[r'responseHeaders'] = this.responseHeaders;
+    json[r'responseBody'] = this.responseBody;
+    json[r'responseError'] = this.responseError;
+    json[r'runtime'] = this.runtime;
+    json[r'created'] = this.created;
     return json;
   }
 
@@ -126,8 +129,10 @@ class WebhookLog {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "WebhookLog[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "WebhookLog[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "WebhookLog[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "WebhookLog[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -150,7 +155,10 @@ class WebhookLog {
     return null;
   }
 
-  static List<WebhookLog> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<WebhookLog> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <WebhookLog>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -178,13 +186,19 @@ class WebhookLog {
   }
 
   // maps a json object with a list of WebhookLog-objects as value to a dart map
-  static Map<String, List<WebhookLog>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<WebhookLog>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<WebhookLog>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = WebhookLog.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = WebhookLog.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -206,4 +220,3 @@ class WebhookLog {
     'created',
   };
 }
-

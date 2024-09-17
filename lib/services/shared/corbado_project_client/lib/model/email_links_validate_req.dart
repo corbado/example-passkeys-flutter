@@ -48,26 +48,29 @@ class EmailLinksValidateReq {
   ClientInfo? clientInfo;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is EmailLinksValidateReq &&
-     other.token == token &&
-     other.createLoginToken == createLoginToken &&
-     other.requestID == requestID &&
-     other.clientInfo == clientInfo;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is EmailLinksValidateReq &&
+          other.token == token &&
+          other.createLoginToken == createLoginToken &&
+          other.requestID == requestID &&
+          other.clientInfo == clientInfo;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (token.hashCode) +
-    (createLoginToken == null ? 0 : createLoginToken!.hashCode) +
-    (requestID == null ? 0 : requestID!.hashCode) +
-    (clientInfo == null ? 0 : clientInfo!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (token.hashCode) +
+      (createLoginToken == null ? 0 : createLoginToken!.hashCode) +
+      (requestID == null ? 0 : requestID!.hashCode) +
+      (clientInfo == null ? 0 : clientInfo!.hashCode);
 
   @override
-  String toString() => 'EmailLinksValidateReq[token=$token, createLoginToken=$createLoginToken, requestID=$requestID, clientInfo=$clientInfo]';
+  String toString() =>
+      'EmailLinksValidateReq[token=$token, createLoginToken=$createLoginToken, requestID=$requestID, clientInfo=$clientInfo]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'token'] = this.token;
+    json[r'token'] = this.token;
     if (this.createLoginToken != null) {
       json[r'createLoginToken'] = this.createLoginToken;
     } else {
@@ -98,8 +101,10 @@ class EmailLinksValidateReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "EmailLinksValidateReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "EmailLinksValidateReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "EmailLinksValidateReq[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "EmailLinksValidateReq[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -114,7 +119,10 @@ class EmailLinksValidateReq {
     return null;
   }
 
-  static List<EmailLinksValidateReq> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<EmailLinksValidateReq> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <EmailLinksValidateReq>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -142,13 +150,19 @@ class EmailLinksValidateReq {
   }
 
   // maps a json object with a list of EmailLinksValidateReq-objects as value to a dart map
-  static Map<String, List<EmailLinksValidateReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<EmailLinksValidateReq>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<EmailLinksValidateReq>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = EmailLinksValidateReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = EmailLinksValidateReq.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -159,4 +173,3 @@ class EmailLinksValidateReq {
     'token',
   };
 }
-

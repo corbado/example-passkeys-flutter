@@ -38,24 +38,27 @@ class UserPhoneNumberCreateReq {
   ClientInfo? clientInfo;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is UserPhoneNumberCreateReq &&
-     other.phoneNumber == phoneNumber &&
-     other.requestID == requestID &&
-     other.clientInfo == clientInfo;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserPhoneNumberCreateReq &&
+          other.phoneNumber == phoneNumber &&
+          other.requestID == requestID &&
+          other.clientInfo == clientInfo;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (phoneNumber.hashCode) +
-    (requestID == null ? 0 : requestID!.hashCode) +
-    (clientInfo == null ? 0 : clientInfo!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (phoneNumber.hashCode) +
+      (requestID == null ? 0 : requestID!.hashCode) +
+      (clientInfo == null ? 0 : clientInfo!.hashCode);
 
   @override
-  String toString() => 'UserPhoneNumberCreateReq[phoneNumber=$phoneNumber, requestID=$requestID, clientInfo=$clientInfo]';
+  String toString() =>
+      'UserPhoneNumberCreateReq[phoneNumber=$phoneNumber, requestID=$requestID, clientInfo=$clientInfo]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'phoneNumber'] = this.phoneNumber;
+    json[r'phoneNumber'] = this.phoneNumber;
     if (this.requestID != null) {
       json[r'requestID'] = this.requestID;
     } else {
@@ -81,8 +84,10 @@ class UserPhoneNumberCreateReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UserPhoneNumberCreateReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UserPhoneNumberCreateReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "UserPhoneNumberCreateReq[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "UserPhoneNumberCreateReq[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -96,7 +101,10 @@ class UserPhoneNumberCreateReq {
     return null;
   }
 
-  static List<UserPhoneNumberCreateReq> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<UserPhoneNumberCreateReq> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <UserPhoneNumberCreateReq>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -124,13 +132,19 @@ class UserPhoneNumberCreateReq {
   }
 
   // maps a json object with a list of UserPhoneNumberCreateReq-objects as value to a dart map
-  static Map<String, List<UserPhoneNumberCreateReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<UserPhoneNumberCreateReq>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<UserPhoneNumberCreateReq>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = UserPhoneNumberCreateReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = UserPhoneNumberCreateReq.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -141,4 +155,3 @@ class UserPhoneNumberCreateReq {
     'phoneNumber',
   };
 }
-
