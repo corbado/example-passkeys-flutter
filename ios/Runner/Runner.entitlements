@@ -9,8 +9,6 @@
 		<string>webcredentials:local.corbado.com?mode=developer</string>
 		<string>webcredentials:staging1.cbhosts.com</string>
 		<string>webcredentials:staging1.cbhosts.com?mode=developer</string>
-        <string>webcredentials:pro-0162710327414405397.frontendapi.cloud.corbado-staging.io</string>
-        <string>webcredentials:pro-0162710327414405397.frontendapi.cloud.corbado-staging.io?mode=developer</string>
 	</array>
 </dict>
 </plist>

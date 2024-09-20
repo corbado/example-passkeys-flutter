@@ -204,7 +204,7 @@ class ProjectsApi {
   /// Parameters:
   ///
   /// * [V1ProjectsPostRequest] v1ProjectsPostRequest (required):
-  Future<Project?> v1ProjectsPost(
+  Future<V1ProjectsPost200Response?> v1ProjectsPost(
     V1ProjectsPostRequest v1ProjectsPostRequest,
   ) async {
     final response = await v1ProjectsPostWithHttpInfo(
@@ -220,8 +220,8 @@ class ProjectsApi {
         response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(
         await _decodeBodyBytes(response),
-        'Project',
-      ) as Project;
+        'V1ProjectsPost200Response',
+      ) as V1ProjectsPost200Response;
     }
     return null;
   }

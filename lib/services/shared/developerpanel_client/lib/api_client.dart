@@ -243,6 +243,8 @@ class ApiClient {
           return V1ProjectsGet200Response.fromJson(value);
         case 'V1ProjectsGet200ResponseData':
           return V1ProjectsGet200ResponseData.fromJson(value);
+        case 'V1ProjectsPost200Response':
+          return V1ProjectsPost200Response.fromJson(value);
         case 'V1ProjectsPostRequest':
           return V1ProjectsPostRequest.fromJson(value);
         case 'V1UsersPutRequest':

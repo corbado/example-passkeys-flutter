@@ -83,7 +83,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/project'
+                type: object
+                properties:
+                  projectId:
+                    type: string
+                    description: The ID of the created project.
         400:
           description: Bad Request. The request body is invalid (e.g., name is too short).
         401:

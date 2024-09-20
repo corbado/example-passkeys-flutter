@@ -14,7 +14,7 @@ void main() async {
   final corbadoAuth = CorbadoAuth();
   await corbadoAuth.init(
       projectId: "pro-1",
-      customDomain: "https://pro-1.frontendapi.cloud.corbado-staging.io"
+      customDomain: "https://auth.corbado.com"
   );
   // await corbadoAuth.init("pro-1", customDomain: "https://pro-1.frontendapi.corbado-dev.io");
 

@@ -11,6 +11,7 @@ doc/V1ProjectsDeleteDelete200Response.md
 doc/V1ProjectsDeleteDeleteRequest.md
 doc/V1ProjectsGet200Response.md
 doc/V1ProjectsGet200ResponseData.md
+doc/V1ProjectsPost200Response.md
 doc/V1ProjectsPostRequest.md
 doc/V1UsersPutRequest.md
 git_push.sh
@@ -32,6 +33,8 @@ lib/model/v1_projects_delete_delete200_response.dart
 lib/model/v1_projects_delete_delete_request.dart
 lib/model/v1_projects_get200_response.dart
 lib/model/v1_projects_get200_response_data.dart
+lib/model/v1_projects_post200_response.dart
 lib/model/v1_projects_post_request.dart
 lib/model/v1_users_put_request.dart
 pubspec.yaml
+test/v1_projects_post200_response_test.dart

@@ -74,6 +74,7 @@ Class | Method | HTTP request | Description
  - [V1ProjectsDeleteDeleteRequest](doc//V1ProjectsDeleteDeleteRequest.md)
  - [V1ProjectsGet200Response](doc//V1ProjectsGet200Response.md)
  - [V1ProjectsGet200ResponseData](doc//V1ProjectsGet200ResponseData.md)
+ - [V1ProjectsPost200Response](doc//V1ProjectsPost200Response.md)
  - [V1ProjectsPostRequest](doc//V1ProjectsPostRequest.md)
  - [V1UsersPutRequest](doc//V1UsersPutRequest.md)
 

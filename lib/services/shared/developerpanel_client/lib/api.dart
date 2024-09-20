@@ -38,6 +38,7 @@ part 'model/v1_projects_delete_delete200_response.dart';
 part 'model/v1_projects_delete_delete_request.dart';
 part 'model/v1_projects_get200_response.dart';
 part 'model/v1_projects_get200_response_data.dart';
+part 'model/v1_projects_post200_response.dart';
 part 'model/v1_projects_post_request.dart';
 part 'model/v1_users_put_request.dart';
 

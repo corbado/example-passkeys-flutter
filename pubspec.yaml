@@ -2,7 +2,7 @@ name: developer_panel_app
 description: Native app for Corbado developer panel
 publish_to: 'none'
 
-version: 1.1.1+23
+version: 1.2.0+25
 
 environment:
   sdk: '>=3.0.6 <4.0.0'
@@ -28,7 +28,7 @@ dependencies:
   package_info_plus: ^8.0.2
   any_link_preview: ^3.0.1
   modal_bottom_sheet: ^3.0.0-pre
-  ua_client_hints: ^1.1.3
+  ua_client_hints: ^1.3.1
   win32: 5.5.4
   intl: ^0.18.0
 

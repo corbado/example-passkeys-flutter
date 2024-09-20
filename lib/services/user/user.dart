@@ -1,3 +1,4 @@
+import 'package:corbado_auth/src/corbado_auth.dart';
 import 'package:developer_panel_app/models/project_info.dart';
 import 'package:developer_panel_app/services/shared/developerpanel_client/lib/api.dart';
 import 'package:either_dart/either.dart';
@@ -5,14 +6,17 @@ import 'package:either_dart/either.dart';
 class UserService {
   final UsersApi _usersApi;
   final ProjectsApi _projectsApi;
+  final CorbadoAuth _corbadoAuth;
 
-  UserService(ApiClient apiClient)
+  UserService(ApiClient apiClient, CorbadoAuth corbadoAuth)
       : _usersApi = UsersApi(apiClient),
-        _projectsApi = ProjectsApi(apiClient);
+        _projectsApi = ProjectsApi(apiClient),
+        _corbadoAuth = corbadoAuth;
 
   Future<String?> updateUsername(String value) async {
     final req = V1UsersPutRequest(name: value);
     await _usersApi.v1UsersPut(req);
+    await _corbadoAuth.refreshUser();
 
     return null;
   }
@@ -32,13 +36,8 @@ class UserService {
     return raw.data!.projects.map((e) => ProjectInfo.fromResponse(e)).toList();
   }
 
-  Future<Either<ProjectInfo, String>> addProject(String name) async {
-    try {
-      final req = V1ProjectsPostRequest(name: name);
-      final res = await _projectsApi.v1ProjectsPost(req);
-      return Left(ProjectInfo.fromResponse(res!));
-    } on Exception catch (e) {
-      return Right(e.toString());
-    }
+  Future<void> addProject(String name) async {
+    final req = V1ProjectsPostRequest(name: name);
+    await _projectsApi.v1ProjectsPost(req);
   }
 }
