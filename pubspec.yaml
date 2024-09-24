@@ -11,7 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  corbado_auth: ^2.0.2
+  corbado_auth: ^3.0.1
+  corbado_frontend_api_client: ^2.0.0
   riverpod: ^2.3.10
   flutter_riverpod: ^2.3.10
   either_dart: ^1.0.0
@@ -64,16 +65,16 @@ flutter_launcher_icons:
   min_sdk_android: 21
   remove_alpha_ios: true
 
-dependency_overrides:
-  corbado_auth:
-    path: ../flutter-passkeys/packages/corbado_auth
-  passkeys:
-    path: ../flutter-passkeys/packages/passkeys/passkeys
-  passkeys_android:
-    path: ../flutter-passkeys/packages/passkeys/passkeys_android
-  passkeys_ios:
-    path: ../flutter-passkeys/packages/passkeys/passkeys_ios
-  passkeys_platform_interface:
-    path: ../flutter-passkeys/packages/passkeys/passkeys_platform_interface
-  corbado_frontend_api_client:
-    path: ../flutter-passkeys/packages/corbado_api_client/lib/frontendapi
+#dependency_overrides:
+#  corbado_auth:
+#    path: ../flutter-passkeys/packages/corbado_auth
+#  passkeys:
+#    path: ../flutter-passkeys/packages/passkeys/passkeys
+#  passkeys_android:
+#    path: ../flutter-passkeys/packages/passkeys/passkeys_android
+#  passkeys_ios:
+#    path: ../flutter-passkeys/packages/passkeys/passkeys_ios
+#  passkeys_platform_interface:
+#    path: ../flutter-passkeys/packages/passkeys/passkeys_platform_interface
+#  corbado_frontend_api_client:
+#    path: ../flutter-passkeys/packages/corbado_api_client/lib/frontendapi

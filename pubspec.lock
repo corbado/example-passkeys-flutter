@@ -193,17 +193,19 @@ packages:
   corbado_auth:
     dependency: "direct main"
     description:
-      path: "../flutter-passkeys/packages/corbado_auth"
-      relative: true
-    source: path
-    version: "2.0.8"
+      name: corbado_auth
+      sha256: f74e0a799b6757f9af45c21fea8666b98a7eb97d0fd356ede971e4406c50a373
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.1"
   corbado_frontend_api_client:
-    dependency: "direct overridden"
+    dependency: "direct main"
     description:
-      path: "../flutter-passkeys/packages/corbado_api_client/lib/frontendapi"
-      relative: true
-    source: path
-    version: "1.0.0"
+      name: corbado_frontend_api_client
+      sha256: "8eb73109c7cd3318718f994ea1dd4b44f04064aed114542e757ecd50c9da62d3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   crypto:
     dependency: transitive
     description:
@@ -644,41 +646,45 @@ packages:
     source: hosted
     version: "3.0.1"
   passkeys:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
-      path: "../flutter-passkeys/packages/passkeys/passkeys"
-      relative: true
-    source: path
-    version: "2.0.9"
+      name: passkeys
+      sha256: c14264d11c6cf631296b21760c0411b26a5e223511cab9387d4b8c551189c34c
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   passkeys_android:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
-      path: "../flutter-passkeys/packages/passkeys/passkeys_android"
-      relative: true
-    source: path
-    version: "2.0.4"
+      name: passkeys_android
+      sha256: e7f6aa1131b0c0e954bb50d0b59e9bbf6fb8eb0a6a1c282d6af982df5d746b51
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   passkeys_ios:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
-      path: "../flutter-passkeys/packages/passkeys/passkeys_ios"
-      relative: true
-    source: path
-    version: "2.0.3"
+      name: passkeys_ios
+      sha256: "1e23e40efd12867725443923a72914c11f926dce8623757b45ed2d7a16e95731"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   passkeys_platform_interface:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
-      path: "../flutter-passkeys/packages/passkeys/passkeys_platform_interface"
-      relative: true
-    source: path
-    version: "2.0.1"
+      name: passkeys_platform_interface
+      sha256: e32fbac05561a1c3ab439a504e7c19daf96b8339fd6bcbdac40e2ed9281add57
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   passkeys_web:
     dependency: transitive
     description:
       name: passkeys_web
-      sha256: "04b306c484f1a7d30720785563c160b46cf9232a708ce65286863f91dd78b19d"
+      sha256: e09df6485e851581848ce3481c56bb2be571a12137c13325373bdfa519a9387a
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.2"
+    version: "2.1.0"
   path:
     dependency: transitive
     description:
