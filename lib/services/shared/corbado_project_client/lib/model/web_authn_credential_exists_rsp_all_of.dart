@@ -19,20 +19,21 @@ class WebAuthnCredentialExistsRspAllOf {
   bool exists;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is WebAuthnCredentialExistsRspAllOf &&
-     other.exists == exists;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is WebAuthnCredentialExistsRspAllOf && other.exists == exists;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (exists.hashCode);
+      // ignore: unnecessary_parenthesis
+      (exists.hashCode);
 
   @override
   String toString() => 'WebAuthnCredentialExistsRspAllOf[exists=$exists]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'exists'] = this.exists;
+    json[r'exists'] = this.exists;
     return json;
   }
 
@@ -48,8 +49,10 @@ class WebAuthnCredentialExistsRspAllOf {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "WebAuthnCredentialExistsRspAllOf[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "WebAuthnCredentialExistsRspAllOf[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "WebAuthnCredentialExistsRspAllOf[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "WebAuthnCredentialExistsRspAllOf[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -61,7 +64,10 @@ class WebAuthnCredentialExistsRspAllOf {
     return null;
   }
 
-  static List<WebAuthnCredentialExistsRspAllOf> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<WebAuthnCredentialExistsRspAllOf> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <WebAuthnCredentialExistsRspAllOf>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -74,7 +80,8 @@ class WebAuthnCredentialExistsRspAllOf {
     return result.toList(growable: growable);
   }
 
-  static Map<String, WebAuthnCredentialExistsRspAllOf> mapFromJson(dynamic json) {
+  static Map<String, WebAuthnCredentialExistsRspAllOf> mapFromJson(
+      dynamic json) {
     final map = <String, WebAuthnCredentialExistsRspAllOf>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
@@ -89,13 +96,19 @@ class WebAuthnCredentialExistsRspAllOf {
   }
 
   // maps a json object with a list of WebAuthnCredentialExistsRspAllOf-objects as value to a dart map
-  static Map<String, List<WebAuthnCredentialExistsRspAllOf>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<WebAuthnCredentialExistsRspAllOf>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<WebAuthnCredentialExistsRspAllOf>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = WebAuthnCredentialExistsRspAllOf.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = WebAuthnCredentialExistsRspAllOf.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -106,4 +119,3 @@ class WebAuthnCredentialExistsRspAllOf {
     'exists',
   };
 }
-

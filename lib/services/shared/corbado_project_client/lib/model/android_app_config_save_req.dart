@@ -41,27 +41,30 @@ class AndroidAppConfigSaveReq {
   ClientInfo? clientInfo;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is AndroidAppConfigSaveReq &&
-     other.packageName == packageName &&
-     other.fingerprint == fingerprint &&
-     other.requestID == requestID &&
-     other.clientInfo == clientInfo;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is AndroidAppConfigSaveReq &&
+          other.packageName == packageName &&
+          other.fingerprint == fingerprint &&
+          other.requestID == requestID &&
+          other.clientInfo == clientInfo;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (packageName.hashCode) +
-    (fingerprint.hashCode) +
-    (requestID == null ? 0 : requestID!.hashCode) +
-    (clientInfo == null ? 0 : clientInfo!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (packageName.hashCode) +
+      (fingerprint.hashCode) +
+      (requestID == null ? 0 : requestID!.hashCode) +
+      (clientInfo == null ? 0 : clientInfo!.hashCode);
 
   @override
-  String toString() => 'AndroidAppConfigSaveReq[packageName=$packageName, fingerprint=$fingerprint, requestID=$requestID, clientInfo=$clientInfo]';
+  String toString() =>
+      'AndroidAppConfigSaveReq[packageName=$packageName, fingerprint=$fingerprint, requestID=$requestID, clientInfo=$clientInfo]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'packageName'] = this.packageName;
-      json[r'fingerprint'] = this.fingerprint;
+    json[r'packageName'] = this.packageName;
+    json[r'fingerprint'] = this.fingerprint;
     if (this.requestID != null) {
       json[r'requestID'] = this.requestID;
     } else {
@@ -87,8 +90,10 @@ class AndroidAppConfigSaveReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "AndroidAppConfigSaveReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "AndroidAppConfigSaveReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "AndroidAppConfigSaveReq[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "AndroidAppConfigSaveReq[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -103,7 +108,10 @@ class AndroidAppConfigSaveReq {
     return null;
   }
 
-  static List<AndroidAppConfigSaveReq> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<AndroidAppConfigSaveReq> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <AndroidAppConfigSaveReq>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -131,13 +139,19 @@ class AndroidAppConfigSaveReq {
   }
 
   // maps a json object with a list of AndroidAppConfigSaveReq-objects as value to a dart map
-  static Map<String, List<AndroidAppConfigSaveReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<AndroidAppConfigSaveReq>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<AndroidAppConfigSaveReq>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = AndroidAppConfigSaveReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = AndroidAppConfigSaveReq.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -149,4 +163,3 @@ class AndroidAppConfigSaveReq {
     'fingerprint',
   };
 }
-

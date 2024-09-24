@@ -40,31 +40,34 @@ class CustomLoginIdentifier {
   String? additionalData;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is CustomLoginIdentifier &&
-     other.ID == ID &&
-     other.identifier == identifier &&
-     other.created == created &&
-     other.updated == updated &&
-     other.additionalData == additionalData;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CustomLoginIdentifier &&
+          other.ID == ID &&
+          other.identifier == identifier &&
+          other.created == created &&
+          other.updated == updated &&
+          other.additionalData == additionalData;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (ID.hashCode) +
-    (identifier.hashCode) +
-    (created.hashCode) +
-    (updated.hashCode) +
-    (additionalData == null ? 0 : additionalData!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (ID.hashCode) +
+      (identifier.hashCode) +
+      (created.hashCode) +
+      (updated.hashCode) +
+      (additionalData == null ? 0 : additionalData!.hashCode);
 
   @override
-  String toString() => 'CustomLoginIdentifier[ID=$ID, identifier=$identifier, created=$created, updated=$updated, additionalData=$additionalData]';
+  String toString() =>
+      'CustomLoginIdentifier[ID=$ID, identifier=$identifier, created=$created, updated=$updated, additionalData=$additionalData]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'ID'] = this.ID;
-      json[r'identifier'] = this.identifier;
-      json[r'created'] = this.created;
-      json[r'updated'] = this.updated;
+    json[r'ID'] = this.ID;
+    json[r'identifier'] = this.identifier;
+    json[r'created'] = this.created;
+    json[r'updated'] = this.updated;
     if (this.additionalData != null) {
       json[r'additionalData'] = this.additionalData;
     } else {
@@ -85,8 +88,10 @@ class CustomLoginIdentifier {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CustomLoginIdentifier[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CustomLoginIdentifier[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "CustomLoginIdentifier[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "CustomLoginIdentifier[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -102,7 +107,10 @@ class CustomLoginIdentifier {
     return null;
   }
 
-  static List<CustomLoginIdentifier> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<CustomLoginIdentifier> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <CustomLoginIdentifier>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -130,13 +138,19 @@ class CustomLoginIdentifier {
   }
 
   // maps a json object with a list of CustomLoginIdentifier-objects as value to a dart map
-  static Map<String, List<CustomLoginIdentifier>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<CustomLoginIdentifier>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<CustomLoginIdentifier>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = CustomLoginIdentifier.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = CustomLoginIdentifier.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -150,4 +164,3 @@ class CustomLoginIdentifier {
     'updated',
   };
 }
-

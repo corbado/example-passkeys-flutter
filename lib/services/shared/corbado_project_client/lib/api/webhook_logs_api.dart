@@ -10,9 +10,9 @@
 
 part of openapi.api;
 
-
 class WebhookLogsApi {
-  WebhookLogsApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
+  WebhookLogsApi([ApiClient? apiClient])
+      : apiClient = apiClient ?? defaultApiClient;
 
   final ApiClient apiClient;
 
@@ -39,7 +39,14 @@ class WebhookLogsApi {
   ///
   /// * [int] pageSize:
   ///   Number of items per page
-  Future<Response> webhookLogsListWithHttpInfo({ String? remoteAddress, String? userAgent, String? sort, List<String>? filterLeftSquareBracketRightSquareBracket, int? page, int? pageSize, }) async {
+  Future<Response> webhookLogsListWithHttpInfo({
+    String? remoteAddress,
+    String? userAgent,
+    String? sort,
+    List<String>? filterLeftSquareBracketRightSquareBracket,
+    int? page,
+    int? pageSize,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/webhookLogs';
 
@@ -60,7 +67,8 @@ class WebhookLogsApi {
       queryParams.addAll(_queryParams('', 'sort', sort));
     }
     if (filterLeftSquareBracketRightSquareBracket != null) {
-      queryParams.addAll(_queryParams('multi', 'filter[]', filterLeftSquareBracketRightSquareBracket));
+      queryParams.addAll(_queryParams(
+          'multi', 'filter[]', filterLeftSquareBracketRightSquareBracket));
     }
     if (page != null) {
       queryParams.addAll(_queryParams('', 'page', page));
@@ -70,7 +78,6 @@ class WebhookLogsApi {
     }
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -104,17 +111,35 @@ class WebhookLogsApi {
   ///
   /// * [int] pageSize:
   ///   Number of items per page
-  Future<WebhookLogsListRsp?> webhookLogsList({ String? remoteAddress, String? userAgent, String? sort, List<String>? filterLeftSquareBracketRightSquareBracket, int? page, int? pageSize, }) async {
-    final response = await webhookLogsListWithHttpInfo( remoteAddress: remoteAddress, userAgent: userAgent, sort: sort, filterLeftSquareBracketRightSquareBracket: filterLeftSquareBracketRightSquareBracket, page: page, pageSize: pageSize, );
+  Future<WebhookLogsListRsp?> webhookLogsList({
+    String? remoteAddress,
+    String? userAgent,
+    String? sort,
+    List<String>? filterLeftSquareBracketRightSquareBracket,
+    int? page,
+    int? pageSize,
+  }) async {
+    final response = await webhookLogsListWithHttpInfo(
+      remoteAddress: remoteAddress,
+      userAgent: userAgent,
+      sort: sort,
+      filterLeftSquareBracketRightSquareBracket:
+          filterLeftSquareBracketRightSquareBracket,
+      page: page,
+      pageSize: pageSize,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'WebhookLogsListRsp',) as WebhookLogsListRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'WebhookLogsListRsp',
+      ) as WebhookLogsListRsp;
     }
     return null;
   }

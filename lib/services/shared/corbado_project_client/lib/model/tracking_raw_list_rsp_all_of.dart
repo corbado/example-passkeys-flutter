@@ -22,23 +22,24 @@ class TrackingRawListRspAllOf {
   Paging paging;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is TrackingRawListRspAllOf &&
-     other.rows == rows &&
-     other.paging == paging;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TrackingRawListRspAllOf &&
+          other.rows == rows &&
+          other.paging == paging;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (rows.hashCode) +
-    (paging.hashCode);
+      // ignore: unnecessary_parenthesis
+      (rows.hashCode) + (paging.hashCode);
 
   @override
   String toString() => 'TrackingRawListRspAllOf[rows=$rows, paging=$paging]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'rows'] = this.rows;
-      json[r'paging'] = this.paging;
+    json[r'rows'] = this.rows;
+    json[r'paging'] = this.paging;
     return json;
   }
 
@@ -54,8 +55,10 @@ class TrackingRawListRspAllOf {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "TrackingRawListRspAllOf[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "TrackingRawListRspAllOf[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "TrackingRawListRspAllOf[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "TrackingRawListRspAllOf[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -68,7 +71,10 @@ class TrackingRawListRspAllOf {
     return null;
   }
 
-  static List<TrackingRawListRspAllOf> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<TrackingRawListRspAllOf> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <TrackingRawListRspAllOf>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -96,13 +102,19 @@ class TrackingRawListRspAllOf {
   }
 
   // maps a json object with a list of TrackingRawListRspAllOf-objects as value to a dart map
-  static Map<String, List<TrackingRawListRspAllOf>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<TrackingRawListRspAllOf>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<TrackingRawListRspAllOf>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = TrackingRawListRspAllOf.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = TrackingRawListRspAllOf.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -114,4 +126,3 @@ class TrackingRawListRspAllOf {
     'paging',
   };
 }
-

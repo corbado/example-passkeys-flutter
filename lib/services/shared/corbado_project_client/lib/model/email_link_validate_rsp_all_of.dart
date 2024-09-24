@@ -45,30 +45,33 @@ class EmailLinkValidateRspAllOf {
   String? loginToken;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is EmailLinkValidateRspAllOf &&
-     other.userID == userID &&
-     other.userFullName == userFullName &&
-     other.userEmail == userEmail &&
-     other.additionalPayload == additionalPayload &&
-     other.loginToken == loginToken;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is EmailLinkValidateRspAllOf &&
+          other.userID == userID &&
+          other.userFullName == userFullName &&
+          other.userEmail == userEmail &&
+          other.additionalPayload == additionalPayload &&
+          other.loginToken == loginToken;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (userID.hashCode) +
-    (userFullName.hashCode) +
-    (userEmail.hashCode) +
-    (additionalPayload == null ? 0 : additionalPayload!.hashCode) +
-    (loginToken == null ? 0 : loginToken!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (userID.hashCode) +
+      (userFullName.hashCode) +
+      (userEmail.hashCode) +
+      (additionalPayload == null ? 0 : additionalPayload!.hashCode) +
+      (loginToken == null ? 0 : loginToken!.hashCode);
 
   @override
-  String toString() => 'EmailLinkValidateRspAllOf[userID=$userID, userFullName=$userFullName, userEmail=$userEmail, additionalPayload=$additionalPayload, loginToken=$loginToken]';
+  String toString() =>
+      'EmailLinkValidateRspAllOf[userID=$userID, userFullName=$userFullName, userEmail=$userEmail, additionalPayload=$additionalPayload, loginToken=$loginToken]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'userID'] = this.userID;
-      json[r'userFullName'] = this.userFullName;
-      json[r'userEmail'] = this.userEmail;
+    json[r'userID'] = this.userID;
+    json[r'userFullName'] = this.userFullName;
+    json[r'userEmail'] = this.userEmail;
     if (this.additionalPayload != null) {
       json[r'additionalPayload'] = this.additionalPayload;
     } else {
@@ -94,8 +97,10 @@ class EmailLinkValidateRspAllOf {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "EmailLinkValidateRspAllOf[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "EmailLinkValidateRspAllOf[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "EmailLinkValidateRspAllOf[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "EmailLinkValidateRspAllOf[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -111,7 +116,10 @@ class EmailLinkValidateRspAllOf {
     return null;
   }
 
-  static List<EmailLinkValidateRspAllOf> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<EmailLinkValidateRspAllOf> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <EmailLinkValidateRspAllOf>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -139,13 +147,19 @@ class EmailLinkValidateRspAllOf {
   }
 
   // maps a json object with a list of EmailLinkValidateRspAllOf-objects as value to a dart map
-  static Map<String, List<EmailLinkValidateRspAllOf>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<EmailLinkValidateRspAllOf>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<EmailLinkValidateRspAllOf>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = EmailLinkValidateRspAllOf.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = EmailLinkValidateRspAllOf.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -158,4 +172,3 @@ class EmailLinkValidateRspAllOf {
     'userEmail',
   };
 }
-

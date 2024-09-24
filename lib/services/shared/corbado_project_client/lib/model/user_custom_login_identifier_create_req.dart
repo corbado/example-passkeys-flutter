@@ -47,26 +47,29 @@ class UserCustomLoginIdentifierCreateReq {
   ClientInfo? clientInfo;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is UserCustomLoginIdentifierCreateReq &&
-     other.customLoginIdentifier == customLoginIdentifier &&
-     other.additionalData == additionalData &&
-     other.requestID == requestID &&
-     other.clientInfo == clientInfo;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserCustomLoginIdentifierCreateReq &&
+          other.customLoginIdentifier == customLoginIdentifier &&
+          other.additionalData == additionalData &&
+          other.requestID == requestID &&
+          other.clientInfo == clientInfo;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (customLoginIdentifier.hashCode) +
-    (additionalData == null ? 0 : additionalData!.hashCode) +
-    (requestID == null ? 0 : requestID!.hashCode) +
-    (clientInfo == null ? 0 : clientInfo!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (customLoginIdentifier.hashCode) +
+      (additionalData == null ? 0 : additionalData!.hashCode) +
+      (requestID == null ? 0 : requestID!.hashCode) +
+      (clientInfo == null ? 0 : clientInfo!.hashCode);
 
   @override
-  String toString() => 'UserCustomLoginIdentifierCreateReq[customLoginIdentifier=$customLoginIdentifier, additionalData=$additionalData, requestID=$requestID, clientInfo=$clientInfo]';
+  String toString() =>
+      'UserCustomLoginIdentifierCreateReq[customLoginIdentifier=$customLoginIdentifier, additionalData=$additionalData, requestID=$requestID, clientInfo=$clientInfo]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'customLoginIdentifier'] = this.customLoginIdentifier;
+    json[r'customLoginIdentifier'] = this.customLoginIdentifier;
     if (this.additionalData != null) {
       json[r'additionalData'] = this.additionalData;
     } else {
@@ -97,14 +100,17 @@ class UserCustomLoginIdentifierCreateReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UserCustomLoginIdentifierCreateReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UserCustomLoginIdentifierCreateReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "UserCustomLoginIdentifierCreateReq[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "UserCustomLoginIdentifierCreateReq[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
       return UserCustomLoginIdentifierCreateReq(
-        customLoginIdentifier: mapValueOfType<String>(json, r'customLoginIdentifier')!,
+        customLoginIdentifier:
+            mapValueOfType<String>(json, r'customLoginIdentifier')!,
         additionalData: mapValueOfType<String>(json, r'additionalData'),
         requestID: mapValueOfType<String>(json, r'requestID'),
         clientInfo: ClientInfo.fromJson(json[r'clientInfo']),
@@ -113,7 +119,10 @@ class UserCustomLoginIdentifierCreateReq {
     return null;
   }
 
-  static List<UserCustomLoginIdentifierCreateReq> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<UserCustomLoginIdentifierCreateReq> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <UserCustomLoginIdentifierCreateReq>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -126,7 +135,8 @@ class UserCustomLoginIdentifierCreateReq {
     return result.toList(growable: growable);
   }
 
-  static Map<String, UserCustomLoginIdentifierCreateReq> mapFromJson(dynamic json) {
+  static Map<String, UserCustomLoginIdentifierCreateReq> mapFromJson(
+      dynamic json) {
     final map = <String, UserCustomLoginIdentifierCreateReq>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
@@ -141,13 +151,19 @@ class UserCustomLoginIdentifierCreateReq {
   }
 
   // maps a json object with a list of UserCustomLoginIdentifierCreateReq-objects as value to a dart map
-  static Map<String, List<UserCustomLoginIdentifierCreateReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<UserCustomLoginIdentifierCreateReq>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<UserCustomLoginIdentifierCreateReq>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = UserCustomLoginIdentifierCreateReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = UserCustomLoginIdentifierCreateReq.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -158,4 +174,3 @@ class UserCustomLoginIdentifierCreateReq {
     'customLoginIdentifier',
   };
 }
-

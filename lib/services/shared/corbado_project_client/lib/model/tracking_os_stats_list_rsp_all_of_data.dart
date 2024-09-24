@@ -22,23 +22,25 @@ class TrackingOSStatsListRspAllOfData {
   Paging paging;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is TrackingOSStatsListRspAllOfData &&
-     other.stats == stats &&
-     other.paging == paging;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TrackingOSStatsListRspAllOfData &&
+          other.stats == stats &&
+          other.paging == paging;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (stats.hashCode) +
-    (paging.hashCode);
+      // ignore: unnecessary_parenthesis
+      (stats.hashCode) + (paging.hashCode);
 
   @override
-  String toString() => 'TrackingOSStatsListRspAllOfData[stats=$stats, paging=$paging]';
+  String toString() =>
+      'TrackingOSStatsListRspAllOfData[stats=$stats, paging=$paging]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'stats'] = this.stats;
-      json[r'paging'] = this.paging;
+    json[r'stats'] = this.stats;
+    json[r'paging'] = this.paging;
     return json;
   }
 
@@ -54,8 +56,10 @@ class TrackingOSStatsListRspAllOfData {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "TrackingOSStatsListRspAllOfData[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "TrackingOSStatsListRspAllOfData[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "TrackingOSStatsListRspAllOfData[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "TrackingOSStatsListRspAllOfData[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -68,7 +72,10 @@ class TrackingOSStatsListRspAllOfData {
     return null;
   }
 
-  static List<TrackingOSStatsListRspAllOfData> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<TrackingOSStatsListRspAllOfData> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <TrackingOSStatsListRspAllOfData>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -81,7 +88,8 @@ class TrackingOSStatsListRspAllOfData {
     return result.toList(growable: growable);
   }
 
-  static Map<String, TrackingOSStatsListRspAllOfData> mapFromJson(dynamic json) {
+  static Map<String, TrackingOSStatsListRspAllOfData> mapFromJson(
+      dynamic json) {
     final map = <String, TrackingOSStatsListRspAllOfData>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
@@ -96,13 +104,19 @@ class TrackingOSStatsListRspAllOfData {
   }
 
   // maps a json object with a list of TrackingOSStatsListRspAllOfData-objects as value to a dart map
-  static Map<String, List<TrackingOSStatsListRspAllOfData>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<TrackingOSStatsListRspAllOfData>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<TrackingOSStatsListRspAllOfData>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = TrackingOSStatsListRspAllOfData.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = TrackingOSStatsListRspAllOfData.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -114,4 +128,3 @@ class TrackingOSStatsListRspAllOfData {
     'paging',
   };
 }
-

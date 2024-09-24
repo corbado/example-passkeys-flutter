@@ -20,20 +20,21 @@ class WebAuthnRegisterFinishRspAllOf {
   WebAuthnRegisterFinishRspAllOfStatusEnum status;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is WebAuthnRegisterFinishRspAllOf &&
-     other.status == status;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is WebAuthnRegisterFinishRspAllOf && other.status == status;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (status.hashCode);
+      // ignore: unnecessary_parenthesis
+      (status.hashCode);
 
   @override
   String toString() => 'WebAuthnRegisterFinishRspAllOf[status=$status]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'status'] = this.status;
+    json[r'status'] = this.status;
     return json;
   }
 
@@ -49,20 +50,26 @@ class WebAuthnRegisterFinishRspAllOf {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "WebAuthnRegisterFinishRspAllOf[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "WebAuthnRegisterFinishRspAllOf[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "WebAuthnRegisterFinishRspAllOf[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "WebAuthnRegisterFinishRspAllOf[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
       return WebAuthnRegisterFinishRspAllOf(
-        status: WebAuthnRegisterFinishRspAllOfStatusEnum.fromJson(json[r'status'])!,
+        status:
+            WebAuthnRegisterFinishRspAllOfStatusEnum.fromJson(json[r'status'])!,
       );
     }
     return null;
   }
 
-  static List<WebAuthnRegisterFinishRspAllOf> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<WebAuthnRegisterFinishRspAllOf> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <WebAuthnRegisterFinishRspAllOf>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -90,13 +97,19 @@ class WebAuthnRegisterFinishRspAllOf {
   }
 
   // maps a json object with a list of WebAuthnRegisterFinishRspAllOf-objects as value to a dart map
-  static Map<String, List<WebAuthnRegisterFinishRspAllOf>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<WebAuthnRegisterFinishRspAllOf>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<WebAuthnRegisterFinishRspAllOf>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = WebAuthnRegisterFinishRspAllOf.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = WebAuthnRegisterFinishRspAllOf.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -122,7 +135,8 @@ class WebAuthnRegisterFinishRspAllOfStatusEnum {
   String toJson() => value;
 
   static const success = WebAuthnRegisterFinishRspAllOfStatusEnum._(r'success');
-  static const duplicate = WebAuthnRegisterFinishRspAllOfStatusEnum._(r'duplicate');
+  static const duplicate =
+      WebAuthnRegisterFinishRspAllOfStatusEnum._(r'duplicate');
 
   /// List of all possible values in this [enum][WebAuthnRegisterFinishRspAllOfStatusEnum].
   static const values = <WebAuthnRegisterFinishRspAllOfStatusEnum>[
@@ -130,9 +144,13 @@ class WebAuthnRegisterFinishRspAllOfStatusEnum {
     duplicate,
   ];
 
-  static WebAuthnRegisterFinishRspAllOfStatusEnum? fromJson(dynamic value) => WebAuthnRegisterFinishRspAllOfStatusEnumTypeTransformer().decode(value);
+  static WebAuthnRegisterFinishRspAllOfStatusEnum? fromJson(dynamic value) =>
+      WebAuthnRegisterFinishRspAllOfStatusEnumTypeTransformer().decode(value);
 
-  static List<WebAuthnRegisterFinishRspAllOfStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<WebAuthnRegisterFinishRspAllOfStatusEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <WebAuthnRegisterFinishRspAllOfStatusEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -149,7 +167,9 @@ class WebAuthnRegisterFinishRspAllOfStatusEnum {
 /// Transformation class that can [encode] an instance of [WebAuthnRegisterFinishRspAllOfStatusEnum] to String,
 /// and [decode] dynamic data back to [WebAuthnRegisterFinishRspAllOfStatusEnum].
 class WebAuthnRegisterFinishRspAllOfStatusEnumTypeTransformer {
-  factory WebAuthnRegisterFinishRspAllOfStatusEnumTypeTransformer() => _instance ??= const WebAuthnRegisterFinishRspAllOfStatusEnumTypeTransformer._();
+  factory WebAuthnRegisterFinishRspAllOfStatusEnumTypeTransformer() =>
+      _instance ??=
+          const WebAuthnRegisterFinishRspAllOfStatusEnumTypeTransformer._();
 
   const WebAuthnRegisterFinishRspAllOfStatusEnumTypeTransformer._();
 
@@ -163,11 +183,14 @@ class WebAuthnRegisterFinishRspAllOfStatusEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  WebAuthnRegisterFinishRspAllOfStatusEnum? decode(dynamic data, {bool allowNull = true}) {
+  WebAuthnRegisterFinishRspAllOfStatusEnum? decode(dynamic data,
+      {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'success': return WebAuthnRegisterFinishRspAllOfStatusEnum.success;
-        case r'duplicate': return WebAuthnRegisterFinishRspAllOfStatusEnum.duplicate;
+        case r'success':
+          return WebAuthnRegisterFinishRspAllOfStatusEnum.success;
+        case r'duplicate':
+          return WebAuthnRegisterFinishRspAllOfStatusEnum.duplicate;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -180,5 +203,3 @@ class WebAuthnRegisterFinishRspAllOfStatusEnumTypeTransformer {
   /// Singleton [WebAuthnRegisterFinishRspAllOfStatusEnumTypeTransformer] instance.
   static WebAuthnRegisterFinishRspAllOfStatusEnumTypeTransformer? _instance;
 }
-
-

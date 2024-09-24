@@ -83,35 +83,38 @@ class EmailCodeSendReq {
   ClientInfo? clientInfo;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is EmailCodeSendReq &&
-     other.email == email &&
-     other.create == create &&
-     other.tokenLifetime == tokenLifetime &&
-     other.userFullName == userFullName &&
-     other.templateName == templateName &&
-     other.additionalPayload == additionalPayload &&
-     other.requestID == requestID &&
-     other.clientInfo == clientInfo;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is EmailCodeSendReq &&
+          other.email == email &&
+          other.create == create &&
+          other.tokenLifetime == tokenLifetime &&
+          other.userFullName == userFullName &&
+          other.templateName == templateName &&
+          other.additionalPayload == additionalPayload &&
+          other.requestID == requestID &&
+          other.clientInfo == clientInfo;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (email.hashCode) +
-    (create.hashCode) +
-    (tokenLifetime == null ? 0 : tokenLifetime!.hashCode) +
-    (userFullName == null ? 0 : userFullName!.hashCode) +
-    (templateName == null ? 0 : templateName!.hashCode) +
-    (additionalPayload == null ? 0 : additionalPayload!.hashCode) +
-    (requestID == null ? 0 : requestID!.hashCode) +
-    (clientInfo == null ? 0 : clientInfo!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (email.hashCode) +
+      (create.hashCode) +
+      (tokenLifetime == null ? 0 : tokenLifetime!.hashCode) +
+      (userFullName == null ? 0 : userFullName!.hashCode) +
+      (templateName == null ? 0 : templateName!.hashCode) +
+      (additionalPayload == null ? 0 : additionalPayload!.hashCode) +
+      (requestID == null ? 0 : requestID!.hashCode) +
+      (clientInfo == null ? 0 : clientInfo!.hashCode);
 
   @override
-  String toString() => 'EmailCodeSendReq[email=$email, create=$create, tokenLifetime=$tokenLifetime, userFullName=$userFullName, templateName=$templateName, additionalPayload=$additionalPayload, requestID=$requestID, clientInfo=$clientInfo]';
+  String toString() =>
+      'EmailCodeSendReq[email=$email, create=$create, tokenLifetime=$tokenLifetime, userFullName=$userFullName, templateName=$templateName, additionalPayload=$additionalPayload, requestID=$requestID, clientInfo=$clientInfo]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'email'] = this.email;
-      json[r'create'] = this.create;
+    json[r'email'] = this.email;
+    json[r'create'] = this.create;
     if (this.tokenLifetime != null) {
       json[r'tokenLifetime'] = this.tokenLifetime;
     } else {
@@ -157,8 +160,10 @@ class EmailCodeSendReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "EmailCodeSendReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "EmailCodeSendReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "EmailCodeSendReq[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "EmailCodeSendReq[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -177,7 +182,10 @@ class EmailCodeSendReq {
     return null;
   }
 
-  static List<EmailCodeSendReq> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<EmailCodeSendReq> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <EmailCodeSendReq>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -205,13 +213,19 @@ class EmailCodeSendReq {
   }
 
   // maps a json object with a list of EmailCodeSendReq-objects as value to a dart map
-  static Map<String, List<EmailCodeSendReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<EmailCodeSendReq>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<EmailCodeSendReq>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = EmailCodeSendReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = EmailCodeSendReq.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -223,4 +237,3 @@ class EmailCodeSendReq {
     'create',
   };
 }
-

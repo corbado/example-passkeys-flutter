@@ -49,26 +49,29 @@ class ValidatePhoneNumberReq {
   ClientInfo? clientInfo;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is ValidatePhoneNumberReq &&
-     other.phoneNumber == phoneNumber &&
-     other.regionCode == regionCode &&
-     other.requestID == requestID &&
-     other.clientInfo == clientInfo;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ValidatePhoneNumberReq &&
+          other.phoneNumber == phoneNumber &&
+          other.regionCode == regionCode &&
+          other.requestID == requestID &&
+          other.clientInfo == clientInfo;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (phoneNumber.hashCode) +
-    (regionCode == null ? 0 : regionCode!.hashCode) +
-    (requestID == null ? 0 : requestID!.hashCode) +
-    (clientInfo == null ? 0 : clientInfo!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (phoneNumber.hashCode) +
+      (regionCode == null ? 0 : regionCode!.hashCode) +
+      (requestID == null ? 0 : requestID!.hashCode) +
+      (clientInfo == null ? 0 : clientInfo!.hashCode);
 
   @override
-  String toString() => 'ValidatePhoneNumberReq[phoneNumber=$phoneNumber, regionCode=$regionCode, requestID=$requestID, clientInfo=$clientInfo]';
+  String toString() =>
+      'ValidatePhoneNumberReq[phoneNumber=$phoneNumber, regionCode=$regionCode, requestID=$requestID, clientInfo=$clientInfo]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'phoneNumber'] = this.phoneNumber;
+    json[r'phoneNumber'] = this.phoneNumber;
     if (this.regionCode != null) {
       json[r'regionCode'] = this.regionCode;
     } else {
@@ -99,8 +102,10 @@ class ValidatePhoneNumberReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ValidatePhoneNumberReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ValidatePhoneNumberReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "ValidatePhoneNumberReq[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "ValidatePhoneNumberReq[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -115,7 +120,10 @@ class ValidatePhoneNumberReq {
     return null;
   }
 
-  static List<ValidatePhoneNumberReq> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ValidatePhoneNumberReq> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ValidatePhoneNumberReq>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -143,13 +151,19 @@ class ValidatePhoneNumberReq {
   }
 
   // maps a json object with a list of ValidatePhoneNumberReq-objects as value to a dart map
-  static Map<String, List<ValidatePhoneNumberReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<ValidatePhoneNumberReq>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<ValidatePhoneNumberReq>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = ValidatePhoneNumberReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = ValidatePhoneNumberReq.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -160,4 +174,3 @@ class ValidatePhoneNumberReq {
     'phoneNumber',
   };
 }
-

@@ -10,9 +10,9 @@
 
 part of openapi.api;
 
-
 class AnalyzerApi {
-  AnalyzerApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
+  AnalyzerApi([ApiClient? apiClient])
+      : apiClient = apiClient ?? defaultApiClient;
 
   final ApiClient apiClient;
 
@@ -39,7 +39,14 @@ class AnalyzerApi {
   ///
   /// * [int] pageSize:
   ///   Number of items per page
-  Future<Response> trackingAllRequestWithHttpInfo({ String? remoteAddress, String? userAgent, String? sort, List<String>? filterLeftSquareBracketRightSquareBracket, int? page, int? pageSize, }) async {
+  Future<Response> trackingAllRequestWithHttpInfo({
+    String? remoteAddress,
+    String? userAgent,
+    String? sort,
+    List<String>? filterLeftSquareBracketRightSquareBracket,
+    int? page,
+    int? pageSize,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/tracking';
 
@@ -60,7 +67,8 @@ class AnalyzerApi {
       queryParams.addAll(_queryParams('', 'sort', sort));
     }
     if (filterLeftSquareBracketRightSquareBracket != null) {
-      queryParams.addAll(_queryParams('multi', 'filter[]', filterLeftSquareBracketRightSquareBracket));
+      queryParams.addAll(_queryParams(
+          'multi', 'filter[]', filterLeftSquareBracketRightSquareBracket));
     }
     if (page != null) {
       queryParams.addAll(_queryParams('', 'page', page));
@@ -70,7 +78,6 @@ class AnalyzerApi {
     }
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -104,17 +111,35 @@ class AnalyzerApi {
   ///
   /// * [int] pageSize:
   ///   Number of items per page
-  Future<TrackingRawListRsp?> trackingAllRequest({ String? remoteAddress, String? userAgent, String? sort, List<String>? filterLeftSquareBracketRightSquareBracket, int? page, int? pageSize, }) async {
-    final response = await trackingAllRequestWithHttpInfo( remoteAddress: remoteAddress, userAgent: userAgent, sort: sort, filterLeftSquareBracketRightSquareBracket: filterLeftSquareBracketRightSquareBracket, page: page, pageSize: pageSize, );
+  Future<TrackingRawListRsp?> trackingAllRequest({
+    String? remoteAddress,
+    String? userAgent,
+    String? sort,
+    List<String>? filterLeftSquareBracketRightSquareBracket,
+    int? page,
+    int? pageSize,
+  }) async {
+    final response = await trackingAllRequestWithHttpInfo(
+      remoteAddress: remoteAddress,
+      userAgent: userAgent,
+      sort: sort,
+      filterLeftSquareBracketRightSquareBracket:
+          filterLeftSquareBracketRightSquareBracket,
+      page: page,
+      pageSize: pageSize,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TrackingRawListRsp',) as TrackingRawListRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'TrackingRawListRsp',
+      ) as TrackingRawListRsp;
     }
     return null;
   }
@@ -130,7 +155,10 @@ class AnalyzerApi {
   ///
   /// * [String] userAgent:
   ///   Client's user agent
-  Future<Response> trackingBackupStateGetWithHttpInfo({ String? remoteAddress, String? userAgent, }) async {
+  Future<Response> trackingBackupStateGetWithHttpInfo({
+    String? remoteAddress,
+    String? userAgent,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/tracking/backupState';
 
@@ -149,7 +177,6 @@ class AnalyzerApi {
     }
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -171,17 +198,26 @@ class AnalyzerApi {
   ///
   /// * [String] userAgent:
   ///   Client's user agent
-  Future<TrackingBackupStateGetRsp?> trackingBackupStateGet({ String? remoteAddress, String? userAgent, }) async {
-    final response = await trackingBackupStateGetWithHttpInfo( remoteAddress: remoteAddress, userAgent: userAgent, );
+  Future<TrackingBackupStateGetRsp?> trackingBackupStateGet({
+    String? remoteAddress,
+    String? userAgent,
+  }) async {
+    final response = await trackingBackupStateGetWithHttpInfo(
+      remoteAddress: remoteAddress,
+      userAgent: userAgent,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TrackingBackupStateGetRsp',) as TrackingBackupStateGetRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'TrackingBackupStateGetRsp',
+      ) as TrackingBackupStateGetRsp;
     }
     return null;
   }
@@ -212,7 +248,15 @@ class AnalyzerApi {
   ///
   /// * [int] pageSize:
   ///   Number of items per page
-  Future<Response> trackingBrowserDetailedStatsListWithHttpInfo(String granularity, { String? remoteAddress, String? userAgent, String? sort, List<String>? filterLeftSquareBracketRightSquareBracket, int? page, int? pageSize, }) async {
+  Future<Response> trackingBrowserDetailedStatsListWithHttpInfo(
+    String granularity, {
+    String? remoteAddress,
+    String? userAgent,
+    String? sort,
+    List<String>? filterLeftSquareBracketRightSquareBracket,
+    int? page,
+    int? pageSize,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/tracking/browser/stats/detailed';
 
@@ -233,7 +277,8 @@ class AnalyzerApi {
       queryParams.addAll(_queryParams('', 'sort', sort));
     }
     if (filterLeftSquareBracketRightSquareBracket != null) {
-      queryParams.addAll(_queryParams('multi', 'filter[]', filterLeftSquareBracketRightSquareBracket));
+      queryParams.addAll(_queryParams(
+          'multi', 'filter[]', filterLeftSquareBracketRightSquareBracket));
     }
     if (page != null) {
       queryParams.addAll(_queryParams('', 'page', page));
@@ -241,10 +286,9 @@ class AnalyzerApi {
     if (pageSize != null) {
       queryParams.addAll(_queryParams('', 'pageSize', pageSize));
     }
-      queryParams.addAll(_queryParams('', 'granularity', granularity));
+    queryParams.addAll(_queryParams('', 'granularity', granularity));
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -281,17 +325,37 @@ class AnalyzerApi {
   ///
   /// * [int] pageSize:
   ///   Number of items per page
-  Future<TrackingBrowserDetailedStatsListRsp?> trackingBrowserDetailedStatsList(String granularity, { String? remoteAddress, String? userAgent, String? sort, List<String>? filterLeftSquareBracketRightSquareBracket, int? page, int? pageSize, }) async {
-    final response = await trackingBrowserDetailedStatsListWithHttpInfo(granularity,  remoteAddress: remoteAddress, userAgent: userAgent, sort: sort, filterLeftSquareBracketRightSquareBracket: filterLeftSquareBracketRightSquareBracket, page: page, pageSize: pageSize, );
+  Future<TrackingBrowserDetailedStatsListRsp?> trackingBrowserDetailedStatsList(
+    String granularity, {
+    String? remoteAddress,
+    String? userAgent,
+    String? sort,
+    List<String>? filterLeftSquareBracketRightSquareBracket,
+    int? page,
+    int? pageSize,
+  }) async {
+    final response = await trackingBrowserDetailedStatsListWithHttpInfo(
+      granularity,
+      remoteAddress: remoteAddress,
+      userAgent: userAgent,
+      sort: sort,
+      filterLeftSquareBracketRightSquareBracket:
+          filterLeftSquareBracketRightSquareBracket,
+      page: page,
+      pageSize: pageSize,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TrackingBrowserDetailedStatsListRsp',) as TrackingBrowserDetailedStatsListRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'TrackingBrowserDetailedStatsListRsp',
+      ) as TrackingBrowserDetailedStatsListRsp;
     }
     return null;
   }
@@ -322,7 +386,15 @@ class AnalyzerApi {
   ///
   /// * [int] pageSize:
   ///   Number of items per page
-  Future<Response> trackingBrowserStatsListWithHttpInfo(String granularity, { String? remoteAddress, String? userAgent, String? sort, List<String>? filterLeftSquareBracketRightSquareBracket, int? page, int? pageSize, }) async {
+  Future<Response> trackingBrowserStatsListWithHttpInfo(
+    String granularity, {
+    String? remoteAddress,
+    String? userAgent,
+    String? sort,
+    List<String>? filterLeftSquareBracketRightSquareBracket,
+    int? page,
+    int? pageSize,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/tracking/browser/stats';
 
@@ -343,7 +415,8 @@ class AnalyzerApi {
       queryParams.addAll(_queryParams('', 'sort', sort));
     }
     if (filterLeftSquareBracketRightSquareBracket != null) {
-      queryParams.addAll(_queryParams('multi', 'filter[]', filterLeftSquareBracketRightSquareBracket));
+      queryParams.addAll(_queryParams(
+          'multi', 'filter[]', filterLeftSquareBracketRightSquareBracket));
     }
     if (page != null) {
       queryParams.addAll(_queryParams('', 'page', page));
@@ -351,10 +424,9 @@ class AnalyzerApi {
     if (pageSize != null) {
       queryParams.addAll(_queryParams('', 'pageSize', pageSize));
     }
-      queryParams.addAll(_queryParams('', 'granularity', granularity));
+    queryParams.addAll(_queryParams('', 'granularity', granularity));
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -391,17 +463,37 @@ class AnalyzerApi {
   ///
   /// * [int] pageSize:
   ///   Number of items per page
-  Future<TrackingBrowserStatsListRsp?> trackingBrowserStatsList(String granularity, { String? remoteAddress, String? userAgent, String? sort, List<String>? filterLeftSquareBracketRightSquareBracket, int? page, int? pageSize, }) async {
-    final response = await trackingBrowserStatsListWithHttpInfo(granularity,  remoteAddress: remoteAddress, userAgent: userAgent, sort: sort, filterLeftSquareBracketRightSquareBracket: filterLeftSquareBracketRightSquareBracket, page: page, pageSize: pageSize, );
+  Future<TrackingBrowserStatsListRsp?> trackingBrowserStatsList(
+    String granularity, {
+    String? remoteAddress,
+    String? userAgent,
+    String? sort,
+    List<String>? filterLeftSquareBracketRightSquareBracket,
+    int? page,
+    int? pageSize,
+  }) async {
+    final response = await trackingBrowserStatsListWithHttpInfo(
+      granularity,
+      remoteAddress: remoteAddress,
+      userAgent: userAgent,
+      sort: sort,
+      filterLeftSquareBracketRightSquareBracket:
+          filterLeftSquareBracketRightSquareBracket,
+      page: page,
+      pageSize: pageSize,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TrackingBrowserStatsListRsp',) as TrackingBrowserStatsListRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'TrackingBrowserStatsListRsp',
+      ) as TrackingBrowserStatsListRsp;
     }
     return null;
   }
@@ -432,7 +524,15 @@ class AnalyzerApi {
   ///
   /// * [int] pageSize:
   ///   Number of items per page
-  Future<Response> trackingDetailedStatsListWithHttpInfo(String granularity, { String? remoteAddress, String? userAgent, String? sort, List<String>? filterLeftSquareBracketRightSquareBracket, int? page, int? pageSize, }) async {
+  Future<Response> trackingDetailedStatsListWithHttpInfo(
+    String granularity, {
+    String? remoteAddress,
+    String? userAgent,
+    String? sort,
+    List<String>? filterLeftSquareBracketRightSquareBracket,
+    int? page,
+    int? pageSize,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/tracking/stats/detailed';
 
@@ -453,7 +553,8 @@ class AnalyzerApi {
       queryParams.addAll(_queryParams('', 'sort', sort));
     }
     if (filterLeftSquareBracketRightSquareBracket != null) {
-      queryParams.addAll(_queryParams('multi', 'filter[]', filterLeftSquareBracketRightSquareBracket));
+      queryParams.addAll(_queryParams(
+          'multi', 'filter[]', filterLeftSquareBracketRightSquareBracket));
     }
     if (page != null) {
       queryParams.addAll(_queryParams('', 'page', page));
@@ -461,10 +562,9 @@ class AnalyzerApi {
     if (pageSize != null) {
       queryParams.addAll(_queryParams('', 'pageSize', pageSize));
     }
-      queryParams.addAll(_queryParams('', 'granularity', granularity));
+    queryParams.addAll(_queryParams('', 'granularity', granularity));
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -501,17 +601,37 @@ class AnalyzerApi {
   ///
   /// * [int] pageSize:
   ///   Number of items per page
-  Future<TrackingDetailedStatsListRsp?> trackingDetailedStatsList(String granularity, { String? remoteAddress, String? userAgent, String? sort, List<String>? filterLeftSquareBracketRightSquareBracket, int? page, int? pageSize, }) async {
-    final response = await trackingDetailedStatsListWithHttpInfo(granularity,  remoteAddress: remoteAddress, userAgent: userAgent, sort: sort, filterLeftSquareBracketRightSquareBracket: filterLeftSquareBracketRightSquareBracket, page: page, pageSize: pageSize, );
+  Future<TrackingDetailedStatsListRsp?> trackingDetailedStatsList(
+    String granularity, {
+    String? remoteAddress,
+    String? userAgent,
+    String? sort,
+    List<String>? filterLeftSquareBracketRightSquareBracket,
+    int? page,
+    int? pageSize,
+  }) async {
+    final response = await trackingDetailedStatsListWithHttpInfo(
+      granularity,
+      remoteAddress: remoteAddress,
+      userAgent: userAgent,
+      sort: sort,
+      filterLeftSquareBracketRightSquareBracket:
+          filterLeftSquareBracketRightSquareBracket,
+      page: page,
+      pageSize: pageSize,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TrackingDetailedStatsListRsp',) as TrackingDetailedStatsListRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'TrackingDetailedStatsListRsp',
+      ) as TrackingDetailedStatsListRsp;
     }
     return null;
   }
@@ -527,7 +647,10 @@ class AnalyzerApi {
   ///
   /// * [String] userAgent:
   ///   Client's user agent
-  Future<Response> trackingEnumsGetWithHttpInfo({ String? remoteAddress, String? userAgent, }) async {
+  Future<Response> trackingEnumsGetWithHttpInfo({
+    String? remoteAddress,
+    String? userAgent,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/tracking/enums';
 
@@ -546,7 +669,6 @@ class AnalyzerApi {
     }
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -568,17 +690,26 @@ class AnalyzerApi {
   ///
   /// * [String] userAgent:
   ///   Client's user agent
-  Future<TrackingEnumsGetRsp?> trackingEnumsGet({ String? remoteAddress, String? userAgent, }) async {
-    final response = await trackingEnumsGetWithHttpInfo( remoteAddress: remoteAddress, userAgent: userAgent, );
+  Future<TrackingEnumsGetRsp?> trackingEnumsGet({
+    String? remoteAddress,
+    String? userAgent,
+  }) async {
+    final response = await trackingEnumsGetWithHttpInfo(
+      remoteAddress: remoteAddress,
+      userAgent: userAgent,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TrackingEnumsGetRsp',) as TrackingEnumsGetRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'TrackingEnumsGetRsp',
+      ) as TrackingEnumsGetRsp;
     }
     return null;
   }
@@ -609,7 +740,15 @@ class AnalyzerApi {
   ///
   /// * [int] pageSize:
   ///   Number of items per page
-  Future<Response> trackingOSDetailedStatsListWithHttpInfo(String granularity, { String? remoteAddress, String? userAgent, String? sort, List<String>? filterLeftSquareBracketRightSquareBracket, int? page, int? pageSize, }) async {
+  Future<Response> trackingOSDetailedStatsListWithHttpInfo(
+    String granularity, {
+    String? remoteAddress,
+    String? userAgent,
+    String? sort,
+    List<String>? filterLeftSquareBracketRightSquareBracket,
+    int? page,
+    int? pageSize,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/tracking/os/stats/detailed';
 
@@ -630,7 +769,8 @@ class AnalyzerApi {
       queryParams.addAll(_queryParams('', 'sort', sort));
     }
     if (filterLeftSquareBracketRightSquareBracket != null) {
-      queryParams.addAll(_queryParams('multi', 'filter[]', filterLeftSquareBracketRightSquareBracket));
+      queryParams.addAll(_queryParams(
+          'multi', 'filter[]', filterLeftSquareBracketRightSquareBracket));
     }
     if (page != null) {
       queryParams.addAll(_queryParams('', 'page', page));
@@ -638,10 +778,9 @@ class AnalyzerApi {
     if (pageSize != null) {
       queryParams.addAll(_queryParams('', 'pageSize', pageSize));
     }
-      queryParams.addAll(_queryParams('', 'granularity', granularity));
+    queryParams.addAll(_queryParams('', 'granularity', granularity));
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -678,17 +817,37 @@ class AnalyzerApi {
   ///
   /// * [int] pageSize:
   ///   Number of items per page
-  Future<TrackingOSDetailedStatsListRsp?> trackingOSDetailedStatsList(String granularity, { String? remoteAddress, String? userAgent, String? sort, List<String>? filterLeftSquareBracketRightSquareBracket, int? page, int? pageSize, }) async {
-    final response = await trackingOSDetailedStatsListWithHttpInfo(granularity,  remoteAddress: remoteAddress, userAgent: userAgent, sort: sort, filterLeftSquareBracketRightSquareBracket: filterLeftSquareBracketRightSquareBracket, page: page, pageSize: pageSize, );
+  Future<TrackingOSDetailedStatsListRsp?> trackingOSDetailedStatsList(
+    String granularity, {
+    String? remoteAddress,
+    String? userAgent,
+    String? sort,
+    List<String>? filterLeftSquareBracketRightSquareBracket,
+    int? page,
+    int? pageSize,
+  }) async {
+    final response = await trackingOSDetailedStatsListWithHttpInfo(
+      granularity,
+      remoteAddress: remoteAddress,
+      userAgent: userAgent,
+      sort: sort,
+      filterLeftSquareBracketRightSquareBracket:
+          filterLeftSquareBracketRightSquareBracket,
+      page: page,
+      pageSize: pageSize,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TrackingOSDetailedStatsListRsp',) as TrackingOSDetailedStatsListRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'TrackingOSDetailedStatsListRsp',
+      ) as TrackingOSDetailedStatsListRsp;
     }
     return null;
   }
@@ -719,7 +878,15 @@ class AnalyzerApi {
   ///
   /// * [int] pageSize:
   ///   Number of items per page
-  Future<Response> trackingOSStatsListWithHttpInfo(String granularity, { String? remoteAddress, String? userAgent, String? sort, List<String>? filterLeftSquareBracketRightSquareBracket, int? page, int? pageSize, }) async {
+  Future<Response> trackingOSStatsListWithHttpInfo(
+    String granularity, {
+    String? remoteAddress,
+    String? userAgent,
+    String? sort,
+    List<String>? filterLeftSquareBracketRightSquareBracket,
+    int? page,
+    int? pageSize,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/tracking/os/stats';
 
@@ -740,7 +907,8 @@ class AnalyzerApi {
       queryParams.addAll(_queryParams('', 'sort', sort));
     }
     if (filterLeftSquareBracketRightSquareBracket != null) {
-      queryParams.addAll(_queryParams('multi', 'filter[]', filterLeftSquareBracketRightSquareBracket));
+      queryParams.addAll(_queryParams(
+          'multi', 'filter[]', filterLeftSquareBracketRightSquareBracket));
     }
     if (page != null) {
       queryParams.addAll(_queryParams('', 'page', page));
@@ -748,10 +916,9 @@ class AnalyzerApi {
     if (pageSize != null) {
       queryParams.addAll(_queryParams('', 'pageSize', pageSize));
     }
-      queryParams.addAll(_queryParams('', 'granularity', granularity));
+    queryParams.addAll(_queryParams('', 'granularity', granularity));
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -788,17 +955,37 @@ class AnalyzerApi {
   ///
   /// * [int] pageSize:
   ///   Number of items per page
-  Future<TrackingOSStatsListRsp?> trackingOSStatsList(String granularity, { String? remoteAddress, String? userAgent, String? sort, List<String>? filterLeftSquareBracketRightSquareBracket, int? page, int? pageSize, }) async {
-    final response = await trackingOSStatsListWithHttpInfo(granularity,  remoteAddress: remoteAddress, userAgent: userAgent, sort: sort, filterLeftSquareBracketRightSquareBracket: filterLeftSquareBracketRightSquareBracket, page: page, pageSize: pageSize, );
+  Future<TrackingOSStatsListRsp?> trackingOSStatsList(
+    String granularity, {
+    String? remoteAddress,
+    String? userAgent,
+    String? sort,
+    List<String>? filterLeftSquareBracketRightSquareBracket,
+    int? page,
+    int? pageSize,
+  }) async {
+    final response = await trackingOSStatsListWithHttpInfo(
+      granularity,
+      remoteAddress: remoteAddress,
+      userAgent: userAgent,
+      sort: sort,
+      filterLeftSquareBracketRightSquareBracket:
+          filterLeftSquareBracketRightSquareBracket,
+      page: page,
+      pageSize: pageSize,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TrackingOSStatsListRsp',) as TrackingOSStatsListRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'TrackingOSStatsListRsp',
+      ) as TrackingOSStatsListRsp;
     }
     return null;
   }
@@ -829,7 +1016,15 @@ class AnalyzerApi {
   ///
   /// * [int] pageSize:
   ///   Number of items per page
-  Future<Response> trackingStatsListWithHttpInfo(String granularity, { String? remoteAddress, String? userAgent, String? sort, List<String>? filterLeftSquareBracketRightSquareBracket, int? page, int? pageSize, }) async {
+  Future<Response> trackingStatsListWithHttpInfo(
+    String granularity, {
+    String? remoteAddress,
+    String? userAgent,
+    String? sort,
+    List<String>? filterLeftSquareBracketRightSquareBracket,
+    int? page,
+    int? pageSize,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/tracking/stats';
 
@@ -850,7 +1045,8 @@ class AnalyzerApi {
       queryParams.addAll(_queryParams('', 'sort', sort));
     }
     if (filterLeftSquareBracketRightSquareBracket != null) {
-      queryParams.addAll(_queryParams('multi', 'filter[]', filterLeftSquareBracketRightSquareBracket));
+      queryParams.addAll(_queryParams(
+          'multi', 'filter[]', filterLeftSquareBracketRightSquareBracket));
     }
     if (page != null) {
       queryParams.addAll(_queryParams('', 'page', page));
@@ -858,10 +1054,9 @@ class AnalyzerApi {
     if (pageSize != null) {
       queryParams.addAll(_queryParams('', 'pageSize', pageSize));
     }
-      queryParams.addAll(_queryParams('', 'granularity', granularity));
+    queryParams.addAll(_queryParams('', 'granularity', granularity));
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -898,17 +1093,37 @@ class AnalyzerApi {
   ///
   /// * [int] pageSize:
   ///   Number of items per page
-  Future<TrackingStatsListRsp?> trackingStatsList(String granularity, { String? remoteAddress, String? userAgent, String? sort, List<String>? filterLeftSquareBracketRightSquareBracket, int? page, int? pageSize, }) async {
-    final response = await trackingStatsListWithHttpInfo(granularity,  remoteAddress: remoteAddress, userAgent: userAgent, sort: sort, filterLeftSquareBracketRightSquareBracket: filterLeftSquareBracketRightSquareBracket, page: page, pageSize: pageSize, );
+  Future<TrackingStatsListRsp?> trackingStatsList(
+    String granularity, {
+    String? remoteAddress,
+    String? userAgent,
+    String? sort,
+    List<String>? filterLeftSquareBracketRightSquareBracket,
+    int? page,
+    int? pageSize,
+  }) async {
+    final response = await trackingStatsListWithHttpInfo(
+      granularity,
+      remoteAddress: remoteAddress,
+      userAgent: userAgent,
+      sort: sort,
+      filterLeftSquareBracketRightSquareBracket:
+          filterLeftSquareBracketRightSquareBracket,
+      page: page,
+      pageSize: pageSize,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TrackingStatsListRsp',) as TrackingStatsListRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'TrackingStatsListRsp',
+      ) as TrackingStatsListRsp;
     }
     return null;
   }

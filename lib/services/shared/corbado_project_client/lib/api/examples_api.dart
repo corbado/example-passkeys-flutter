@@ -10,9 +10,9 @@
 
 part of openapi.api;
 
-
 class ExamplesApi {
-  ExamplesApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
+  ExamplesApi([ApiClient? apiClient])
+      : apiClient = apiClient ?? defaultApiClient;
 
   final ApiClient apiClient;
 
@@ -24,10 +24,11 @@ class ExamplesApi {
   ///
   /// * [String] fileName (required):
   ///   Name of the example to get
-  Future<Response> exampleGetWithHttpInfo(String fileName,) async {
+  Future<Response> exampleGetWithHttpInfo(
+    String fileName,
+  ) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/examples/{fileName}'
-      .replaceAll('{fileName}', fileName);
+    final path = r'/v1/examples/{fileName}'.replaceAll('{fileName}', fileName);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -37,7 +38,6 @@ class ExamplesApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -56,17 +56,24 @@ class ExamplesApi {
   ///
   /// * [String] fileName (required):
   ///   Name of the example to get
-  Future<ExampleGetRsp?> exampleGet(String fileName,) async {
-    final response = await exampleGetWithHttpInfo(fileName,);
+  Future<ExampleGetRsp?> exampleGet(
+    String fileName,
+  ) async {
+    final response = await exampleGetWithHttpInfo(
+      fileName,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ExampleGetRsp',) as ExampleGetRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'ExampleGetRsp',
+      ) as ExampleGetRsp;
     }
     return null;
   }

@@ -19,20 +19,21 @@ class TrackingOSDetailedStatsListRspAllOf {
   TrackingOSDetailedStatsListRspAllOfData data;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is TrackingOSDetailedStatsListRspAllOf &&
-     other.data == data;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TrackingOSDetailedStatsListRspAllOf && other.data == data;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (data.hashCode);
+      // ignore: unnecessary_parenthesis
+      (data.hashCode);
 
   @override
   String toString() => 'TrackingOSDetailedStatsListRspAllOf[data=$data]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'data'] = this.data;
+    json[r'data'] = this.data;
     return json;
   }
 
@@ -48,8 +49,10 @@ class TrackingOSDetailedStatsListRspAllOf {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "TrackingOSDetailedStatsListRspAllOf[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "TrackingOSDetailedStatsListRspAllOf[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "TrackingOSDetailedStatsListRspAllOf[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "TrackingOSDetailedStatsListRspAllOf[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -61,7 +64,10 @@ class TrackingOSDetailedStatsListRspAllOf {
     return null;
   }
 
-  static List<TrackingOSDetailedStatsListRspAllOf> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<TrackingOSDetailedStatsListRspAllOf> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <TrackingOSDetailedStatsListRspAllOf>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -74,7 +80,8 @@ class TrackingOSDetailedStatsListRspAllOf {
     return result.toList(growable: growable);
   }
 
-  static Map<String, TrackingOSDetailedStatsListRspAllOf> mapFromJson(dynamic json) {
+  static Map<String, TrackingOSDetailedStatsListRspAllOf> mapFromJson(
+      dynamic json) {
     final map = <String, TrackingOSDetailedStatsListRspAllOf>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
@@ -89,13 +96,19 @@ class TrackingOSDetailedStatsListRspAllOf {
   }
 
   // maps a json object with a list of TrackingOSDetailedStatsListRspAllOf-objects as value to a dart map
-  static Map<String, List<TrackingOSDetailedStatsListRspAllOf>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<TrackingOSDetailedStatsListRspAllOf>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<TrackingOSDetailedStatsListRspAllOf>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = TrackingOSDetailedStatsListRspAllOf.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = TrackingOSDetailedStatsListRspAllOf.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -106,4 +119,3 @@ class TrackingOSDetailedStatsListRspAllOf {
     'data',
   };
 }
-

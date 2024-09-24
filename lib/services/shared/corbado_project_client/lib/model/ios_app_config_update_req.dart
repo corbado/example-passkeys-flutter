@@ -41,27 +41,30 @@ class IOSAppConfigUpdateReq {
   ClientInfo? clientInfo;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is IOSAppConfigUpdateReq &&
-     other.appIDPrefix == appIDPrefix &&
-     other.bundleID == bundleID &&
-     other.requestID == requestID &&
-     other.clientInfo == clientInfo;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is IOSAppConfigUpdateReq &&
+          other.appIDPrefix == appIDPrefix &&
+          other.bundleID == bundleID &&
+          other.requestID == requestID &&
+          other.clientInfo == clientInfo;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (appIDPrefix.hashCode) +
-    (bundleID.hashCode) +
-    (requestID == null ? 0 : requestID!.hashCode) +
-    (clientInfo == null ? 0 : clientInfo!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (appIDPrefix.hashCode) +
+      (bundleID.hashCode) +
+      (requestID == null ? 0 : requestID!.hashCode) +
+      (clientInfo == null ? 0 : clientInfo!.hashCode);
 
   @override
-  String toString() => 'IOSAppConfigUpdateReq[appIDPrefix=$appIDPrefix, bundleID=$bundleID, requestID=$requestID, clientInfo=$clientInfo]';
+  String toString() =>
+      'IOSAppConfigUpdateReq[appIDPrefix=$appIDPrefix, bundleID=$bundleID, requestID=$requestID, clientInfo=$clientInfo]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'appIDPrefix'] = this.appIDPrefix;
-      json[r'bundleID'] = this.bundleID;
+    json[r'appIDPrefix'] = this.appIDPrefix;
+    json[r'bundleID'] = this.bundleID;
     if (this.requestID != null) {
       json[r'requestID'] = this.requestID;
     } else {
@@ -87,8 +90,10 @@ class IOSAppConfigUpdateReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "IOSAppConfigUpdateReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "IOSAppConfigUpdateReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "IOSAppConfigUpdateReq[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "IOSAppConfigUpdateReq[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -103,7 +108,10 @@ class IOSAppConfigUpdateReq {
     return null;
   }
 
-  static List<IOSAppConfigUpdateReq> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<IOSAppConfigUpdateReq> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <IOSAppConfigUpdateReq>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -131,13 +139,19 @@ class IOSAppConfigUpdateReq {
   }
 
   // maps a json object with a list of IOSAppConfigUpdateReq-objects as value to a dart map
-  static Map<String, List<IOSAppConfigUpdateReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<IOSAppConfigUpdateReq>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<IOSAppConfigUpdateReq>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = IOSAppConfigUpdateReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = IOSAppConfigUpdateReq.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -149,4 +163,3 @@ class IOSAppConfigUpdateReq {
     'bundleID',
   };
 }
-

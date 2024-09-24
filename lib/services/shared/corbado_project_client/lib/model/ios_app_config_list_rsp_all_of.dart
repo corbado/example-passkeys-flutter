@@ -22,23 +22,24 @@ class IOSAppConfigListRspAllOf {
   Paging paging;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is IOSAppConfigListRspAllOf &&
-     other.rows == rows &&
-     other.paging == paging;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is IOSAppConfigListRspAllOf &&
+          other.rows == rows &&
+          other.paging == paging;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (rows.hashCode) +
-    (paging.hashCode);
+      // ignore: unnecessary_parenthesis
+      (rows.hashCode) + (paging.hashCode);
 
   @override
   String toString() => 'IOSAppConfigListRspAllOf[rows=$rows, paging=$paging]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'rows'] = this.rows;
-      json[r'paging'] = this.paging;
+    json[r'rows'] = this.rows;
+    json[r'paging'] = this.paging;
     return json;
   }
 
@@ -54,8 +55,10 @@ class IOSAppConfigListRspAllOf {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "IOSAppConfigListRspAllOf[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "IOSAppConfigListRspAllOf[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "IOSAppConfigListRspAllOf[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "IOSAppConfigListRspAllOf[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -68,7 +71,10 @@ class IOSAppConfigListRspAllOf {
     return null;
   }
 
-  static List<IOSAppConfigListRspAllOf> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<IOSAppConfigListRspAllOf> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <IOSAppConfigListRspAllOf>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -96,13 +102,19 @@ class IOSAppConfigListRspAllOf {
   }
 
   // maps a json object with a list of IOSAppConfigListRspAllOf-objects as value to a dart map
-  static Map<String, List<IOSAppConfigListRspAllOf>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<IOSAppConfigListRspAllOf>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<IOSAppConfigListRspAllOf>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = IOSAppConfigListRspAllOf.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = IOSAppConfigListRspAllOf.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -114,4 +126,3 @@ class IOSAppConfigListRspAllOf {
     'paging',
   };
 }
-

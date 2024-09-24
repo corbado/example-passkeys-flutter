@@ -10,9 +10,9 @@
 
 part of openapi.api;
 
-
 class AndroidAppConfigApi {
-  AndroidAppConfigApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
+  AndroidAppConfigApi([ApiClient? apiClient])
+      : apiClient = apiClient ?? defaultApiClient;
 
   final ApiClient apiClient;
 
@@ -23,7 +23,9 @@ class AndroidAppConfigApi {
   /// Parameters:
   ///
   /// * [AndroidAppConfigSaveReq] androidAppConfigSaveReq (required):
-  Future<Response> androidAppConfigCreateWithHttpInfo(AndroidAppConfigSaveReq androidAppConfigSaveReq,) async {
+  Future<Response> androidAppConfigCreateWithHttpInfo(
+    AndroidAppConfigSaveReq androidAppConfigSaveReq,
+  ) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/androidappconfig';
 
@@ -35,7 +37,6 @@ class AndroidAppConfigApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -53,17 +54,24 @@ class AndroidAppConfigApi {
   /// Parameters:
   ///
   /// * [AndroidAppConfigSaveReq] androidAppConfigSaveReq (required):
-  Future<AndroidAppConfigSaveRsp?> androidAppConfigCreate(AndroidAppConfigSaveReq androidAppConfigSaveReq,) async {
-    final response = await androidAppConfigCreateWithHttpInfo(androidAppConfigSaveReq,);
+  Future<AndroidAppConfigSaveRsp?> androidAppConfigCreate(
+    AndroidAppConfigSaveReq androidAppConfigSaveReq,
+  ) async {
+    final response = await androidAppConfigCreateWithHttpInfo(
+      androidAppConfigSaveReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'AndroidAppConfigSaveRsp',) as AndroidAppConfigSaveRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'AndroidAppConfigSaveRsp',
+      ) as AndroidAppConfigSaveRsp;
     }
     return null;
   }
@@ -78,10 +86,13 @@ class AndroidAppConfigApi {
   ///   Android App Config ID from create
   ///
   /// * [AndroidAppConfigDeleteReq] androidAppConfigDeleteReq:
-  Future<Response> androidAppConfigDeleteWithHttpInfo(String androidAppConfigID, { AndroidAppConfigDeleteReq? androidAppConfigDeleteReq, }) async {
+  Future<Response> androidAppConfigDeleteWithHttpInfo(
+    String androidAppConfigID, {
+    AndroidAppConfigDeleteReq? androidAppConfigDeleteReq,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/androidappconfig/{androidAppConfigID}'
-      .replaceAll('{androidAppConfigID}', androidAppConfigID);
+        .replaceAll('{androidAppConfigID}', androidAppConfigID);
 
     // ignore: prefer_final_locals
     Object? postBody = androidAppConfigDeleteReq;
@@ -91,7 +102,6 @@ class AndroidAppConfigApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -112,17 +122,26 @@ class AndroidAppConfigApi {
   ///   Android App Config ID from create
   ///
   /// * [AndroidAppConfigDeleteReq] androidAppConfigDeleteReq:
-  Future<GenericRsp?> androidAppConfigDelete(String androidAppConfigID, { AndroidAppConfigDeleteReq? androidAppConfigDeleteReq, }) async {
-    final response = await androidAppConfigDeleteWithHttpInfo(androidAppConfigID,  androidAppConfigDeleteReq: androidAppConfigDeleteReq, );
+  Future<GenericRsp?> androidAppConfigDelete(
+    String androidAppConfigID, {
+    AndroidAppConfigDeleteReq? androidAppConfigDeleteReq,
+  }) async {
+    final response = await androidAppConfigDeleteWithHttpInfo(
+      androidAppConfigID,
+      androidAppConfigDeleteReq: androidAppConfigDeleteReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GenericRsp',) as GenericRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'GenericRsp',
+      ) as GenericRsp;
     }
     return null;
   }
@@ -142,7 +161,6 @@ class AndroidAppConfigApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -164,9 +182,12 @@ class AndroidAppConfigApi {
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'AndroidAppConfigListRsp',) as AndroidAppConfigListRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'AndroidAppConfigListRsp',
+      ) as AndroidAppConfigListRsp;
     }
     return null;
   }
@@ -181,10 +202,13 @@ class AndroidAppConfigApi {
   ///   ID from Android config create
   ///
   /// * [AndroidAppConfigUpdateReq] androidAppConfigUpdateReq:
-  Future<Response> androidAppConfigPutWithHttpInfo(String androidAppConfigID, { AndroidAppConfigUpdateReq? androidAppConfigUpdateReq, }) async {
+  Future<Response> androidAppConfigPutWithHttpInfo(
+    String androidAppConfigID, {
+    AndroidAppConfigUpdateReq? androidAppConfigUpdateReq,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/androidappconfig/{androidAppConfigID}'
-      .replaceAll('{androidAppConfigID}', androidAppConfigID);
+        .replaceAll('{androidAppConfigID}', androidAppConfigID);
 
     // ignore: prefer_final_locals
     Object? postBody = androidAppConfigUpdateReq;
@@ -194,7 +218,6 @@ class AndroidAppConfigApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -215,17 +238,26 @@ class AndroidAppConfigApi {
   ///   ID from Android config create
   ///
   /// * [AndroidAppConfigUpdateReq] androidAppConfigUpdateReq:
-  Future<AndroidAppConfigUpdateRsp?> androidAppConfigPut(String androidAppConfigID, { AndroidAppConfigUpdateReq? androidAppConfigUpdateReq, }) async {
-    final response = await androidAppConfigPutWithHttpInfo(androidAppConfigID,  androidAppConfigUpdateReq: androidAppConfigUpdateReq, );
+  Future<AndroidAppConfigUpdateRsp?> androidAppConfigPut(
+    String androidAppConfigID, {
+    AndroidAppConfigUpdateReq? androidAppConfigUpdateReq,
+  }) async {
+    final response = await androidAppConfigPutWithHttpInfo(
+      androidAppConfigID,
+      androidAppConfigUpdateReq: androidAppConfigUpdateReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'AndroidAppConfigUpdateRsp',) as AndroidAppConfigUpdateRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'AndroidAppConfigUpdateRsp',
+      ) as AndroidAppConfigUpdateRsp;
     }
     return null;
   }

@@ -55,40 +55,43 @@ class ProjectSecretCreateRsp {
   String? secret;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is ProjectSecretCreateRsp &&
-     other.httpStatusCode == httpStatusCode &&
-     other.message == message &&
-     other.requestData == requestData &&
-     other.runtime == runtime &&
-     other.id == id &&
-     other.hint == hint &&
-     other.created == created &&
-     other.secret == secret;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProjectSecretCreateRsp &&
+          other.httpStatusCode == httpStatusCode &&
+          other.message == message &&
+          other.requestData == requestData &&
+          other.runtime == runtime &&
+          other.id == id &&
+          other.hint == hint &&
+          other.created == created &&
+          other.secret == secret;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (httpStatusCode.hashCode) +
-    (message.hashCode) +
-    (requestData.hashCode) +
-    (runtime.hashCode) +
-    (id.hashCode) +
-    (hint.hashCode) +
-    (created.hashCode) +
-    (secret == null ? 0 : secret!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (httpStatusCode.hashCode) +
+      (message.hashCode) +
+      (requestData.hashCode) +
+      (runtime.hashCode) +
+      (id.hashCode) +
+      (hint.hashCode) +
+      (created.hashCode) +
+      (secret == null ? 0 : secret!.hashCode);
 
   @override
-  String toString() => 'ProjectSecretCreateRsp[httpStatusCode=$httpStatusCode, message=$message, requestData=$requestData, runtime=$runtime, id=$id, hint=$hint, created=$created, secret=$secret]';
+  String toString() =>
+      'ProjectSecretCreateRsp[httpStatusCode=$httpStatusCode, message=$message, requestData=$requestData, runtime=$runtime, id=$id, hint=$hint, created=$created, secret=$secret]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'httpStatusCode'] = this.httpStatusCode;
-      json[r'message'] = this.message;
-      json[r'requestData'] = this.requestData;
-      json[r'runtime'] = this.runtime;
-      json[r'id'] = this.id;
-      json[r'hint'] = this.hint;
-      json[r'created'] = this.created;
+    json[r'httpStatusCode'] = this.httpStatusCode;
+    json[r'message'] = this.message;
+    json[r'requestData'] = this.requestData;
+    json[r'runtime'] = this.runtime;
+    json[r'id'] = this.id;
+    json[r'hint'] = this.hint;
+    json[r'created'] = this.created;
     if (this.secret != null) {
       json[r'secret'] = this.secret;
     } else {
@@ -109,8 +112,10 @@ class ProjectSecretCreateRsp {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ProjectSecretCreateRsp[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ProjectSecretCreateRsp[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "ProjectSecretCreateRsp[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "ProjectSecretCreateRsp[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -129,7 +134,10 @@ class ProjectSecretCreateRsp {
     return null;
   }
 
-  static List<ProjectSecretCreateRsp> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ProjectSecretCreateRsp> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ProjectSecretCreateRsp>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -157,13 +165,19 @@ class ProjectSecretCreateRsp {
   }
 
   // maps a json object with a list of ProjectSecretCreateRsp-objects as value to a dart map
-  static Map<String, List<ProjectSecretCreateRsp>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<ProjectSecretCreateRsp>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<ProjectSecretCreateRsp>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = ProjectSecretCreateRsp.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = ProjectSecretCreateRsp.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -180,4 +194,3 @@ class ProjectSecretCreateRsp {
     'created',
   };
 }
-

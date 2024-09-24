@@ -13,9 +13,5 @@ import 'package:test/test.dart';
 
 // tests for AuthMethod
 void main() {
-
-  group('test AuthMethod', () {
-
-  });
-
+  group('test AuthMethod', () {});
 }

@@ -22,23 +22,25 @@ class UserAuthLogListRspAllOfData {
   Paging paging;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is UserAuthLogListRspAllOfData &&
-     other.rows == rows &&
-     other.paging == paging;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserAuthLogListRspAllOfData &&
+          other.rows == rows &&
+          other.paging == paging;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (rows.hashCode) +
-    (paging.hashCode);
+      // ignore: unnecessary_parenthesis
+      (rows.hashCode) + (paging.hashCode);
 
   @override
-  String toString() => 'UserAuthLogListRspAllOfData[rows=$rows, paging=$paging]';
+  String toString() =>
+      'UserAuthLogListRspAllOfData[rows=$rows, paging=$paging]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'rows'] = this.rows;
-      json[r'paging'] = this.paging;
+    json[r'rows'] = this.rows;
+    json[r'paging'] = this.paging;
     return json;
   }
 
@@ -54,8 +56,10 @@ class UserAuthLogListRspAllOfData {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UserAuthLogListRspAllOfData[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UserAuthLogListRspAllOfData[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "UserAuthLogListRspAllOfData[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "UserAuthLogListRspAllOfData[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -68,7 +72,10 @@ class UserAuthLogListRspAllOfData {
     return null;
   }
 
-  static List<UserAuthLogListRspAllOfData> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<UserAuthLogListRspAllOfData> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <UserAuthLogListRspAllOfData>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -96,13 +103,19 @@ class UserAuthLogListRspAllOfData {
   }
 
   // maps a json object with a list of UserAuthLogListRspAllOfData-objects as value to a dart map
-  static Map<String, List<UserAuthLogListRspAllOfData>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<UserAuthLogListRspAllOfData>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<UserAuthLogListRspAllOfData>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = UserAuthLogListRspAllOfData.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = UserAuthLogListRspAllOfData.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -114,4 +127,3 @@ class UserAuthLogListRspAllOfData {
     'paging',
   };
 }
-

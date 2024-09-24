@@ -20,20 +20,21 @@ class WebAuthnAuthenticateFinishRspAllOf {
   WebAuthnAuthenticateFinishRspAllOfStatusEnum status;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is WebAuthnAuthenticateFinishRspAllOf &&
-     other.status == status;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is WebAuthnAuthenticateFinishRspAllOf && other.status == status;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (status.hashCode);
+      // ignore: unnecessary_parenthesis
+      (status.hashCode);
 
   @override
   String toString() => 'WebAuthnAuthenticateFinishRspAllOf[status=$status]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'status'] = this.status;
+    json[r'status'] = this.status;
     return json;
   }
 
@@ -49,20 +50,26 @@ class WebAuthnAuthenticateFinishRspAllOf {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "WebAuthnAuthenticateFinishRspAllOf[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "WebAuthnAuthenticateFinishRspAllOf[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "WebAuthnAuthenticateFinishRspAllOf[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "WebAuthnAuthenticateFinishRspAllOf[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
       return WebAuthnAuthenticateFinishRspAllOf(
-        status: WebAuthnAuthenticateFinishRspAllOfStatusEnum.fromJson(json[r'status'])!,
+        status: WebAuthnAuthenticateFinishRspAllOfStatusEnum.fromJson(
+            json[r'status'])!,
       );
     }
     return null;
   }
 
-  static List<WebAuthnAuthenticateFinishRspAllOf> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<WebAuthnAuthenticateFinishRspAllOf> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <WebAuthnAuthenticateFinishRspAllOf>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -75,7 +82,8 @@ class WebAuthnAuthenticateFinishRspAllOf {
     return result.toList(growable: growable);
   }
 
-  static Map<String, WebAuthnAuthenticateFinishRspAllOf> mapFromJson(dynamic json) {
+  static Map<String, WebAuthnAuthenticateFinishRspAllOf> mapFromJson(
+      dynamic json) {
     final map = <String, WebAuthnAuthenticateFinishRspAllOf>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
@@ -90,13 +98,19 @@ class WebAuthnAuthenticateFinishRspAllOf {
   }
 
   // maps a json object with a list of WebAuthnAuthenticateFinishRspAllOf-objects as value to a dart map
-  static Map<String, List<WebAuthnAuthenticateFinishRspAllOf>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<WebAuthnAuthenticateFinishRspAllOf>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<WebAuthnAuthenticateFinishRspAllOf>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = WebAuthnAuthenticateFinishRspAllOf.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = WebAuthnAuthenticateFinishRspAllOf.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -121,8 +135,10 @@ class WebAuthnAuthenticateFinishRspAllOfStatusEnum {
 
   String toJson() => value;
 
-  static const success = WebAuthnAuthenticateFinishRspAllOfStatusEnum._(r'success');
-  static const unconfirmedCredential = WebAuthnAuthenticateFinishRspAllOfStatusEnum._(r'unconfirmedCredential');
+  static const success =
+      WebAuthnAuthenticateFinishRspAllOfStatusEnum._(r'success');
+  static const unconfirmedCredential =
+      WebAuthnAuthenticateFinishRspAllOfStatusEnum._(r'unconfirmedCredential');
 
   /// List of all possible values in this [enum][WebAuthnAuthenticateFinishRspAllOfStatusEnum].
   static const values = <WebAuthnAuthenticateFinishRspAllOfStatusEnum>[
@@ -130,13 +146,20 @@ class WebAuthnAuthenticateFinishRspAllOfStatusEnum {
     unconfirmedCredential,
   ];
 
-  static WebAuthnAuthenticateFinishRspAllOfStatusEnum? fromJson(dynamic value) => WebAuthnAuthenticateFinishRspAllOfStatusEnumTypeTransformer().decode(value);
+  static WebAuthnAuthenticateFinishRspAllOfStatusEnum? fromJson(
+          dynamic value) =>
+      WebAuthnAuthenticateFinishRspAllOfStatusEnumTypeTransformer()
+          .decode(value);
 
-  static List<WebAuthnAuthenticateFinishRspAllOfStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<WebAuthnAuthenticateFinishRspAllOfStatusEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <WebAuthnAuthenticateFinishRspAllOfStatusEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
-        final value = WebAuthnAuthenticateFinishRspAllOfStatusEnum.fromJson(row);
+        final value =
+            WebAuthnAuthenticateFinishRspAllOfStatusEnum.fromJson(row);
         if (value != null) {
           result.add(value);
         }
@@ -149,11 +172,14 @@ class WebAuthnAuthenticateFinishRspAllOfStatusEnum {
 /// Transformation class that can [encode] an instance of [WebAuthnAuthenticateFinishRspAllOfStatusEnum] to String,
 /// and [decode] dynamic data back to [WebAuthnAuthenticateFinishRspAllOfStatusEnum].
 class WebAuthnAuthenticateFinishRspAllOfStatusEnumTypeTransformer {
-  factory WebAuthnAuthenticateFinishRspAllOfStatusEnumTypeTransformer() => _instance ??= const WebAuthnAuthenticateFinishRspAllOfStatusEnumTypeTransformer._();
+  factory WebAuthnAuthenticateFinishRspAllOfStatusEnumTypeTransformer() =>
+      _instance ??=
+          const WebAuthnAuthenticateFinishRspAllOfStatusEnumTypeTransformer._();
 
   const WebAuthnAuthenticateFinishRspAllOfStatusEnumTypeTransformer._();
 
-  String encode(WebAuthnAuthenticateFinishRspAllOfStatusEnum data) => data.value;
+  String encode(WebAuthnAuthenticateFinishRspAllOfStatusEnum data) =>
+      data.value;
 
   /// Decodes a [dynamic value][data] to a WebAuthnAuthenticateFinishRspAllOfStatusEnum.
   ///
@@ -163,11 +189,15 @@ class WebAuthnAuthenticateFinishRspAllOfStatusEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  WebAuthnAuthenticateFinishRspAllOfStatusEnum? decode(dynamic data, {bool allowNull = true}) {
+  WebAuthnAuthenticateFinishRspAllOfStatusEnum? decode(dynamic data,
+      {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'success': return WebAuthnAuthenticateFinishRspAllOfStatusEnum.success;
-        case r'unconfirmedCredential': return WebAuthnAuthenticateFinishRspAllOfStatusEnum.unconfirmedCredential;
+        case r'success':
+          return WebAuthnAuthenticateFinishRspAllOfStatusEnum.success;
+        case r'unconfirmedCredential':
+          return WebAuthnAuthenticateFinishRspAllOfStatusEnum
+              .unconfirmedCredential;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -180,5 +210,3 @@ class WebAuthnAuthenticateFinishRspAllOfStatusEnumTypeTransformer {
   /// Singleton [WebAuthnAuthenticateFinishRspAllOfStatusEnumTypeTransformer] instance.
   static WebAuthnAuthenticateFinishRspAllOfStatusEnumTypeTransformer? _instance;
 }
-
-

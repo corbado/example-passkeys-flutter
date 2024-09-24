@@ -36,32 +36,35 @@ class WebAuthnCredentialExistsRsp {
   bool exists;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is WebAuthnCredentialExistsRsp &&
-     other.httpStatusCode == httpStatusCode &&
-     other.message == message &&
-     other.requestData == requestData &&
-     other.runtime == runtime &&
-     other.exists == exists;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is WebAuthnCredentialExistsRsp &&
+          other.httpStatusCode == httpStatusCode &&
+          other.message == message &&
+          other.requestData == requestData &&
+          other.runtime == runtime &&
+          other.exists == exists;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (httpStatusCode.hashCode) +
-    (message.hashCode) +
-    (requestData.hashCode) +
-    (runtime.hashCode) +
-    (exists.hashCode);
+      // ignore: unnecessary_parenthesis
+      (httpStatusCode.hashCode) +
+      (message.hashCode) +
+      (requestData.hashCode) +
+      (runtime.hashCode) +
+      (exists.hashCode);
 
   @override
-  String toString() => 'WebAuthnCredentialExistsRsp[httpStatusCode=$httpStatusCode, message=$message, requestData=$requestData, runtime=$runtime, exists=$exists]';
+  String toString() =>
+      'WebAuthnCredentialExistsRsp[httpStatusCode=$httpStatusCode, message=$message, requestData=$requestData, runtime=$runtime, exists=$exists]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'httpStatusCode'] = this.httpStatusCode;
-      json[r'message'] = this.message;
-      json[r'requestData'] = this.requestData;
-      json[r'runtime'] = this.runtime;
-      json[r'exists'] = this.exists;
+    json[r'httpStatusCode'] = this.httpStatusCode;
+    json[r'message'] = this.message;
+    json[r'requestData'] = this.requestData;
+    json[r'runtime'] = this.runtime;
+    json[r'exists'] = this.exists;
     return json;
   }
 
@@ -77,8 +80,10 @@ class WebAuthnCredentialExistsRsp {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "WebAuthnCredentialExistsRsp[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "WebAuthnCredentialExistsRsp[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "WebAuthnCredentialExistsRsp[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "WebAuthnCredentialExistsRsp[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -94,7 +99,10 @@ class WebAuthnCredentialExistsRsp {
     return null;
   }
 
-  static List<WebAuthnCredentialExistsRsp> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<WebAuthnCredentialExistsRsp> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <WebAuthnCredentialExistsRsp>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -122,13 +130,19 @@ class WebAuthnCredentialExistsRsp {
   }
 
   // maps a json object with a list of WebAuthnCredentialExistsRsp-objects as value to a dart map
-  static Map<String, List<WebAuthnCredentialExistsRsp>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<WebAuthnCredentialExistsRsp>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<WebAuthnCredentialExistsRsp>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = WebAuthnCredentialExistsRsp.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = WebAuthnCredentialExistsRsp.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -143,4 +157,3 @@ class WebAuthnCredentialExistsRsp {
     'exists',
   };
 }
-

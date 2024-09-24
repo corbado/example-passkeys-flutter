@@ -50,32 +50,35 @@ class WebAuthnRegisterStartReq {
   WebAuthnRegisterStartReqCredentialStatusEnum? credentialStatus;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is WebAuthnRegisterStartReq &&
-     other.origin == origin &&
-     other.username == username &&
-     other.clientInfo == clientInfo &&
-     other.userFullName == userFullName &&
-     other.requestID == requestID &&
-     other.credentialStatus == credentialStatus;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is WebAuthnRegisterStartReq &&
+          other.origin == origin &&
+          other.username == username &&
+          other.clientInfo == clientInfo &&
+          other.userFullName == userFullName &&
+          other.requestID == requestID &&
+          other.credentialStatus == credentialStatus;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (origin.hashCode) +
-    (username.hashCode) +
-    (clientInfo.hashCode) +
-    (userFullName == null ? 0 : userFullName!.hashCode) +
-    (requestID == null ? 0 : requestID!.hashCode) +
-    (credentialStatus == null ? 0 : credentialStatus!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (origin.hashCode) +
+      (username.hashCode) +
+      (clientInfo.hashCode) +
+      (userFullName == null ? 0 : userFullName!.hashCode) +
+      (requestID == null ? 0 : requestID!.hashCode) +
+      (credentialStatus == null ? 0 : credentialStatus!.hashCode);
 
   @override
-  String toString() => 'WebAuthnRegisterStartReq[origin=$origin, username=$username, clientInfo=$clientInfo, userFullName=$userFullName, requestID=$requestID, credentialStatus=$credentialStatus]';
+  String toString() =>
+      'WebAuthnRegisterStartReq[origin=$origin, username=$username, clientInfo=$clientInfo, userFullName=$userFullName, requestID=$requestID, credentialStatus=$credentialStatus]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'origin'] = this.origin;
-      json[r'username'] = this.username;
-      json[r'clientInfo'] = this.clientInfo;
+    json[r'origin'] = this.origin;
+    json[r'username'] = this.username;
+    json[r'clientInfo'] = this.clientInfo;
     if (this.userFullName != null) {
       json[r'userFullName'] = this.userFullName;
     } else {
@@ -106,8 +109,10 @@ class WebAuthnRegisterStartReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "WebAuthnRegisterStartReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "WebAuthnRegisterStartReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "WebAuthnRegisterStartReq[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "WebAuthnRegisterStartReq[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -118,13 +123,17 @@ class WebAuthnRegisterStartReq {
         clientInfo: ClientInfo.fromJson(json[r'clientInfo'])!,
         userFullName: mapValueOfType<String>(json, r'userFullName'),
         requestID: mapValueOfType<String>(json, r'requestID'),
-        credentialStatus: WebAuthnRegisterStartReqCredentialStatusEnum.fromJson(json[r'credentialStatus']),
+        credentialStatus: WebAuthnRegisterStartReqCredentialStatusEnum.fromJson(
+            json[r'credentialStatus']),
       );
     }
     return null;
   }
 
-  static List<WebAuthnRegisterStartReq> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<WebAuthnRegisterStartReq> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <WebAuthnRegisterStartReq>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -152,13 +161,19 @@ class WebAuthnRegisterStartReq {
   }
 
   // maps a json object with a list of WebAuthnRegisterStartReq-objects as value to a dart map
-  static Map<String, List<WebAuthnRegisterStartReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<WebAuthnRegisterStartReq>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<WebAuthnRegisterStartReq>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = WebAuthnRegisterStartReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = WebAuthnRegisterStartReq.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -185,8 +200,10 @@ class WebAuthnRegisterStartReqCredentialStatusEnum {
 
   String toJson() => value;
 
-  static const active = WebAuthnRegisterStartReqCredentialStatusEnum._(r'active');
-  static const pending = WebAuthnRegisterStartReqCredentialStatusEnum._(r'pending');
+  static const active =
+      WebAuthnRegisterStartReqCredentialStatusEnum._(r'active');
+  static const pending =
+      WebAuthnRegisterStartReqCredentialStatusEnum._(r'pending');
 
   /// List of all possible values in this [enum][WebAuthnRegisterStartReqCredentialStatusEnum].
   static const values = <WebAuthnRegisterStartReqCredentialStatusEnum>[
@@ -194,13 +211,20 @@ class WebAuthnRegisterStartReqCredentialStatusEnum {
     pending,
   ];
 
-  static WebAuthnRegisterStartReqCredentialStatusEnum? fromJson(dynamic value) => WebAuthnRegisterStartReqCredentialStatusEnumTypeTransformer().decode(value);
+  static WebAuthnRegisterStartReqCredentialStatusEnum? fromJson(
+          dynamic value) =>
+      WebAuthnRegisterStartReqCredentialStatusEnumTypeTransformer()
+          .decode(value);
 
-  static List<WebAuthnRegisterStartReqCredentialStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<WebAuthnRegisterStartReqCredentialStatusEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <WebAuthnRegisterStartReqCredentialStatusEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
-        final value = WebAuthnRegisterStartReqCredentialStatusEnum.fromJson(row);
+        final value =
+            WebAuthnRegisterStartReqCredentialStatusEnum.fromJson(row);
         if (value != null) {
           result.add(value);
         }
@@ -213,11 +237,14 @@ class WebAuthnRegisterStartReqCredentialStatusEnum {
 /// Transformation class that can [encode] an instance of [WebAuthnRegisterStartReqCredentialStatusEnum] to String,
 /// and [decode] dynamic data back to [WebAuthnRegisterStartReqCredentialStatusEnum].
 class WebAuthnRegisterStartReqCredentialStatusEnumTypeTransformer {
-  factory WebAuthnRegisterStartReqCredentialStatusEnumTypeTransformer() => _instance ??= const WebAuthnRegisterStartReqCredentialStatusEnumTypeTransformer._();
+  factory WebAuthnRegisterStartReqCredentialStatusEnumTypeTransformer() =>
+      _instance ??=
+          const WebAuthnRegisterStartReqCredentialStatusEnumTypeTransformer._();
 
   const WebAuthnRegisterStartReqCredentialStatusEnumTypeTransformer._();
 
-  String encode(WebAuthnRegisterStartReqCredentialStatusEnum data) => data.value;
+  String encode(WebAuthnRegisterStartReqCredentialStatusEnum data) =>
+      data.value;
 
   /// Decodes a [dynamic value][data] to a WebAuthnRegisterStartReqCredentialStatusEnum.
   ///
@@ -227,11 +254,14 @@ class WebAuthnRegisterStartReqCredentialStatusEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  WebAuthnRegisterStartReqCredentialStatusEnum? decode(dynamic data, {bool allowNull = true}) {
+  WebAuthnRegisterStartReqCredentialStatusEnum? decode(dynamic data,
+      {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'active': return WebAuthnRegisterStartReqCredentialStatusEnum.active;
-        case r'pending': return WebAuthnRegisterStartReqCredentialStatusEnum.pending;
+        case r'active':
+          return WebAuthnRegisterStartReqCredentialStatusEnum.active;
+        case r'pending':
+          return WebAuthnRegisterStartReqCredentialStatusEnum.pending;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -244,5 +274,3 @@ class WebAuthnRegisterStartReqCredentialStatusEnumTypeTransformer {
   /// Singleton [WebAuthnRegisterStartReqCredentialStatusEnumTypeTransformer] instance.
   static WebAuthnRegisterStartReqCredentialStatusEnumTypeTransformer? _instance;
 }
-
-

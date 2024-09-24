@@ -10,9 +10,9 @@
 
 part of openapi.api;
 
-
 class SessionsApi {
-  SessionsApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
+  SessionsApi([ApiClient? apiClient])
+      : apiClient = apiClient ?? defaultApiClient;
 
   final ApiClient apiClient;
 
@@ -24,10 +24,12 @@ class SessionsApi {
   ///
   /// * [String] sessionID (required):
   ///   ID of session
-  Future<Response> longSessionGetWithHttpInfo(String sessionID,) async {
+  Future<Response> longSessionGetWithHttpInfo(
+    String sessionID,
+  ) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/longSessions/{sessionID}'
-      .replaceAll('{sessionID}', sessionID);
+    final path =
+        r'/v1/longSessions/{sessionID}'.replaceAll('{sessionID}', sessionID);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -37,7 +39,6 @@ class SessionsApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -56,17 +57,24 @@ class SessionsApi {
   ///
   /// * [String] sessionID (required):
   ///   ID of session
-  Future<LongSessionGetRsp?> longSessionGet(String sessionID,) async {
-    final response = await longSessionGetWithHttpInfo(sessionID,);
+  Future<LongSessionGetRsp?> longSessionGet(
+    String sessionID,
+  ) async {
+    final response = await longSessionGetWithHttpInfo(
+      sessionID,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'LongSessionGetRsp',) as LongSessionGetRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'LongSessionGetRsp',
+      ) as LongSessionGetRsp;
     }
     return null;
   }
@@ -94,7 +102,14 @@ class SessionsApi {
   ///
   /// * [int] pageSize:
   ///   Number of items per page
-  Future<Response> longSessionListWithHttpInfo({ String? remoteAddress, String? userAgent, String? sort, List<String>? filterLeftSquareBracketRightSquareBracket, int? page, int? pageSize, }) async {
+  Future<Response> longSessionListWithHttpInfo({
+    String? remoteAddress,
+    String? userAgent,
+    String? sort,
+    List<String>? filterLeftSquareBracketRightSquareBracket,
+    int? page,
+    int? pageSize,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/longSessions';
 
@@ -115,7 +130,8 @@ class SessionsApi {
       queryParams.addAll(_queryParams('', 'sort', sort));
     }
     if (filterLeftSquareBracketRightSquareBracket != null) {
-      queryParams.addAll(_queryParams('multi', 'filter[]', filterLeftSquareBracketRightSquareBracket));
+      queryParams.addAll(_queryParams(
+          'multi', 'filter[]', filterLeftSquareBracketRightSquareBracket));
     }
     if (page != null) {
       queryParams.addAll(_queryParams('', 'page', page));
@@ -125,7 +141,6 @@ class SessionsApi {
     }
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -159,17 +174,35 @@ class SessionsApi {
   ///
   /// * [int] pageSize:
   ///   Number of items per page
-  Future<LongSessionListRsp?> longSessionList({ String? remoteAddress, String? userAgent, String? sort, List<String>? filterLeftSquareBracketRightSquareBracket, int? page, int? pageSize, }) async {
-    final response = await longSessionListWithHttpInfo( remoteAddress: remoteAddress, userAgent: userAgent, sort: sort, filterLeftSquareBracketRightSquareBracket: filterLeftSquareBracketRightSquareBracket, page: page, pageSize: pageSize, );
+  Future<LongSessionListRsp?> longSessionList({
+    String? remoteAddress,
+    String? userAgent,
+    String? sort,
+    List<String>? filterLeftSquareBracketRightSquareBracket,
+    int? page,
+    int? pageSize,
+  }) async {
+    final response = await longSessionListWithHttpInfo(
+      remoteAddress: remoteAddress,
+      userAgent: userAgent,
+      sort: sort,
+      filterLeftSquareBracketRightSquareBracket:
+          filterLeftSquareBracketRightSquareBracket,
+      page: page,
+      pageSize: pageSize,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'LongSessionListRsp',) as LongSessionListRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'LongSessionListRsp',
+      ) as LongSessionListRsp;
     }
     return null;
   }
@@ -184,10 +217,13 @@ class SessionsApi {
   ///   ID of session
   ///
   /// * [LongSessionRevokeReq] longSessionRevokeReq:
-  Future<Response> longSessionRevokeWithHttpInfo(String sessionID, { LongSessionRevokeReq? longSessionRevokeReq, }) async {
+  Future<Response> longSessionRevokeWithHttpInfo(
+    String sessionID, {
+    LongSessionRevokeReq? longSessionRevokeReq,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/longSessions/{sessionID}/revoke'
-      .replaceAll('{sessionID}', sessionID);
+        .replaceAll('{sessionID}', sessionID);
 
     // ignore: prefer_final_locals
     Object? postBody = longSessionRevokeReq;
@@ -197,7 +233,6 @@ class SessionsApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -218,17 +253,26 @@ class SessionsApi {
   ///   ID of session
   ///
   /// * [LongSessionRevokeReq] longSessionRevokeReq:
-  Future<GenericRsp?> longSessionRevoke(String sessionID, { LongSessionRevokeReq? longSessionRevokeReq, }) async {
-    final response = await longSessionRevokeWithHttpInfo(sessionID,  longSessionRevokeReq: longSessionRevokeReq, );
+  Future<GenericRsp?> longSessionRevoke(
+    String sessionID, {
+    LongSessionRevokeReq? longSessionRevokeReq,
+  }) async {
+    final response = await longSessionRevokeWithHttpInfo(
+      sessionID,
+      longSessionRevokeReq: longSessionRevokeReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GenericRsp',) as GenericRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'GenericRsp',
+      ) as GenericRsp;
     }
     return null;
   }

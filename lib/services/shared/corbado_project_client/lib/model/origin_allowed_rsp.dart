@@ -36,32 +36,35 @@ class OriginAllowedRsp {
   bool allowed;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is OriginAllowedRsp &&
-     other.httpStatusCode == httpStatusCode &&
-     other.message == message &&
-     other.requestData == requestData &&
-     other.runtime == runtime &&
-     other.allowed == allowed;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is OriginAllowedRsp &&
+          other.httpStatusCode == httpStatusCode &&
+          other.message == message &&
+          other.requestData == requestData &&
+          other.runtime == runtime &&
+          other.allowed == allowed;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (httpStatusCode.hashCode) +
-    (message.hashCode) +
-    (requestData.hashCode) +
-    (runtime.hashCode) +
-    (allowed.hashCode);
+      // ignore: unnecessary_parenthesis
+      (httpStatusCode.hashCode) +
+      (message.hashCode) +
+      (requestData.hashCode) +
+      (runtime.hashCode) +
+      (allowed.hashCode);
 
   @override
-  String toString() => 'OriginAllowedRsp[httpStatusCode=$httpStatusCode, message=$message, requestData=$requestData, runtime=$runtime, allowed=$allowed]';
+  String toString() =>
+      'OriginAllowedRsp[httpStatusCode=$httpStatusCode, message=$message, requestData=$requestData, runtime=$runtime, allowed=$allowed]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'httpStatusCode'] = this.httpStatusCode;
-      json[r'message'] = this.message;
-      json[r'requestData'] = this.requestData;
-      json[r'runtime'] = this.runtime;
-      json[r'allowed'] = this.allowed;
+    json[r'httpStatusCode'] = this.httpStatusCode;
+    json[r'message'] = this.message;
+    json[r'requestData'] = this.requestData;
+    json[r'runtime'] = this.runtime;
+    json[r'allowed'] = this.allowed;
     return json;
   }
 
@@ -77,8 +80,10 @@ class OriginAllowedRsp {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "OriginAllowedRsp[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "OriginAllowedRsp[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "OriginAllowedRsp[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "OriginAllowedRsp[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -94,7 +99,10 @@ class OriginAllowedRsp {
     return null;
   }
 
-  static List<OriginAllowedRsp> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<OriginAllowedRsp> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <OriginAllowedRsp>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -122,13 +130,19 @@ class OriginAllowedRsp {
   }
 
   // maps a json object with a list of OriginAllowedRsp-objects as value to a dart map
-  static Map<String, List<OriginAllowedRsp>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<OriginAllowedRsp>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<OriginAllowedRsp>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = OriginAllowedRsp.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = OriginAllowedRsp.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -143,4 +157,3 @@ class OriginAllowedRsp {
     'allowed',
   };
 }
-

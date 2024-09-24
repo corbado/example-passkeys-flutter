@@ -41,38 +41,41 @@ class AndroidAppConfigItem {
   String updated;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is AndroidAppConfigItem &&
-     other.id == id &&
-     other.projectID == projectID &&
-     other.packageName == packageName &&
-     other.fingerprint == fingerprint &&
-     other.base64URL == base64URL &&
-     other.created == created &&
-     other.updated == updated;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is AndroidAppConfigItem &&
+          other.id == id &&
+          other.projectID == projectID &&
+          other.packageName == packageName &&
+          other.fingerprint == fingerprint &&
+          other.base64URL == base64URL &&
+          other.created == created &&
+          other.updated == updated;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (id.hashCode) +
-    (projectID.hashCode) +
-    (packageName.hashCode) +
-    (fingerprint.hashCode) +
-    (base64URL.hashCode) +
-    (created.hashCode) +
-    (updated.hashCode);
+      // ignore: unnecessary_parenthesis
+      (id.hashCode) +
+      (projectID.hashCode) +
+      (packageName.hashCode) +
+      (fingerprint.hashCode) +
+      (base64URL.hashCode) +
+      (created.hashCode) +
+      (updated.hashCode);
 
   @override
-  String toString() => 'AndroidAppConfigItem[id=$id, projectID=$projectID, packageName=$packageName, fingerprint=$fingerprint, base64URL=$base64URL, created=$created, updated=$updated]';
+  String toString() =>
+      'AndroidAppConfigItem[id=$id, projectID=$projectID, packageName=$packageName, fingerprint=$fingerprint, base64URL=$base64URL, created=$created, updated=$updated]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'id'] = this.id;
-      json[r'projectID'] = this.projectID;
-      json[r'packageName'] = this.packageName;
-      json[r'fingerprint'] = this.fingerprint;
-      json[r'base64URL'] = this.base64URL;
-      json[r'created'] = this.created;
-      json[r'updated'] = this.updated;
+    json[r'id'] = this.id;
+    json[r'projectID'] = this.projectID;
+    json[r'packageName'] = this.packageName;
+    json[r'fingerprint'] = this.fingerprint;
+    json[r'base64URL'] = this.base64URL;
+    json[r'created'] = this.created;
+    json[r'updated'] = this.updated;
     return json;
   }
 
@@ -88,8 +91,10 @@ class AndroidAppConfigItem {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "AndroidAppConfigItem[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "AndroidAppConfigItem[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "AndroidAppConfigItem[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "AndroidAppConfigItem[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -107,7 +112,10 @@ class AndroidAppConfigItem {
     return null;
   }
 
-  static List<AndroidAppConfigItem> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<AndroidAppConfigItem> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <AndroidAppConfigItem>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -135,13 +143,19 @@ class AndroidAppConfigItem {
   }
 
   // maps a json object with a list of AndroidAppConfigItem-objects as value to a dart map
-  static Map<String, List<AndroidAppConfigItem>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<AndroidAppConfigItem>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<AndroidAppConfigItem>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = AndroidAppConfigItem.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = AndroidAppConfigItem.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -158,4 +172,3 @@ class AndroidAppConfigItem {
     'updated',
   };
 }
-

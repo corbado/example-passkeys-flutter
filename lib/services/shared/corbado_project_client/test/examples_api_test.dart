@@ -11,7 +11,6 @@
 import 'package:backend_api_public/api.dart';
 import 'package:test/test.dart';
 
-
 /// tests for ExamplesApi
 void main() {
   // final instance = ExamplesApi();
@@ -23,6 +22,5 @@ void main() {
     test('test exampleGet', () async {
       // TODO
     });
-
   });
 }

@@ -91,40 +91,43 @@ class EmailLinkSendReq {
   ClientInfo? clientInfo;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is EmailLinkSendReq &&
-     other.email == email &&
-     other.create == create &&
-     other.redirect == redirect &&
-     other.tokenLifetime == tokenLifetime &&
-     other.userFullName == userFullName &&
-     other.templateName == templateName &&
-     other.purpose == purpose &&
-     other.additionalPayload == additionalPayload &&
-     other.requestID == requestID &&
-     other.clientInfo == clientInfo;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is EmailLinkSendReq &&
+          other.email == email &&
+          other.create == create &&
+          other.redirect == redirect &&
+          other.tokenLifetime == tokenLifetime &&
+          other.userFullName == userFullName &&
+          other.templateName == templateName &&
+          other.purpose == purpose &&
+          other.additionalPayload == additionalPayload &&
+          other.requestID == requestID &&
+          other.clientInfo == clientInfo;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (email.hashCode) +
-    (create.hashCode) +
-    (redirect.hashCode) +
-    (tokenLifetime == null ? 0 : tokenLifetime!.hashCode) +
-    (userFullName == null ? 0 : userFullName!.hashCode) +
-    (templateName == null ? 0 : templateName!.hashCode) +
-    (purpose == null ? 0 : purpose!.hashCode) +
-    (additionalPayload == null ? 0 : additionalPayload!.hashCode) +
-    (requestID == null ? 0 : requestID!.hashCode) +
-    (clientInfo == null ? 0 : clientInfo!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (email.hashCode) +
+      (create.hashCode) +
+      (redirect.hashCode) +
+      (tokenLifetime == null ? 0 : tokenLifetime!.hashCode) +
+      (userFullName == null ? 0 : userFullName!.hashCode) +
+      (templateName == null ? 0 : templateName!.hashCode) +
+      (purpose == null ? 0 : purpose!.hashCode) +
+      (additionalPayload == null ? 0 : additionalPayload!.hashCode) +
+      (requestID == null ? 0 : requestID!.hashCode) +
+      (clientInfo == null ? 0 : clientInfo!.hashCode);
 
   @override
-  String toString() => 'EmailLinkSendReq[email=$email, create=$create, redirect=$redirect, tokenLifetime=$tokenLifetime, userFullName=$userFullName, templateName=$templateName, purpose=$purpose, additionalPayload=$additionalPayload, requestID=$requestID, clientInfo=$clientInfo]';
+  String toString() =>
+      'EmailLinkSendReq[email=$email, create=$create, redirect=$redirect, tokenLifetime=$tokenLifetime, userFullName=$userFullName, templateName=$templateName, purpose=$purpose, additionalPayload=$additionalPayload, requestID=$requestID, clientInfo=$clientInfo]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'email'] = this.email;
-      json[r'create'] = this.create;
-      json[r'redirect'] = this.redirect;
+    json[r'email'] = this.email;
+    json[r'create'] = this.create;
+    json[r'redirect'] = this.redirect;
     if (this.tokenLifetime != null) {
       json[r'tokenLifetime'] = this.tokenLifetime;
     } else {
@@ -175,8 +178,10 @@ class EmailLinkSendReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "EmailLinkSendReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "EmailLinkSendReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "EmailLinkSendReq[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "EmailLinkSendReq[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -197,7 +202,10 @@ class EmailLinkSendReq {
     return null;
   }
 
-  static List<EmailLinkSendReq> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<EmailLinkSendReq> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <EmailLinkSendReq>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -225,13 +233,19 @@ class EmailLinkSendReq {
   }
 
   // maps a json object with a list of EmailLinkSendReq-objects as value to a dart map
-  static Map<String, List<EmailLinkSendReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<EmailLinkSendReq>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<EmailLinkSendReq>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = EmailLinkSendReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = EmailLinkSendReq.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -258,7 +272,8 @@ class EmailLinkSendReqPurposeEnum {
 
   String toJson() => value;
 
-  static const authentication = EmailLinkSendReqPurposeEnum._(r'authentication');
+  static const authentication =
+      EmailLinkSendReqPurposeEnum._(r'authentication');
   static const confirmation = EmailLinkSendReqPurposeEnum._(r'confirmation');
   static const invitation = EmailLinkSendReqPurposeEnum._(r'invitation');
 
@@ -269,9 +284,13 @@ class EmailLinkSendReqPurposeEnum {
     invitation,
   ];
 
-  static EmailLinkSendReqPurposeEnum? fromJson(dynamic value) => EmailLinkSendReqPurposeEnumTypeTransformer().decode(value);
+  static EmailLinkSendReqPurposeEnum? fromJson(dynamic value) =>
+      EmailLinkSendReqPurposeEnumTypeTransformer().decode(value);
 
-  static List<EmailLinkSendReqPurposeEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<EmailLinkSendReqPurposeEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <EmailLinkSendReqPurposeEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -288,7 +307,8 @@ class EmailLinkSendReqPurposeEnum {
 /// Transformation class that can [encode] an instance of [EmailLinkSendReqPurposeEnum] to String,
 /// and [decode] dynamic data back to [EmailLinkSendReqPurposeEnum].
 class EmailLinkSendReqPurposeEnumTypeTransformer {
-  factory EmailLinkSendReqPurposeEnumTypeTransformer() => _instance ??= const EmailLinkSendReqPurposeEnumTypeTransformer._();
+  factory EmailLinkSendReqPurposeEnumTypeTransformer() =>
+      _instance ??= const EmailLinkSendReqPurposeEnumTypeTransformer._();
 
   const EmailLinkSendReqPurposeEnumTypeTransformer._();
 
@@ -305,9 +325,12 @@ class EmailLinkSendReqPurposeEnumTypeTransformer {
   EmailLinkSendReqPurposeEnum? decode(dynamic data, {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'authentication': return EmailLinkSendReqPurposeEnum.authentication;
-        case r'confirmation': return EmailLinkSendReqPurposeEnum.confirmation;
-        case r'invitation': return EmailLinkSendReqPurposeEnum.invitation;
+        case r'authentication':
+          return EmailLinkSendReqPurposeEnum.authentication;
+        case r'confirmation':
+          return EmailLinkSendReqPurposeEnum.confirmation;
+        case r'invitation':
+          return EmailLinkSendReqPurposeEnum.invitation;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -320,5 +343,3 @@ class EmailLinkSendReqPurposeEnumTypeTransformer {
   /// Singleton [EmailLinkSendReqPurposeEnumTypeTransformer] instance.
   static EmailLinkSendReqPurposeEnumTypeTransformer? _instance;
 }
-
-

@@ -12,7 +12,10 @@ void main() async {
   runApp(const LoadingScreen());
 
   final corbadoAuth = CorbadoAuth();
-  await corbadoAuth.init("pro-1");
+  await corbadoAuth.init(
+      projectId: "pro-1",
+      customDomain: "https://auth.corbado.com"
+  );
 
   final packageInfo = await PackageInfo.fromPlatform();
 

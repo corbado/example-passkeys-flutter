@@ -35,8 +35,5 @@ void main() {
     test('to test the property `email`', () async {
       // TODO
     });
-
-
   });
-
 }

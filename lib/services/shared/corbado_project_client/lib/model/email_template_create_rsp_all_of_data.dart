@@ -19,20 +19,23 @@ class EmailTemplateCreateRspAllOfData {
   String emailTemplateID;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is EmailTemplateCreateRspAllOfData &&
-     other.emailTemplateID == emailTemplateID;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is EmailTemplateCreateRspAllOfData &&
+          other.emailTemplateID == emailTemplateID;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (emailTemplateID.hashCode);
+      // ignore: unnecessary_parenthesis
+      (emailTemplateID.hashCode);
 
   @override
-  String toString() => 'EmailTemplateCreateRspAllOfData[emailTemplateID=$emailTemplateID]';
+  String toString() =>
+      'EmailTemplateCreateRspAllOfData[emailTemplateID=$emailTemplateID]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'emailTemplateID'] = this.emailTemplateID;
+    json[r'emailTemplateID'] = this.emailTemplateID;
     return json;
   }
 
@@ -48,8 +51,10 @@ class EmailTemplateCreateRspAllOfData {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "EmailTemplateCreateRspAllOfData[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "EmailTemplateCreateRspAllOfData[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "EmailTemplateCreateRspAllOfData[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "EmailTemplateCreateRspAllOfData[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -61,7 +66,10 @@ class EmailTemplateCreateRspAllOfData {
     return null;
   }
 
-  static List<EmailTemplateCreateRspAllOfData> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<EmailTemplateCreateRspAllOfData> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <EmailTemplateCreateRspAllOfData>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -74,7 +82,8 @@ class EmailTemplateCreateRspAllOfData {
     return result.toList(growable: growable);
   }
 
-  static Map<String, EmailTemplateCreateRspAllOfData> mapFromJson(dynamic json) {
+  static Map<String, EmailTemplateCreateRspAllOfData> mapFromJson(
+      dynamic json) {
     final map = <String, EmailTemplateCreateRspAllOfData>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
@@ -89,13 +98,19 @@ class EmailTemplateCreateRspAllOfData {
   }
 
   // maps a json object with a list of EmailTemplateCreateRspAllOfData-objects as value to a dart map
-  static Map<String, List<EmailTemplateCreateRspAllOfData>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<EmailTemplateCreateRspAllOfData>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<EmailTemplateCreateRspAllOfData>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = EmailTemplateCreateRspAllOfData.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = EmailTemplateCreateRspAllOfData.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -106,4 +121,3 @@ class EmailTemplateCreateRspAllOfData {
     'emailTemplateID',
   };
 }
-

@@ -43,44 +43,47 @@ class UserStats {
   int failedLogins;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is UserStats &&
-     other.timePoint == timePoint &&
-     other.totalUsers == totalUsers &&
-     other.signUps == signUps &&
-     other.activeUsers == activeUsers &&
-     other.countPasskeyLogin == countPasskeyLogin &&
-     other.countEmailLogin == countEmailLogin &&
-     other.countPasswordLogin == countPasswordLogin &&
-     other.successfulLogins == successfulLogins &&
-     other.failedLogins == failedLogins;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserStats &&
+          other.timePoint == timePoint &&
+          other.totalUsers == totalUsers &&
+          other.signUps == signUps &&
+          other.activeUsers == activeUsers &&
+          other.countPasskeyLogin == countPasskeyLogin &&
+          other.countEmailLogin == countEmailLogin &&
+          other.countPasswordLogin == countPasswordLogin &&
+          other.successfulLogins == successfulLogins &&
+          other.failedLogins == failedLogins;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (timePoint.hashCode) +
-    (totalUsers.hashCode) +
-    (signUps.hashCode) +
-    (activeUsers.hashCode) +
-    (countPasskeyLogin.hashCode) +
-    (countEmailLogin.hashCode) +
-    (countPasswordLogin.hashCode) +
-    (successfulLogins.hashCode) +
-    (failedLogins.hashCode);
+      // ignore: unnecessary_parenthesis
+      (timePoint.hashCode) +
+      (totalUsers.hashCode) +
+      (signUps.hashCode) +
+      (activeUsers.hashCode) +
+      (countPasskeyLogin.hashCode) +
+      (countEmailLogin.hashCode) +
+      (countPasswordLogin.hashCode) +
+      (successfulLogins.hashCode) +
+      (failedLogins.hashCode);
 
   @override
-  String toString() => 'UserStats[timePoint=$timePoint, totalUsers=$totalUsers, signUps=$signUps, activeUsers=$activeUsers, countPasskeyLogin=$countPasskeyLogin, countEmailLogin=$countEmailLogin, countPasswordLogin=$countPasswordLogin, successfulLogins=$successfulLogins, failedLogins=$failedLogins]';
+  String toString() =>
+      'UserStats[timePoint=$timePoint, totalUsers=$totalUsers, signUps=$signUps, activeUsers=$activeUsers, countPasskeyLogin=$countPasskeyLogin, countEmailLogin=$countEmailLogin, countPasswordLogin=$countPasswordLogin, successfulLogins=$successfulLogins, failedLogins=$failedLogins]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'timePoint'] = this.timePoint;
-      json[r'totalUsers'] = this.totalUsers;
-      json[r'signUps'] = this.signUps;
-      json[r'activeUsers'] = this.activeUsers;
-      json[r'countPasskeyLogin'] = this.countPasskeyLogin;
-      json[r'countEmailLogin'] = this.countEmailLogin;
-      json[r'countPasswordLogin'] = this.countPasswordLogin;
-      json[r'successfulLogins'] = this.successfulLogins;
-      json[r'failedLogins'] = this.failedLogins;
+    json[r'timePoint'] = this.timePoint;
+    json[r'totalUsers'] = this.totalUsers;
+    json[r'signUps'] = this.signUps;
+    json[r'activeUsers'] = this.activeUsers;
+    json[r'countPasskeyLogin'] = this.countPasskeyLogin;
+    json[r'countEmailLogin'] = this.countEmailLogin;
+    json[r'countPasswordLogin'] = this.countPasswordLogin;
+    json[r'successfulLogins'] = this.successfulLogins;
+    json[r'failedLogins'] = this.failedLogins;
     return json;
   }
 
@@ -96,8 +99,10 @@ class UserStats {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UserStats[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UserStats[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "UserStats[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "UserStats[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -117,7 +122,10 @@ class UserStats {
     return null;
   }
 
-  static List<UserStats> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<UserStats> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <UserStats>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -145,13 +153,19 @@ class UserStats {
   }
 
   // maps a json object with a list of UserStats-objects as value to a dart map
-  static Map<String, List<UserStats>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<UserStats>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<UserStats>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = UserStats.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = UserStats.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -170,4 +184,3 @@ class UserStats {
     'failedLogins',
   };
 }
-

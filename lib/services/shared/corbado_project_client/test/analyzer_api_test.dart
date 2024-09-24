@@ -11,7 +11,6 @@
 import 'package:backend_api_public/api.dart';
 import 'package:test/test.dart';
 
-
 /// tests for AnalyzerApi
 void main() {
   // final instance = AnalyzerApi();
@@ -79,6 +78,5 @@ void main() {
     test('test trackingStatsList', () async {
       // TODO
     });
-
   });
 }

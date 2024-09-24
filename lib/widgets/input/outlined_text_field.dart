@@ -45,14 +45,14 @@ class OutlinedTextField extends StatelessWidget {
             const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: color, width: 2.0),
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(10),
         ),
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: color,
               width: 2.0,
             ),
-            borderRadius: BorderRadius.circular(30)),
+            borderRadius: BorderRadius.circular(10)),
         hintText: hintText,
       ),
     );

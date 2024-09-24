@@ -80,65 +80,68 @@ class RequestLog {
   List<String> details;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is RequestLog &&
-     other.requestID == requestID &&
-     other.projectID == projectID &&
-     other.userID == userID &&
-     other.application == application &&
-     other.method == method &&
-     other.endpoint == endpoint &&
-     other.source_ == source_ &&
-     other.request == request &&
-     other.queryParams == queryParams &&
-     other.responseStatus == responseStatus &&
-     other.response == response &&
-     other.runtime == runtime &&
-     other.remoteAddress == remoteAddress &&
-     other.created == created &&
-     other.tags == tags &&
-     other.details == details;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is RequestLog &&
+          other.requestID == requestID &&
+          other.projectID == projectID &&
+          other.userID == userID &&
+          other.application == application &&
+          other.method == method &&
+          other.endpoint == endpoint &&
+          other.source_ == source_ &&
+          other.request == request &&
+          other.queryParams == queryParams &&
+          other.responseStatus == responseStatus &&
+          other.response == response &&
+          other.runtime == runtime &&
+          other.remoteAddress == remoteAddress &&
+          other.created == created &&
+          other.tags == tags &&
+          other.details == details;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (requestID.hashCode) +
-    (projectID.hashCode) +
-    (userID.hashCode) +
-    (application.hashCode) +
-    (method.hashCode) +
-    (endpoint.hashCode) +
-    (source_.hashCode) +
-    (request.hashCode) +
-    (queryParams.hashCode) +
-    (responseStatus.hashCode) +
-    (response.hashCode) +
-    (runtime.hashCode) +
-    (remoteAddress.hashCode) +
-    (created.hashCode) +
-    (tags.hashCode) +
-    (details.hashCode);
+      // ignore: unnecessary_parenthesis
+      (requestID.hashCode) +
+      (projectID.hashCode) +
+      (userID.hashCode) +
+      (application.hashCode) +
+      (method.hashCode) +
+      (endpoint.hashCode) +
+      (source_.hashCode) +
+      (request.hashCode) +
+      (queryParams.hashCode) +
+      (responseStatus.hashCode) +
+      (response.hashCode) +
+      (runtime.hashCode) +
+      (remoteAddress.hashCode) +
+      (created.hashCode) +
+      (tags.hashCode) +
+      (details.hashCode);
 
   @override
-  String toString() => 'RequestLog[requestID=$requestID, projectID=$projectID, userID=$userID, application=$application, method=$method, endpoint=$endpoint, source_=$source_, request=$request, queryParams=$queryParams, responseStatus=$responseStatus, response=$response, runtime=$runtime, remoteAddress=$remoteAddress, created=$created, tags=$tags, details=$details]';
+  String toString() =>
+      'RequestLog[requestID=$requestID, projectID=$projectID, userID=$userID, application=$application, method=$method, endpoint=$endpoint, source_=$source_, request=$request, queryParams=$queryParams, responseStatus=$responseStatus, response=$response, runtime=$runtime, remoteAddress=$remoteAddress, created=$created, tags=$tags, details=$details]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'requestID'] = this.requestID;
-      json[r'projectID'] = this.projectID;
-      json[r'userID'] = this.userID;
-      json[r'application'] = this.application;
-      json[r'method'] = this.method;
-      json[r'endpoint'] = this.endpoint;
-      json[r'source'] = this.source_;
-      json[r'request'] = this.request;
-      json[r'queryParams'] = this.queryParams;
-      json[r'responseStatus'] = this.responseStatus;
-      json[r'response'] = this.response;
-      json[r'runtime'] = this.runtime;
-      json[r'remoteAddress'] = this.remoteAddress;
-      json[r'created'] = this.created;
-      json[r'tags'] = this.tags;
-      json[r'details'] = this.details;
+    json[r'requestID'] = this.requestID;
+    json[r'projectID'] = this.projectID;
+    json[r'userID'] = this.userID;
+    json[r'application'] = this.application;
+    json[r'method'] = this.method;
+    json[r'endpoint'] = this.endpoint;
+    json[r'source'] = this.source_;
+    json[r'request'] = this.request;
+    json[r'queryParams'] = this.queryParams;
+    json[r'responseStatus'] = this.responseStatus;
+    json[r'response'] = this.response;
+    json[r'runtime'] = this.runtime;
+    json[r'remoteAddress'] = this.remoteAddress;
+    json[r'created'] = this.created;
+    json[r'tags'] = this.tags;
+    json[r'details'] = this.details;
     return json;
   }
 
@@ -154,8 +157,10 @@ class RequestLog {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RequestLog[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RequestLog[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "RequestLog[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "RequestLog[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -184,7 +189,10 @@ class RequestLog {
     return null;
   }
 
-  static List<RequestLog> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<RequestLog> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <RequestLog>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -212,13 +220,19 @@ class RequestLog {
   }
 
   // maps a json object with a list of RequestLog-objects as value to a dart map
-  static Map<String, List<RequestLog>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<RequestLog>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<RequestLog>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = RequestLog.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = RequestLog.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -244,4 +258,3 @@ class RequestLog {
     'details',
   };
 }
-

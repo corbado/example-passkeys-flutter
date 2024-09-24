@@ -42,31 +42,34 @@ class SmsCodeValidateRsp {
   String? loginToken;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is SmsCodeValidateRsp &&
-     other.httpStatusCode == httpStatusCode &&
-     other.message == message &&
-     other.requestData == requestData &&
-     other.runtime == runtime &&
-     other.loginToken == loginToken;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SmsCodeValidateRsp &&
+          other.httpStatusCode == httpStatusCode &&
+          other.message == message &&
+          other.requestData == requestData &&
+          other.runtime == runtime &&
+          other.loginToken == loginToken;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (httpStatusCode.hashCode) +
-    (message.hashCode) +
-    (requestData.hashCode) +
-    (runtime.hashCode) +
-    (loginToken == null ? 0 : loginToken!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (httpStatusCode.hashCode) +
+      (message.hashCode) +
+      (requestData.hashCode) +
+      (runtime.hashCode) +
+      (loginToken == null ? 0 : loginToken!.hashCode);
 
   @override
-  String toString() => 'SmsCodeValidateRsp[httpStatusCode=$httpStatusCode, message=$message, requestData=$requestData, runtime=$runtime, loginToken=$loginToken]';
+  String toString() =>
+      'SmsCodeValidateRsp[httpStatusCode=$httpStatusCode, message=$message, requestData=$requestData, runtime=$runtime, loginToken=$loginToken]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'httpStatusCode'] = this.httpStatusCode;
-      json[r'message'] = this.message;
-      json[r'requestData'] = this.requestData;
-      json[r'runtime'] = this.runtime;
+    json[r'httpStatusCode'] = this.httpStatusCode;
+    json[r'message'] = this.message;
+    json[r'requestData'] = this.requestData;
+    json[r'runtime'] = this.runtime;
     if (this.loginToken != null) {
       json[r'loginToken'] = this.loginToken;
     } else {
@@ -87,8 +90,10 @@ class SmsCodeValidateRsp {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "SmsCodeValidateRsp[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "SmsCodeValidateRsp[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "SmsCodeValidateRsp[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "SmsCodeValidateRsp[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -104,7 +109,10 @@ class SmsCodeValidateRsp {
     return null;
   }
 
-  static List<SmsCodeValidateRsp> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<SmsCodeValidateRsp> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <SmsCodeValidateRsp>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -132,13 +140,19 @@ class SmsCodeValidateRsp {
   }
 
   // maps a json object with a list of SmsCodeValidateRsp-objects as value to a dart map
-  static Map<String, List<SmsCodeValidateRsp>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<SmsCodeValidateRsp>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<SmsCodeValidateRsp>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = SmsCodeValidateRsp.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = SmsCodeValidateRsp.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -152,4 +166,3 @@ class SmsCodeValidateRsp {
     'runtime',
   };
 }
-

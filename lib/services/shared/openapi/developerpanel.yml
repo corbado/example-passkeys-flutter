@@ -1,0 +1,203 @@
+openapi: 3.0.3
+
+info:
+  title: Corbado Developer Panel API
+  description: API for managing projects (list, create, and delete projects).
+  version: 1.0.0
+
+servers:
+  - url: https://app.corbado.com/api
+
+tags:
+  - name: Users
+    description: All API calls to handle users
+  - name: Projects
+    description: All API calls to handle projects
+
+paths:
+  /v1/projects:
+    get:
+      summary: List projects
+      description: Returns a paginated list of projects for the authenticated user.
+      tags:
+        - Projects
+      parameters:
+        - name: page
+          in: query
+          description: The page number for pagination (defaults to 1).
+          required: false
+          schema:
+            type: integer
+            example: 1
+        - name: pageSize
+          in: query
+          description: The number of items per page (defaults to 10, max 100).
+          required: false
+          schema:
+            type: integer
+            example: 10
+      responses:
+        200:
+          description: A list of project previews.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      projects:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/project'
+                      more:
+                        type: boolean
+        401:
+          description: Unauthorized. The user is not authenticated.
+        500:
+          description: Internal Server Error.
+    post:
+      summary: Create a new project
+      description: Creates a new project for the authenticated user.
+      tags:
+        - Projects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name of the project (minimum 3 characters).
+                  example: "My New Project"
+              required:
+                - name
+      responses:
+        200:
+          description: Project created successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  projectId:
+                    type: string
+                    description: The ID of the created project.
+        400:
+          description: Bad Request. The request body is invalid (e.g., name is too short).
+        401:
+          description: Unauthorized. The user is not authenticated.
+        500:
+          description: Internal Server Error.
+  /v1/projects/delete:
+    delete:
+      summary: Delete a project
+      description: Deletes a project with the specified project ID. Only the owner can delete the project.
+      tags:
+        - Projects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                projectId:
+                  type: string
+                  description: The ID of the project to be deleted.
+                  example: "abc123"
+              required:
+                - projectId
+      responses:
+        200:
+          description: Project deleted successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  projectId:
+                    type: string
+                    description: The ID of the deleted project.
+        400:
+          description: Bad Request. The request body is invalid or missing required fields.
+        401:
+          description: Unauthorized. The user is not authenticated.
+        403:
+          description: Forbidden. The user is not the owner of the project.
+        500:
+          description: Internal Server Error.
+
+  /v1/users:
+    put:
+      summary: Update username
+      description: Updates username of the authenticated user.
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The new name of the user.
+      responses:
+        204:
+          description: User deleted successfully
+
+    delete:
+      summary: Delete user
+      description: Deletes the authenticated user.
+      tags:
+        - Users
+      responses:
+        204:
+          description: User deleted successfully.
+
+
+components:
+  schemas:
+    user:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the user.
+        email:
+          type: string
+          description: The email of the user.
+    project:
+      type: object
+      required:
+        - projectID
+        - name
+        - created
+        - updated
+      properties:
+        projectID:
+          type: string
+          description: The ID of the project.
+        name:
+          type: string
+          description: The name of the project.
+        description:
+          type: string
+          description: A brief description of the project.
+        created:
+          type: string
+        updated:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: The error message.

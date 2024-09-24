@@ -10,9 +10,9 @@
 
 part of openapi.api;
 
-
 class IOSAppConfigApi {
-  IOSAppConfigApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
+  IOSAppConfigApi([ApiClient? apiClient])
+      : apiClient = apiClient ?? defaultApiClient;
 
   final ApiClient apiClient;
 
@@ -23,7 +23,9 @@ class IOSAppConfigApi {
   /// Parameters:
   ///
   /// * [IOSAppConfigSaveReq] iOSAppConfigSaveReq (required):
-  Future<Response> iOSAppConfigCreateWithHttpInfo(IOSAppConfigSaveReq iOSAppConfigSaveReq,) async {
+  Future<Response> iOSAppConfigCreateWithHttpInfo(
+    IOSAppConfigSaveReq iOSAppConfigSaveReq,
+  ) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/iosappconfig';
 
@@ -35,7 +37,6 @@ class IOSAppConfigApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -53,17 +54,24 @@ class IOSAppConfigApi {
   /// Parameters:
   ///
   /// * [IOSAppConfigSaveReq] iOSAppConfigSaveReq (required):
-  Future<IOSAppConfigSaveRsp?> iOSAppConfigCreate(IOSAppConfigSaveReq iOSAppConfigSaveReq,) async {
-    final response = await iOSAppConfigCreateWithHttpInfo(iOSAppConfigSaveReq,);
+  Future<IOSAppConfigSaveRsp?> iOSAppConfigCreate(
+    IOSAppConfigSaveReq iOSAppConfigSaveReq,
+  ) async {
+    final response = await iOSAppConfigCreateWithHttpInfo(
+      iOSAppConfigSaveReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'IOSAppConfigSaveRsp',) as IOSAppConfigSaveRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'IOSAppConfigSaveRsp',
+      ) as IOSAppConfigSaveRsp;
     }
     return null;
   }
@@ -78,10 +86,13 @@ class IOSAppConfigApi {
   ///   iOS App Config ID from create
   ///
   /// * [IOSAppConfigDeleteReq] iOSAppConfigDeleteReq:
-  Future<Response> iOSAppConfigDeleteWithHttpInfo(String iosAppConfigID, { IOSAppConfigDeleteReq? iOSAppConfigDeleteReq, }) async {
+  Future<Response> iOSAppConfigDeleteWithHttpInfo(
+    String iosAppConfigID, {
+    IOSAppConfigDeleteReq? iOSAppConfigDeleteReq,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/iosappconfig/{iosAppConfigID}'
-      .replaceAll('{iosAppConfigID}', iosAppConfigID);
+        .replaceAll('{iosAppConfigID}', iosAppConfigID);
 
     // ignore: prefer_final_locals
     Object? postBody = iOSAppConfigDeleteReq;
@@ -91,7 +102,6 @@ class IOSAppConfigApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -112,17 +122,26 @@ class IOSAppConfigApi {
   ///   iOS App Config ID from create
   ///
   /// * [IOSAppConfigDeleteReq] iOSAppConfigDeleteReq:
-  Future<GenericRsp?> iOSAppConfigDelete(String iosAppConfigID, { IOSAppConfigDeleteReq? iOSAppConfigDeleteReq, }) async {
-    final response = await iOSAppConfigDeleteWithHttpInfo(iosAppConfigID,  iOSAppConfigDeleteReq: iOSAppConfigDeleteReq, );
+  Future<GenericRsp?> iOSAppConfigDelete(
+    String iosAppConfigID, {
+    IOSAppConfigDeleteReq? iOSAppConfigDeleteReq,
+  }) async {
+    final response = await iOSAppConfigDeleteWithHttpInfo(
+      iosAppConfigID,
+      iOSAppConfigDeleteReq: iOSAppConfigDeleteReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GenericRsp',) as GenericRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'GenericRsp',
+      ) as GenericRsp;
     }
     return null;
   }
@@ -142,7 +161,6 @@ class IOSAppConfigApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -164,9 +182,12 @@ class IOSAppConfigApi {
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'IOSAppConfigListRsp',) as IOSAppConfigListRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'IOSAppConfigListRsp',
+      ) as IOSAppConfigListRsp;
     }
     return null;
   }
@@ -181,10 +202,13 @@ class IOSAppConfigApi {
   ///   ID from iOS config create
   ///
   /// * [IOSAppConfigUpdateReq] iOSAppConfigUpdateReq:
-  Future<Response> iOSAppConfigPutWithHttpInfo(String iosAppConfigID, { IOSAppConfigUpdateReq? iOSAppConfigUpdateReq, }) async {
+  Future<Response> iOSAppConfigPutWithHttpInfo(
+    String iosAppConfigID, {
+    IOSAppConfigUpdateReq? iOSAppConfigUpdateReq,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/iosappconfig/{iosAppConfigID}'
-      .replaceAll('{iosAppConfigID}', iosAppConfigID);
+        .replaceAll('{iosAppConfigID}', iosAppConfigID);
 
     // ignore: prefer_final_locals
     Object? postBody = iOSAppConfigUpdateReq;
@@ -194,7 +218,6 @@ class IOSAppConfigApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -215,17 +238,26 @@ class IOSAppConfigApi {
   ///   ID from iOS config create
   ///
   /// * [IOSAppConfigUpdateReq] iOSAppConfigUpdateReq:
-  Future<IOSAppConfigUpdateRsp?> iOSAppConfigPut(String iosAppConfigID, { IOSAppConfigUpdateReq? iOSAppConfigUpdateReq, }) async {
-    final response = await iOSAppConfigPutWithHttpInfo(iosAppConfigID,  iOSAppConfigUpdateReq: iOSAppConfigUpdateReq, );
+  Future<IOSAppConfigUpdateRsp?> iOSAppConfigPut(
+    String iosAppConfigID, {
+    IOSAppConfigUpdateReq? iOSAppConfigUpdateReq,
+  }) async {
+    final response = await iOSAppConfigPutWithHttpInfo(
+      iosAppConfigID,
+      iOSAppConfigUpdateReq: iOSAppConfigUpdateReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'IOSAppConfigUpdateRsp',) as IOSAppConfigUpdateRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'IOSAppConfigUpdateRsp',
+      ) as IOSAppConfigUpdateRsp;
     }
     return null;
   }

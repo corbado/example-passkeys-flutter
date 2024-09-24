@@ -10,9 +10,9 @@
 
 part of openapi.api;
 
-
 class APISecretsApi {
-  APISecretsApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
+  APISecretsApi([ApiClient? apiClient])
+      : apiClient = apiClient ?? defaultApiClient;
 
   final ApiClient apiClient;
 
@@ -23,7 +23,9 @@ class APISecretsApi {
   /// Parameters:
   ///
   /// * [ProjectSecretCreateReq] projectSecretCreateReq:
-  Future<Response> projectSecretCreateWithHttpInfo({ ProjectSecretCreateReq? projectSecretCreateReq, }) async {
+  Future<Response> projectSecretCreateWithHttpInfo({
+    ProjectSecretCreateReq? projectSecretCreateReq,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/projectSecrets';
 
@@ -35,7 +37,6 @@ class APISecretsApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -53,17 +54,24 @@ class APISecretsApi {
   /// Parameters:
   ///
   /// * [ProjectSecretCreateReq] projectSecretCreateReq:
-  Future<ProjectSecretCreateRsp?> projectSecretCreate({ ProjectSecretCreateReq? projectSecretCreateReq, }) async {
-    final response = await projectSecretCreateWithHttpInfo( projectSecretCreateReq: projectSecretCreateReq, );
+  Future<ProjectSecretCreateRsp?> projectSecretCreate({
+    ProjectSecretCreateReq? projectSecretCreateReq,
+  }) async {
+    final response = await projectSecretCreateWithHttpInfo(
+      projectSecretCreateReq: projectSecretCreateReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ProjectSecretCreateRsp',) as ProjectSecretCreateRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'ProjectSecretCreateRsp',
+      ) as ProjectSecretCreateRsp;
     }
     return null;
   }
@@ -78,10 +86,13 @@ class APISecretsApi {
   ///   Secret ID from create
   ///
   /// * [ProjectSecretDeleteReq] projectSecretDeleteReq:
-  Future<Response> projectSecretDeleteWithHttpInfo(String secretID, { ProjectSecretDeleteReq? projectSecretDeleteReq, }) async {
+  Future<Response> projectSecretDeleteWithHttpInfo(
+    String secretID, {
+    ProjectSecretDeleteReq? projectSecretDeleteReq,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/projectSecrets/{secretID}'
-      .replaceAll('{secretID}', secretID);
+    final path =
+        r'/v1/projectSecrets/{secretID}'.replaceAll('{secretID}', secretID);
 
     // ignore: prefer_final_locals
     Object? postBody = projectSecretDeleteReq;
@@ -91,7 +102,6 @@ class APISecretsApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -112,17 +122,26 @@ class APISecretsApi {
   ///   Secret ID from create
   ///
   /// * [ProjectSecretDeleteReq] projectSecretDeleteReq:
-  Future<GenericRsp?> projectSecretDelete(String secretID, { ProjectSecretDeleteReq? projectSecretDeleteReq, }) async {
-    final response = await projectSecretDeleteWithHttpInfo(secretID,  projectSecretDeleteReq: projectSecretDeleteReq, );
+  Future<GenericRsp?> projectSecretDelete(
+    String secretID, {
+    ProjectSecretDeleteReq? projectSecretDeleteReq,
+  }) async {
+    final response = await projectSecretDeleteWithHttpInfo(
+      secretID,
+      projectSecretDeleteReq: projectSecretDeleteReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GenericRsp',) as GenericRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'GenericRsp',
+      ) as GenericRsp;
     }
     return null;
   }
@@ -142,7 +161,6 @@ class APISecretsApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -164,9 +182,12 @@ class APISecretsApi {
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ProjectSecretListRsp',) as ProjectSecretListRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'ProjectSecretListRsp',
+      ) as ProjectSecretListRsp;
     }
     return null;
   }

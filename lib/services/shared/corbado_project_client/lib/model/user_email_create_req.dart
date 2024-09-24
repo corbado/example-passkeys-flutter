@@ -38,24 +38,27 @@ class UserEmailCreateReq {
   ClientInfo? clientInfo;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is UserEmailCreateReq &&
-     other.email == email &&
-     other.requestID == requestID &&
-     other.clientInfo == clientInfo;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserEmailCreateReq &&
+          other.email == email &&
+          other.requestID == requestID &&
+          other.clientInfo == clientInfo;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (email.hashCode) +
-    (requestID == null ? 0 : requestID!.hashCode) +
-    (clientInfo == null ? 0 : clientInfo!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (email.hashCode) +
+      (requestID == null ? 0 : requestID!.hashCode) +
+      (clientInfo == null ? 0 : clientInfo!.hashCode);
 
   @override
-  String toString() => 'UserEmailCreateReq[email=$email, requestID=$requestID, clientInfo=$clientInfo]';
+  String toString() =>
+      'UserEmailCreateReq[email=$email, requestID=$requestID, clientInfo=$clientInfo]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'email'] = this.email;
+    json[r'email'] = this.email;
     if (this.requestID != null) {
       json[r'requestID'] = this.requestID;
     } else {
@@ -81,8 +84,10 @@ class UserEmailCreateReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UserEmailCreateReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UserEmailCreateReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "UserEmailCreateReq[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "UserEmailCreateReq[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -96,7 +101,10 @@ class UserEmailCreateReq {
     return null;
   }
 
-  static List<UserEmailCreateReq> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<UserEmailCreateReq> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <UserEmailCreateReq>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -124,13 +132,19 @@ class UserEmailCreateReq {
   }
 
   // maps a json object with a list of UserEmailCreateReq-objects as value to a dart map
-  static Map<String, List<UserEmailCreateReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<UserEmailCreateReq>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<UserEmailCreateReq>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = UserEmailCreateReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = UserEmailCreateReq.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -141,4 +155,3 @@ class UserEmailCreateReq {
     'email',
   };
 }
-

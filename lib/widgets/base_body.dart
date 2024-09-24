@@ -18,7 +18,8 @@ class BaseBody extends StatelessWidget {
     return Scaffold(
       appBar: null,
       backgroundColor: Theme.of(context).colorScheme.background,
-      body: SafeArea(
+      resizeToAvoidBottomInset: false,
+        body: SafeArea(
         child: Column(
           children: [
             const Header(),

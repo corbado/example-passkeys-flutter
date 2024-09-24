@@ -34,35 +34,38 @@ class TrackingOSStats {
   int other;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is TrackingOSStats &&
-     other.timePoint == timePoint &&
-     other.macos == macos &&
-     other.windows == windows &&
-     other.ios == ios &&
-     other.android == android &&
-     other.other == other;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TrackingOSStats &&
+          other.timePoint == timePoint &&
+          other.macos == macos &&
+          other.windows == windows &&
+          other.ios == ios &&
+          other.android == android &&
+          other.other == other;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (timePoint.hashCode) +
-    (macos.hashCode) +
-    (windows.hashCode) +
-    (ios.hashCode) +
-    (android.hashCode) +
-    (other.hashCode);
+      // ignore: unnecessary_parenthesis
+      (timePoint.hashCode) +
+      (macos.hashCode) +
+      (windows.hashCode) +
+      (ios.hashCode) +
+      (android.hashCode) +
+      (other.hashCode);
 
   @override
-  String toString() => 'TrackingOSStats[timePoint=$timePoint, macos=$macos, windows=$windows, ios=$ios, android=$android, other=$other]';
+  String toString() =>
+      'TrackingOSStats[timePoint=$timePoint, macos=$macos, windows=$windows, ios=$ios, android=$android, other=$other]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'timePoint'] = this.timePoint;
-      json[r'macos'] = this.macos;
-      json[r'windows'] = this.windows;
-      json[r'ios'] = this.ios;
-      json[r'android'] = this.android;
-      json[r'other'] = this.other;
+    json[r'timePoint'] = this.timePoint;
+    json[r'macos'] = this.macos;
+    json[r'windows'] = this.windows;
+    json[r'ios'] = this.ios;
+    json[r'android'] = this.android;
+    json[r'other'] = this.other;
     return json;
   }
 
@@ -78,8 +81,10 @@ class TrackingOSStats {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "TrackingOSStats[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "TrackingOSStats[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "TrackingOSStats[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "TrackingOSStats[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -96,7 +101,10 @@ class TrackingOSStats {
     return null;
   }
 
-  static List<TrackingOSStats> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<TrackingOSStats> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <TrackingOSStats>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -124,13 +132,19 @@ class TrackingOSStats {
   }
 
   // maps a json object with a list of TrackingOSStats-objects as value to a dart map
-  static Map<String, List<TrackingOSStats>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<TrackingOSStats>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<TrackingOSStats>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = TrackingOSStats.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = TrackingOSStats.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -146,4 +160,3 @@ class TrackingOSStats {
     'other',
   };
 }
-

@@ -24,7 +24,7 @@ class ProfileScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final authState = ref.watch(userProvider);
     final userService = ref.watch(userServiceProvider);
-    final authService = ref.watch(authServiceProvider);
+    final corbado = ref.watch(corbadoProvider);
     final username = useTextEditingController(text: authState.value!.username);
     final email = useTextEditingController(text: authState.value!.email);
     final isLoading = useState<bool>(false);
@@ -77,7 +77,7 @@ class ProfileScreen extends HookConsumerWidget {
                 onTap: () async {
                   isLoading.value = true;
                   await userService.updateUsername(username.text);
-                  await authService.refresh();
+                  // await corbado.refresh();
                   isLoading.value = false;
                   usernameHasChanged.value = false;
                   if (!context.mounted) return;
@@ -152,7 +152,7 @@ class ProfileScreen extends HookConsumerWidget {
                                         duration: duration);
 
                                     await Future.delayed(duration);
-                                    authService.signOut();
+                                    corbado.signOut();
                                   } catch (e) {
                                     showSimpleNotification(
                                         Text(

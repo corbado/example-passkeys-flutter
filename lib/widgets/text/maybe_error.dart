@@ -13,7 +13,7 @@ class MaybeError extends StatelessWidget {
 
     return Text(
       err,
-      textAlign: TextAlign.center,
+      textAlign: TextAlign.left,
       style: Theme.of(context)
           .textTheme
           .bodyMedium!

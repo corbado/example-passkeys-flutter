@@ -43,44 +43,47 @@ class UserDevice {
   String osVersion;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is UserDevice &&
-     other.name == name &&
-     other.fingerprint == fingerprint &&
-     other.status == status &&
-     other.device == device &&
-     other.created == created &&
-     other.browserName == browserName &&
-     other.browserVersion == browserVersion &&
-     other.osName == osName &&
-     other.osVersion == osVersion;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserDevice &&
+          other.name == name &&
+          other.fingerprint == fingerprint &&
+          other.status == status &&
+          other.device == device &&
+          other.created == created &&
+          other.browserName == browserName &&
+          other.browserVersion == browserVersion &&
+          other.osName == osName &&
+          other.osVersion == osVersion;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (name.hashCode) +
-    (fingerprint.hashCode) +
-    (status.hashCode) +
-    (device.hashCode) +
-    (created.hashCode) +
-    (browserName.hashCode) +
-    (browserVersion.hashCode) +
-    (osName.hashCode) +
-    (osVersion.hashCode);
+      // ignore: unnecessary_parenthesis
+      (name.hashCode) +
+      (fingerprint.hashCode) +
+      (status.hashCode) +
+      (device.hashCode) +
+      (created.hashCode) +
+      (browserName.hashCode) +
+      (browserVersion.hashCode) +
+      (osName.hashCode) +
+      (osVersion.hashCode);
 
   @override
-  String toString() => 'UserDevice[name=$name, fingerprint=$fingerprint, status=$status, device=$device, created=$created, browserName=$browserName, browserVersion=$browserVersion, osName=$osName, osVersion=$osVersion]';
+  String toString() =>
+      'UserDevice[name=$name, fingerprint=$fingerprint, status=$status, device=$device, created=$created, browserName=$browserName, browserVersion=$browserVersion, osName=$osName, osVersion=$osVersion]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'name'] = this.name;
-      json[r'fingerprint'] = this.fingerprint;
-      json[r'status'] = this.status;
-      json[r'device'] = this.device;
-      json[r'created'] = this.created;
-      json[r'browserName'] = this.browserName;
-      json[r'browserVersion'] = this.browserVersion;
-      json[r'osName'] = this.osName;
-      json[r'osVersion'] = this.osVersion;
+    json[r'name'] = this.name;
+    json[r'fingerprint'] = this.fingerprint;
+    json[r'status'] = this.status;
+    json[r'device'] = this.device;
+    json[r'created'] = this.created;
+    json[r'browserName'] = this.browserName;
+    json[r'browserVersion'] = this.browserVersion;
+    json[r'osName'] = this.osName;
+    json[r'osVersion'] = this.osVersion;
     return json;
   }
 
@@ -96,8 +99,10 @@ class UserDevice {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UserDevice[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UserDevice[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "UserDevice[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "UserDevice[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -117,7 +122,10 @@ class UserDevice {
     return null;
   }
 
-  static List<UserDevice> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<UserDevice> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <UserDevice>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -145,13 +153,19 @@ class UserDevice {
   }
 
   // maps a json object with a list of UserDevice-objects as value to a dart map
-  static Map<String, List<UserDevice>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<UserDevice>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<UserDevice>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = UserDevice.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = UserDevice.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -170,4 +184,3 @@ class UserDevice {
     'osVersion',
   };
 }
-

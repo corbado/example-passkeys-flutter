@@ -1,4 +1,4 @@
-import 'package:developer_panel_app/services/shared/corbado_core_client/lib/api.dart';
+import 'package:developer_panel_app/services/shared/developerpanel_client/lib/api.dart';
 
 class ProjectInfo {
   final String id;
@@ -10,7 +10,7 @@ class ProjectInfo {
 
   factory ProjectInfo.fromResponse(Project v) {
     return ProjectInfo(
-      v.id,
+      v.projectID,
       v.name,
       DateTime.parse(v.created),
       DateTime.parse(v.updated),

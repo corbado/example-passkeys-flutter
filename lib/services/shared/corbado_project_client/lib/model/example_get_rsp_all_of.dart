@@ -24,23 +24,24 @@ class ExampleGetRspAllOf {
   ExampleGetRspAllOfExtension_Enum extension_;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is ExampleGetRspAllOf &&
-     other.data == data &&
-     other.extension_ == extension_;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ExampleGetRspAllOf &&
+          other.data == data &&
+          other.extension_ == extension_;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (data.hashCode) +
-    (extension_.hashCode);
+      // ignore: unnecessary_parenthesis
+      (data.hashCode) + (extension_.hashCode);
 
   @override
   String toString() => 'ExampleGetRspAllOf[data=$data, extension_=$extension_]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'data'] = this.data;
-      json[r'extension'] = this.extension_;
+    json[r'data'] = this.data;
+    json[r'extension'] = this.extension_;
     return json;
   }
 
@@ -56,21 +57,27 @@ class ExampleGetRspAllOf {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ExampleGetRspAllOf[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ExampleGetRspAllOf[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "ExampleGetRspAllOf[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "ExampleGetRspAllOf[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
       return ExampleGetRspAllOf(
         data: mapValueOfType<String>(json, r'data')!,
-        extension_: ExampleGetRspAllOfExtension_Enum.fromJson(json[r'extension'])!,
+        extension_:
+            ExampleGetRspAllOfExtension_Enum.fromJson(json[r'extension'])!,
       );
     }
     return null;
   }
 
-  static List<ExampleGetRspAllOf> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ExampleGetRspAllOf> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ExampleGetRspAllOf>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -98,13 +105,19 @@ class ExampleGetRspAllOf {
   }
 
   // maps a json object with a list of ExampleGetRspAllOf-objects as value to a dart map
-  static Map<String, List<ExampleGetRspAllOf>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<ExampleGetRspAllOf>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<ExampleGetRspAllOf>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = ExampleGetRspAllOf.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = ExampleGetRspAllOf.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -139,9 +152,13 @@ class ExampleGetRspAllOfExtension_Enum {
     tarPeriodGz,
   ];
 
-  static ExampleGetRspAllOfExtension_Enum? fromJson(dynamic value) => ExampleGetRspAllOfExtension_EnumTypeTransformer().decode(value);
+  static ExampleGetRspAllOfExtension_Enum? fromJson(dynamic value) =>
+      ExampleGetRspAllOfExtension_EnumTypeTransformer().decode(value);
 
-  static List<ExampleGetRspAllOfExtension_Enum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ExampleGetRspAllOfExtension_Enum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ExampleGetRspAllOfExtension_Enum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -158,7 +175,8 @@ class ExampleGetRspAllOfExtension_Enum {
 /// Transformation class that can [encode] an instance of [ExampleGetRspAllOfExtension_Enum] to String,
 /// and [decode] dynamic data back to [ExampleGetRspAllOfExtension_Enum].
 class ExampleGetRspAllOfExtension_EnumTypeTransformer {
-  factory ExampleGetRspAllOfExtension_EnumTypeTransformer() => _instance ??= const ExampleGetRspAllOfExtension_EnumTypeTransformer._();
+  factory ExampleGetRspAllOfExtension_EnumTypeTransformer() =>
+      _instance ??= const ExampleGetRspAllOfExtension_EnumTypeTransformer._();
 
   const ExampleGetRspAllOfExtension_EnumTypeTransformer._();
 
@@ -172,11 +190,14 @@ class ExampleGetRspAllOfExtension_EnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  ExampleGetRspAllOfExtension_Enum? decode(dynamic data, {bool allowNull = true}) {
+  ExampleGetRspAllOfExtension_Enum? decode(dynamic data,
+      {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'zip': return ExampleGetRspAllOfExtension_Enum.zip;
-        case r'tar.gz': return ExampleGetRspAllOfExtension_Enum.tarPeriodGz;
+        case r'zip':
+          return ExampleGetRspAllOfExtension_Enum.zip;
+        case r'tar.gz':
+          return ExampleGetRspAllOfExtension_Enum.tarPeriodGz;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -189,5 +210,3 @@ class ExampleGetRspAllOfExtension_EnumTypeTransformer {
   /// Singleton [ExampleGetRspAllOfExtension_EnumTypeTransformer] instance.
   static ExampleGetRspAllOfExtension_EnumTypeTransformer? _instance;
 }
-
-

@@ -35,18 +35,21 @@ class UserCustomLoginIdentifierDeleteReq {
   ClientInfo? clientInfo;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is UserCustomLoginIdentifierDeleteReq &&
-     other.requestID == requestID &&
-     other.clientInfo == clientInfo;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserCustomLoginIdentifierDeleteReq &&
+          other.requestID == requestID &&
+          other.clientInfo == clientInfo;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (requestID == null ? 0 : requestID!.hashCode) +
-    (clientInfo == null ? 0 : clientInfo!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (requestID == null ? 0 : requestID!.hashCode) +
+      (clientInfo == null ? 0 : clientInfo!.hashCode);
 
   @override
-  String toString() => 'UserCustomLoginIdentifierDeleteReq[requestID=$requestID, clientInfo=$clientInfo]';
+  String toString() =>
+      'UserCustomLoginIdentifierDeleteReq[requestID=$requestID, clientInfo=$clientInfo]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -75,8 +78,10 @@ class UserCustomLoginIdentifierDeleteReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UserCustomLoginIdentifierDeleteReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UserCustomLoginIdentifierDeleteReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "UserCustomLoginIdentifierDeleteReq[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "UserCustomLoginIdentifierDeleteReq[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -89,7 +94,10 @@ class UserCustomLoginIdentifierDeleteReq {
     return null;
   }
 
-  static List<UserCustomLoginIdentifierDeleteReq> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<UserCustomLoginIdentifierDeleteReq> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <UserCustomLoginIdentifierDeleteReq>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -102,7 +110,8 @@ class UserCustomLoginIdentifierDeleteReq {
     return result.toList(growable: growable);
   }
 
-  static Map<String, UserCustomLoginIdentifierDeleteReq> mapFromJson(dynamic json) {
+  static Map<String, UserCustomLoginIdentifierDeleteReq> mapFromJson(
+      dynamic json) {
     final map = <String, UserCustomLoginIdentifierDeleteReq>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
@@ -117,20 +126,24 @@ class UserCustomLoginIdentifierDeleteReq {
   }
 
   // maps a json object with a list of UserCustomLoginIdentifierDeleteReq-objects as value to a dart map
-  static Map<String, List<UserCustomLoginIdentifierDeleteReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<UserCustomLoginIdentifierDeleteReq>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<UserCustomLoginIdentifierDeleteReq>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = UserCustomLoginIdentifierDeleteReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = UserCustomLoginIdentifierDeleteReq.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
   }
 
   /// The list of required keys that must be present in a JSON.
-  static const requiredKeys = <String>{
-  };
+  static const requiredKeys = <String>{};
 }
-

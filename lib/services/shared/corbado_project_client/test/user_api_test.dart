@@ -11,7 +11,6 @@
 import 'package:backend_api_public/api.dart';
 import 'package:test/test.dart';
 
-
 /// tests for UserApi
 void main() {
   // final instance = UserApi();
@@ -135,6 +134,5 @@ void main() {
     test('test userUpdate', () async {
       // TODO
     });
-
   });
 }

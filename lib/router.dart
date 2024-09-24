@@ -1,15 +1,12 @@
 import 'package:corbado_auth/corbado_auth.dart';
 import 'package:developer_panel_app/providers/auth_provider.dart';
-import 'package:developer_panel_app/screens/append_passkey_screen.dart';
-import 'package:developer_panel_app/screens/email_otp_sceen.dart';
+import 'package:developer_panel_app/screens/auth_screen.dart';
 import 'package:developer_panel_app/screens/home_screen.dart';
 import 'package:developer_panel_app/screens/loading_screen.dart';
 import 'package:developer_panel_app/screens/menu_screen.dart';
 import 'package:developer_panel_app/screens/passkeys_screen.dart';
 import 'package:developer_panel_app/screens/post_sign_in_screen.dart';
 import 'package:developer_panel_app/screens/profile_screen.dart';
-import 'package:developer_panel_app/screens/sign_in_screen.dart';
-import 'package:developer_panel_app/screens/sign_up_screen.dart';
 import 'package:developer_panel_app/screens/switch_project_screen.dart';
 import 'package:developer_panel_app/screens/users_screen.dart';
 import 'package:flutter/material.dart';
@@ -17,13 +14,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 class Routes {
-  static const signUp = '/sign-up';
-  static const signIn = '/sign-in';
+  static const auth = '/auth';
   static const home = '/home';
   static const passkeyList = '/passkey-list';
-  static const passkeyAppend = '/passkey-append';
   static const users = '/users';
-  static const emailOtp = '/email-otp/:email';
   static const profile = '/profile';
   static const menu = '/menu';
   static const switchProject = '/switch-project';
@@ -66,15 +60,11 @@ final routerProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(authStateProvider);
 
   return GoRouter(
-      initialLocation: Routes.signIn,
+      initialLocation: Routes.auth,
       routes: [
         _defaultTransitionGoRoute(
-          path: Routes.signUp,
-          builder: (context, state) => const SignUpScreen(),
-        ),
-        _defaultTransitionGoRoute(
-          path: Routes.signIn,
-          builder: (context, state) => const SignInScreen(),
+          path: Routes.auth,
+          builder: (context, state) => const AuthScreen(),
         ),
         _defaultTransitionGoRoute(
           path: Routes.home,
@@ -101,10 +91,6 @@ final routerProvider = Provider<GoRouter>((ref) {
           builder: (context, state) => const SwitchProjectScreen(),
         ),
         _defaultTransitionGoRoute(
-          path: Routes.passkeyAppend,
-          builder: (context, state) => const AppendPasskeyScreen(),
-        ),
-        _defaultTransitionGoRoute(
           path: Routes.postSignIn,
           builder: (context, state) => const PostSignInScreen(),
         ),
@@ -112,26 +98,10 @@ final routerProvider = Provider<GoRouter>((ref) {
           path: Routes.loading,
           builder: (context, state) => const LoadingScreen(),
         ),
-        GoRoute(
-            path: Routes.emailOtp,
-            pageBuilder: (context, state) {
-              final email = state.pathParameters['email'];
-              if (email == null) {
-                throw Exception();
-              }
-
-              return _customPageBuilder(
-                  (context, state) => EmailOTPScreen(email: email),
-                  context,
-                  state);
-            }),
       ],
       redirect: (BuildContext context, GoRouterState state) {
         final onLoggedOutRoutes = [
-          Routes.signIn,
-          Routes.signUp,
-          Routes.emailOtp,
-          Routes.passkeyAppend
+          Routes.auth,
         ].contains(state.fullPath);
 
         if (authState.value == null) {
@@ -141,17 +111,12 @@ final routerProvider = Provider<GoRouter>((ref) {
         switch (authState.value!) {
           case AuthState.None:
             if (!onLoggedOutRoutes) {
-              return Routes.signIn;
+              return Routes.auth;
             }
             break;
           case AuthState.SignedIn:
             if (onLoggedOutRoutes) {
               return Routes.postSignIn;
-            }
-            break;
-          case AuthState.AskForPasskeyAppend:
-            if (onLoggedOutRoutes) {
-              return Routes.passkeyAppend;
             }
             break;
         }

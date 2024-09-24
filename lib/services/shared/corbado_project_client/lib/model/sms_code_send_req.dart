@@ -63,31 +63,34 @@ class SmsCodeSendReq {
   ClientInfo? clientInfo;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is SmsCodeSendReq &&
-     other.phoneNumber == phoneNumber &&
-     other.create == create &&
-     other.userFullName == userFullName &&
-     other.templateName == templateName &&
-     other.requestID == requestID &&
-     other.clientInfo == clientInfo;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SmsCodeSendReq &&
+          other.phoneNumber == phoneNumber &&
+          other.create == create &&
+          other.userFullName == userFullName &&
+          other.templateName == templateName &&
+          other.requestID == requestID &&
+          other.clientInfo == clientInfo;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (phoneNumber.hashCode) +
-    (create.hashCode) +
-    (userFullName == null ? 0 : userFullName!.hashCode) +
-    (templateName == null ? 0 : templateName!.hashCode) +
-    (requestID == null ? 0 : requestID!.hashCode) +
-    (clientInfo == null ? 0 : clientInfo!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (phoneNumber.hashCode) +
+      (create.hashCode) +
+      (userFullName == null ? 0 : userFullName!.hashCode) +
+      (templateName == null ? 0 : templateName!.hashCode) +
+      (requestID == null ? 0 : requestID!.hashCode) +
+      (clientInfo == null ? 0 : clientInfo!.hashCode);
 
   @override
-  String toString() => 'SmsCodeSendReq[phoneNumber=$phoneNumber, create=$create, userFullName=$userFullName, templateName=$templateName, requestID=$requestID, clientInfo=$clientInfo]';
+  String toString() =>
+      'SmsCodeSendReq[phoneNumber=$phoneNumber, create=$create, userFullName=$userFullName, templateName=$templateName, requestID=$requestID, clientInfo=$clientInfo]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'phoneNumber'] = this.phoneNumber;
-      json[r'create'] = this.create;
+    json[r'phoneNumber'] = this.phoneNumber;
+    json[r'create'] = this.create;
     if (this.userFullName != null) {
       json[r'userFullName'] = this.userFullName;
     } else {
@@ -123,8 +126,10 @@ class SmsCodeSendReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "SmsCodeSendReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "SmsCodeSendReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "SmsCodeSendReq[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "SmsCodeSendReq[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -141,7 +146,10 @@ class SmsCodeSendReq {
     return null;
   }
 
-  static List<SmsCodeSendReq> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<SmsCodeSendReq> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <SmsCodeSendReq>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -169,13 +177,19 @@ class SmsCodeSendReq {
   }
 
   // maps a json object with a list of SmsCodeSendReq-objects as value to a dart map
-  static Map<String, List<SmsCodeSendReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<SmsCodeSendReq>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<SmsCodeSendReq>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = SmsCodeSendReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = SmsCodeSendReq.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -187,4 +201,3 @@ class SmsCodeSendReq {
     'create',
   };
 }
-

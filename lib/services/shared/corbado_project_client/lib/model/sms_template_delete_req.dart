@@ -35,18 +35,21 @@ class SmsTemplateDeleteReq {
   ClientInfo? clientInfo;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is SmsTemplateDeleteReq &&
-     other.requestID == requestID &&
-     other.clientInfo == clientInfo;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SmsTemplateDeleteReq &&
+          other.requestID == requestID &&
+          other.clientInfo == clientInfo;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (requestID == null ? 0 : requestID!.hashCode) +
-    (clientInfo == null ? 0 : clientInfo!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (requestID == null ? 0 : requestID!.hashCode) +
+      (clientInfo == null ? 0 : clientInfo!.hashCode);
 
   @override
-  String toString() => 'SmsTemplateDeleteReq[requestID=$requestID, clientInfo=$clientInfo]';
+  String toString() =>
+      'SmsTemplateDeleteReq[requestID=$requestID, clientInfo=$clientInfo]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -75,8 +78,10 @@ class SmsTemplateDeleteReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "SmsTemplateDeleteReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "SmsTemplateDeleteReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "SmsTemplateDeleteReq[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "SmsTemplateDeleteReq[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -89,7 +94,10 @@ class SmsTemplateDeleteReq {
     return null;
   }
 
-  static List<SmsTemplateDeleteReq> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<SmsTemplateDeleteReq> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <SmsTemplateDeleteReq>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -117,20 +125,24 @@ class SmsTemplateDeleteReq {
   }
 
   // maps a json object with a list of SmsTemplateDeleteReq-objects as value to a dart map
-  static Map<String, List<SmsTemplateDeleteReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<SmsTemplateDeleteReq>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<SmsTemplateDeleteReq>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = SmsTemplateDeleteReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = SmsTemplateDeleteReq.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
   }
 
   /// The list of required keys that must be present in a JSON.
-  static const requiredKeys = <String>{
-  };
+  static const requiredKeys = <String>{};
 }
-

@@ -58,50 +58,53 @@ class AndroidAppConfigUpdateRsp {
   String updated;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is AndroidAppConfigUpdateRsp &&
-     other.httpStatusCode == httpStatusCode &&
-     other.message == message &&
-     other.requestData == requestData &&
-     other.runtime == runtime &&
-     other.id == id &&
-     other.projectID == projectID &&
-     other.packageName == packageName &&
-     other.fingerprint == fingerprint &&
-     other.base64URL == base64URL &&
-     other.created == created &&
-     other.updated == updated;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is AndroidAppConfigUpdateRsp &&
+          other.httpStatusCode == httpStatusCode &&
+          other.message == message &&
+          other.requestData == requestData &&
+          other.runtime == runtime &&
+          other.id == id &&
+          other.projectID == projectID &&
+          other.packageName == packageName &&
+          other.fingerprint == fingerprint &&
+          other.base64URL == base64URL &&
+          other.created == created &&
+          other.updated == updated;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (httpStatusCode.hashCode) +
-    (message.hashCode) +
-    (requestData.hashCode) +
-    (runtime.hashCode) +
-    (id.hashCode) +
-    (projectID.hashCode) +
-    (packageName.hashCode) +
-    (fingerprint.hashCode) +
-    (base64URL.hashCode) +
-    (created.hashCode) +
-    (updated.hashCode);
+      // ignore: unnecessary_parenthesis
+      (httpStatusCode.hashCode) +
+      (message.hashCode) +
+      (requestData.hashCode) +
+      (runtime.hashCode) +
+      (id.hashCode) +
+      (projectID.hashCode) +
+      (packageName.hashCode) +
+      (fingerprint.hashCode) +
+      (base64URL.hashCode) +
+      (created.hashCode) +
+      (updated.hashCode);
 
   @override
-  String toString() => 'AndroidAppConfigUpdateRsp[httpStatusCode=$httpStatusCode, message=$message, requestData=$requestData, runtime=$runtime, id=$id, projectID=$projectID, packageName=$packageName, fingerprint=$fingerprint, base64URL=$base64URL, created=$created, updated=$updated]';
+  String toString() =>
+      'AndroidAppConfigUpdateRsp[httpStatusCode=$httpStatusCode, message=$message, requestData=$requestData, runtime=$runtime, id=$id, projectID=$projectID, packageName=$packageName, fingerprint=$fingerprint, base64URL=$base64URL, created=$created, updated=$updated]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'httpStatusCode'] = this.httpStatusCode;
-      json[r'message'] = this.message;
-      json[r'requestData'] = this.requestData;
-      json[r'runtime'] = this.runtime;
-      json[r'id'] = this.id;
-      json[r'projectID'] = this.projectID;
-      json[r'packageName'] = this.packageName;
-      json[r'fingerprint'] = this.fingerprint;
-      json[r'base64URL'] = this.base64URL;
-      json[r'created'] = this.created;
-      json[r'updated'] = this.updated;
+    json[r'httpStatusCode'] = this.httpStatusCode;
+    json[r'message'] = this.message;
+    json[r'requestData'] = this.requestData;
+    json[r'runtime'] = this.runtime;
+    json[r'id'] = this.id;
+    json[r'projectID'] = this.projectID;
+    json[r'packageName'] = this.packageName;
+    json[r'fingerprint'] = this.fingerprint;
+    json[r'base64URL'] = this.base64URL;
+    json[r'created'] = this.created;
+    json[r'updated'] = this.updated;
     return json;
   }
 
@@ -117,8 +120,10 @@ class AndroidAppConfigUpdateRsp {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "AndroidAppConfigUpdateRsp[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "AndroidAppConfigUpdateRsp[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "AndroidAppConfigUpdateRsp[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "AndroidAppConfigUpdateRsp[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -140,7 +145,10 @@ class AndroidAppConfigUpdateRsp {
     return null;
   }
 
-  static List<AndroidAppConfigUpdateRsp> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<AndroidAppConfigUpdateRsp> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <AndroidAppConfigUpdateRsp>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -168,13 +176,19 @@ class AndroidAppConfigUpdateRsp {
   }
 
   // maps a json object with a list of AndroidAppConfigUpdateRsp-objects as value to a dart map
-  static Map<String, List<AndroidAppConfigUpdateRsp>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<AndroidAppConfigUpdateRsp>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<AndroidAppConfigUpdateRsp>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = AndroidAppConfigUpdateRsp.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = AndroidAppConfigUpdateRsp.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -195,4 +209,3 @@ class AndroidAppConfigUpdateRsp {
     'updated',
   };
 }
-

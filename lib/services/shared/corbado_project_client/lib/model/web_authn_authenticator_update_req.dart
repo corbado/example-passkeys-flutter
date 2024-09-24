@@ -38,24 +38,27 @@ class WebAuthnAuthenticatorUpdateReq {
   ClientInfo? clientInfo;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is WebAuthnAuthenticatorUpdateReq &&
-     other.name == name &&
-     other.requestID == requestID &&
-     other.clientInfo == clientInfo;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is WebAuthnAuthenticatorUpdateReq &&
+          other.name == name &&
+          other.requestID == requestID &&
+          other.clientInfo == clientInfo;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (name.hashCode) +
-    (requestID == null ? 0 : requestID!.hashCode) +
-    (clientInfo == null ? 0 : clientInfo!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (name.hashCode) +
+      (requestID == null ? 0 : requestID!.hashCode) +
+      (clientInfo == null ? 0 : clientInfo!.hashCode);
 
   @override
-  String toString() => 'WebAuthnAuthenticatorUpdateReq[name=$name, requestID=$requestID, clientInfo=$clientInfo]';
+  String toString() =>
+      'WebAuthnAuthenticatorUpdateReq[name=$name, requestID=$requestID, clientInfo=$clientInfo]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'name'] = this.name;
+    json[r'name'] = this.name;
     if (this.requestID != null) {
       json[r'requestID'] = this.requestID;
     } else {
@@ -81,8 +84,10 @@ class WebAuthnAuthenticatorUpdateReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "WebAuthnAuthenticatorUpdateReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "WebAuthnAuthenticatorUpdateReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "WebAuthnAuthenticatorUpdateReq[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "WebAuthnAuthenticatorUpdateReq[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -96,7 +101,10 @@ class WebAuthnAuthenticatorUpdateReq {
     return null;
   }
 
-  static List<WebAuthnAuthenticatorUpdateReq> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<WebAuthnAuthenticatorUpdateReq> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <WebAuthnAuthenticatorUpdateReq>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -124,13 +132,19 @@ class WebAuthnAuthenticatorUpdateReq {
   }
 
   // maps a json object with a list of WebAuthnAuthenticatorUpdateReq-objects as value to a dart map
-  static Map<String, List<WebAuthnAuthenticatorUpdateReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<WebAuthnAuthenticatorUpdateReq>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<WebAuthnAuthenticatorUpdateReq>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = WebAuthnAuthenticatorUpdateReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = WebAuthnAuthenticatorUpdateReq.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -141,4 +155,3 @@ class WebAuthnAuthenticatorUpdateReq {
     'name',
   };
 }
-

@@ -19,20 +19,20 @@ class UserListRspAllOf {
   UserListRspAllOfData data;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is UserListRspAllOf &&
-     other.data == data;
+  bool operator ==(Object other) =>
+      identical(this, other) || other is UserListRspAllOf && other.data == data;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (data.hashCode);
+      // ignore: unnecessary_parenthesis
+      (data.hashCode);
 
   @override
   String toString() => 'UserListRspAllOf[data=$data]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'data'] = this.data;
+    json[r'data'] = this.data;
     return json;
   }
 
@@ -48,8 +48,10 @@ class UserListRspAllOf {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UserListRspAllOf[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UserListRspAllOf[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "UserListRspAllOf[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "UserListRspAllOf[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -61,7 +63,10 @@ class UserListRspAllOf {
     return null;
   }
 
-  static List<UserListRspAllOf> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<UserListRspAllOf> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <UserListRspAllOf>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -89,13 +94,19 @@ class UserListRspAllOf {
   }
 
   // maps a json object with a list of UserListRspAllOf-objects as value to a dart map
-  static Map<String, List<UserListRspAllOf>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<UserListRspAllOf>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<UserListRspAllOf>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = UserListRspAllOf.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = UserListRspAllOf.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -106,4 +117,3 @@ class UserListRspAllOf {
     'data',
   };
 }
-

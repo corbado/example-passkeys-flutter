@@ -11,7 +11,6 @@
 import 'package:backend_api_public/api.dart';
 import 'package:test/test.dart';
 
-
 /// tests for SessionConfigApi
 void main() {
   // final instance = SessionConfigApi();
@@ -30,6 +29,5 @@ void main() {
     test('test sessionConfigUpdate', () async {
       // TODO
     });
-
   });
 }

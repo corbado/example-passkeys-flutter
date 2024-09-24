@@ -11,7 +11,6 @@
 import 'package:backend_api_public/api.dart';
 import 'package:test/test.dart';
 
-
 /// tests for AuthTokensApi
 void main() {
   // final instance = AuthTokensApi();
@@ -37,6 +36,5 @@ void main() {
     test('test sessionTokenVerify', () async {
       // TODO
     });
-
   });
 }

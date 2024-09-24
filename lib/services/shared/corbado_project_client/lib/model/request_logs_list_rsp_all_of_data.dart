@@ -22,23 +22,25 @@ class RequestLogsListRspAllOfData {
   Paging paging;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is RequestLogsListRspAllOfData &&
-     other.logs == logs &&
-     other.paging == paging;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is RequestLogsListRspAllOfData &&
+          other.logs == logs &&
+          other.paging == paging;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (logs.hashCode) +
-    (paging.hashCode);
+      // ignore: unnecessary_parenthesis
+      (logs.hashCode) + (paging.hashCode);
 
   @override
-  String toString() => 'RequestLogsListRspAllOfData[logs=$logs, paging=$paging]';
+  String toString() =>
+      'RequestLogsListRspAllOfData[logs=$logs, paging=$paging]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'logs'] = this.logs;
-      json[r'paging'] = this.paging;
+    json[r'logs'] = this.logs;
+    json[r'paging'] = this.paging;
     return json;
   }
 
@@ -54,8 +56,10 @@ class RequestLogsListRspAllOfData {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RequestLogsListRspAllOfData[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RequestLogsListRspAllOfData[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "RequestLogsListRspAllOfData[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "RequestLogsListRspAllOfData[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -68,7 +72,10 @@ class RequestLogsListRspAllOfData {
     return null;
   }
 
-  static List<RequestLogsListRspAllOfData> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<RequestLogsListRspAllOfData> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <RequestLogsListRspAllOfData>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -96,13 +103,19 @@ class RequestLogsListRspAllOfData {
   }
 
   // maps a json object with a list of RequestLogsListRspAllOfData-objects as value to a dart map
-  static Map<String, List<RequestLogsListRspAllOfData>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<RequestLogsListRspAllOfData>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<RequestLogsListRspAllOfData>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = RequestLogsListRspAllOfData.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = RequestLogsListRspAllOfData.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -114,4 +127,3 @@ class RequestLogsListRspAllOfData {
     'paging',
   };
 }
-

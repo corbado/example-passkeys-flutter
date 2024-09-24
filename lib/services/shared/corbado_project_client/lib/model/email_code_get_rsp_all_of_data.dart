@@ -19,20 +19,21 @@ class EmailCodeGetRspAllOfData {
   EmailCode emailCode;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is EmailCodeGetRspAllOfData &&
-     other.emailCode == emailCode;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is EmailCodeGetRspAllOfData && other.emailCode == emailCode;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (emailCode.hashCode);
+      // ignore: unnecessary_parenthesis
+      (emailCode.hashCode);
 
   @override
   String toString() => 'EmailCodeGetRspAllOfData[emailCode=$emailCode]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'emailCode'] = this.emailCode;
+    json[r'emailCode'] = this.emailCode;
     return json;
   }
 
@@ -48,8 +49,10 @@ class EmailCodeGetRspAllOfData {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "EmailCodeGetRspAllOfData[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "EmailCodeGetRspAllOfData[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "EmailCodeGetRspAllOfData[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "EmailCodeGetRspAllOfData[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -61,7 +64,10 @@ class EmailCodeGetRspAllOfData {
     return null;
   }
 
-  static List<EmailCodeGetRspAllOfData> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<EmailCodeGetRspAllOfData> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <EmailCodeGetRspAllOfData>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -89,13 +95,19 @@ class EmailCodeGetRspAllOfData {
   }
 
   // maps a json object with a list of EmailCodeGetRspAllOfData-objects as value to a dart map
-  static Map<String, List<EmailCodeGetRspAllOfData>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<EmailCodeGetRspAllOfData>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<EmailCodeGetRspAllOfData>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = EmailCodeGetRspAllOfData.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = EmailCodeGetRspAllOfData.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -106,4 +118,3 @@ class EmailCodeGetRspAllOfData {
     'emailCode',
   };
 }
-

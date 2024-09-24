@@ -10,9 +10,9 @@
 
 part of openapi.api;
 
-
 class AssociationTokensApi {
-  AssociationTokensApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
+  AssociationTokensApi([ApiClient? apiClient])
+      : apiClient = apiClient ?? defaultApiClient;
 
   final ApiClient apiClient;
 
@@ -23,7 +23,9 @@ class AssociationTokensApi {
   /// Parameters:
   ///
   /// * [AssociationTokenCreateReq] associationTokenCreateReq (required):
-  Future<Response> associationTokenCreateWithHttpInfo(AssociationTokenCreateReq associationTokenCreateReq,) async {
+  Future<Response> associationTokenCreateWithHttpInfo(
+    AssociationTokenCreateReq associationTokenCreateReq,
+  ) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/associationTokens';
 
@@ -35,7 +37,6 @@ class AssociationTokensApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -53,17 +54,24 @@ class AssociationTokensApi {
   /// Parameters:
   ///
   /// * [AssociationTokenCreateReq] associationTokenCreateReq (required):
-  Future<AssociationTokenCreateRsp?> associationTokenCreate(AssociationTokenCreateReq associationTokenCreateReq,) async {
-    final response = await associationTokenCreateWithHttpInfo(associationTokenCreateReq,);
+  Future<AssociationTokenCreateRsp?> associationTokenCreate(
+    AssociationTokenCreateReq associationTokenCreateReq,
+  ) async {
+    final response = await associationTokenCreateWithHttpInfo(
+      associationTokenCreateReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'AssociationTokenCreateRsp',) as AssociationTokenCreateRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'AssociationTokenCreateRsp',
+      ) as AssociationTokenCreateRsp;
     }
     return null;
   }

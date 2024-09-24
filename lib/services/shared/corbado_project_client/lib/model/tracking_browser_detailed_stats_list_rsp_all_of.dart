@@ -19,20 +19,21 @@ class TrackingBrowserDetailedStatsListRspAllOf {
   TrackingBrowserDetailedStatsListRspAllOfData data;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is TrackingBrowserDetailedStatsListRspAllOf &&
-     other.data == data;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TrackingBrowserDetailedStatsListRspAllOf && other.data == data;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (data.hashCode);
+      // ignore: unnecessary_parenthesis
+      (data.hashCode);
 
   @override
   String toString() => 'TrackingBrowserDetailedStatsListRspAllOf[data=$data]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'data'] = this.data;
+    json[r'data'] = this.data;
     return json;
   }
 
@@ -48,20 +49,26 @@ class TrackingBrowserDetailedStatsListRspAllOf {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "TrackingBrowserDetailedStatsListRspAllOf[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "TrackingBrowserDetailedStatsListRspAllOf[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "TrackingBrowserDetailedStatsListRspAllOf[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "TrackingBrowserDetailedStatsListRspAllOf[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
       return TrackingBrowserDetailedStatsListRspAllOf(
-        data: TrackingBrowserDetailedStatsListRspAllOfData.fromJson(json[r'data'])!,
+        data: TrackingBrowserDetailedStatsListRspAllOfData.fromJson(
+            json[r'data'])!,
       );
     }
     return null;
   }
 
-  static List<TrackingBrowserDetailedStatsListRspAllOf> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<TrackingBrowserDetailedStatsListRspAllOf> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <TrackingBrowserDetailedStatsListRspAllOf>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -74,12 +81,14 @@ class TrackingBrowserDetailedStatsListRspAllOf {
     return result.toList(growable: growable);
   }
 
-  static Map<String, TrackingBrowserDetailedStatsListRspAllOf> mapFromJson(dynamic json) {
+  static Map<String, TrackingBrowserDetailedStatsListRspAllOf> mapFromJson(
+      dynamic json) {
     final map = <String, TrackingBrowserDetailedStatsListRspAllOf>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = TrackingBrowserDetailedStatsListRspAllOf.fromJson(entry.value);
+        final value =
+            TrackingBrowserDetailedStatsListRspAllOf.fromJson(entry.value);
         if (value != null) {
           map[entry.key] = value;
         }
@@ -89,13 +98,20 @@ class TrackingBrowserDetailedStatsListRspAllOf {
   }
 
   // maps a json object with a list of TrackingBrowserDetailedStatsListRspAllOf-objects as value to a dart map
-  static Map<String, List<TrackingBrowserDetailedStatsListRspAllOf>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<TrackingBrowserDetailedStatsListRspAllOf>>
+      mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<TrackingBrowserDetailedStatsListRspAllOf>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = TrackingBrowserDetailedStatsListRspAllOf.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = TrackingBrowserDetailedStatsListRspAllOf.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -106,4 +122,3 @@ class TrackingBrowserDetailedStatsListRspAllOf {
     'data',
   };
 }
-

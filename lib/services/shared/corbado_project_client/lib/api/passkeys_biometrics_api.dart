@@ -10,9 +10,9 @@
 
 part of openapi.api;
 
-
 class PasskeysBiometricsApi {
-  PasskeysBiometricsApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
+  PasskeysBiometricsApi([ApiClient? apiClient])
+      : apiClient = apiClient ?? defaultApiClient;
 
   final ApiClient apiClient;
 
@@ -23,7 +23,9 @@ class PasskeysBiometricsApi {
   /// Parameters:
   ///
   /// * [WebAuthnAssociateStartReq] webAuthnAssociateStartReq (required):
-  Future<Response> webAuthnAssociateStartWithHttpInfo(WebAuthnAssociateStartReq webAuthnAssociateStartReq,) async {
+  Future<Response> webAuthnAssociateStartWithHttpInfo(
+    WebAuthnAssociateStartReq webAuthnAssociateStartReq,
+  ) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/webauthn/associate/start';
 
@@ -36,7 +38,6 @@ class PasskeysBiometricsApi {
 
     const contentTypes = <String>['application/json'];
 
-
     return apiClient.invokeAPI(
       path,
       'POST',
@@ -53,17 +54,24 @@ class PasskeysBiometricsApi {
   /// Parameters:
   ///
   /// * [WebAuthnAssociateStartReq] webAuthnAssociateStartReq (required):
-  Future<WebAuthnAssociateStartRsp?> webAuthnAssociateStart(WebAuthnAssociateStartReq webAuthnAssociateStartReq,) async {
-    final response = await webAuthnAssociateStartWithHttpInfo(webAuthnAssociateStartReq,);
+  Future<WebAuthnAssociateStartRsp?> webAuthnAssociateStart(
+    WebAuthnAssociateStartReq webAuthnAssociateStartReq,
+  ) async {
+    final response = await webAuthnAssociateStartWithHttpInfo(
+      webAuthnAssociateStartReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'WebAuthnAssociateStartRsp',) as WebAuthnAssociateStartRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'WebAuthnAssociateStartRsp',
+      ) as WebAuthnAssociateStartRsp;
     }
     return null;
   }
@@ -75,7 +83,9 @@ class PasskeysBiometricsApi {
   /// Parameters:
   ///
   /// * [WebAuthnFinishReq] webAuthnFinishReq (required):
-  Future<Response> webAuthnAuthenticateFinishWithHttpInfo(WebAuthnFinishReq webAuthnFinishReq,) async {
+  Future<Response> webAuthnAuthenticateFinishWithHttpInfo(
+    WebAuthnFinishReq webAuthnFinishReq,
+  ) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/webauthn/authenticate/finish';
 
@@ -88,7 +98,6 @@ class PasskeysBiometricsApi {
 
     const contentTypes = <String>['application/json'];
 
-
     return apiClient.invokeAPI(
       path,
       'POST',
@@ -105,17 +114,24 @@ class PasskeysBiometricsApi {
   /// Parameters:
   ///
   /// * [WebAuthnFinishReq] webAuthnFinishReq (required):
-  Future<WebAuthnAuthenticateFinishRsp?> webAuthnAuthenticateFinish(WebAuthnFinishReq webAuthnFinishReq,) async {
-    final response = await webAuthnAuthenticateFinishWithHttpInfo(webAuthnFinishReq,);
+  Future<WebAuthnAuthenticateFinishRsp?> webAuthnAuthenticateFinish(
+    WebAuthnFinishReq webAuthnFinishReq,
+  ) async {
+    final response = await webAuthnAuthenticateFinishWithHttpInfo(
+      webAuthnFinishReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'WebAuthnAuthenticateFinishRsp',) as WebAuthnAuthenticateFinishRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'WebAuthnAuthenticateFinishRsp',
+      ) as WebAuthnAuthenticateFinishRsp;
     }
     return null;
   }
@@ -127,7 +143,9 @@ class PasskeysBiometricsApi {
   /// Parameters:
   ///
   /// * [WebAuthnAuthenticateStartReq] webAuthnAuthenticateStartReq (required):
-  Future<Response> webAuthnAuthenticateStartWithHttpInfo(WebAuthnAuthenticateStartReq webAuthnAuthenticateStartReq,) async {
+  Future<Response> webAuthnAuthenticateStartWithHttpInfo(
+    WebAuthnAuthenticateStartReq webAuthnAuthenticateStartReq,
+  ) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/webauthn/authenticate/start';
 
@@ -140,7 +158,6 @@ class PasskeysBiometricsApi {
 
     const contentTypes = <String>['application/json'];
 
-
     return apiClient.invokeAPI(
       path,
       'POST',
@@ -157,17 +174,24 @@ class PasskeysBiometricsApi {
   /// Parameters:
   ///
   /// * [WebAuthnAuthenticateStartReq] webAuthnAuthenticateStartReq (required):
-  Future<WebAuthnAuthenticateStartRsp?> webAuthnAuthenticateStart(WebAuthnAuthenticateStartReq webAuthnAuthenticateStartReq,) async {
-    final response = await webAuthnAuthenticateStartWithHttpInfo(webAuthnAuthenticateStartReq,);
+  Future<WebAuthnAuthenticateStartRsp?> webAuthnAuthenticateStart(
+    WebAuthnAuthenticateStartReq webAuthnAuthenticateStartReq,
+  ) async {
+    final response = await webAuthnAuthenticateStartWithHttpInfo(
+      webAuthnAuthenticateStartReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'WebAuthnAuthenticateStartRsp',) as WebAuthnAuthenticateStartRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'WebAuthnAuthenticateStartRsp',
+      ) as WebAuthnAuthenticateStartRsp;
     }
     return null;
   }
@@ -182,10 +206,13 @@ class PasskeysBiometricsApi {
   ///   ID of authenticator
   ///
   /// * [WebAuthnAuthenticatorUpdateReq] webAuthnAuthenticatorUpdateReq (required):
-  Future<Response> webAuthnAuthenticatorUpdateWithHttpInfo(String authenticatorID, WebAuthnAuthenticatorUpdateReq webAuthnAuthenticatorUpdateReq,) async {
+  Future<Response> webAuthnAuthenticatorUpdateWithHttpInfo(
+    String authenticatorID,
+    WebAuthnAuthenticatorUpdateReq webAuthnAuthenticatorUpdateReq,
+  ) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/webauthn/authenticator/{authenticatorID}'
-      .replaceAll('{authenticatorID}', authenticatorID);
+        .replaceAll('{authenticatorID}', authenticatorID);
 
     // ignore: prefer_final_locals
     Object? postBody = webAuthnAuthenticatorUpdateReq;
@@ -195,7 +222,6 @@ class PasskeysBiometricsApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -216,17 +242,26 @@ class PasskeysBiometricsApi {
   ///   ID of authenticator
   ///
   /// * [WebAuthnAuthenticatorUpdateReq] webAuthnAuthenticatorUpdateReq (required):
-  Future<GenericRsp?> webAuthnAuthenticatorUpdate(String authenticatorID, WebAuthnAuthenticatorUpdateReq webAuthnAuthenticatorUpdateReq,) async {
-    final response = await webAuthnAuthenticatorUpdateWithHttpInfo(authenticatorID, webAuthnAuthenticatorUpdateReq,);
+  Future<GenericRsp?> webAuthnAuthenticatorUpdate(
+    String authenticatorID,
+    WebAuthnAuthenticatorUpdateReq webAuthnAuthenticatorUpdateReq,
+  ) async {
+    final response = await webAuthnAuthenticatorUpdateWithHttpInfo(
+      authenticatorID,
+      webAuthnAuthenticatorUpdateReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GenericRsp',) as GenericRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'GenericRsp',
+      ) as GenericRsp;
     }
     return null;
   }
@@ -244,11 +279,15 @@ class PasskeysBiometricsApi {
   ///   ID of credential
   ///
   /// * [EmptyReq] emptyReq (required):
-  Future<Response> webAuthnCredentialDeleteWithHttpInfo(String userID, String credentialID, EmptyReq emptyReq,) async {
+  Future<Response> webAuthnCredentialDeleteWithHttpInfo(
+    String userID,
+    String credentialID,
+    EmptyReq emptyReq,
+  ) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/users/{userID}/credentials/{credentialID}'
-      .replaceAll('{userID}', userID)
-      .replaceAll('{credentialID}', credentialID);
+        .replaceAll('{userID}', userID)
+        .replaceAll('{credentialID}', credentialID);
 
     // ignore: prefer_final_locals
     Object? postBody = emptyReq;
@@ -258,7 +297,6 @@ class PasskeysBiometricsApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -282,17 +320,28 @@ class PasskeysBiometricsApi {
   ///   ID of credential
   ///
   /// * [EmptyReq] emptyReq (required):
-  Future<GenericRsp?> webAuthnCredentialDelete(String userID, String credentialID, EmptyReq emptyReq,) async {
-    final response = await webAuthnCredentialDeleteWithHttpInfo(userID, credentialID, emptyReq,);
+  Future<GenericRsp?> webAuthnCredentialDelete(
+    String userID,
+    String credentialID,
+    EmptyReq emptyReq,
+  ) async {
+    final response = await webAuthnCredentialDeleteWithHttpInfo(
+      userID,
+      credentialID,
+      emptyReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GenericRsp',) as GenericRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'GenericRsp',
+      ) as GenericRsp;
     }
     return null;
   }
@@ -304,7 +353,9 @@ class PasskeysBiometricsApi {
   /// Parameters:
   ///
   /// * [WebAuthnCredentialExistsReq] webAuthnCredentialExistsReq (required):
-  Future<Response> webAuthnCredentialExistsWithHttpInfo(WebAuthnCredentialExistsReq webAuthnCredentialExistsReq,) async {
+  Future<Response> webAuthnCredentialExistsWithHttpInfo(
+    WebAuthnCredentialExistsReq webAuthnCredentialExistsReq,
+  ) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/webauthn/credential/exists';
 
@@ -317,7 +368,6 @@ class PasskeysBiometricsApi {
 
     const contentTypes = <String>['application/json'];
 
-
     return apiClient.invokeAPI(
       path,
       'POST',
@@ -334,17 +384,24 @@ class PasskeysBiometricsApi {
   /// Parameters:
   ///
   /// * [WebAuthnCredentialExistsReq] webAuthnCredentialExistsReq (required):
-  Future<WebAuthnCredentialExistsRsp?> webAuthnCredentialExists(WebAuthnCredentialExistsReq webAuthnCredentialExistsReq,) async {
-    final response = await webAuthnCredentialExistsWithHttpInfo(webAuthnCredentialExistsReq,);
+  Future<WebAuthnCredentialExistsRsp?> webAuthnCredentialExists(
+    WebAuthnCredentialExistsReq webAuthnCredentialExistsReq,
+  ) async {
+    final response = await webAuthnCredentialExistsWithHttpInfo(
+      webAuthnCredentialExistsReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'WebAuthnCredentialExistsRsp',) as WebAuthnCredentialExistsRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'WebAuthnCredentialExistsRsp',
+      ) as WebAuthnCredentialExistsRsp;
     }
     return null;
   }
@@ -359,10 +416,13 @@ class PasskeysBiometricsApi {
   ///   ID of credential
   ///
   /// * [WebAuthnCredentialReq] webAuthnCredentialReq (required):
-  Future<Response> webAuthnCredentialUpdateWithHttpInfo(String credentialID, WebAuthnCredentialReq webAuthnCredentialReq,) async {
+  Future<Response> webAuthnCredentialUpdateWithHttpInfo(
+    String credentialID,
+    WebAuthnCredentialReq webAuthnCredentialReq,
+  ) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/webauthn/credential/{credentialID}'
-      .replaceAll('{credentialID}', credentialID);
+        .replaceAll('{credentialID}', credentialID);
 
     // ignore: prefer_final_locals
     Object? postBody = webAuthnCredentialReq;
@@ -372,7 +432,6 @@ class PasskeysBiometricsApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -393,17 +452,26 @@ class PasskeysBiometricsApi {
   ///   ID of credential
   ///
   /// * [WebAuthnCredentialReq] webAuthnCredentialReq (required):
-  Future<WebAuthnCredentialRsp?> webAuthnCredentialUpdate(String credentialID, WebAuthnCredentialReq webAuthnCredentialReq,) async {
-    final response = await webAuthnCredentialUpdateWithHttpInfo(credentialID, webAuthnCredentialReq,);
+  Future<WebAuthnCredentialRsp?> webAuthnCredentialUpdate(
+    String credentialID,
+    WebAuthnCredentialReq webAuthnCredentialReq,
+  ) async {
+    final response = await webAuthnCredentialUpdateWithHttpInfo(
+      credentialID,
+      webAuthnCredentialReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'WebAuthnCredentialRsp',) as WebAuthnCredentialRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'WebAuthnCredentialRsp',
+      ) as WebAuthnCredentialRsp;
     }
     return null;
   }
@@ -415,7 +483,9 @@ class PasskeysBiometricsApi {
   /// Parameters:
   ///
   /// * [WebAuthnMediationStartReq] webAuthnMediationStartReq (required):
-  Future<Response> webAuthnMediationStartWithHttpInfo(WebAuthnMediationStartReq webAuthnMediationStartReq,) async {
+  Future<Response> webAuthnMediationStartWithHttpInfo(
+    WebAuthnMediationStartReq webAuthnMediationStartReq,
+  ) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/webauthn/mediation/start';
 
@@ -428,7 +498,6 @@ class PasskeysBiometricsApi {
 
     const contentTypes = <String>['application/json'];
 
-
     return apiClient.invokeAPI(
       path,
       'POST',
@@ -445,17 +514,24 @@ class PasskeysBiometricsApi {
   /// Parameters:
   ///
   /// * [WebAuthnMediationStartReq] webAuthnMediationStartReq (required):
-  Future<WebAuthnMediationStartRsp?> webAuthnMediationStart(WebAuthnMediationStartReq webAuthnMediationStartReq,) async {
-    final response = await webAuthnMediationStartWithHttpInfo(webAuthnMediationStartReq,);
+  Future<WebAuthnMediationStartRsp?> webAuthnMediationStart(
+    WebAuthnMediationStartReq webAuthnMediationStartReq,
+  ) async {
+    final response = await webAuthnMediationStartWithHttpInfo(
+      webAuthnMediationStartReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'WebAuthnMediationStartRsp',) as WebAuthnMediationStartRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'WebAuthnMediationStartRsp',
+      ) as WebAuthnMediationStartRsp;
     }
     return null;
   }
@@ -467,7 +543,9 @@ class PasskeysBiometricsApi {
   /// Parameters:
   ///
   /// * [WebAuthnFinishReq] webAuthnFinishReq (required):
-  Future<Response> webAuthnRegisterFinishWithHttpInfo(WebAuthnFinishReq webAuthnFinishReq,) async {
+  Future<Response> webAuthnRegisterFinishWithHttpInfo(
+    WebAuthnFinishReq webAuthnFinishReq,
+  ) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/webauthn/register/finish';
 
@@ -480,7 +558,6 @@ class PasskeysBiometricsApi {
 
     const contentTypes = <String>['application/json'];
 
-
     return apiClient.invokeAPI(
       path,
       'POST',
@@ -497,17 +574,24 @@ class PasskeysBiometricsApi {
   /// Parameters:
   ///
   /// * [WebAuthnFinishReq] webAuthnFinishReq (required):
-  Future<WebAuthnRegisterFinishRsp?> webAuthnRegisterFinish(WebAuthnFinishReq webAuthnFinishReq,) async {
-    final response = await webAuthnRegisterFinishWithHttpInfo(webAuthnFinishReq,);
+  Future<WebAuthnRegisterFinishRsp?> webAuthnRegisterFinish(
+    WebAuthnFinishReq webAuthnFinishReq,
+  ) async {
+    final response = await webAuthnRegisterFinishWithHttpInfo(
+      webAuthnFinishReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'WebAuthnRegisterFinishRsp',) as WebAuthnRegisterFinishRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'WebAuthnRegisterFinishRsp',
+      ) as WebAuthnRegisterFinishRsp;
     }
     return null;
   }
@@ -519,7 +603,9 @@ class PasskeysBiometricsApi {
   /// Parameters:
   ///
   /// * [WebAuthnRegisterStartReq] webAuthnRegisterStartReq:
-  Future<Response> webAuthnRegisterStartWithHttpInfo({ WebAuthnRegisterStartReq? webAuthnRegisterStartReq, }) async {
+  Future<Response> webAuthnRegisterStartWithHttpInfo({
+    WebAuthnRegisterStartReq? webAuthnRegisterStartReq,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/webauthn/register/start';
 
@@ -532,7 +618,6 @@ class PasskeysBiometricsApi {
 
     const contentTypes = <String>['application/json'];
 
-
     return apiClient.invokeAPI(
       path,
       'POST',
@@ -549,17 +634,24 @@ class PasskeysBiometricsApi {
   /// Parameters:
   ///
   /// * [WebAuthnRegisterStartReq] webAuthnRegisterStartReq:
-  Future<WebAuthnRegisterStartRsp?> webAuthnRegisterStart({ WebAuthnRegisterStartReq? webAuthnRegisterStartReq, }) async {
-    final response = await webAuthnRegisterStartWithHttpInfo( webAuthnRegisterStartReq: webAuthnRegisterStartReq, );
+  Future<WebAuthnRegisterStartRsp?> webAuthnRegisterStart({
+    WebAuthnRegisterStartReq? webAuthnRegisterStartReq,
+  }) async {
+    final response = await webAuthnRegisterStartWithHttpInfo(
+      webAuthnRegisterStartReq: webAuthnRegisterStartReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'WebAuthnRegisterStartRsp',) as WebAuthnRegisterStartRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'WebAuthnRegisterStartRsp',
+      ) as WebAuthnRegisterStartRsp;
     }
     return null;
   }
@@ -571,7 +663,9 @@ class PasskeysBiometricsApi {
   /// Parameters:
   ///
   /// * [WebauthnSettingCreateReq] webauthnSettingCreateReq:
-  Future<Response> webAuthnSettingCreateWithHttpInfo({ WebauthnSettingCreateReq? webauthnSettingCreateReq, }) async {
+  Future<Response> webAuthnSettingCreateWithHttpInfo({
+    WebauthnSettingCreateReq? webauthnSettingCreateReq,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/webauthn/settings';
 
@@ -583,7 +677,6 @@ class PasskeysBiometricsApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -601,17 +694,24 @@ class PasskeysBiometricsApi {
   /// Parameters:
   ///
   /// * [WebauthnSettingCreateReq] webauthnSettingCreateReq:
-  Future<WebauthnSettingCreateRsp?> webAuthnSettingCreate({ WebauthnSettingCreateReq? webauthnSettingCreateReq, }) async {
-    final response = await webAuthnSettingCreateWithHttpInfo( webauthnSettingCreateReq: webauthnSettingCreateReq, );
+  Future<WebauthnSettingCreateRsp?> webAuthnSettingCreate({
+    WebauthnSettingCreateReq? webauthnSettingCreateReq,
+  }) async {
+    final response = await webAuthnSettingCreateWithHttpInfo(
+      webauthnSettingCreateReq: webauthnSettingCreateReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'WebauthnSettingCreateRsp',) as WebauthnSettingCreateRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'WebauthnSettingCreateRsp',
+      ) as WebauthnSettingCreateRsp;
     }
     return null;
   }
@@ -626,10 +726,13 @@ class PasskeysBiometricsApi {
   ///   ID from create
   ///
   /// * [WebauthnSettingDeleteReq] webauthnSettingDeleteReq:
-  Future<Response> webAuthnSettingDeleteWithHttpInfo(String settingID, { WebauthnSettingDeleteReq? webauthnSettingDeleteReq, }) async {
+  Future<Response> webAuthnSettingDeleteWithHttpInfo(
+    String settingID, {
+    WebauthnSettingDeleteReq? webauthnSettingDeleteReq,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/webauthn/settings/{settingID}'
-      .replaceAll('{settingID}', settingID);
+        .replaceAll('{settingID}', settingID);
 
     // ignore: prefer_final_locals
     Object? postBody = webauthnSettingDeleteReq;
@@ -639,7 +742,6 @@ class PasskeysBiometricsApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -660,17 +762,26 @@ class PasskeysBiometricsApi {
   ///   ID from create
   ///
   /// * [WebauthnSettingDeleteReq] webauthnSettingDeleteReq:
-  Future<GenericRsp?> webAuthnSettingDelete(String settingID, { WebauthnSettingDeleteReq? webauthnSettingDeleteReq, }) async {
-    final response = await webAuthnSettingDeleteWithHttpInfo(settingID,  webauthnSettingDeleteReq: webauthnSettingDeleteReq, );
+  Future<GenericRsp?> webAuthnSettingDelete(
+    String settingID, {
+    WebauthnSettingDeleteReq? webauthnSettingDeleteReq,
+  }) async {
+    final response = await webAuthnSettingDeleteWithHttpInfo(
+      settingID,
+      webauthnSettingDeleteReq: webauthnSettingDeleteReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GenericRsp',) as GenericRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'GenericRsp',
+      ) as GenericRsp;
     }
     return null;
   }
@@ -683,10 +794,12 @@ class PasskeysBiometricsApi {
   ///
   /// * [String] settingID (required):
   ///   ID from create
-  Future<Response> webAuthnSettingGetWithHttpInfo(String settingID,) async {
+  Future<Response> webAuthnSettingGetWithHttpInfo(
+    String settingID,
+  ) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/webauthn/settings/{settingID}'
-      .replaceAll('{settingID}', settingID);
+        .replaceAll('{settingID}', settingID);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -696,7 +809,6 @@ class PasskeysBiometricsApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -715,17 +827,24 @@ class PasskeysBiometricsApi {
   ///
   /// * [String] settingID (required):
   ///   ID from create
-  Future<WebauthnSettingGetRsp?> webAuthnSettingGet(String settingID,) async {
-    final response = await webAuthnSettingGetWithHttpInfo(settingID,);
+  Future<WebauthnSettingGetRsp?> webAuthnSettingGet(
+    String settingID,
+  ) async {
+    final response = await webAuthnSettingGetWithHttpInfo(
+      settingID,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'WebauthnSettingGetRsp',) as WebauthnSettingGetRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'WebauthnSettingGetRsp',
+      ) as WebauthnSettingGetRsp;
     }
     return null;
   }
@@ -753,7 +872,14 @@ class PasskeysBiometricsApi {
   ///
   /// * [int] pageSize:
   ///   Number of items per page
-  Future<Response> webAuthnSettingListWithHttpInfo({ String? remoteAddress, String? userAgent, String? sort, List<String>? filterLeftSquareBracketRightSquareBracket, int? page, int? pageSize, }) async {
+  Future<Response> webAuthnSettingListWithHttpInfo({
+    String? remoteAddress,
+    String? userAgent,
+    String? sort,
+    List<String>? filterLeftSquareBracketRightSquareBracket,
+    int? page,
+    int? pageSize,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/webauthn/settings';
 
@@ -774,7 +900,8 @@ class PasskeysBiometricsApi {
       queryParams.addAll(_queryParams('', 'sort', sort));
     }
     if (filterLeftSquareBracketRightSquareBracket != null) {
-      queryParams.addAll(_queryParams('multi', 'filter[]', filterLeftSquareBracketRightSquareBracket));
+      queryParams.addAll(_queryParams(
+          'multi', 'filter[]', filterLeftSquareBracketRightSquareBracket));
     }
     if (page != null) {
       queryParams.addAll(_queryParams('', 'page', page));
@@ -784,7 +911,6 @@ class PasskeysBiometricsApi {
     }
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -818,17 +944,35 @@ class PasskeysBiometricsApi {
   ///
   /// * [int] pageSize:
   ///   Number of items per page
-  Future<WebauthnSettingListRsp?> webAuthnSettingList({ String? remoteAddress, String? userAgent, String? sort, List<String>? filterLeftSquareBracketRightSquareBracket, int? page, int? pageSize, }) async {
-    final response = await webAuthnSettingListWithHttpInfo( remoteAddress: remoteAddress, userAgent: userAgent, sort: sort, filterLeftSquareBracketRightSquareBracket: filterLeftSquareBracketRightSquareBracket, page: page, pageSize: pageSize, );
+  Future<WebauthnSettingListRsp?> webAuthnSettingList({
+    String? remoteAddress,
+    String? userAgent,
+    String? sort,
+    List<String>? filterLeftSquareBracketRightSquareBracket,
+    int? page,
+    int? pageSize,
+  }) async {
+    final response = await webAuthnSettingListWithHttpInfo(
+      remoteAddress: remoteAddress,
+      userAgent: userAgent,
+      sort: sort,
+      filterLeftSquareBracketRightSquareBracket:
+          filterLeftSquareBracketRightSquareBracket,
+      page: page,
+      pageSize: pageSize,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'WebauthnSettingListRsp',) as WebauthnSettingListRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'WebauthnSettingListRsp',
+      ) as WebauthnSettingListRsp;
     }
     return null;
   }
@@ -843,10 +987,13 @@ class PasskeysBiometricsApi {
   ///   ID from create
   ///
   /// * [WebauthnSettingUpdateReq] webauthnSettingUpdateReq:
-  Future<Response> webAuthnSettingPutWithHttpInfo(String settingID, { WebauthnSettingUpdateReq? webauthnSettingUpdateReq, }) async {
+  Future<Response> webAuthnSettingPutWithHttpInfo(
+    String settingID, {
+    WebauthnSettingUpdateReq? webauthnSettingUpdateReq,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/webauthn/settings/{settingID}'
-      .replaceAll('{settingID}', settingID);
+        .replaceAll('{settingID}', settingID);
 
     // ignore: prefer_final_locals
     Object? postBody = webauthnSettingUpdateReq;
@@ -856,7 +1003,6 @@ class PasskeysBiometricsApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -877,17 +1023,26 @@ class PasskeysBiometricsApi {
   ///   ID from create
   ///
   /// * [WebauthnSettingUpdateReq] webauthnSettingUpdateReq:
-  Future<WebauthnSettingUpdateRsp?> webAuthnSettingPut(String settingID, { WebauthnSettingUpdateReq? webauthnSettingUpdateReq, }) async {
-    final response = await webAuthnSettingPutWithHttpInfo(settingID,  webauthnSettingUpdateReq: webauthnSettingUpdateReq, );
+  Future<WebauthnSettingUpdateRsp?> webAuthnSettingPut(
+    String settingID, {
+    WebauthnSettingUpdateReq? webauthnSettingUpdateReq,
+  }) async {
+    final response = await webAuthnSettingPutWithHttpInfo(
+      settingID,
+      webauthnSettingUpdateReq: webauthnSettingUpdateReq,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'WebauthnSettingUpdateRsp',) as WebauthnSettingUpdateRsp;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'WebauthnSettingUpdateRsp',
+      ) as WebauthnSettingUpdateRsp;
     }
     return null;
   }

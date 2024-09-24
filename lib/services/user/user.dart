@@ -1,44 +1,43 @@
+import 'package:corbado_auth/src/corbado_auth.dart';
 import 'package:developer_panel_app/models/project_info.dart';
-import 'package:developer_panel_app/services/shared/corbado_core_client/lib/api.dart';
+import 'package:developer_panel_app/services/shared/developerpanel_client/lib/api.dart';
 import 'package:either_dart/either.dart';
 
 class UserService {
   final UsersApi _usersApi;
   final ProjectsApi _projectsApi;
+  final CorbadoAuth _corbadoAuth;
 
-  UserService(ApiClient apiClient)
+  UserService(ApiClient apiClient, CorbadoAuth corbadoAuth)
       : _usersApi = UsersApi(apiClient),
-        _projectsApi = ProjectsApi(apiClient);
+        _projectsApi = ProjectsApi(apiClient),
+        _corbadoAuth = corbadoAuth;
 
   Future<String?> updateUsername(String value) async {
-    final req = UserUpdateReq(name: value);
-    await _usersApi.userUpdate(req);
+    final req = V1UsersPutRequest(name: value);
+    await _usersApi.v1UsersPut(req);
+    await _corbadoAuth.refreshUser();
 
     return null;
   }
 
   Future<String?> deleteUser() async {
-    await _usersApi.meDelete();
+    await _usersApi.v1UsersDelete();
 
     return null;
   }
 
   Future<List<ProjectInfo>> getProjects() async {
-    final raw = await _projectsApi.projectList();
-    if (raw == null) {
+    final raw = await _projectsApi.v1ProjectsGet(page: 0, pageSize: 50);
+    if (raw == null || raw.success != true || raw.data == null) {
       return [];
     }
 
-    return raw.data.projects.map((e) => ProjectInfo.fromResponse(e)).toList();
+    return raw.data!.projects.map((e) => ProjectInfo.fromResponse(e)).toList();
   }
 
-  Future<Either<ProjectInfo, String>> addProject(String name) async {
-    try {
-      final req = ProjectCreateReq(name: name);
-      final res = await _projectsApi.projectCreate(req);
-      return Left(ProjectInfo.fromResponse(res!.data.project));
-    } on Exception catch (e) {
-      return Right(e.toString());
-    }
+  Future<void> addProject(String name) async {
+    final req = V1ProjectsPostRequest(name: name);
+    await _projectsApi.v1ProjectsPost(req);
   }
 }

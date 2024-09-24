@@ -33,8 +33,5 @@ void main() {
     test('to test the property `totalItems`', () async {
       // TODO
     });
-
-
   });
-
 }

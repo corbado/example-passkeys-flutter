@@ -22,23 +22,25 @@ class TrackingDetailedStatsListRspAllOfData {
   Paging paging;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is TrackingDetailedStatsListRspAllOfData &&
-     other.stats == stats &&
-     other.paging == paging;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TrackingDetailedStatsListRspAllOfData &&
+          other.stats == stats &&
+          other.paging == paging;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (stats.hashCode) +
-    (paging.hashCode);
+      // ignore: unnecessary_parenthesis
+      (stats.hashCode) + (paging.hashCode);
 
   @override
-  String toString() => 'TrackingDetailedStatsListRspAllOfData[stats=$stats, paging=$paging]';
+  String toString() =>
+      'TrackingDetailedStatsListRspAllOfData[stats=$stats, paging=$paging]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'stats'] = this.stats;
-      json[r'paging'] = this.paging;
+    json[r'stats'] = this.stats;
+    json[r'paging'] = this.paging;
     return json;
   }
 
@@ -54,8 +56,10 @@ class TrackingDetailedStatsListRspAllOfData {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "TrackingDetailedStatsListRspAllOfData[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "TrackingDetailedStatsListRspAllOfData[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "TrackingDetailedStatsListRspAllOfData[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "TrackingDetailedStatsListRspAllOfData[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -68,7 +72,10 @@ class TrackingDetailedStatsListRspAllOfData {
     return null;
   }
 
-  static List<TrackingDetailedStatsListRspAllOfData> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<TrackingDetailedStatsListRspAllOfData> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <TrackingDetailedStatsListRspAllOfData>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -81,12 +88,14 @@ class TrackingDetailedStatsListRspAllOfData {
     return result.toList(growable: growable);
   }
 
-  static Map<String, TrackingDetailedStatsListRspAllOfData> mapFromJson(dynamic json) {
+  static Map<String, TrackingDetailedStatsListRspAllOfData> mapFromJson(
+      dynamic json) {
     final map = <String, TrackingDetailedStatsListRspAllOfData>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = TrackingDetailedStatsListRspAllOfData.fromJson(entry.value);
+        final value =
+            TrackingDetailedStatsListRspAllOfData.fromJson(entry.value);
         if (value != null) {
           map[entry.key] = value;
         }
@@ -96,13 +105,20 @@ class TrackingDetailedStatsListRspAllOfData {
   }
 
   // maps a json object with a list of TrackingDetailedStatsListRspAllOfData-objects as value to a dart map
-  static Map<String, List<TrackingDetailedStatsListRspAllOfData>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<TrackingDetailedStatsListRspAllOfData>>
+      mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<TrackingDetailedStatsListRspAllOfData>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = TrackingDetailedStatsListRspAllOfData.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = TrackingDetailedStatsListRspAllOfData.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -114,4 +130,3 @@ class TrackingDetailedStatsListRspAllOfData {
     'paging',
   };
 }
-

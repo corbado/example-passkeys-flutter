@@ -98,36 +98,39 @@ class SessionConfigUpdateReq {
   ClientInfo? clientInfo;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is SessionConfigUpdateReq &&
-     other.active == active &&
-     other.shortLifetimeMinutes == shortLifetimeMinutes &&
-     other.shortCookieDomain == shortCookieDomain &&
-     other.shortCookieSecure == shortCookieSecure &&
-     other.shortCookieSameSite == shortCookieSameSite &&
-     other.longLifetimeValue == longLifetimeValue &&
-     other.longLifetimeUnit == longLifetimeUnit &&
-     other.longInactivityValue == longInactivityValue &&
-     other.longInactivityUnit == longInactivityUnit &&
-     other.requestID == requestID &&
-     other.clientInfo == clientInfo;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SessionConfigUpdateReq &&
+          other.active == active &&
+          other.shortLifetimeMinutes == shortLifetimeMinutes &&
+          other.shortCookieDomain == shortCookieDomain &&
+          other.shortCookieSecure == shortCookieSecure &&
+          other.shortCookieSameSite == shortCookieSameSite &&
+          other.longLifetimeValue == longLifetimeValue &&
+          other.longLifetimeUnit == longLifetimeUnit &&
+          other.longInactivityValue == longInactivityValue &&
+          other.longInactivityUnit == longInactivityUnit &&
+          other.requestID == requestID &&
+          other.clientInfo == clientInfo;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (active == null ? 0 : active!.hashCode) +
-    (shortLifetimeMinutes == null ? 0 : shortLifetimeMinutes!.hashCode) +
-    (shortCookieDomain == null ? 0 : shortCookieDomain!.hashCode) +
-    (shortCookieSecure == null ? 0 : shortCookieSecure!.hashCode) +
-    (shortCookieSameSite == null ? 0 : shortCookieSameSite!.hashCode) +
-    (longLifetimeValue == null ? 0 : longLifetimeValue!.hashCode) +
-    (longLifetimeUnit == null ? 0 : longLifetimeUnit!.hashCode) +
-    (longInactivityValue == null ? 0 : longInactivityValue!.hashCode) +
-    (longInactivityUnit == null ? 0 : longInactivityUnit!.hashCode) +
-    (requestID == null ? 0 : requestID!.hashCode) +
-    (clientInfo == null ? 0 : clientInfo!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (active == null ? 0 : active!.hashCode) +
+      (shortLifetimeMinutes == null ? 0 : shortLifetimeMinutes!.hashCode) +
+      (shortCookieDomain == null ? 0 : shortCookieDomain!.hashCode) +
+      (shortCookieSecure == null ? 0 : shortCookieSecure!.hashCode) +
+      (shortCookieSameSite == null ? 0 : shortCookieSameSite!.hashCode) +
+      (longLifetimeValue == null ? 0 : longLifetimeValue!.hashCode) +
+      (longLifetimeUnit == null ? 0 : longLifetimeUnit!.hashCode) +
+      (longInactivityValue == null ? 0 : longInactivityValue!.hashCode) +
+      (longInactivityUnit == null ? 0 : longInactivityUnit!.hashCode) +
+      (requestID == null ? 0 : requestID!.hashCode) +
+      (clientInfo == null ? 0 : clientInfo!.hashCode);
 
   @override
-  String toString() => 'SessionConfigUpdateReq[active=$active, shortLifetimeMinutes=$shortLifetimeMinutes, shortCookieDomain=$shortCookieDomain, shortCookieSecure=$shortCookieSecure, shortCookieSameSite=$shortCookieSameSite, longLifetimeValue=$longLifetimeValue, longLifetimeUnit=$longLifetimeUnit, longInactivityValue=$longInactivityValue, longInactivityUnit=$longInactivityUnit, requestID=$requestID, clientInfo=$clientInfo]';
+  String toString() =>
+      'SessionConfigUpdateReq[active=$active, shortLifetimeMinutes=$shortLifetimeMinutes, shortCookieDomain=$shortCookieDomain, shortCookieSecure=$shortCookieSecure, shortCookieSameSite=$shortCookieSameSite, longLifetimeValue=$longLifetimeValue, longLifetimeUnit=$longLifetimeUnit, longInactivityValue=$longInactivityValue, longInactivityUnit=$longInactivityUnit, requestID=$requestID, clientInfo=$clientInfo]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -201,22 +204,30 @@ class SessionConfigUpdateReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "SessionConfigUpdateReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "SessionConfigUpdateReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "SessionConfigUpdateReq[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "SessionConfigUpdateReq[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
       return SessionConfigUpdateReq(
         active: mapValueOfType<bool>(json, r'active'),
-        shortLifetimeMinutes: mapValueOfType<int>(json, r'shortLifetimeMinutes'),
+        shortLifetimeMinutes:
+            mapValueOfType<int>(json, r'shortLifetimeMinutes'),
         shortCookieDomain: mapValueOfType<String>(json, r'shortCookieDomain'),
         shortCookieSecure: mapValueOfType<bool>(json, r'shortCookieSecure'),
-        shortCookieSameSite: SessionConfigUpdateReqShortCookieSameSiteEnum.fromJson(json[r'shortCookieSameSite']),
+        shortCookieSameSite:
+            SessionConfigUpdateReqShortCookieSameSiteEnum.fromJson(
+                json[r'shortCookieSameSite']),
         longLifetimeValue: mapValueOfType<int>(json, r'longLifetimeValue'),
-        longLifetimeUnit: SessionConfigUpdateReqLongLifetimeUnitEnum.fromJson(json[r'longLifetimeUnit']),
+        longLifetimeUnit: SessionConfigUpdateReqLongLifetimeUnitEnum.fromJson(
+            json[r'longLifetimeUnit']),
         longInactivityValue: mapValueOfType<int>(json, r'longInactivityValue'),
-        longInactivityUnit: SessionConfigUpdateReqLongInactivityUnitEnum.fromJson(json[r'longInactivityUnit']),
+        longInactivityUnit:
+            SessionConfigUpdateReqLongInactivityUnitEnum.fromJson(
+                json[r'longInactivityUnit']),
         requestID: mapValueOfType<String>(json, r'requestID'),
         clientInfo: ClientInfo.fromJson(json[r'clientInfo']),
       );
@@ -224,7 +235,10 @@ class SessionConfigUpdateReq {
     return null;
   }
 
-  static List<SessionConfigUpdateReq> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<SessionConfigUpdateReq> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <SessionConfigUpdateReq>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -252,23 +266,27 @@ class SessionConfigUpdateReq {
   }
 
   // maps a json object with a list of SessionConfigUpdateReq-objects as value to a dart map
-  static Map<String, List<SessionConfigUpdateReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<SessionConfigUpdateReq>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<SessionConfigUpdateReq>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = SessionConfigUpdateReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = SessionConfigUpdateReq.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
   }
 
   /// The list of required keys that must be present in a JSON.
-  static const requiredKeys = <String>{
-  };
+  static const requiredKeys = <String>{};
 }
-
 
 class SessionConfigUpdateReqShortCookieSameSiteEnum {
   /// Instantiate a new enum with the provided [value].
@@ -283,7 +301,8 @@ class SessionConfigUpdateReqShortCookieSameSiteEnum {
   String toJson() => value;
 
   static const lax = SessionConfigUpdateReqShortCookieSameSiteEnum._(r'lax');
-  static const strict = SessionConfigUpdateReqShortCookieSameSiteEnum._(r'strict');
+  static const strict =
+      SessionConfigUpdateReqShortCookieSameSiteEnum._(r'strict');
   static const none = SessionConfigUpdateReqShortCookieSameSiteEnum._(r'none');
 
   /// List of all possible values in this [enum][SessionConfigUpdateReqShortCookieSameSiteEnum].
@@ -293,13 +312,20 @@ class SessionConfigUpdateReqShortCookieSameSiteEnum {
     none,
   ];
 
-  static SessionConfigUpdateReqShortCookieSameSiteEnum? fromJson(dynamic value) => SessionConfigUpdateReqShortCookieSameSiteEnumTypeTransformer().decode(value);
+  static SessionConfigUpdateReqShortCookieSameSiteEnum? fromJson(
+          dynamic value) =>
+      SessionConfigUpdateReqShortCookieSameSiteEnumTypeTransformer()
+          .decode(value);
 
-  static List<SessionConfigUpdateReqShortCookieSameSiteEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<SessionConfigUpdateReqShortCookieSameSiteEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <SessionConfigUpdateReqShortCookieSameSiteEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
-        final value = SessionConfigUpdateReqShortCookieSameSiteEnum.fromJson(row);
+        final value =
+            SessionConfigUpdateReqShortCookieSameSiteEnum.fromJson(row);
         if (value != null) {
           result.add(value);
         }
@@ -312,11 +338,15 @@ class SessionConfigUpdateReqShortCookieSameSiteEnum {
 /// Transformation class that can [encode] an instance of [SessionConfigUpdateReqShortCookieSameSiteEnum] to String,
 /// and [decode] dynamic data back to [SessionConfigUpdateReqShortCookieSameSiteEnum].
 class SessionConfigUpdateReqShortCookieSameSiteEnumTypeTransformer {
-  factory SessionConfigUpdateReqShortCookieSameSiteEnumTypeTransformer() => _instance ??= const SessionConfigUpdateReqShortCookieSameSiteEnumTypeTransformer._();
+  factory SessionConfigUpdateReqShortCookieSameSiteEnumTypeTransformer() =>
+      _instance ??=
+          const SessionConfigUpdateReqShortCookieSameSiteEnumTypeTransformer
+              ._();
 
   const SessionConfigUpdateReqShortCookieSameSiteEnumTypeTransformer._();
 
-  String encode(SessionConfigUpdateReqShortCookieSameSiteEnum data) => data.value;
+  String encode(SessionConfigUpdateReqShortCookieSameSiteEnum data) =>
+      data.value;
 
   /// Decodes a [dynamic value][data] to a SessionConfigUpdateReqShortCookieSameSiteEnum.
   ///
@@ -326,12 +356,16 @@ class SessionConfigUpdateReqShortCookieSameSiteEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  SessionConfigUpdateReqShortCookieSameSiteEnum? decode(dynamic data, {bool allowNull = true}) {
+  SessionConfigUpdateReqShortCookieSameSiteEnum? decode(dynamic data,
+      {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'lax': return SessionConfigUpdateReqShortCookieSameSiteEnum.lax;
-        case r'strict': return SessionConfigUpdateReqShortCookieSameSiteEnum.strict;
-        case r'none': return SessionConfigUpdateReqShortCookieSameSiteEnum.none;
+        case r'lax':
+          return SessionConfigUpdateReqShortCookieSameSiteEnum.lax;
+        case r'strict':
+          return SessionConfigUpdateReqShortCookieSameSiteEnum.strict;
+        case r'none':
+          return SessionConfigUpdateReqShortCookieSameSiteEnum.none;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -342,10 +376,9 @@ class SessionConfigUpdateReqShortCookieSameSiteEnumTypeTransformer {
   }
 
   /// Singleton [SessionConfigUpdateReqShortCookieSameSiteEnumTypeTransformer] instance.
-  static SessionConfigUpdateReqShortCookieSameSiteEnumTypeTransformer? _instance;
+  static SessionConfigUpdateReqShortCookieSameSiteEnumTypeTransformer?
+      _instance;
 }
-
-
 
 class SessionConfigUpdateReqLongLifetimeUnitEnum {
   /// Instantiate a new enum with the provided [value].
@@ -368,9 +401,13 @@ class SessionConfigUpdateReqLongLifetimeUnitEnum {
     hour,
   ];
 
-  static SessionConfigUpdateReqLongLifetimeUnitEnum? fromJson(dynamic value) => SessionConfigUpdateReqLongLifetimeUnitEnumTypeTransformer().decode(value);
+  static SessionConfigUpdateReqLongLifetimeUnitEnum? fromJson(dynamic value) =>
+      SessionConfigUpdateReqLongLifetimeUnitEnumTypeTransformer().decode(value);
 
-  static List<SessionConfigUpdateReqLongLifetimeUnitEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<SessionConfigUpdateReqLongLifetimeUnitEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <SessionConfigUpdateReqLongLifetimeUnitEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -387,7 +424,9 @@ class SessionConfigUpdateReqLongLifetimeUnitEnum {
 /// Transformation class that can [encode] an instance of [SessionConfigUpdateReqLongLifetimeUnitEnum] to String,
 /// and [decode] dynamic data back to [SessionConfigUpdateReqLongLifetimeUnitEnum].
 class SessionConfigUpdateReqLongLifetimeUnitEnumTypeTransformer {
-  factory SessionConfigUpdateReqLongLifetimeUnitEnumTypeTransformer() => _instance ??= const SessionConfigUpdateReqLongLifetimeUnitEnumTypeTransformer._();
+  factory SessionConfigUpdateReqLongLifetimeUnitEnumTypeTransformer() =>
+      _instance ??=
+          const SessionConfigUpdateReqLongLifetimeUnitEnumTypeTransformer._();
 
   const SessionConfigUpdateReqLongLifetimeUnitEnumTypeTransformer._();
 
@@ -401,11 +440,14 @@ class SessionConfigUpdateReqLongLifetimeUnitEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  SessionConfigUpdateReqLongLifetimeUnitEnum? decode(dynamic data, {bool allowNull = true}) {
+  SessionConfigUpdateReqLongLifetimeUnitEnum? decode(dynamic data,
+      {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'min': return SessionConfigUpdateReqLongLifetimeUnitEnum.min;
-        case r'hour': return SessionConfigUpdateReqLongLifetimeUnitEnum.hour;
+        case r'min':
+          return SessionConfigUpdateReqLongLifetimeUnitEnum.min;
+        case r'hour':
+          return SessionConfigUpdateReqLongLifetimeUnitEnum.hour;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -418,8 +460,6 @@ class SessionConfigUpdateReqLongLifetimeUnitEnumTypeTransformer {
   /// Singleton [SessionConfigUpdateReqLongLifetimeUnitEnumTypeTransformer] instance.
   static SessionConfigUpdateReqLongLifetimeUnitEnumTypeTransformer? _instance;
 }
-
-
 
 class SessionConfigUpdateReqLongInactivityUnitEnum {
   /// Instantiate a new enum with the provided [value].
@@ -442,13 +482,20 @@ class SessionConfigUpdateReqLongInactivityUnitEnum {
     hour,
   ];
 
-  static SessionConfigUpdateReqLongInactivityUnitEnum? fromJson(dynamic value) => SessionConfigUpdateReqLongInactivityUnitEnumTypeTransformer().decode(value);
+  static SessionConfigUpdateReqLongInactivityUnitEnum? fromJson(
+          dynamic value) =>
+      SessionConfigUpdateReqLongInactivityUnitEnumTypeTransformer()
+          .decode(value);
 
-  static List<SessionConfigUpdateReqLongInactivityUnitEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<SessionConfigUpdateReqLongInactivityUnitEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <SessionConfigUpdateReqLongInactivityUnitEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
-        final value = SessionConfigUpdateReqLongInactivityUnitEnum.fromJson(row);
+        final value =
+            SessionConfigUpdateReqLongInactivityUnitEnum.fromJson(row);
         if (value != null) {
           result.add(value);
         }
@@ -461,11 +508,14 @@ class SessionConfigUpdateReqLongInactivityUnitEnum {
 /// Transformation class that can [encode] an instance of [SessionConfigUpdateReqLongInactivityUnitEnum] to String,
 /// and [decode] dynamic data back to [SessionConfigUpdateReqLongInactivityUnitEnum].
 class SessionConfigUpdateReqLongInactivityUnitEnumTypeTransformer {
-  factory SessionConfigUpdateReqLongInactivityUnitEnumTypeTransformer() => _instance ??= const SessionConfigUpdateReqLongInactivityUnitEnumTypeTransformer._();
+  factory SessionConfigUpdateReqLongInactivityUnitEnumTypeTransformer() =>
+      _instance ??=
+          const SessionConfigUpdateReqLongInactivityUnitEnumTypeTransformer._();
 
   const SessionConfigUpdateReqLongInactivityUnitEnumTypeTransformer._();
 
-  String encode(SessionConfigUpdateReqLongInactivityUnitEnum data) => data.value;
+  String encode(SessionConfigUpdateReqLongInactivityUnitEnum data) =>
+      data.value;
 
   /// Decodes a [dynamic value][data] to a SessionConfigUpdateReqLongInactivityUnitEnum.
   ///
@@ -475,11 +525,14 @@ class SessionConfigUpdateReqLongInactivityUnitEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  SessionConfigUpdateReqLongInactivityUnitEnum? decode(dynamic data, {bool allowNull = true}) {
+  SessionConfigUpdateReqLongInactivityUnitEnum? decode(dynamic data,
+      {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'min': return SessionConfigUpdateReqLongInactivityUnitEnum.min;
-        case r'hour': return SessionConfigUpdateReqLongInactivityUnitEnum.hour;
+        case r'min':
+          return SessionConfigUpdateReqLongInactivityUnitEnum.min;
+        case r'hour':
+          return SessionConfigUpdateReqLongInactivityUnitEnum.hour;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -492,5 +545,3 @@ class SessionConfigUpdateReqLongInactivityUnitEnumTypeTransformer {
   /// Singleton [SessionConfigUpdateReqLongInactivityUnitEnumTypeTransformer] instance.
   static SessionConfigUpdateReqLongInactivityUnitEnumTypeTransformer? _instance;
 }
-
-

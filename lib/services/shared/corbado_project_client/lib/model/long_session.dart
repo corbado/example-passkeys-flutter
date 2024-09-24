@@ -65,59 +65,62 @@ class LongSession {
   LongSessionStatusEnum status;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is LongSession &&
-     other.ID == ID &&
-     other.userID == userID &&
-     other.userIdentifier == userIdentifier &&
-     other.userFullName == userFullName &&
-     other.deviceID == deviceID &&
-     other.browserName == browserName &&
-     other.browserVersion == browserVersion &&
-     other.osName == osName &&
-     other.osVersion == osVersion &&
-     other.expires == expires &&
-     other.lastAction == lastAction &&
-     other.created == created &&
-     other.updated == updated &&
-     other.status == status;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is LongSession &&
+          other.ID == ID &&
+          other.userID == userID &&
+          other.userIdentifier == userIdentifier &&
+          other.userFullName == userFullName &&
+          other.deviceID == deviceID &&
+          other.browserName == browserName &&
+          other.browserVersion == browserVersion &&
+          other.osName == osName &&
+          other.osVersion == osVersion &&
+          other.expires == expires &&
+          other.lastAction == lastAction &&
+          other.created == created &&
+          other.updated == updated &&
+          other.status == status;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (ID.hashCode) +
-    (userID.hashCode) +
-    (userIdentifier.hashCode) +
-    (userFullName.hashCode) +
-    (deviceID.hashCode) +
-    (browserName.hashCode) +
-    (browserVersion.hashCode) +
-    (osName.hashCode) +
-    (osVersion.hashCode) +
-    (expires.hashCode) +
-    (lastAction.hashCode) +
-    (created.hashCode) +
-    (updated.hashCode) +
-    (status.hashCode);
+      // ignore: unnecessary_parenthesis
+      (ID.hashCode) +
+      (userID.hashCode) +
+      (userIdentifier.hashCode) +
+      (userFullName.hashCode) +
+      (deviceID.hashCode) +
+      (browserName.hashCode) +
+      (browserVersion.hashCode) +
+      (osName.hashCode) +
+      (osVersion.hashCode) +
+      (expires.hashCode) +
+      (lastAction.hashCode) +
+      (created.hashCode) +
+      (updated.hashCode) +
+      (status.hashCode);
 
   @override
-  String toString() => 'LongSession[ID=$ID, userID=$userID, userIdentifier=$userIdentifier, userFullName=$userFullName, deviceID=$deviceID, browserName=$browserName, browserVersion=$browserVersion, osName=$osName, osVersion=$osVersion, expires=$expires, lastAction=$lastAction, created=$created, updated=$updated, status=$status]';
+  String toString() =>
+      'LongSession[ID=$ID, userID=$userID, userIdentifier=$userIdentifier, userFullName=$userFullName, deviceID=$deviceID, browserName=$browserName, browserVersion=$browserVersion, osName=$osName, osVersion=$osVersion, expires=$expires, lastAction=$lastAction, created=$created, updated=$updated, status=$status]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'ID'] = this.ID;
-      json[r'userID'] = this.userID;
-      json[r'userIdentifier'] = this.userIdentifier;
-      json[r'userFullName'] = this.userFullName;
-      json[r'deviceID'] = this.deviceID;
-      json[r'browserName'] = this.browserName;
-      json[r'browserVersion'] = this.browserVersion;
-      json[r'osName'] = this.osName;
-      json[r'osVersion'] = this.osVersion;
-      json[r'expires'] = this.expires;
-      json[r'lastAction'] = this.lastAction;
-      json[r'created'] = this.created;
-      json[r'updated'] = this.updated;
-      json[r'status'] = this.status;
+    json[r'ID'] = this.ID;
+    json[r'userID'] = this.userID;
+    json[r'userIdentifier'] = this.userIdentifier;
+    json[r'userFullName'] = this.userFullName;
+    json[r'deviceID'] = this.deviceID;
+    json[r'browserName'] = this.browserName;
+    json[r'browserVersion'] = this.browserVersion;
+    json[r'osName'] = this.osName;
+    json[r'osVersion'] = this.osVersion;
+    json[r'expires'] = this.expires;
+    json[r'lastAction'] = this.lastAction;
+    json[r'created'] = this.created;
+    json[r'updated'] = this.updated;
+    json[r'status'] = this.status;
     return json;
   }
 
@@ -133,8 +136,10 @@ class LongSession {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "LongSession[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "LongSession[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "LongSession[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "LongSession[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -159,7 +164,10 @@ class LongSession {
     return null;
   }
 
-  static List<LongSession> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<LongSession> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <LongSession>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -187,13 +195,19 @@ class LongSession {
   }
 
   // maps a json object with a list of LongSession-objects as value to a dart map
-  static Map<String, List<LongSession>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<LongSession>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<LongSession>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = LongSession.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = LongSession.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -234,7 +248,8 @@ class LongSessionStatusEnum {
   static const active = LongSessionStatusEnum._(r'active');
   static const loggedOut = LongSessionStatusEnum._(r'logged_out');
   static const expired = LongSessionStatusEnum._(r'expired');
-  static const inactivityReached = LongSessionStatusEnum._(r'inactivity_reached');
+  static const inactivityReached =
+      LongSessionStatusEnum._(r'inactivity_reached');
   static const revoked = LongSessionStatusEnum._(r'revoked');
 
   /// List of all possible values in this [enum][LongSessionStatusEnum].
@@ -246,9 +261,13 @@ class LongSessionStatusEnum {
     revoked,
   ];
 
-  static LongSessionStatusEnum? fromJson(dynamic value) => LongSessionStatusEnumTypeTransformer().decode(value);
+  static LongSessionStatusEnum? fromJson(dynamic value) =>
+      LongSessionStatusEnumTypeTransformer().decode(value);
 
-  static List<LongSessionStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<LongSessionStatusEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <LongSessionStatusEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -265,7 +284,8 @@ class LongSessionStatusEnum {
 /// Transformation class that can [encode] an instance of [LongSessionStatusEnum] to String,
 /// and [decode] dynamic data back to [LongSessionStatusEnum].
 class LongSessionStatusEnumTypeTransformer {
-  factory LongSessionStatusEnumTypeTransformer() => _instance ??= const LongSessionStatusEnumTypeTransformer._();
+  factory LongSessionStatusEnumTypeTransformer() =>
+      _instance ??= const LongSessionStatusEnumTypeTransformer._();
 
   const LongSessionStatusEnumTypeTransformer._();
 
@@ -282,11 +302,16 @@ class LongSessionStatusEnumTypeTransformer {
   LongSessionStatusEnum? decode(dynamic data, {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'active': return LongSessionStatusEnum.active;
-        case r'logged_out': return LongSessionStatusEnum.loggedOut;
-        case r'expired': return LongSessionStatusEnum.expired;
-        case r'inactivity_reached': return LongSessionStatusEnum.inactivityReached;
-        case r'revoked': return LongSessionStatusEnum.revoked;
+        case r'active':
+          return LongSessionStatusEnum.active;
+        case r'logged_out':
+          return LongSessionStatusEnum.loggedOut;
+        case r'expired':
+          return LongSessionStatusEnum.expired;
+        case r'inactivity_reached':
+          return LongSessionStatusEnum.inactivityReached;
+        case r'revoked':
+          return LongSessionStatusEnum.revoked;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -299,5 +324,3 @@ class LongSessionStatusEnumTypeTransformer {
   /// Singleton [LongSessionStatusEnumTypeTransformer] instance.
   static LongSessionStatusEnumTypeTransformer? _instance;
 }
-
-

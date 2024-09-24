@@ -37,38 +37,41 @@ class TrackingBrowserDetailedStats {
   int conditionalUi;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is TrackingBrowserDetailedStats &&
-     other.timePoint == timePoint &&
-     other.browserName == browserName &&
-     other.browserVersion == browserVersion &&
-     other.cnt == cnt &&
-     other.webauthn == webauthn &&
-     other.platform == platform &&
-     other.conditionalUi == conditionalUi;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TrackingBrowserDetailedStats &&
+          other.timePoint == timePoint &&
+          other.browserName == browserName &&
+          other.browserVersion == browserVersion &&
+          other.cnt == cnt &&
+          other.webauthn == webauthn &&
+          other.platform == platform &&
+          other.conditionalUi == conditionalUi;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (timePoint.hashCode) +
-    (browserName.hashCode) +
-    (browserVersion.hashCode) +
-    (cnt.hashCode) +
-    (webauthn.hashCode) +
-    (platform.hashCode) +
-    (conditionalUi.hashCode);
+      // ignore: unnecessary_parenthesis
+      (timePoint.hashCode) +
+      (browserName.hashCode) +
+      (browserVersion.hashCode) +
+      (cnt.hashCode) +
+      (webauthn.hashCode) +
+      (platform.hashCode) +
+      (conditionalUi.hashCode);
 
   @override
-  String toString() => 'TrackingBrowserDetailedStats[timePoint=$timePoint, browserName=$browserName, browserVersion=$browserVersion, cnt=$cnt, webauthn=$webauthn, platform=$platform, conditionalUi=$conditionalUi]';
+  String toString() =>
+      'TrackingBrowserDetailedStats[timePoint=$timePoint, browserName=$browserName, browserVersion=$browserVersion, cnt=$cnt, webauthn=$webauthn, platform=$platform, conditionalUi=$conditionalUi]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'timePoint'] = this.timePoint;
-      json[r'browserName'] = this.browserName;
-      json[r'browserVersion'] = this.browserVersion;
-      json[r'cnt'] = this.cnt;
-      json[r'webauthn'] = this.webauthn;
-      json[r'platform'] = this.platform;
-      json[r'conditional_ui'] = this.conditionalUi;
+    json[r'timePoint'] = this.timePoint;
+    json[r'browserName'] = this.browserName;
+    json[r'browserVersion'] = this.browserVersion;
+    json[r'cnt'] = this.cnt;
+    json[r'webauthn'] = this.webauthn;
+    json[r'platform'] = this.platform;
+    json[r'conditional_ui'] = this.conditionalUi;
     return json;
   }
 
@@ -84,8 +87,10 @@ class TrackingBrowserDetailedStats {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "TrackingBrowserDetailedStats[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "TrackingBrowserDetailedStats[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "TrackingBrowserDetailedStats[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "TrackingBrowserDetailedStats[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -103,7 +108,10 @@ class TrackingBrowserDetailedStats {
     return null;
   }
 
-  static List<TrackingBrowserDetailedStats> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<TrackingBrowserDetailedStats> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <TrackingBrowserDetailedStats>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -131,13 +139,19 @@ class TrackingBrowserDetailedStats {
   }
 
   // maps a json object with a list of TrackingBrowserDetailedStats-objects as value to a dart map
-  static Map<String, List<TrackingBrowserDetailedStats>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<TrackingBrowserDetailedStats>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<TrackingBrowserDetailedStats>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = TrackingBrowserDetailedStats.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = TrackingBrowserDetailedStats.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -154,4 +168,3 @@ class TrackingBrowserDetailedStats {
     'conditional_ui',
   };
 }
-

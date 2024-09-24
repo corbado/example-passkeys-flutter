@@ -35,7 +35,7 @@ class FilledTextButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(25.0),
+            borderRadius: BorderRadius.circular(10.0),
           ),
           backgroundColor: background ?? Theme.of(context).colorScheme.primary,
           disabledBackgroundColor: Colors.grey.withOpacity(0.25),

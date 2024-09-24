@@ -37,28 +37,31 @@ class WebAuthnFinishReq {
   String? requestID;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is WebAuthnFinishReq &&
-     other.origin == origin &&
-     other.publicKeyCredential == publicKeyCredential &&
-     other.clientInfo == clientInfo &&
-     other.requestID == requestID;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is WebAuthnFinishReq &&
+          other.origin == origin &&
+          other.publicKeyCredential == publicKeyCredential &&
+          other.clientInfo == clientInfo &&
+          other.requestID == requestID;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (origin.hashCode) +
-    (publicKeyCredential.hashCode) +
-    (clientInfo.hashCode) +
-    (requestID == null ? 0 : requestID!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (origin.hashCode) +
+      (publicKeyCredential.hashCode) +
+      (clientInfo.hashCode) +
+      (requestID == null ? 0 : requestID!.hashCode);
 
   @override
-  String toString() => 'WebAuthnFinishReq[origin=$origin, publicKeyCredential=$publicKeyCredential, clientInfo=$clientInfo, requestID=$requestID]';
+  String toString() =>
+      'WebAuthnFinishReq[origin=$origin, publicKeyCredential=$publicKeyCredential, clientInfo=$clientInfo, requestID=$requestID]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'origin'] = this.origin;
-      json[r'publicKeyCredential'] = this.publicKeyCredential;
-      json[r'clientInfo'] = this.clientInfo;
+    json[r'origin'] = this.origin;
+    json[r'publicKeyCredential'] = this.publicKeyCredential;
+    json[r'clientInfo'] = this.clientInfo;
     if (this.requestID != null) {
       json[r'requestID'] = this.requestID;
     } else {
@@ -79,15 +82,18 @@ class WebAuthnFinishReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "WebAuthnFinishReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "WebAuthnFinishReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "WebAuthnFinishReq[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "WebAuthnFinishReq[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
       return WebAuthnFinishReq(
         origin: mapValueOfType<String>(json, r'origin')!,
-        publicKeyCredential: mapValueOfType<String>(json, r'publicKeyCredential')!,
+        publicKeyCredential:
+            mapValueOfType<String>(json, r'publicKeyCredential')!,
         clientInfo: ClientInfo.fromJson(json[r'clientInfo'])!,
         requestID: mapValueOfType<String>(json, r'requestID'),
       );
@@ -95,7 +101,10 @@ class WebAuthnFinishReq {
     return null;
   }
 
-  static List<WebAuthnFinishReq> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<WebAuthnFinishReq> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <WebAuthnFinishReq>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -123,13 +132,19 @@ class WebAuthnFinishReq {
   }
 
   // maps a json object with a list of WebAuthnFinishReq-objects as value to a dart map
-  static Map<String, List<WebAuthnFinishReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<WebAuthnFinishReq>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<WebAuthnFinishReq>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = WebAuthnFinishReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = WebAuthnFinishReq.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -142,4 +157,3 @@ class WebAuthnFinishReq {
     'clientInfo',
   };
 }
-

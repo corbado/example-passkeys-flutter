@@ -31,7 +31,7 @@ class HomeScreen extends HookConsumerWidget {
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             Text(
-              'Hello, ${authState.value!.username}!',
+              'Hello, ${authState.value?.username}!',
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             const SizedBox(width: double.infinity),

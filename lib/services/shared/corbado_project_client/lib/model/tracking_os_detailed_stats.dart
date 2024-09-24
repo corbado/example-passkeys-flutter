@@ -40,41 +40,44 @@ class TrackingOSDetailedStats {
   int conditionalUi;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is TrackingOSDetailedStats &&
-     other.timePoint == timePoint &&
-     other.osName == osName &&
-     other.osVersion == osVersion &&
-     other.osPlatform == osPlatform &&
-     other.cnt == cnt &&
-     other.webauthn == webauthn &&
-     other.platform == platform &&
-     other.conditionalUi == conditionalUi;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TrackingOSDetailedStats &&
+          other.timePoint == timePoint &&
+          other.osName == osName &&
+          other.osVersion == osVersion &&
+          other.osPlatform == osPlatform &&
+          other.cnt == cnt &&
+          other.webauthn == webauthn &&
+          other.platform == platform &&
+          other.conditionalUi == conditionalUi;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (timePoint.hashCode) +
-    (osName.hashCode) +
-    (osVersion.hashCode) +
-    (osPlatform.hashCode) +
-    (cnt.hashCode) +
-    (webauthn.hashCode) +
-    (platform.hashCode) +
-    (conditionalUi.hashCode);
+      // ignore: unnecessary_parenthesis
+      (timePoint.hashCode) +
+      (osName.hashCode) +
+      (osVersion.hashCode) +
+      (osPlatform.hashCode) +
+      (cnt.hashCode) +
+      (webauthn.hashCode) +
+      (platform.hashCode) +
+      (conditionalUi.hashCode);
 
   @override
-  String toString() => 'TrackingOSDetailedStats[timePoint=$timePoint, osName=$osName, osVersion=$osVersion, osPlatform=$osPlatform, cnt=$cnt, webauthn=$webauthn, platform=$platform, conditionalUi=$conditionalUi]';
+  String toString() =>
+      'TrackingOSDetailedStats[timePoint=$timePoint, osName=$osName, osVersion=$osVersion, osPlatform=$osPlatform, cnt=$cnt, webauthn=$webauthn, platform=$platform, conditionalUi=$conditionalUi]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'timePoint'] = this.timePoint;
-      json[r'osName'] = this.osName;
-      json[r'osVersion'] = this.osVersion;
-      json[r'osPlatform'] = this.osPlatform;
-      json[r'cnt'] = this.cnt;
-      json[r'webauthn'] = this.webauthn;
-      json[r'platform'] = this.platform;
-      json[r'conditional_ui'] = this.conditionalUi;
+    json[r'timePoint'] = this.timePoint;
+    json[r'osName'] = this.osName;
+    json[r'osVersion'] = this.osVersion;
+    json[r'osPlatform'] = this.osPlatform;
+    json[r'cnt'] = this.cnt;
+    json[r'webauthn'] = this.webauthn;
+    json[r'platform'] = this.platform;
+    json[r'conditional_ui'] = this.conditionalUi;
     return json;
   }
 
@@ -90,8 +93,10 @@ class TrackingOSDetailedStats {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "TrackingOSDetailedStats[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "TrackingOSDetailedStats[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "TrackingOSDetailedStats[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "TrackingOSDetailedStats[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -100,7 +105,8 @@ class TrackingOSDetailedStats {
         timePoint: mapValueOfType<String>(json, r'timePoint')!,
         osName: mapValueOfType<String>(json, r'osName')!,
         osVersion: mapValueOfType<String>(json, r'osVersion')!,
-        osPlatform: TrackingOSDetailedStatsOsPlatformEnum.fromJson(json[r'osPlatform'])!,
+        osPlatform: TrackingOSDetailedStatsOsPlatformEnum.fromJson(
+            json[r'osPlatform'])!,
         cnt: mapValueOfType<int>(json, r'cnt')!,
         webauthn: mapValueOfType<int>(json, r'webauthn')!,
         platform: mapValueOfType<int>(json, r'platform')!,
@@ -110,7 +116,10 @@ class TrackingOSDetailedStats {
     return null;
   }
 
-  static List<TrackingOSDetailedStats> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<TrackingOSDetailedStats> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <TrackingOSDetailedStats>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -138,13 +147,19 @@ class TrackingOSDetailedStats {
   }
 
   // maps a json object with a list of TrackingOSDetailedStats-objects as value to a dart map
-  static Map<String, List<TrackingOSDetailedStats>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<TrackingOSDetailedStats>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<TrackingOSDetailedStats>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = TrackingOSDetailedStats.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = TrackingOSDetailedStats.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -162,7 +177,6 @@ class TrackingOSDetailedStats {
     'conditional_ui',
   };
 }
-
 
 class TrackingOSDetailedStatsOsPlatformEnum {
   /// Instantiate a new enum with the provided [value].
@@ -187,9 +201,13 @@ class TrackingOSDetailedStatsOsPlatformEnum {
     unknown,
   ];
 
-  static TrackingOSDetailedStatsOsPlatformEnum? fromJson(dynamic value) => TrackingOSDetailedStatsOsPlatformEnumTypeTransformer().decode(value);
+  static TrackingOSDetailedStatsOsPlatformEnum? fromJson(dynamic value) =>
+      TrackingOSDetailedStatsOsPlatformEnumTypeTransformer().decode(value);
 
-  static List<TrackingOSDetailedStatsOsPlatformEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<TrackingOSDetailedStatsOsPlatformEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <TrackingOSDetailedStatsOsPlatformEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -206,7 +224,9 @@ class TrackingOSDetailedStatsOsPlatformEnum {
 /// Transformation class that can [encode] an instance of [TrackingOSDetailedStatsOsPlatformEnum] to String,
 /// and [decode] dynamic data back to [TrackingOSDetailedStatsOsPlatformEnum].
 class TrackingOSDetailedStatsOsPlatformEnumTypeTransformer {
-  factory TrackingOSDetailedStatsOsPlatformEnumTypeTransformer() => _instance ??= const TrackingOSDetailedStatsOsPlatformEnumTypeTransformer._();
+  factory TrackingOSDetailedStatsOsPlatformEnumTypeTransformer() =>
+      _instance ??=
+          const TrackingOSDetailedStatsOsPlatformEnumTypeTransformer._();
 
   const TrackingOSDetailedStatsOsPlatformEnumTypeTransformer._();
 
@@ -220,12 +240,16 @@ class TrackingOSDetailedStatsOsPlatformEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  TrackingOSDetailedStatsOsPlatformEnum? decode(dynamic data, {bool allowNull = true}) {
+  TrackingOSDetailedStatsOsPlatformEnum? decode(dynamic data,
+      {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'desktop': return TrackingOSDetailedStatsOsPlatformEnum.desktop;
-        case r'mobile': return TrackingOSDetailedStatsOsPlatformEnum.mobile;
-        case r'unknown': return TrackingOSDetailedStatsOsPlatformEnum.unknown;
+        case r'desktop':
+          return TrackingOSDetailedStatsOsPlatformEnum.desktop;
+        case r'mobile':
+          return TrackingOSDetailedStatsOsPlatformEnum.mobile;
+        case r'unknown':
+          return TrackingOSDetailedStatsOsPlatformEnum.unknown;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -238,5 +262,3 @@ class TrackingOSDetailedStatsOsPlatformEnumTypeTransformer {
   /// Singleton [TrackingOSDetailedStatsOsPlatformEnumTypeTransformer] instance.
   static TrackingOSDetailedStatsOsPlatformEnumTypeTransformer? _instance;
 }
-
-

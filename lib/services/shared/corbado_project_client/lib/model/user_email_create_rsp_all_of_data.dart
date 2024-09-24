@@ -19,20 +19,21 @@ class UserEmailCreateRspAllOfData {
   String emailID;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is UserEmailCreateRspAllOfData &&
-     other.emailID == emailID;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserEmailCreateRspAllOfData && other.emailID == emailID;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (emailID.hashCode);
+      // ignore: unnecessary_parenthesis
+      (emailID.hashCode);
 
   @override
   String toString() => 'UserEmailCreateRspAllOfData[emailID=$emailID]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'emailID'] = this.emailID;
+    json[r'emailID'] = this.emailID;
     return json;
   }
 
@@ -48,8 +49,10 @@ class UserEmailCreateRspAllOfData {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UserEmailCreateRspAllOfData[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UserEmailCreateRspAllOfData[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "UserEmailCreateRspAllOfData[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "UserEmailCreateRspAllOfData[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -61,7 +64,10 @@ class UserEmailCreateRspAllOfData {
     return null;
   }
 
-  static List<UserEmailCreateRspAllOfData> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<UserEmailCreateRspAllOfData> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <UserEmailCreateRspAllOfData>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -89,13 +95,19 @@ class UserEmailCreateRspAllOfData {
   }
 
   // maps a json object with a list of UserEmailCreateRspAllOfData-objects as value to a dart map
-  static Map<String, List<UserEmailCreateRspAllOfData>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<UserEmailCreateRspAllOfData>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<UserEmailCreateRspAllOfData>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = UserEmailCreateRspAllOfData.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = UserEmailCreateRspAllOfData.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -106,4 +118,3 @@ class UserEmailCreateRspAllOfData {
     'emailID',
   };
 }
-
