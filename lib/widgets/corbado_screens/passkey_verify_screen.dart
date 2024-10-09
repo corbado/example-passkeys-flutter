@@ -20,47 +20,52 @@ class PasskeyVerifyScreen extends HookWidget implements CorbadoScreen<PasskeyVer
           showNotificationError(context, maybeError.translatedError);
         }
       });
+
+      return null;
     }, [block.error]);
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        MaybeError(block.error?.translatedError),
-        const SizedBox(
-          height: 10,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Text(
-            'Login with your passkey',
-            style: Theme.of(context).textTheme.headlineMedium,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 25),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          MaybeError(block.error?.translatedError),
+          const SizedBox(
+            height: 10,
           ),
-        ),
-        const SizedBox(height: 20),
-        SizedBox(
-          width: double.infinity,
-          height: 50,
-          child: FilledTextButton(
-            isLoading: block.data.primaryLoading,
-            onTap: () async {
-              await block.passkeyVerify();
-            },
-            content: 'Login with passkey',
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              'Login with your passkey',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
           ),
-        ),
-        const SizedBox(height: 10),
-        block.data.preferredFallback != null
-            ? SizedBox(
-                width: double.infinity,
-                height: 50,
-                child: OutlinedTextButton(
-                  onTap: () => block.data.preferredFallback!.onTap(),
-                  content: block.data.preferredFallback!.label,
-                ),
-              )
-            : Container(),
-        const SizedBox(height: 10),
-      ],
+          const SizedBox(height: 20),
+          SizedBox(
+            width: double.infinity,
+            height: 50,
+            child: FilledTextButton(
+              isLoading: block.data.primaryLoading,
+              onTap: () async {
+                await block.passkeyVerify();
+              },
+              content: 'Login with passkey',
+            ),
+          ),
+          const SizedBox(height: 10),
+          block.data.preferredFallback != null
+              ? SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: OutlinedTextButton(
+                    onTap: () => block.data.preferredFallback!.onTap(),
+                    content: block.data.preferredFallback!.label,
+                  ),
+                )
+              : Container(),
+          const SizedBox(height: 10),
+        ],
+      ),
     );
   }
 }

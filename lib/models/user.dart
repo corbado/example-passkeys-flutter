@@ -1,28 +1,21 @@
-
-import 'package:developer_panel_app/services/shared/corbado_project_client/lib/api.dart';
+import 'package:developer_panel_app/services/shared/developerpanel_client/lib/api.dart';
 
 class User {
   final String id;
-  final String name;
+  final String fullName;
   final DateTime created;
-  final DateTime updated;
-  final String status;
 
   const User({
     required this.id,
-    required this.name,
+    required this.fullName,
     required this.created,
-    required this.updated,
-    required this.status,
   });
 
-  factory User.fromResponse(FullUser v) {
+  factory User.fromResponse(ProjectUser v) {
     return User(
       id: v.ID,
-      name: v.name,
+      fullName: v.fullName,
       created: DateTime.parse(v.created),
-      updated: DateTime.parse(v.updated),
-      status: v.status.value,
     );
   }
 }

@@ -10,52 +10,52 @@
 
 part of openapi.api;
 
-class V1ProjectsPostRequest {
-  /// Returns a new [V1ProjectsPostRequest] instance.
-  V1ProjectsPostRequest({
-    required this.name,
-    required this.allowStaticChallenges,
-    required this.webauthnRPID,
+class ProjectUser {
+  /// Returns a new [ProjectUser] instance.
+  ProjectUser({
+    required this.ID,
+    required this.fullName,
+    required this.created,
   });
 
-  /// The name of the project (minimum 3 characters).
-  String name;
+  /// The ID of the user.
+  String ID;
 
-  bool allowStaticChallenges;
+  /// The full name of the user.
+  String fullName;
 
-  String webauthnRPID;
+  /// The date and time the user was added to the project.
+  String created;
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is V1ProjectsPostRequest &&
-          other.name == name &&
-          other.allowStaticChallenges == allowStaticChallenges &&
-          other.webauthnRPID == webauthnRPID;
+      other is ProjectUser &&
+          other.ID == ID &&
+          other.fullName == fullName &&
+          other.created == created;
 
   @override
   int get hashCode =>
       // ignore: unnecessary_parenthesis
-      (name.hashCode) +
-      (allowStaticChallenges.hashCode) +
-      (webauthnRPID.hashCode);
+      (ID.hashCode) + (fullName.hashCode) + (created.hashCode);
 
   @override
   String toString() =>
-      'V1ProjectsPostRequest[name=$name, allowStaticChallenges=$allowStaticChallenges, webauthnRPID=$webauthnRPID]';
+      'ProjectUser[ID=$ID, fullName=$fullName, created=$created]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json[r'name'] = this.name;
-    json[r'allowStaticChallenges'] = this.allowStaticChallenges;
-    json[r'webauthnRPID'] = this.webauthnRPID;
+    json[r'ID'] = this.ID;
+    json[r'fullName'] = this.fullName;
+    json[r'created'] = this.created;
     return json;
   }
 
-  /// Returns a new [V1ProjectsPostRequest] instance and imports its values from
+  /// Returns a new [ProjectUser] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static V1ProjectsPostRequest? fromJson(dynamic value) {
+  static ProjectUser? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
 
@@ -65,31 +65,30 @@ class V1ProjectsPostRequest {
       assert(() {
         requiredKeys.forEach((key) {
           assert(json.containsKey(key),
-              'Required key "V1ProjectsPostRequest[$key]" is missing from JSON.');
+              'Required key "ProjectUser[$key]" is missing from JSON.');
           assert(json[key] != null,
-              'Required key "V1ProjectsPostRequest[$key]" has a null value in JSON.');
+              'Required key "ProjectUser[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
-      return V1ProjectsPostRequest(
-        name: mapValueOfType<String>(json, r'name')!,
-        allowStaticChallenges:
-            mapValueOfType<bool>(json, r'allowStaticChallenges')!,
-        webauthnRPID: mapValueOfType<String>(json, r'webauthnRPID')!,
+      return ProjectUser(
+        ID: mapValueOfType<String>(json, r'ID')!,
+        fullName: mapValueOfType<String>(json, r'fullName')!,
+        created: mapValueOfType<String>(json, r'created')!,
       );
     }
     return null;
   }
 
-  static List<V1ProjectsPostRequest> listFromJson(
+  static List<ProjectUser> listFromJson(
     dynamic json, {
     bool growable = false,
   }) {
-    final result = <V1ProjectsPostRequest>[];
+    final result = <ProjectUser>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
-        final value = V1ProjectsPostRequest.fromJson(row);
+        final value = ProjectUser.fromJson(row);
         if (value != null) {
           result.add(value);
         }
@@ -98,12 +97,12 @@ class V1ProjectsPostRequest {
     return result.toList(growable: growable);
   }
 
-  static Map<String, V1ProjectsPostRequest> mapFromJson(dynamic json) {
-    final map = <String, V1ProjectsPostRequest>{};
+  static Map<String, ProjectUser> mapFromJson(dynamic json) {
+    final map = <String, ProjectUser>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = V1ProjectsPostRequest.fromJson(entry.value);
+        final value = ProjectUser.fromJson(entry.value);
         if (value != null) {
           map[entry.key] = value;
         }
@@ -112,17 +111,17 @@ class V1ProjectsPostRequest {
     return map;
   }
 
-  // maps a json object with a list of V1ProjectsPostRequest-objects as value to a dart map
-  static Map<String, List<V1ProjectsPostRequest>> mapListFromJson(
+  // maps a json object with a list of ProjectUser-objects as value to a dart map
+  static Map<String, List<ProjectUser>> mapListFromJson(
     dynamic json, {
     bool growable = false,
   }) {
-    final map = <String, List<V1ProjectsPostRequest>>{};
+    final map = <String, List<ProjectUser>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = V1ProjectsPostRequest.listFromJson(
+        map[entry.key] = ProjectUser.listFromJson(
           entry.value,
           growable: growable,
         );
@@ -133,8 +132,8 @@ class V1ProjectsPostRequest {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
-    'name',
-    'allowStaticChallenges',
-    'webauthnRPID',
+    'ID',
+    'fullName',
+    'created',
   };
 }

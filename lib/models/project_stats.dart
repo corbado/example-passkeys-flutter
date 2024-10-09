@@ -1,11 +1,11 @@
-import 'package:developer_panel_app/services/shared/corbado_project_client/lib/api.dart';
+import 'package:developer_panel_app/services/shared/developerpanel_client/lib/api.dart';
 
 class ProjectStats {
   final List<ProjectStat> parts;
 
   const ProjectStats(this.parts);
 
-  factory ProjectStats.fromResponse(List<UserStats> v) {
+  factory ProjectStats.fromResponse(List<AuthStat> v) {
     return ProjectStats(v.map((e) => ProjectStat.fromResponse(e)).toList());
   }
 }
@@ -32,7 +32,7 @@ class ProjectStat {
       this.timePoint,
       this.totalUsers);
 
-  factory ProjectStat.fromResponse(UserStats v) {
+  factory ProjectStat.fromResponse(AuthStat v) {
     return ProjectStat(
       v.activeUsers,
       v.countEmailLogin,

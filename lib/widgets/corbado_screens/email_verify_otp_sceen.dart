@@ -53,6 +53,8 @@ class _EmailVerifyOtpScreenState extends State<EmailVerifyOtpScreen> {
           showNotificationError(context, maybeError.translatedError);
         }
       });
+
+      return null;
     }, [widget.block.error]);
 
     return Padding(

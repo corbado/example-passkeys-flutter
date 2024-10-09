@@ -25,6 +25,8 @@ class LoginInitScreen extends HookWidget implements CorbadoScreen<LoginInitBlock
           showNotificationError(context, maybeError.translatedError);
         }
       });
+
+      return null;
     }, [block.error]);
 
     return AutofillGroup(
@@ -39,13 +41,11 @@ class LoginInitScreen extends HookWidget implements CorbadoScreen<LoginInitBlock
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(height: 10),
-            Platform.isIOS
-                ? Container()
-                : LinkParagraph(
-                    preText: "Don't have an account yet? ",
-                    linkText: 'Create account',
-                    onTap: () => block.navigateToSignup(),
-                  ),
+            LinkParagraph(
+              preText: "Don't have an account yet? ",
+              linkText: 'Create account',
+              onTap: () => block.navigateToSignup(),
+            ),
             const SizedBox(height: 20),
             OutlinedTextField(
               controller: emailController,

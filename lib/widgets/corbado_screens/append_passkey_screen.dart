@@ -19,6 +19,8 @@ class PasskeyAppendScreen extends HookWidget implements CorbadoScreen<PasskeyApp
           showNotificationError(context, maybeError.translatedError);
         }
       });
+
+      return null;
     }, [block.error]);
 
     return Padding(

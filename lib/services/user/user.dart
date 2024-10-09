@@ -1,7 +1,6 @@
 import 'package:corbado_auth/src/corbado_auth.dart';
 import 'package:developer_panel_app/models/project_info.dart';
 import 'package:developer_panel_app/services/shared/developerpanel_client/lib/api.dart';
-import 'package:either_dart/either.dart';
 
 class UserService {
   final UsersApi _usersApi;
@@ -37,7 +36,7 @@ class UserService {
   }
 
   Future<void> addProject(String name) async {
-    final req = V1ProjectsPostRequest(name: name);
+    final req = V1ProjectsPostRequest(name: name, allowStaticChallenges: false, webauthnRPID: 'localhost');
     await _projectsApi.v1ProjectsPost(req);
   }
 }

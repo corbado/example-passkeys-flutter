@@ -24,6 +24,8 @@ class SignupInitScreen extends HookWidget implements CorbadoScreen<SignupInitBlo
           showNotificationError(context, maybeError.translatedError);
         }
       });
+
+      return null;
     }, [block.error]);
 
     return Padding(

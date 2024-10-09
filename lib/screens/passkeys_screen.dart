@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:overlay_support/overlay_support.dart';
-import 'package:ua_client_hints/ua_client_hints.dart';
 
 class PasskeysScreen extends StatefulHookConsumerWidget {
   const PasskeysScreen({super.key});

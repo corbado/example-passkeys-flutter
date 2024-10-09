@@ -1,4 +1,3 @@
-import 'package:corbado_auth/corbado_auth.dart';
 import 'package:developer_panel_app/models/project_info.dart';
 import 'package:flutter/material.dart';
 

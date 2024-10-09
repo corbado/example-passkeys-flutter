@@ -1,4 +1,5 @@
-import 'package:developer_panel_app/services/shared/corbado_project_client/lib/api.dart';
+
+import 'package:developer_panel_app/services/shared/developerpanel_client/lib/api.dart';
 
 class AuthEvent {
   final String userId;
@@ -17,7 +18,7 @@ class AuthEvent {
     required this.eventType,
   });
 
-  factory AuthEvent.fromResponse(UserAuthLog v) {
+  factory AuthEvent.fromResponse(AuthLog v) {
     return AuthEvent(
       userId: v.userID,
       userName: v.userName,

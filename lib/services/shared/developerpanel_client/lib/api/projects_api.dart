@@ -225,4 +225,281 @@ class ProjectsApi {
     }
     return null;
   }
+
+  /// Get authentication statistics
+  ///
+  /// Returns statistics about the authentication events for the project with the specified project ID.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] projectID (required):
+  ///   The ID of the project.
+  Future<Response> v1ProjectsProjectIDAuthStatsGetWithHttpInfo(
+    String projectID,
+  ) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/projects/{projectID}/authStats'
+        .replaceAll('{projectID}', projectID);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Get authentication statistics
+  ///
+  /// Returns statistics about the authentication events for the project with the specified project ID.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] projectID (required):
+  ///   The ID of the project.
+  Future<V1ProjectsProjectIDAuthStatsGet200Response?>
+      v1ProjectsProjectIDAuthStatsGet(
+    String projectID,
+  ) async {
+    final response = await v1ProjectsProjectIDAuthStatsGetWithHttpInfo(
+      projectID,
+    );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'V1ProjectsProjectIDAuthStatsGet200Response',
+      ) as V1ProjectsProjectIDAuthStatsGet200Response;
+    }
+    return null;
+  }
+
+  /// List authentication logs
+  ///
+  /// Returns a paginated list of authentication logs for the project with the specified project ID.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] projectID (required):
+  ///   The ID of the project.
+  ///
+  /// * [int] page:
+  ///   Page number
+  ///
+  /// * [int] pageSize:
+  ///   Number of items per page
+  ///
+  /// * [String] sort:
+  ///   Field sorting
+  Future<Response> v1ProjectsProjectIDAuthlogsGetWithHttpInfo(
+    String projectID, {
+    int? page,
+    int? pageSize,
+    String? sort,
+  }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/projects/{projectID}/authlogs'
+        .replaceAll('{projectID}', projectID);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (page != null) {
+      queryParams.addAll(_queryParams('', 'page', page));
+    }
+    if (pageSize != null) {
+      queryParams.addAll(_queryParams('', 'pageSize', pageSize));
+    }
+    if (sort != null) {
+      queryParams.addAll(_queryParams('', 'sort', sort));
+    }
+
+    const contentTypes = <String>[];
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// List authentication logs
+  ///
+  /// Returns a paginated list of authentication logs for the project with the specified project ID.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] projectID (required):
+  ///   The ID of the project.
+  ///
+  /// * [int] page:
+  ///   Page number
+  ///
+  /// * [int] pageSize:
+  ///   Number of items per page
+  ///
+  /// * [String] sort:
+  ///   Field sorting
+  Future<V1ProjectsProjectIDAuthlogsGet200Response?>
+      v1ProjectsProjectIDAuthlogsGet(
+    String projectID, {
+    int? page,
+    int? pageSize,
+    String? sort,
+  }) async {
+    final response = await v1ProjectsProjectIDAuthlogsGetWithHttpInfo(
+      projectID,
+      page: page,
+      pageSize: pageSize,
+      sort: sort,
+    );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'V1ProjectsProjectIDAuthlogsGet200Response',
+      ) as V1ProjectsProjectIDAuthlogsGet200Response;
+    }
+    return null;
+  }
+
+  /// List users
+  ///
+  /// Returns a list of users who exist in the project with the specified project ID.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] projectID (required):
+  ///   The ID of the project.
+  ///
+  /// * [int] page:
+  ///   Page number
+  ///
+  /// * [int] pageSize:
+  ///   Number of items per page
+  ///
+  /// * [String] sort:
+  ///   Field sorting
+  Future<Response> v1ProjectsProjectIDUsersGetWithHttpInfo(
+    String projectID, {
+    int? page,
+    int? pageSize,
+    String? sort,
+  }) async {
+    // ignore: prefer_const_declarations
+    final path =
+        r'/v1/projects/{projectID}/users'.replaceAll('{projectID}', projectID);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (page != null) {
+      queryParams.addAll(_queryParams('', 'page', page));
+    }
+    if (pageSize != null) {
+      queryParams.addAll(_queryParams('', 'pageSize', pageSize));
+    }
+    if (sort != null) {
+      queryParams.addAll(_queryParams('', 'sort', sort));
+    }
+
+    const contentTypes = <String>[];
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// List users
+  ///
+  /// Returns a list of users who exist in the project with the specified project ID.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] projectID (required):
+  ///   The ID of the project.
+  ///
+  /// * [int] page:
+  ///   Page number
+  ///
+  /// * [int] pageSize:
+  ///   Number of items per page
+  ///
+  /// * [String] sort:
+  ///   Field sorting
+  Future<V1ProjectsProjectIDUsersGet200Response?> v1ProjectsProjectIDUsersGet(
+    String projectID, {
+    int? page,
+    int? pageSize,
+    String? sort,
+  }) async {
+    final response = await v1ProjectsProjectIDUsersGetWithHttpInfo(
+      projectID,
+      page: page,
+      pageSize: pageSize,
+      sort: sort,
+    );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'V1ProjectsProjectIDUsersGet200Response',
+      ) as V1ProjectsProjectIDUsersGet200Response;
+    }
+    return null;
+  }
 }

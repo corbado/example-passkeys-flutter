@@ -229,10 +229,18 @@ class ApiClient {
           return valueString == 'true' || valueString == '1';
         case 'DateTime':
           return value is DateTime ? value : DateTime.tryParse(value);
+        case 'AuthLog':
+          return AuthLog.fromJson(value);
+        case 'AuthStat':
+          return AuthStat.fromJson(value);
         case 'ErrorResponse':
           return ErrorResponse.fromJson(value);
+        case 'Paging':
+          return Paging.fromJson(value);
         case 'Project':
           return Project.fromJson(value);
+        case 'ProjectUser':
+          return ProjectUser.fromJson(value);
         case 'User':
           return User.fromJson(value);
         case 'V1ProjectsDeleteDelete200Response':
@@ -247,6 +255,18 @@ class ApiClient {
           return V1ProjectsPost200Response.fromJson(value);
         case 'V1ProjectsPostRequest':
           return V1ProjectsPostRequest.fromJson(value);
+        case 'V1ProjectsProjectIDAuthStatsGet200Response':
+          return V1ProjectsProjectIDAuthStatsGet200Response.fromJson(value);
+        case 'V1ProjectsProjectIDAuthStatsGet200ResponseData':
+          return V1ProjectsProjectIDAuthStatsGet200ResponseData.fromJson(value);
+        case 'V1ProjectsProjectIDAuthlogsGet200Response':
+          return V1ProjectsProjectIDAuthlogsGet200Response.fromJson(value);
+        case 'V1ProjectsProjectIDAuthlogsGet200ResponseData':
+          return V1ProjectsProjectIDAuthlogsGet200ResponseData.fromJson(value);
+        case 'V1ProjectsProjectIDUsersGet200Response':
+          return V1ProjectsProjectIDUsersGet200Response.fromJson(value);
+        case 'V1ProjectsProjectIDUsersGet200ResponseData':
+          return V1ProjectsProjectIDUsersGet200ResponseData.fromJson(value);
         case 'V1UsersPutRequest':
           return V1UsersPutRequest.fromJson(value);
         default:

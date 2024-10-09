@@ -18,7 +18,7 @@ class DataSourceAsync extends AsyncDataTableSource {
             key: ValueKey<String>(user.id),
             cells: [
               DataCell(Text(user.id)),
-              DataCell(Text(user.name)),
+              DataCell(Text(user.fullName)),
               DataCell(Text(user.created.toString())),
             ],
           );

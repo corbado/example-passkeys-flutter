@@ -31,8 +31,12 @@ part 'auth/http_bearer_auth.dart';
 part 'api/projects_api.dart';
 part 'api/users_api.dart';
 
+part 'model/auth_log.dart';
+part 'model/auth_stat.dart';
 part 'model/error_response.dart';
+part 'model/paging.dart';
 part 'model/project.dart';
+part 'model/project_user.dart';
 part 'model/user.dart';
 part 'model/v1_projects_delete_delete200_response.dart';
 part 'model/v1_projects_delete_delete_request.dart';
@@ -40,6 +44,12 @@ part 'model/v1_projects_get200_response.dart';
 part 'model/v1_projects_get200_response_data.dart';
 part 'model/v1_projects_post200_response.dart';
 part 'model/v1_projects_post_request.dart';
+part 'model/v1_projects_project_id_auth_stats_get200_response.dart';
+part 'model/v1_projects_project_id_auth_stats_get200_response_data.dart';
+part 'model/v1_projects_project_id_authlogs_get200_response.dart';
+part 'model/v1_projects_project_id_authlogs_get200_response_data.dart';
+part 'model/v1_projects_project_id_users_get200_response.dart';
+part 'model/v1_projects_project_id_users_get200_response_data.dart';
 part 'model/v1_users_put_request.dart';
 
 /// An [ApiClient] instance that uses the default values obtained from

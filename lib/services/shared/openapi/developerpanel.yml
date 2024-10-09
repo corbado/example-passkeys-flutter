@@ -70,13 +70,19 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - name
+                - allowStaticChallenges
+                - webauthnRPID
               properties:
                 name:
                   type: string
                   description: The name of the project (minimum 3 characters).
                   example: "My New Project"
-              required:
-                - name
+                allowStaticChallenges:
+                  type: boolean
+                webauthnRPID:
+                  type: string
       responses:
         200:
           description: Project created successfully.
@@ -133,6 +139,106 @@ paths:
         500:
           description: Internal Server Error.
 
+  /v1/projects/{projectID}/users:
+    get:
+      summary: List users
+      description: Returns a list of users who exist in the project with the specified project ID.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/projectID'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/pageSize'
+        - $ref: '#/components/parameters/sort'
+      responses:
+        200:
+          description: A list of users who have access to the project.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    required:
+                      - paging
+                      - users
+                    properties:
+                      paging:
+                        $ref: '#/components/schemas/paging'
+                      users:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/projectUser'
+
+  /v1/projects/{projectID}/authlogs:
+    get:
+      summary: List authentication logs
+      description: Returns a paginated list of authentication logs for the project with the specified project ID.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/projectID'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/pageSize'
+        - $ref: '#/components/parameters/sort'
+      responses:
+        200:
+          description: A list of authentication logs.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    required:
+                      - paging
+                      - rows
+                    properties:
+                      paging:
+                        $ref: '#/components/schemas/paging'
+                      rows:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/authLog'
+
+  /v1/projects/{projectID}/authStats:
+    get:
+      summary: Get authentication statistics
+      description: Returns statistics about the authentication events for the project with the specified project ID.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/projectID'
+      responses:
+        200:
+          description: Authentication statistics.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    required:
+                      - paging
+                      - rows
+                    properties:
+                      paging:
+                        $ref: '#/components/schemas/paging'
+                      stats:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/authStat'
+
+
   /v1/users:
     put:
       summary: Update username
@@ -164,7 +270,116 @@ paths:
 
 
 components:
+  parameters:
+    projectID:
+      name: projectID
+      in: path
+      description: The ID of the project.
+      required: true
+      schema:
+        type: string
+    page:
+      name: page
+      in: query
+      description: Page number
+      required: false
+      schema:
+        type: integer
+        default: 1
+
+    pageSize:
+      name: pageSize
+      in: query
+      description: Number of items per page
+      required: false
+      schema:
+        type: integer
+        default: 10
+
+    sort:
+      name: sort
+      in: query
+      description: Field sorting
+      required: false
+      schema:
+        type: string
+
   schemas:
+    projectUser:
+      type: object
+      required:
+        - ID
+        - fullName
+        - created
+      properties:
+        ID:
+          type: string
+          description: The ID of the user.
+        fullName:
+          type: string
+          description: The full name of the user.
+        created:
+          type: string
+          description: The date and time the user was added to the project.
+    authLog:
+      type: object
+      required:
+        - created
+        - eventType
+        - method
+        - status
+        - userID
+        - userName
+      properties:
+        created:
+          type: string
+          description: The date and time the log was created.
+        eventType:
+          type: string
+          description: The type of event (e.g., login, logout).
+        method:
+          type: string
+          description: The authentication method used (e.g., password, WebAuthn).
+        status:
+          type: string
+          description: The status of the event (e.g., success, failure).
+        userID:
+          type: string
+          description: The ID of the user.
+        userName:
+          type: string
+          description: The name of the user.
+    authStat:
+      type: object
+      required:
+        - timePoint
+        - totalUsers
+        - signUps
+        - activeUsers
+        - countPasskeyLogin
+        - countEmailLogin
+        - countPasswordLogin
+        - successfulLogins
+        - failedLogins
+      properties:
+        timePoint:
+          type: string
+        totalUsers:
+          type: integer
+        signUps:
+          type: integer
+        activeUsers:
+          type: integer
+        countPasskeyLogin:
+          type: integer
+        countEmailLogin:
+          type: integer
+        countPasswordLogin:
+          type: integer
+        successfulLogins:
+          type: integer
+        failedLogins:
+          type: integer
     user:
       type: object
       properties:
@@ -201,3 +416,20 @@ components:
         message:
           type: string
           description: The error message.
+    paging:
+      type: object
+      required:
+        - page
+        - totalPages
+        - totalItems
+      properties:
+        page:
+          description: current page returned in response
+          type: integer
+          default: 1
+        totalPages:
+          description: total number of pages available
+          type: integer
+        totalItems:
+          description: total number of items available
+          type: integer
