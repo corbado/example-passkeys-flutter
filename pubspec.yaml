@@ -65,6 +65,10 @@ flutter_launcher_icons:
   min_sdk_android: 21
   remove_alpha_ios: true
 
+  web:
+    generate: true
+    image_path: "assets/logo/corbado_web.png"
+
 #dependency_overrides:
 #  corbado_auth:
 #    path: ../flutter-passkeys/packages/corbado_auth
