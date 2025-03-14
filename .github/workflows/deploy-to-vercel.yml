@@ -1,0 +1,33 @@
+name: Deploy corbado app to Vercel
+
+env:
+  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.29.2"
+
+      - name: Deploy to Vercel
+        run: |
+          npx vercel pull -t $VERCEL_TOKEN
+          npx vercel build --prod -t $VERCEL_TOKEN
+          npx vercel deploy --prebuilt --prod -t $VERCEL_TOKEN
