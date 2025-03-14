@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  corbado_auth: ^3.0.1
+  corbado_auth: ^3.4.1
   corbado_frontend_api_client: ^2.0.0
   riverpod: ^2.3.10
   flutter_riverpod: ^2.3.10
