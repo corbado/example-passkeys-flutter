@@ -3,6 +3,7 @@ import 'package:corbado_auth_example/auth_provider.dart';
 import 'package:corbado_auth_example/screens/helper.dart';
 import 'package:corbado_auth_example/widgets/filled_text_button.dart';
 import 'package:corbado_auth_example/widgets/outlined_text_button.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -24,6 +25,19 @@ class EditProfilePage extends HookConsumerWidget {
 
     final isLoading = useState<bool>(false);
     final error = useState<String?>(null);
+
+    // This is only an example for demonstrations purposes
+    Future<void> makeRequest() async {
+      final url = Uri.parse('https://www.corbado.com');
+
+      final response = await http.get(
+        url,
+        headers: {
+          'Authorization': 'Bearer ${user.value!.idToken}',
+          'Content-Type': 'application/json',
+        },
+      );
+    }
 
     useEffect(() {
       WidgetsBinding.instance.addPostFrameCallback((_) {
