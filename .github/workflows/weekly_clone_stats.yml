@@ -30,7 +30,7 @@ jobs:
             "https://api.github.com/repos/$REPO/traffic/clones" > clone_stats.json
 
       - name: Upload Clone Stats
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: clone-stats
           path: clone_stats.json
@@ -43,7 +43,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Download Clone Stats
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: clone-stats
           path: .
