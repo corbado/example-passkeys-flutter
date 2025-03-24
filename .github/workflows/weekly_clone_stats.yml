@@ -28,7 +28,7 @@ jobs:
             "https://api.github.com/repos/$REPO/traffic/clones" > clone_stats.json
 
       - name: Upload Clone Stats
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           # This is the name used to identify the artifact
           name: clone-stats
