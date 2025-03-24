@@ -4,6 +4,10 @@ on:
   schedule:
     - cron: '0 8 * * 1' # Every Monday at 08:00 UTC
 
+  pull_request:
+    branches:
+      - main
+
 jobs:
   fetch-clone-stats:
     runs-on: ubuntu-latest
