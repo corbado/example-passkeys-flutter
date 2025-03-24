@@ -1,0 +1,68 @@
+name: Weekly Clone Stats Email
+
+on:
+  schedule:
+    - cron: '0 8 * * 1' # Every Monday at 08:00 UTC
+
+jobs:
+  fetch-clone-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Fetch Clone Stats
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          REPO="${{ github.repository }}"
+          curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/$REPO/traffic/clones" > clone_stats.json
+
+      - name: Upload Clone Stats
+        uses: actions/upload-artifact@v3
+        with:
+          name: clone-stats
+          path: clone_stats.json
+
+  send-email:
+    needs: fetch-clone-stats
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Download Clone Stats
+        uses: actions/download-artifact@v3
+        with:
+          name: clone-stats
+          path: .
+
+      - name: Parse clone stats
+        id: parse
+        run: |
+          COUNT=$(jq '.count' clone_stats.json)
+          UNIQUES=$(jq '.uniques' clone_stats.json)
+          echo "count=$COUNT" >> $GITHUB_OUTPUT
+          echo "uniques=$UNIQUES" >> $GITHUB_OUTPUT
+
+      - name: Send email
+        uses: mattnotmitt/send-email@v1
+        with:
+          smtp-server: smtp.sendgrid.net
+          smtp-port: 587
+          secure: true
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          from: ${{ vars.EMAIL_FROM }}
+          to: ${{ vars.EMAIL_TO }}
+          subject: 📊 Weekly GitHub Clone Stats for ${{ github.repository }}
+          body: |
+            Hi,
+
+            Here are the clone stats for *${{ github.repository }}* this week:
+
+            🔁 Total Clones: ${{ steps.parse.outputs.count }}
+            👤 Unique Cloners: ${{ steps.parse.outputs.uniques }}
+
+            – GitHub Bot
