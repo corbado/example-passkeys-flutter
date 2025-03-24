@@ -60,7 +60,6 @@ jobs:
         uses: peter-evans/sendgrid-action@v1
         env:
           SENDGRID_API_KEY: ${{ secrets.SENDGRID_KEY }}
-          SCRIPT_FILEPATH: ../sendgrid.js
           FROM: ${{vars.EMAIL_FROM}}
           TO: ${{vars.EMAIL_TO}}
           COUNT: ${{ steps.parse.outputs.count }}
