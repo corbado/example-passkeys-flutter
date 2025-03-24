@@ -1,18 +1,22 @@
 name: Weekly Clone Stats Email
 
 on:
+  # Every Monday at 08:00 UTC
   schedule:
-    - cron: '0 8 * * 1' # Every Monday at 08:00 UTC
+    - cron: '0 8 * * 1'
 
   pull_request:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
   fetch-clone-stats:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Check out code
         uses: actions/checkout@v3
 
       - name: Fetch Clone Stats
@@ -26,20 +30,24 @@ jobs:
       - name: Upload Clone Stats
         uses: actions/upload-artifact@v3
         with:
+          # This is the name used to identify the artifact
           name: clone-stats
+          # File(s) or directories you want to upload as the artifact
           path: clone_stats.json
 
   send-email:
     needs: fetch-clone-stats
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Check out code
         uses: actions/checkout@v3
 
       - name: Download Clone Stats
         uses: actions/download-artifact@v3
         with:
+          # Must match the name used above in actions/upload-artifact
           name: clone-stats
+          # The path/folder where the artifact is extracted
           path: .
 
       - name: Parse clone stats
@@ -60,7 +68,7 @@ jobs:
           password: ${{ secrets.SMTP_PASSWORD }}
           from: ${{ vars.EMAIL_FROM }}
           to: ${{ vars.EMAIL_TO }}
-          subject: 📊 Weekly GitHub Clone Stats for ${{ github.repository }}
+          subject: "📊 Weekly GitHub Clone Stats for ${{ github.repository }}"
           body: |
             Hi,
 
