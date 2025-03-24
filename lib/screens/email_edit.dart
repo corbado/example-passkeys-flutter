@@ -53,7 +53,8 @@ class EmailEditScreen extends HookWidget
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 4),
-          child: TextField(
+          child:
+          TextField(
             controller: emailController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
@@ -65,7 +66,8 @@ class EmailEditScreen extends HookWidget
         SizedBox(
           width: double.infinity,
           height: 50,
-          child: FilledTextButton(
+          child:
+          FilledTextButton(
             isLoading: block.data.primaryLoading,
             onTap: () async {
                 await block.updateEmail(emailController.text);
@@ -77,7 +79,8 @@ class EmailEditScreen extends HookWidget
         SizedBox(
           width: double.infinity,
           height: 50,
-          child: OutlinedTextButton(
+          child:
+          OutlinedTextButton(
             onTap: block.navigateToVerifyEmail,
             content: 'Back',
           ),

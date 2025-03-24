@@ -51,7 +51,8 @@ class LoginInitScreen extends HookWidget implements CorbadoScreen<LoginInitBlock
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 4),
-          child: TextField(
+          child:
+          TextField(
             controller: emailController,
             autofillHints: [_getAutofillHint()],
             decoration: const InputDecoration(
@@ -65,7 +66,8 @@ class LoginInitScreen extends HookWidget implements CorbadoScreen<LoginInitBlock
         SizedBox(
           width: double.infinity,
           height: 50,
-          child: FilledTextButton(
+          child:
+          FilledTextButton(
             isLoading: block.data.primaryLoading,
             onTap: () async {
               final email = emailController.value.text;
@@ -78,7 +80,8 @@ class LoginInitScreen extends HookWidget implements CorbadoScreen<LoginInitBlock
         SizedBox(
           width: double.infinity,
           height: 50,
-          child: OutlinedTextButton(
+          child:
+          OutlinedTextButton(
             onTap: block.navigateToSignup,
             content: 'Create a new account',
           ),

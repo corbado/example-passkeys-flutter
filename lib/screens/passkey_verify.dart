@@ -40,7 +40,8 @@ class PasskeyVerifyScreen extends HookWidget implements CorbadoScreen<PasskeyVer
         SizedBox(
           width: double.infinity,
           height: 50,
-          child: FilledTextButton(
+          child:
+          FilledTextButton(
             isLoading: block.data.primaryLoading,
             onTap: () async {
               await block.passkeyVerify();

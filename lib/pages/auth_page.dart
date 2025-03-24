@@ -8,7 +8,6 @@ import 'package:corbado_auth_example/screens/passkey_verify.dart';
 import 'package:corbado_auth_example/screens/signup_init.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 class AuthPage extends HookConsumerWidget {
   AuthPage({super.key}) {}
 
@@ -23,7 +22,9 @@ class AuthPage extends HookConsumerWidget {
           constraints: const BoxConstraints(maxWidth: 500),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: CorbadoAuthComponent(
+
+            child:
+            CorbadoAuthComponent(
               corbadoAuth: corbadoAuth,
               components: CorbadoScreens(
                 signupInit: SignupInitScreen.new,

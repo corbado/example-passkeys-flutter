@@ -8,13 +8,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+
 class Routes {
   static const auth = '/auth';
   static const profile = '/profile';
   static const editProfile = '/edit-profile';
   static const passkeyList = '/passkey-list';
 }
-
 GoRoute _defaultTransitionGoRoute({
   required String path,
   required Widget Function(BuildContext, GoRouterState) builder,
@@ -27,10 +27,9 @@ GoRoute _defaultTransitionGoRoute({
 }
 
 Page<dynamic> _customPageBuilder(
-  Widget Function(BuildContext, GoRouterState) builder,
-  BuildContext context,
-  GoRouterState state,
-) {
+    Widget Function(BuildContext, GoRouterState) builder,
+    BuildContext context,
+    GoRouterState state,) {
   return CustomTransitionPage<void>(
     key: state.pageKey,
     transitionDuration: const Duration(milliseconds: 150),
@@ -43,7 +42,6 @@ Page<dynamic> _customPageBuilder(
     },
   );
 }
-
 final routerProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(authStateProvider);
 
@@ -78,14 +76,14 @@ final routerProvider = Provider<GoRouter>((ref) {
 
         switch (authState.value!) {
           case AuthState.None:
-            // if the user is not logged in but currently on a page that should
-            // only be visible for logged in users => redirect to signIn page.
+          // if the user is not logged in but currently on a page that should
+          // only be visible for logged in users => redirect to signIn page.
             if (!onLoggedOutRoutes) {
               return Routes.auth;
             }
           case AuthState.SignedIn:
-            // if the user is logged in but currently on a page that should
-            // only be visible for logged out users => redirect to profile page.
+          // if the user is logged in but currently on a page that should
+          // only be visible for logged out users => redirect to profile page.
             if (onLoggedOutRoutes) {
               return Routes.profile;
             }

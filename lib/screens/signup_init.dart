@@ -61,7 +61,8 @@ class SignupInitScreen extends HookWidget
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 4),
-          child: TextField(
+          child:
+          TextField(
             key: const ValueKey('textfield-email'),
             controller: emailController,
             decoration: const InputDecoration(
@@ -92,7 +93,8 @@ class SignupInitScreen extends HookWidget
         SizedBox(
           width: double.infinity,
           height: 50,
-          child: FilledTextButton(
+          child:
+          FilledTextButton(
             isLoading: block.data.primaryLoading,
             onTap: () async {
               await block.submitSignupInit(
@@ -107,7 +109,8 @@ class SignupInitScreen extends HookWidget
         SizedBox(
           width: double.infinity,
           height: 50,
-          child: OutlinedTextButton(
+          child:
+          OutlinedTextButton(
             onTap: block.navigateToLogin,
             content: 'I already have an account',
           ),

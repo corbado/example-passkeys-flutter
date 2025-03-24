@@ -11,7 +11,7 @@ class EmailVerifyOtpScreen extends HookWidget implements CorbadoScreen<EmailVeri
   EmailVerifyOtpScreen(this.block);
 
   Widget build(BuildContext context) {
-    final emailController = useTextEditingController();
+    final otpController = useTextEditingController();
 
     useEffect(() {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -49,8 +49,9 @@ class EmailVerifyOtpScreen extends HookWidget implements CorbadoScreen<EmailVeri
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 4),
-          child: TextField(
-            controller: emailController,
+          child:
+          TextField(
+            controller: otpController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               hintText: 'XXXXXX',
@@ -61,10 +62,11 @@ class EmailVerifyOtpScreen extends HookWidget implements CorbadoScreen<EmailVeri
         SizedBox(
           width: double.infinity,
           height: 50,
-          child: FilledTextButton(
+          child:
+          FilledTextButton(
             isLoading: block.data.primaryLoading,
             onTap: () async {
-              await block.submitOtpCode(emailController.text);
+              await block.submitOtpCode(otpController.text);
             },
             content: 'Submit',
           ),
@@ -73,7 +75,8 @@ class EmailVerifyOtpScreen extends HookWidget implements CorbadoScreen<EmailVeri
         SizedBox(
           width: double.infinity,
           height: 50,
-          child: OutlinedTextButton(
+          child:
+          OutlinedTextButton(
             onTap: block.resendEmail,
             content: 'Resend code',
           ),

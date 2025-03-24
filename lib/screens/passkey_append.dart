@@ -47,7 +47,8 @@ class PasskeyAppendScreen extends HookWidget implements CorbadoScreen<PasskeyApp
         SizedBox(
           width: double.infinity,
           height: 50,
-          child: FilledTextButton(
+          child:
+          FilledTextButton(
             isLoading: block.data.primaryLoading,
             onTap: () async {
               await block.passkeyAppend();

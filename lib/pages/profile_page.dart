@@ -69,7 +69,8 @@ class ProfilePage extends ConsumerWidget {
                 SizedBox(
                   width: double.infinity,
                   height: 50,
-                  child: OutlinedTextButton(
+                  child:
+                  OutlinedTextButton(
                     onTap: corbado.signOut,
                     content: 'Sign out',
                   ),

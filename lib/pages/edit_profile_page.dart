@@ -23,9 +23,6 @@ class EditProfilePage extends HookConsumerWidget {
 
     final email = useTextEditingController(text: user.value!.email);
 
-    final isLoading = useState<bool>(false);
-    final error = useState<String?>(null);
-
     // This is only an example for demonstrations purposes
     Future<void> makeRequest() async {
       final url = Uri.parse('https://www.corbado.com');
@@ -38,6 +35,9 @@ class EditProfilePage extends HookConsumerWidget {
         },
       );
     }
+
+    final isLoading = useState<bool>(false);
+    final error = useState<String?>(null);
 
     useEffect(() {
       WidgetsBinding.instance.addPostFrameCallback((_) {
