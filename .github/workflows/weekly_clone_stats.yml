@@ -48,9 +48,6 @@ jobs:
           name: clone-stats
           path: .
 
-      - name: Print raw JSON
-        run: cat clone_stats.json
-
       - name: Parse clone stats
         id: parse
         run: |
