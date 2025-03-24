@@ -51,10 +51,34 @@ jobs:
       - name: Print raw JSON
         run: cat clone_stats.json
 
-      - name: Parse and Print Stats
+      - name: Parse clone stats
         id: parse
         run: |
           COUNT=$(jq '.count' clone_stats.json)
           UNIQUES=$(jq '.uniques' clone_stats.json)
-          echo "Total Clones: $COUNT"
-          echo "Unique Cloners: $UNIQUES"
+          echo "count=$COUNT" >> "$GITHUB_OUTPUT"
+          echo "uniques=$UNIQUES" >> "$GITHUB_OUTPUT"
+
+      - name: Send email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          # Replace with your SMTP server, port, and credentials
+          server_address: smtp.sendgrid.net
+          server_port: 587
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: "📊 Weekly GitHub Clone Stats for ${{ github.repository }}"
+          to: ${{ vars.EMAIL_TO }}
+          from: ${{ vars.EMAIL_FROM }}
+          # "text/html" is optional if you want to send as HTML
+          content_type: text/plain
+          secure: true
+          body: |
+            Hi,
+            
+            Here are the clone stats for *${{ github.repository }}* this week:
+            
+            🔁 Total Clones: ${{ steps.parse.outputs.count }}
+            👤 Unique Cloners: ${{ steps.parse.outputs.uniques }}
+            
+            – GitHub Bot
