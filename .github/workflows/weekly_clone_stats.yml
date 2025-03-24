@@ -59,10 +59,10 @@ jobs:
           echo "uniques=$UNIQUES" >> $GITHUB_OUTPUT
 
       - name: Send email
-        uses: mattnotmitt/send-email@v1
+        uses: dawidd6/action-send-mail@v3
         with:
-          smtp-server: smtp.sendgrid.net
-          smtp-port: 587
+          server_address: smtp.sendgrid.net
+          server_port: 587
           secure: true
           username: ${{ secrets.SMTP_USERNAME }}
           password: ${{ secrets.SMTP_PASSWORD }}
