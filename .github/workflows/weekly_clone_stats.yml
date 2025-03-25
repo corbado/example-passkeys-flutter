@@ -64,18 +64,18 @@ jobs:
           COUNT=${{ steps.parse.outputs.count }}
           REPOSITORY=${{ github.repository }}
           UNIQUES=${{ steps.parse.outputs.uniques }}
-          
+
           curl -X POST https://api.sendgrid.com/v3/mail/send \
             -H "Authorization: Bearer $ENCODED_AUTH" \
             -H "Content-Type: application/json" \
-            -d '{
-              "personalizations": [{
-                "to": [{"email": "$TO"}],
-                "subject": "Weekly GitHub Clone Stats for $REPOSITORY"
+            -d "{
+              \"personalizations\": [{
+                \"to\": [{\"email\": \"${TO}\"}],
+                \"subject\": \"Weekly GitHub Clone Stats for ${REPOSITORY}\"
               }],
-              "from": {"email": "flutter-example@corbado.com"},
-              "content": [{
-                "type": "text/plain",
-                "value": "Hi there! Here are the clone stats for $REPOSITORY this week:\n\n🔁 Total Clones: $COUNT\n👤 Unique Cloners: $UNIQUES\n\n– GitHub Bot"
+              \"from\": {\"email\": \"${FROM}\"},
+              \"content\": [{
+                \"type\": \"text/plain\",
+                \"value\": \"Hi there! Here are the clone stats for ${REPOSITORY} this week:\n\n🔁 Total Clones: ${COUNT}\n👤 Unique Cloners: ${UNIQUES}\n\n– GitHub Bot\"
               }]
-            }'
+            }"
