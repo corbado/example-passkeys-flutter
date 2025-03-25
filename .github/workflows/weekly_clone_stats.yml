@@ -70,7 +70,7 @@ jobs:
             -H "Content-Type: application/json" \
             -d '{
               "personalizations": [{
-                "to": [{"email": $TO}],
+                "to": [{"email": "$TO"}],
                 "subject": "Weekly GitHub Clone Stats for $REPOSITORY"
               }],
               "from": {"email": "flutter-example@corbado.com"},
