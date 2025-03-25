@@ -58,8 +58,7 @@ jobs:
 
       - name: Send custom email
         run: |
-          USERNAME=$(echo -n "apikey" | base64)
-          ENCODED_AUTH=$(echo -n "$USERNAME:${{ secrets.SENDGRID_KEY }}" | base64)
+          ENCODED_AUTH=${{ secrets.SENDGRID_KEY }}
           
           curl -X POST https://api.sendgrid.com/v3/mail/send \
             -H "Authorization: Basic $ENCODED_AUTH" \
