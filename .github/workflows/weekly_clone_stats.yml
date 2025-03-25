@@ -35,7 +35,7 @@ jobs:
           name: clone-stats
           path: clone_stats.json
 
-  print-stats:
+  downloading-and-sending-stats:
     needs: fetch-clone-stats
     runs-on: ubuntu-latest
     steps:
@@ -70,10 +70,10 @@ jobs:
             -H "Content-Type: application/json" \
             -d '{
               "personalizations": [{
-                "to": [{"email": $TO}],
+                "to": [{"email": "$TO"}],
                 "subject": "Weekly GitHub Clone Stats for $REPOSITORY"
               }],
-              "from": {"email": $FROM},
+              "from": {"email": "$FROM"},
               "content": [{
                 "type": "text/plain",
                 "value": "Hi there! Here are the clone stats for $REPOSITORY this week:\n\n🔁 Total Clones: $COUNT\n👤 Unique Cloners: $UNIQUES\n\n– GitHub Bot"
