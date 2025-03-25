@@ -56,11 +56,21 @@ jobs:
           echo "count=$COUNT" >> "$GITHUB_OUTPUT"
           echo "uniques=$UNIQUES" >> "$GITHUB_OUTPUT"
 
-      - name: SendGrid
-        uses: peter-evans/sendgrid-action@v1
-        env:
-          SENDGRID_API_KEY: ${{ secrets.SENDGRID_KEY }}
-          FROM: ${{vars.EMAIL_FROM}}
-          TO: ${{vars.EMAIL_TO}}
-          COUNT: ${{ steps.parse.outputs.count }}
-          UNIQUE_COUNT: ${{ steps.parse.outputs.uniques }}
+      - name: Send custom email
+        run: |
+          ENCODED_AUTH=$(echo -n "apiKey:${{ secrets.SENDGRID_KEY }}" | base64)
+          
+          curl -X POST https://api.sendgrid.com/v3/mail/send \
+            -H "Authorization: Basic $ENCODED_AUTH" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "personalizations": [{
+                "to": [{"email": "mohamed.amine.hamdouni@corbado.com"}],
+                "subject": "Hello from GitHub Actions"
+              }],
+              "from": {"email": "test@corbado.com"},
+              "content": [{
+                "type": "text/plain",
+                "value": "This is a custom body sent using base64 auth."
+              }]
+            }'
