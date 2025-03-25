@@ -76,6 +76,6 @@ jobs:
               \"from\": {\"email\": \"${FROM}\"},
               \"content\": [{
                 \"type\": \"text/plain\",
-                \"value\": \"Hi there! Here are the clone stats for ${REPOSITORY} this week:\n\n🔁 Total Clones: ${COUNT}\n👤 Unique Cloners: ${UNIQUES}\n\n– GitHub Bot\"
+                \"value\": \"Hi there! Here are the clone stats for ${REPOSITORY} this week:\n\n🔁 Total Clones: ${COUNT}\n👤 Unique Cloners: ${UNIQUES}\"
               }]
             }"
