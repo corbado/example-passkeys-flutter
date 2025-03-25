@@ -5,7 +5,7 @@ import 'package:corbado_auth_example/widgets/outlined_text_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../widgets/debug_info.dart';
+import 'package:corbado_auth_example/widgets/debug_info.dart';
 
 class ProfilePage extends ConsumerWidget {
   ProfilePage({super.key});
@@ -74,7 +74,7 @@ class ProfilePage extends ConsumerWidget {
                       width: double.infinity,
                       height: 50,
                       child:
-                      OutlinedTextButton(
+                          OutlinedTextButton(
                         onTap: corbado.signOut,
                         content: 'Sign out',
                       ),
