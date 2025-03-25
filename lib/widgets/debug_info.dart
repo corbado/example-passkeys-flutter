@@ -25,14 +25,14 @@ class DebugInfo extends HookConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SelectableText(
-              'Project id: ${corbadoAuth.projectId}',
+              'Project ID: ${corbadoAuth.projectId}',
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 10,
               ),
             ),
             SelectableText(
-              'RPid: ${rpIdSnapshot.data}',
+              'RPID: ${rpIdSnapshot.data}',
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 10,
