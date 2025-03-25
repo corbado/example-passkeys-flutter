@@ -9,6 +9,7 @@ import 'package:corbado_auth_example/screens/signup_init.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../widgets/debug_info.dart';
+
 class AuthPage extends HookConsumerWidget {
   AuthPage({super.key}) {}
 
@@ -18,30 +19,31 @@ class AuthPage extends HookConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(title: const Text('Corbado authentication')),
-      body: Stack(children: [
-        DebugInfo(),
-        Center(
-          child: Container(
-            constraints: const BoxConstraints(maxWidth: 500),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-
-              child:
-              CorbadoAuthComponent(
-                corbadoAuth: corbadoAuth,
-                components: CorbadoScreens(
-                  signupInit: SignupInitScreen.new,
-                  loginInit: LoginInitScreen.new,
-                  emailVerifyOtp: EmailVerifyOtpScreen.new,
-                  passkeyAppend: PasskeyAppendScreen.new,
-                  passkeyVerify: PasskeyVerifyScreen.new,
-                  emailEdit: EmailEditScreen.new,
+      body: Stack(
+        children: [
+          DebugInfo(),
+          Center(
+            child: Container(
+              constraints: const BoxConstraints(maxWidth: 500),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child:
+                    CorbadoAuthComponent(
+                  corbadoAuth: corbadoAuth,
+                  components: CorbadoScreens(
+                    signupInit: SignupInitScreen.new,
+                    loginInit: LoginInitScreen.new,
+                    emailVerifyOtp: EmailVerifyOtpScreen.new,
+                    passkeyAppend: PasskeyAppendScreen.new,
+                    passkeyVerify: PasskeyVerifyScreen.new,
+                    emailEdit: EmailEditScreen.new,
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      ]),
+        ],
+      ),
     );
   }
 }

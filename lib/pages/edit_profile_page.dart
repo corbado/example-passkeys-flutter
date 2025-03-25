@@ -1,15 +1,16 @@
 import 'package:corbado_auth/corbado_auth.dart';
 import 'package:corbado_auth_example/auth_provider.dart';
 import 'package:corbado_auth_example/screens/helper.dart';
-import 'package:corbado_auth_example/widgets/debug_info.dart';
 import 'package:corbado_auth_example/widgets/filled_text_button.dart';
 import 'package:corbado_auth_example/widgets/outlined_text_button.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:overlay_support/overlay_support.dart';
+import '../widgets/debug_info.dart';
 
 class EditProfilePage extends HookConsumerWidget {
   EditProfilePage({super.key});
