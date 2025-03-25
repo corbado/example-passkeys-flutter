@@ -59,18 +59,23 @@ jobs:
       - name: Send custom email
         run: |
           ENCODED_AUTH=${{ secrets.SENDGRID_KEY }}
+          FROM=${{ secrets.EMAIL_FROM }}
+          TO=${{ secrets.EMAIL_TO }}
+          COUNT=${{ steps.parse.outputs.count }}
+          REPOSITORY=${{ github.repository }}
+          UNIQUES=${{ steps.parse.outputs.uniques }}
           
           curl -X POST https://api.sendgrid.com/v3/mail/send \
             -H "Authorization: Bearer $ENCODED_AUTH" \
             -H "Content-Type: application/json" \
             -d '{
               "personalizations": [{
-                "to": [{"email": "mohamed.amine.hamdouni@corbado.com"}],
-                "subject": "Hello from GitHub Actions"
+                "to": [{"email": $TO}],
+                "subject": "Weekly GitHub Clone Stats for $REPOSITORY"
               }],
-              "from": {"email": "test@corbado.com"},
+              "from": {"email": $FROM},
               "content": [{
                 "type": "text/plain",
-                "value": "This is a custom body sent using base64 auth."
+                "value": "Hi there! Here are the clone stats for $REPOSITORY this week:\n\n🔁 Total Clones: $COUNT\n👤 Unique Cloners: $UNIQUES\n\n– GitHub Bot"
               }]
             }'
