@@ -59,8 +59,8 @@ jobs:
       - name: Send custom email
         run: |
           ENCODED_AUTH=${{ secrets.SENDGRID_KEY }}
-          FROM=${{ secrets.EMAIL_FROM }}
-          TO=${{ secrets.EMAIL_TO }}
+          FROM=${{ vars.EMAIL_FROM }}
+          TO=${{ vars.EMAIL_TO }}
           COUNT=${{ steps.parse.outputs.count }}
           REPOSITORY=${{ github.repository }}
           UNIQUES=${{ steps.parse.outputs.uniques }}
