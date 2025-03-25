@@ -73,7 +73,7 @@ jobs:
                 "to": [{"email": $TO}],
                 "subject": "Weekly GitHub Clone Stats for $REPOSITORY"
               }],
-              "from": {"email": $FROM},
+              "from": {"email": "flutter-example@corbado.com"},
               "content": [{
                 "type": "text/plain",
                 "value": "Hi there! Here are the clone stats for $REPOSITORY this week:\n\n🔁 Total Clones: $COUNT\n👤 Unique Cloners: $UNIQUES\n\n– GitHub Bot"
