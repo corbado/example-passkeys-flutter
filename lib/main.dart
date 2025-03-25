@@ -2,26 +2,11 @@ import 'package:corbado_auth/corbado_auth.dart';
 import 'package:corbado_auth_example/auth_provider.dart';
 import 'package:corbado_auth_example/pages/loading_page.dart';
 import 'package:corbado_auth_example/router.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:overlay_support/overlay_support.dart';
 
-// In your own project you should get this from an ENV variable or from a Flutter flavour.
-String calculateProjectID() {
-  if (kIsWeb) {
-    return 'pro-8751299119685489253';
-  } else {
-    return 'pro-4268394291597054564';
-  }
-}
-
-const String DEFAULT_VALUE = 'none';
-
-const String envProjectId = String.fromEnvironment(
-  'CORBADO_PROJECT_ID',
-  defaultValue: DEFAULT_VALUE,
-);
+import 'config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,8 +18,7 @@ void main() async {
   runApp(const LoadingPage());
 
   // Now we do the initialization.
-  final projectId =
-      envProjectId == 'none' ? calculateProjectID() : envProjectId;
+  final projectId = calculateProjectID();
 
   final corbadoAuth = CorbadoAuth();
   await corbadoAuth.init(projectId: projectId);
