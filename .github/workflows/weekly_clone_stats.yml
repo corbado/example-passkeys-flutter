@@ -61,7 +61,7 @@ jobs:
           ENCODED_AUTH=${{ secrets.SENDGRID_KEY }}
           
           curl -X POST https://api.sendgrid.com/v3/mail/send \
-            -H "Authorization: Basic $ENCODED_AUTH" \
+            -H "Authorization: Bearer $ENCODED_AUTH" \
             -H "Content-Type: application/json" \
             -d '{
               "personalizations": [{
