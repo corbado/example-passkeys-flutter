@@ -4,6 +4,10 @@ on:
   schedule:
     - cron: '0 8 * * 1'  # Every Monday at 08:00 UTC
 
+  pull_request:
+    branches:
+      - main
+
 permissions:
   contents: read
 
@@ -47,10 +51,21 @@ jobs:
       - name: Parse clone stats
         id: parse
         run: |
-          COUNT=$(jq '.count' clone_stats.json)
-          UNIQUES=$(jq '.uniques' clone_stats.json)
+          # Read from file
+          JSON=$(cat clone_stats.json)
+
+          # Overall totals (top-level keys)
+          COUNT=$(echo "$JSON" | jq '.count')
+          UNIQUES=$(echo "$JSON" | jq '.uniques')
+
+          # Weekly totals from last 7 entries
+          WEEK_COUNT=$(echo "$JSON" | jq '[.clones | sort_by(.timestamp) | reverse | .[:7] | .[].count] | add')
+          WEEK_UNIQUES=$(echo "$JSON" | jq '[.clones | sort_by(.timestamp) | reverse | .[:7] | .[].uniques] | add')
+
           echo "count=$COUNT" >> "$GITHUB_OUTPUT"
           echo "uniques=$UNIQUES" >> "$GITHUB_OUTPUT"
+          echo "week_count=$WEEK_COUNT" >> "$GITHUB_OUTPUT"
+          echo "week_uniques=$WEEK_UNIQUES" >> "$GITHUB_OUTPUT"
 
       - name: Send custom email
         run: |
@@ -58,8 +73,10 @@ jobs:
           FROM=${{ vars.EMAIL_FROM }}
           TO=${{ vars.EMAIL_TO }}
           COUNT=${{ steps.parse.outputs.count }}
-          REPOSITORY=${{ github.repository }}
           UNIQUES=${{ steps.parse.outputs.uniques }}
+          WEEK_COUNT=${{ steps.parse.outputs.week_count }}
+          WEEK_UNIQUES=${{ steps.parse.outputs.week_uniques }}
+          REPOSITORY=${{ github.repository }}
 
           curl -X POST https://api.sendgrid.com/v3/mail/send \
             -H "Authorization: Bearer $ENCODED_AUTH" \
@@ -67,11 +84,11 @@ jobs:
             -d "{
               \"personalizations\": [{
                 \"to\": [{\"email\": \"${TO}\"}],
-                \"subject\": \"Weekly GitHub Clone Stats for ${REPOSITORY}\"
+                \"subject\": \"📊 Weekly GitHub Clone Stats for ${REPOSITORY}\"
               }],
               \"from\": {\"email\": \"${FROM}\"},
               \"content\": [{
                 \"type\": \"text/plain\",
-                \"value\": \"Hi there! Here are the clone stats for ${REPOSITORY} this week:\n\n🔁 Total Clones: ${COUNT}\n👤 Unique Cloners: ${UNIQUES}\"
+                \"value\": \"Hi there! 👋\n\nHere are the clone stats for *${REPOSITORY}* this week:\n\n📅 Last 7 Days:\n🔁 Clones: ${WEEK_COUNT}\n👤 Uniques: ${WEEK_UNIQUES}\n\n📈 Overall:\n🔁 Clones: ${COUNT}\n👤 Uniques: ${UNIQUES}\n\n– GitHub Bot 🤖\"
               }]
             }"
