@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 // if you want to override the used projectID change this
 const PROJECT_ID = "";
 
-String calculateProjectID() {
+String getProjectID() {
   if (PROJECT_ID.isNotEmpty) {
     return PROJECT_ID;
   }

@@ -18,7 +18,7 @@ void main() async {
   runApp(const LoadingPage());
 
   // Now we do the initialization.
-  final projectId = calculateProjectID();
+  final projectId = getProjectID();
 
   final corbadoAuth = CorbadoAuth();
   await corbadoAuth.init(projectId: projectId);
