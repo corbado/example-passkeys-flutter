@@ -1,4 +1,3 @@
-import 'package:corbado_auth_example/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -25,14 +24,14 @@ class DebugInfo extends HookConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SelectableText(
-              'Project id: ${corbadoAuth.projectId}',
+              'Project ID: ${corbadoAuth.projectId}',
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 10,
               ),
             ),
             SelectableText(
-              'RPid: ${rpIdSnapshot.data}',
+              'RPID: ${rpIdSnapshot.data}',
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 10,
