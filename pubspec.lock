@@ -77,10 +77,10 @@ packages:
     dependency: "direct main"
     description:
       name: corbado_auth
-      sha256: b184fc50c4ac1d5cb02090506391873fcd7bc502304e1e76ffaad789bd4657f0
+      sha256: "0bafd916bee3794e8e764180d6d7b7545b3be547f303d355ac0cfc838df86bd3"
       url: "https://pub.dev"
     source: hosted
-    version: "3.5.1"
+    version: "3.5.2"
   corbado_frontend_api_client:
     dependency: transitive
     description:
