@@ -24,9 +24,10 @@ void main() async {
   final projectId = getProjectID();
 
   final corbadoAuth = CorbadoAuth();
-  await corbadoAuth.init(projectId: projectId);
+  await corbadoAuth.init(
+      projectId: projectId, telemetryDisabled: CORBADO_TELEMETRY_DISABLED);
 
-  if (ENABLE_TELEMETRY) {
+  if (!CORBADO_TELEMETRY_DISABLED) {
     // Telemetry is used to help us understand how the example is used.
     unawaited(CorbadoTelemetryApiClient(
       projectId: projectId,
