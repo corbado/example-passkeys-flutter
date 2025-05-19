@@ -17,4 +17,4 @@ String getProjectID() {
 }
 
 // Enable telemetry to help us understand how the example is used
-const ENABLE_TELEMETRY = true;
+const CORBADO_TELEMETRY_DISABLED = false;
