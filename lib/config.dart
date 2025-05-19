@@ -15,3 +15,6 @@ String getProjectID() {
     return 'pro-4268394291597054564';
   }
 }
+
+// Enable telemetry to help us understand how the example is used
+const ENABLE_TELEMETRY = true;
