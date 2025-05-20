@@ -93,10 +93,10 @@ packages:
     dependency: "direct main"
     description:
       name: corbado_telemetry_api_client
-      sha256: "399b5af8ee7ecf2df22e1f70a9bc6c7fca3ffcf1958c2c50c270c0561c0d4b79"
+      sha256: c454bc6a041001d515c0678393971bad605331559a9e256ac675ba705eccf924
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.0"
+    version: "1.0.2"
   csslib:
     dependency: transitive
     description:
@@ -813,5 +813,5 @@ packages:
     source: hosted
     version: "1.1.0"
 sdks:
-  dart: ">=3.7.2 <4.0.0"
+  dart: ">=3.7.0 <4.0.0"
   flutter: ">=3.27.0"
