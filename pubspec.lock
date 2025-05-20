@@ -77,18 +77,26 @@ packages:
     dependency: "direct main"
     description:
       name: corbado_auth
-      sha256: "0bafd916bee3794e8e764180d6d7b7545b3be547f303d355ac0cfc838df86bd3"
+      sha256: c8e3aad513ccbd40c67a632d5064ec81cd177b6e29d89eb45ecc9e79e5098f3d
       url: "https://pub.dev"
     source: hosted
-    version: "3.5.2"
+    version: "3.6.0"
   corbado_frontend_api_client:
     dependency: transitive
     description:
       name: corbado_frontend_api_client
-      sha256: "7628a1e4ee38cd10cb3493767bbbeca855f1da936b41d2b3ad6666348f3da8be"
+      sha256: aa2bd2985621df59b0733908a86035ae6de95b8fb2d79ca6d6cae3f057a00a59
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.1"
+    version: "2.2.0"
+  corbado_telemetry_api_client:
+    dependency: "direct main"
+    description:
+      name: corbado_telemetry_api_client
+      sha256: "399b5af8ee7ecf2df22e1f70a9bc6c7fca3ffcf1958c2c50c270c0561c0d4b79"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   csslib:
     dependency: transitive
     description:
@@ -97,6 +105,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.2"
+  device_info_plus:
+    dependency: transitive
+    description:
+      name: device_info_plus
+      sha256: "0c6396126421b590089447154c5f98a5de423b70cfb15b1578fd018843ee6f53"
+      url: "https://pub.dev"
+    source: hosted
+    version: "11.4.0"
+  device_info_plus_platform_interface:
+    dependency: transitive
+    description:
+      name: device_info_plus_platform_interface
+      sha256: "0b04e02b30791224b31969eb1b50d723498f402971bff3630bca2ba839bd1ed2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.0.2"
   dio:
     dependency: transitive
     description:
@@ -262,10 +286,10 @@ packages:
     dependency: transitive
     description:
       name: http
-      sha256: b9c29a161230ee03d3ccf545097fccd9b87a5264228c5d348202e0f0c28f9010
+      sha256: "2c11f3f94c687ee9bad77c171151672986360b2b001d109814ee7140b2cf261b"
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.2"
+    version: "1.4.0"
   http_parser:
     dependency: transitive
     description:
@@ -399,30 +423,54 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
+  package_info_plus:
+    dependency: transitive
+    description:
+      name: package_info_plus
+      sha256: "7976bfe4c583170d6cdc7077e3237560b364149fcd268b5f53d95a991963b191"
+      url: "https://pub.dev"
+    source: hosted
+    version: "8.3.0"
+  package_info_plus_platform_interface:
+    dependency: transitive
+    description:
+      name: package_info_plus_platform_interface
+      sha256: "6c935fb612dff8e3cc9632c2b301720c77450a126114126ffaafe28d2e87956c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.2.0"
   passkeys:
     dependency: transitive
     description:
       name: passkeys
-      sha256: "30c515d467f02ee3e70824f3ecdbf46c57286f8260bf53f453a99d54a83b0d46"
+      sha256: "5ebfc2f28c203e47992a64bad72f4c4632690317d20175391e23f3c8f339c232"
       url: "https://pub.dev"
     source: hosted
-    version: "2.7.1"
+    version: "2.9.0"
   passkeys_android:
     dependency: transitive
     description:
       name: passkeys_android
-      sha256: "3e6f9e1a529cf1c74e0ea3de268e639923e6bba2eb41e96ac67c36dbfd78ab3d"
+      sha256: "112d23b6c5a01c00c5e9e63a2d2633368546c51f0bf3a061691b8b0d77913435"
       url: "https://pub.dev"
     source: hosted
-    version: "2.7.0"
+    version: "2.7.1"
+  passkeys_doctor:
+    dependency: transitive
+    description:
+      name: passkeys_doctor
+      sha256: bfd0b3fe7de6b742ecaacff51289ae6f9dcc80d55eb6ddf39622b379182607ab
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   passkeys_ios:
     dependency: transitive
     description:
       name: passkeys_ios
-      sha256: bd3c325fa256b608d9796f7cf5019f5b9ddde2563ed6a317b6ca8ee66517475a
+      sha256: cb5bfa4c739dbf6c2cae0d2c20642a1ed5226666d424a442166a91a1b4a204f4
       url: "https://pub.dev"
     source: hosted
-    version: "2.6.0"
+    version: "2.6.1"
   passkeys_platform_interface:
     dependency: transitive
     description:
@@ -435,10 +483,10 @@ packages:
     dependency: transitive
     description:
       name: passkeys_web
-      sha256: "57d9e6cfcae41013d039cb483c81096ecd3a5735f4ce142b6966fbcba393356d"
+      sha256: "98d28223292738a9fbb24db33cdba00609675d54521694fdde45b7e5caf59b19"
       url: "https://pub.dev"
     source: hosted
-    version: "2.5.1"
+    version: "2.6.0"
   path:
     dependency: transitive
     description:
@@ -728,10 +776,10 @@ packages:
     dependency: transitive
     description:
       name: web
-      sha256: cd3543bd5798f6ad290ea73d210f423502e71900302dde696f8bff84bf89a1cb
+      sha256: "868d88a33d8a87b18ffc05f9f030ba328ffefba92d6c127917a2ba740f9cfe4a"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.0"
+    version: "1.1.1"
   webdriver:
     dependency: transitive
     description:
@@ -748,6 +796,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.12.0"
+  win32_registry:
+    dependency: transitive
+    description:
+      name: win32_registry
+      sha256: "6f1b564492d0147b330dd794fee8f512cec4977957f310f9951b5f9d83618dae"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   xdg_directories:
     dependency: transitive
     description:
@@ -757,5 +813,5 @@ packages:
     source: hosted
     version: "1.1.0"
 sdks:
-  dart: ">=3.7.0 <4.0.0"
+  dart: ">=3.7.2 <4.0.0"
   flutter: ">=3.27.0"

@@ -15,3 +15,5 @@ String getProjectID() {
     return 'pro-4268394291597054564';
   }
 }
+
+const CORBADO_TELEMETRY_DISABLED = false;
