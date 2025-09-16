@@ -219,6 +219,10 @@ You still have full control over the UI though.
 Most importantly we also render these screens in the right order for you so you don't need to bother
 with complex routing during authentication.
 
+## Telemetry
+
+This example application utilizes telemetry events to gain deeper insights into its usage and the SDK's utilization. Such information is instrumental in guiding our prioritization of features that will be most beneficial and impactful for the majority of our users. Read our [official documentation](https://docs.corbado.com/corbado-complete/other/telemetry) for more details.
+
 ## Troubleshooting
 
 | Type                | Issue                      | Note                                                                                                                                                                                                          |
